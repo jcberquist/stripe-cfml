@@ -445,7 +445,7 @@ component {
 	}
 
   private numeric function getUTCTimestamp( required date dateToConvert ) {
-	  var utcdate = dateAdd( "s", getTimeZoneInfo().utcTotalOffset, arguments.dateToConvert );
+	  var utcdate =  dateConvert("local2utc", arguments.dateToConvert );
 	  return dateDiff( "s", createDate( 1970,1,1 ), utcdate );
   }
 
@@ -457,7 +457,7 @@ component {
 
 	private date function parseUTCTimestamp( required numeric utcTimestamp ) {
 	  var utcdate = dateAdd( "s", arguments.utcTimestamp, createDate( 1970,1,1 ) );
-	  return dateAdd("s",  getTimeZoneInfo().utcTotalOffset * -1, utcdate );
+	  return dateConvert("utc2local", utcdate );
 	}
 
 	private boolean function isInteger( required any varToValidate ) {
