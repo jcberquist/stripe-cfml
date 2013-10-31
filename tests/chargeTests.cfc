@@ -63,6 +63,20 @@ component extends="mxunit.framework.TestCase" {
 
 	}
 
+	public void function testCreateChargeWithCardAndMetadata() {
+
+		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var metadata = { key = 'test', foo = 'bar', id = 200 };
+		var result = stripe.createCharge( amount = 1999,  card = card, metadata = metadata );
+
+		debug( result );
+
+		assertEquals( 200, result.status_code, "expected a successful charge" );
+		assertEquals( metadata, result.metadata, "metadata does not match" );
+		assertTrue( result.captured, "charge was not captured" );
+
+	}
+
 	// test only passes if stripe.com is set to decline charges with failed zip checks
 	public void function testFailedZipCreateChargeWithCard() {
 
@@ -191,6 +205,22 @@ component extends="mxunit.framework.TestCase" {
 
 	}
 
+	public void function testUpdateCharge() {
+
+		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var metadata = { key = 'test', foo = 'bar', id = 200 };
+		var chargeResult = stripe.createCharge( amount = 1999,  card = card, description = 'description', metadata = metadata );
+		var result = stripe.updateCharge( id = chargeResult.id, description = 'new description', metadata = {} );
+
+		debug( chargeResult );
+		debug( result );
+
+		assertEquals( 200, chargeResult.status_code, "expected a successful charge" );
+		assertEquals( 200, result.status_code, "expected a successful charge update" );
+		assertEquals( 'new description', result.description, "expected description to be updated" );
+		assertTrue( structIsEmpty( result.metadata ), "expected metadata to be cleared" );
+
+	}
 
 
 }

@@ -30,6 +30,19 @@ component extends="mxunit.framework.TestCase" {
 
 	}
 
+	public void function testCreateCustomerWithMetadata() {
+
+		var result = stripe.createCustomer( metadata = { email = "test@example.com", description = "this is a test description" } );
+
+		debug( result );
+
+		assertEquals( 200, result.status_code, "expected a 200 status" );
+		assertEquals( "customer", result.object, "customer object was not returned" );
+		assertEquals( "test@example.com", result.metadata.email, "correct metadata was not returned" );
+		assertEquals( "this is a test description", result.metadata.description, "correct metadata was not returned" );
+
+	}
+
 	public void function testCreateCustomerWithCard() {
 
 		var card = { number = '4242424242424242', exp_month = '5', exp_year = '14' };
@@ -111,6 +124,20 @@ component extends="mxunit.framework.TestCase" {
 
 	}
 
+	public void function testUpdateCustomerMetadata() {
+
+		var customer = stripe.createCustomer( metadata = { email = "test@example.com", description = "this is a test description" } );
+		var result = stripe.updateCustomer( id = customer.id, metadata = { email = "foo@example.com", description = "" } );
+
+		debug( customer );
+		debug( result );
+
+		assertEquals( 200, result.status_code, "expected a 200 status" );
+		assertEquals( "customer", result.object, "customer object was not returned" );
+		assertEquals( "foo@example.com", result.metadata.email, "correct metadata was not returned" );
+		assertFalse( structKeyExists( result.metadata, "description" ), "correct metadata was not returned" );
+
+	}
 
 	public void function testDeleteCustomer() {
 

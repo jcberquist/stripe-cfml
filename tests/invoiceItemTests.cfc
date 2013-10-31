@@ -9,13 +9,14 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testCreateInvoiceItem() {
 
-		var result = stripe.createInvoiceItem( customer = customerObject.id, amount = 5000, description = "You lose! $50 more!" );
+		var result = stripe.createInvoiceItem( customer = customerObject.id, amount = 5000, description = "You lose! $50 more!", metadata = { foo = "bar" } );
 
 		debug( customerObject );
 		debug( result );
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
 		assertEquals( "invoiceitem", result.object, "invoiceitem object was not returned" );
+		assertEquals( { foo = "bar" }, result.metadata, "correct metadata was not returned" );
 
 	}
 
@@ -48,10 +49,10 @@ component extends="mxunit.framework.TestCase" {
 	
 	public void function testUpdateInvoiceItem() {
 
-		var invoiceUpdate = { amount = 2000, description = "Changed the amount!" };
+		var invoiceUpdate = { amount = 2000, description = "Changed the amount!", metadata = { test = "value" } };
 
-		var invoiceitemObject = stripe.createInvoiceItem( customer = customerObject.id, amount = 5000, description = "You lose! $50 more!" );
-		var result = stripe.updateInvoiceItem( id = invoiceitemObject.id, amount = invoiceUpdate.amount, description = invoiceUpdate.description );
+		var invoiceitemObject = stripe.createInvoiceItem( customer = customerObject.id, amount = 5000, description = "You lose! $50 more!", metadata = { foo = "bar" } );
+		var result = stripe.updateInvoiceItem( id = invoiceitemObject.id, amount = invoiceUpdate.amount, description = invoiceUpdate.description, metadata = invoiceUpdate.metadata );
 
 		debug( customerObject );
 		debug( invoiceitemObject );
@@ -60,6 +61,7 @@ component extends="mxunit.framework.TestCase" {
 		assertEquals( 200, result.status_code, "expected a 200 status" );
 		assertEquals( invoiceitemObject.id, result.id, "correct invoiceitem object was not returned" );
 		assertEquals( invoiceUpdate.amount, result.amount, "correct invoiceitem amount was not returned" );
+		assertEquals( invoiceUpdate.metadata, result.metadata, "correct invoiceitem metadata was not returned" );
 
 	}
 	

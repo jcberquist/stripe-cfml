@@ -8,12 +8,13 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testCreateRecipient() {
 
-		var result = stripe.createRecipient( name = "John Doe", type = "individual" );
+		var result = stripe.createRecipient( name = "John Doe", type = "individual", metadata = { foo = "bar" } );
 
 		debug( result );
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
 		assertEquals( "recipient", result.object, "recipient object was not returned" );
+		assertEquals( { foo = "bar" }, result.metadata, "correct metadata was not returned" );
 
 	}
 
@@ -63,8 +64,8 @@ component extends="mxunit.framework.TestCase" {
 	public void function testUpdateRecipient() {
 
 		var bank_account = { country = "US", routing_number = "110000000", account_number = "000123456789" };
-		var recipientObject = stripe.createRecipient( name = "John Doe", type = "individual", email = "testOne@example.com", bank_account = bank_account );
-		var result = stripe.updateRecipient( id = recipientObject.id, email = "testTwo@example.com" );
+		var recipientObject = stripe.createRecipient( name = "John Doe", type = "individual", email = "testOne@example.com", bank_account = bank_account , metadata = { foo = "bar" } );
+		var result = stripe.updateRecipient( id = recipientObject.id, email = "testTwo@example.com", metadata = { foo = "new" } );
 
 		debug( recipientObject );
 		debug( result );
@@ -73,6 +74,7 @@ component extends="mxunit.framework.TestCase" {
 		assertEquals( recipientObject.id, result.id, "correct customer object was not returned" );
 		assertEquals( "testOne@example.com", recipientObject.email, "correct original recipient object was not returned" );
 		assertEquals( "testTwo@example.com", result.email, "correct new recipient object was not returned" );
+		assertEquals( { foo = "new" }, result.metadata, "correct new metadata was not returned" );
 
 	}
 

@@ -10,13 +10,14 @@ component extends="mxunit.framework.TestCase" {
 
 		var bank_account = { country = "US", routing_number = "110000000", account_number = "000123456789" };
 		var recipientObject = stripe.createRecipient( name = "John Doe", type = "individual", bank_account = bank_account );
-		var result = stripe.createTransfer( amount = 500, recipient = recipientObject.id );
+		var result = stripe.createTransfer( amount = 500, recipient = recipientObject.id, metadata = { test = "value" } );
 
 		debug( recipientObject );
 		debug( result );
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
 		assertEquals( "transfer", result.object, "recipient object was not returned" );
+		assertEquals( { test = "value" }, result.metadata, "correct metadata was not returned" );
 
 	}
 
@@ -33,6 +34,23 @@ component extends="mxunit.framework.TestCase" {
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
 		assertEquals( transferObject.id, result.id, "correct transfer object was not returned" );
+
+	}
+
+	public void function testUpdateTransfer() {
+
+		var bank_account = { country = "US", routing_number = "110000000", account_number = "000123456789" };
+		var recipientObject = stripe.createRecipient( name = "John Doe", type = "individual", bank_account = bank_account );
+		var transferObject = stripe.createTransfer( amount = 500, recipient = recipientObject.id, metadata = { test = "value" } );
+		var result = stripe.updateTransfer( id = transferObject.id, metadata = { test = "new value" } );
+
+		debug( recipientObject );
+		debug( transferObject );
+		debug( result );
+
+		assertEquals( 200, result.status_code, "expected a 200 status" );
+		assertEquals( transferObject.id, result.id, "correct transfer object was not returned" );
+		assertEquals( { test = "new value" }, result.metadata, "correct metadata was not returned" );
 
 	}
 

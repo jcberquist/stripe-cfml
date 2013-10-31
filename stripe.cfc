@@ -25,7 +25,8 @@ component {
 		bank_account = { required = [ "country","routing_number","account_number" ], optional = [ ] },
 		available_on = { required = [ ],	optional = [ "gt","gte","lt","lte" ] },
 		created = { required = [ ],	optional = [ "gt","gte","lt","lte" ] },
-		date = { required = [ ], optional = [ "gt","gte","lt","lte" ]	}
+		date = { required = [ ], optional = [ "gt","gte","lt","lte" ]	},
+		metadata = { required = [ ], optional = [ ] }
 	};
 
 	public any function init( required string stripeSecretKey, boolean convertUTCTimestamps = true, boolean convertToCents = false, string defaultCurrency = "usd", boolean includeRaw = false, string apiBaseUrl = "https://api.stripe.com/v1/" ) {
@@ -35,12 +36,16 @@ component {
 
 	// Charges
 
-	public struct function createCharge( required numeric amount, string currency = variables.defaultCurrency, string customer, any card, string description, boolean capture, numeric application_fee ) {
+	public struct function createCharge( required numeric amount, string currency = variables.defaultCurrency, string customer, any card, string description, struct metadata, boolean capture, numeric application_fee ) {
 		return apiCall( "charges", setupParams( arguments ), "post" );
 	}
 
 	public struct function getCharge( required string id )	{
 		return apiCall( "charges/#trim( arguments.id )#" );
+	}
+
+	public struct function updateCharge( required string id, string description, struct metadata )	{
+		return apiCall( "charges/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}
 
 	public struct function refundCharge( required string id, numeric amount ) {
@@ -61,7 +66,7 @@ component {
 
 	// Customers
 
-	public struct function createCustomer( any card, string email, string description, string coupon, numeric account_balance, string plan, any trial_end, numeric quantity ) {
+	public struct function createCustomer( any card, string email, string description, struct metadata, string coupon, numeric account_balance, string plan, any trial_end, numeric quantity ) {
 		return apiCall( "customers", setupParams( arguments ), "post" );
 	}
 
@@ -69,7 +74,7 @@ component {
 		return apiCall( "customers/#trim( arguments.id )#" );
 	}	
 
-	public struct function updateCustomer( required string id, any card, string default_card, string email, string description, string coupon, numeric account_balance ) {
+	public struct function updateCustomer( required string id, any card, string default_card, string email, string description, struct metadata, string coupon, numeric account_balance ) {
 		return apiCall( "customers/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}
 
@@ -195,7 +200,7 @@ component {
 
 	// Invoice Items
 
-	public struct function createInvoiceItem( required string customer, required numeric amount, string currency = variables.defaultCurrency, string invoice, string description )	{
+	public struct function createInvoiceItem( required string customer, required numeric amount, string currency = variables.defaultCurrency, string invoice, string description, struct metadata )	{
 		return apiCall( "invoiceitems", setupParams( arguments ), "post" );
 	}
 
@@ -203,7 +208,7 @@ component {
 		return apiCall( "invoiceitems/#trim( arguments.id )#" );
 	}	
 
-	public struct function updateInvoiceItem( required string id, numeric amount, string description ) {
+	public struct function updateInvoiceItem( required string id, numeric amount, string description, struct metadata ) {
 		return apiCall( "invoiceitems/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}	
 
@@ -217,7 +222,7 @@ component {
 
 	// Recipients
 
-	public struct function createRecipient( required string name, required string type, string tax_id, any bank_account, string email, string description ) {
+	public struct function createRecipient( required string name, required string type, string tax_id, any bank_account, string email, string description, struct metadata ) {
 		return apiCall( "recipients", setupParams( arguments ), "post" );
 	}
 
@@ -225,7 +230,7 @@ component {
 		return apiCall( "recipients/#trim( arguments.id )#" );
 	}	
 
-	public struct function updateRecipient( required string id, string name, string tax_id, any bank_account, string email, string description ) {
+	public struct function updateRecipient( required string id, string name, string tax_id, any bank_account, string email, string description, struct metadata ) {
 		return apiCall( "recipients/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}
 
@@ -239,12 +244,16 @@ component {
 
 	// Transfers
 
-	public struct function createTransfer( required numeric amount, string currency = variables.defaultCurrency, required string recipient, string description, string statement_descriptor ) {
+	public struct function createTransfer( required numeric amount, string currency = variables.defaultCurrency, required string recipient, string description, string statement_descriptor, struct metadata ) {
 		return apiCall( "transfers", setupParams( arguments ), "post" );
 	}
 
 	public struct function getTransfer( required string id ) {
 		return apiCall( "transfers/#trim( arguments.id )#" );
+	}	
+
+	public struct function updateTransfer( required string id, string description, struct metadata ) {
+		return apiCall( "transfers/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}	
 
 	public struct function cancelTransfer( required string id )	{
@@ -355,15 +364,26 @@ component {
 	
 	private array function setupDictionary( required string type, required struct dictionary ) {
 		var result = [ ];
-		for ( var field in variables.dictionaryFields[ type ].required ) {
+		for ( var field in variables.dictionaryFields[ arguments.type ].required ) {
 			if ( !structKeyExists( arguments.dictionary, field ) ) {
 				throwError( "'#arguments.type#' dictionary missing required field: #field#" );				
 			}
 			arrayAppend( result, getValidatedParam( "#arguments.type#[#field#]", arguments.dictionary[ field ] ) );
 		}
-		for ( var field in variables.dictionaryFields[ type ].optional ) {
+		for ( var field in variables.dictionaryFields[ arguments.type ].optional ) {
 			if ( structKeyExists( arguments.dictionary, field ) ) {
 				arrayAppend( result, getValidatedParam( "#arguments.type#[#field#]", arguments.dictionary[ field ] ) );
+			}
+		}
+		// special handling for metadata
+		if ( arguments.type == 'metadata' ) {
+			if ( arrayLen( structKeyArray( arguments.dictionary ) ) > 10 ) throwError( "There can be a maximum of 10 keys in a metadata struct." );
+			if ( !structIsEmpty( arguments.dictionary ) ) {
+				for ( var field in arguments.dictionary ) {
+					arrayAppend( result, getValidatedParam( "metadata[#lcase( field )#]", arguments.dictionary[ field ], false ) );
+				}
+			} else {
+				arrayAppend( result, getValidatedParam( "metadata", "" ) );
 			}
 		}
 		return result;
@@ -378,11 +398,11 @@ component {
 		return result;
 	}
 
-	private struct function getValidatedParam( required string paramName, required any paramValue ) {
+	private struct function getValidatedParam( required string paramName, required any paramValue, boolean parseSubKeys = true ) {
 		// only simple values
 		if ( !isSimpleValue( paramValue ) ) throwError( "'#paramName#' is not a simple value." );
 
-		var subKey = getSubKey( paramName );
+		var subKey = parseSubKeys ? getSubKey( paramName ) : '';
 
 		// integer
 		if ( arrayFindNoCase( variables.integerFields, paramName ) || arrayFindNoCase( variables.integerFields, subKey ) ) {
