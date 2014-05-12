@@ -15,11 +15,12 @@
 */
 component {
 
-	variables.integerFields = [ "quantity","count","offset","interval_count","trial_period_days","duration_in_months","max_redemptions", "percent_off","exp_month","exp_year","cvc" ];
+	variables.integerFields = [ "quantity","limit","interval_count","trial_period_days","duration_in_months","max_redemptions", "percent_off","exp_month","exp_year","cvc" ];
+	variables.numericFields = [ "application_fee_percent" ];
 	variables.currencyFields = [ "amount","amount_refunded","amount_off","account_balance","fee","application_fee","net" ];
 	variables.timestampFields = [ "created","trial_start","trial_end","redeem_by","start","end","ended_at","period_start","period_end","date","next_payment_attempt","available_on","current_period_start","current_period_end","canceled_at","gt","gte","lt","lte" ];
-	variables.booleanFields = [ "capture","closed","prorate","at_period_end" ];
-	variables.arrayFields = [ "expand" ];
+	variables.booleanFields = [ "at_period_end","capture","closed","prorate","refund_application_fee" ];
+	variables.arrayFields = [ "expand","include" ];
 	variables.dictionaryFields = {
 		card = { required = [ "number","exp_month","exp_year" ], optional = [ "cvc","name","address_line1","address_line2","address_city","address_zip","address_state","address_country" ] },
 		bank_account = { required = [ "country","routing_number","account_number" ], optional = [ ] },
@@ -29,26 +30,26 @@ component {
 		metadata = { required = [ ], optional = [ ] }
 	};
 
-	public any function init( required string stripeSecretKey, boolean convertUTCTimestamps = true, boolean convertToCents = false, string defaultCurrency = "usd", boolean includeRaw = false, string apiBaseUrl = "https://api.stripe.com/v1/" ) {
+	public any function init( required string apiKey, boolean convertUTCTimestamps = true, boolean convertToCents = false, string defaultCurrency = "usd", boolean includeRaw = false, string apiBaseUrl = "https://api.stripe.com/v1/" ) {
 		structAppend( variables, arguments );
 		return this;
 	}
 
 	// Charges
 
-	public struct function createCharge( required numeric amount, string currency = variables.defaultCurrency, string customer, any card, string description, struct metadata, boolean capture, numeric application_fee ) {
+	public struct function createCharge( required numeric amount, string currency = variables.defaultCurrency, numeric application_fee, boolean capture, string customer, any card, string description, struct metadata, string statement_description ) {
 		return apiCall( "charges", setupParams( arguments ), "post" );
 	}
 
 	public struct function getCharge( required string id )	{
-		return apiCall( "charges/#trim( arguments.id )#" );
+		return apiCall( "charges/#trim( arguments.id )#", setupParams( arguments ) );
 	}
 
 	public struct function updateCharge( required string id, string description, struct metadata )	{
 		return apiCall( "charges/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}
 
-	public struct function refundCharge( required string id, numeric amount ) {
+	public struct function refundCharge( required string id, numeric amount, boolean refund_application_fee ) {
 		return apiCall( "charges/#trim( arguments.id )#/refund", setupParams( arguments ), "post" );
 	}
 
@@ -56,46 +57,52 @@ component {
 		return apiCall( "charges/#trim( arguments.id )#/capture", setupParams( arguments ), "post" );
 	}
 
-	public struct function listCharges( numeric count, any created, numeric offset, string customer ) {
+	public struct function listCharges( any created, string customer, string ending_before, numeric limit, string starting_after ) {
 		return apiCall( "charges", setupParams( arguments ) );
-	}
-
-	public struct function updateChargeDispute( required string id, string evidence ) {
-		return apiCall( "charges/#trim( arguments.id )#/dispute", setupParams( arguments ), "post" );
 	}
 
 	// Customers
 
-	public struct function createCustomer( any card, string email, string description, struct metadata, string coupon, numeric account_balance, string plan, any trial_end, numeric quantity ) {
+	public struct function createCustomer( numeric account_balance, any card, string coupon, string description, string email, struct metadata, string plan, numeric quantity, any trial_end ) {
 		return apiCall( "customers", setupParams( arguments ), "post" );
 	}
 
 	public struct function getCustomer( required string id ) {
-		return apiCall( "customers/#trim( arguments.id )#" );
+		return apiCall( "customers/#trim( arguments.id )#", setupParams( arguments ) );
 	}	
 
-	public struct function updateCustomer( required string id, any card, string default_card, string email, string description, struct metadata, string coupon, numeric account_balance ) {
+	public struct function updateCustomer( required string id, numeric account_balance, any card, string coupon, string default_card, string description, string email, struct metadata ) {
 		return apiCall( "customers/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}
 
 	public struct function deleteCustomer( required string id )	{
-		return apiCall( path = "customers/#trim( arguments.id )#", method = "delete" );
+		return apiCall( "customers/#trim( arguments.id )#", setupParams( arguments ), "delete" );
 	}
 
-	public struct function deleteCustomerDiscount( required string id )	{
-		return apiCall( path = "customers/#trim( arguments.id )#/discount", method = "delete" );
-	}
-
-	public struct function listCustomers( numeric count, any created, numeric offset ) {
+	public struct function listCustomers( any created, string ending_before, numeric limit, string starting_after ) {
 		return apiCall( "customers", setupParams( arguments ) );
 	}
 
-	public struct function updateCustomerSubscription( required string id, required string plan, string coupon, boolean prorate, any trial_end, any card, numeric quantity ) {
-		return apiCall( "customers/#trim( arguments.id )#/subscription", setupParams( arguments ), "post" );
+	// Subscriptions
+
+	public struct function createCustomerSubscription( required string id, required string plan, numeric application_fee_percent, any card, string coupon, boolean prorate, numeric quantity, any trial_end ) {
+		return apiCall( "customers/#trim( arguments.id )#/subscriptions", setupParams( arguments ), "post" );
 	}
 
-	public struct function cancelCustomerSubscription( required string id, boolean at_period_end ) {
-		return apiCall( "customers/#trim( arguments.id )#/subscription", setupParams( arguments ), "delete" );
+	public struct function getCustomerSubscription( required string customer_id, required string id ) {
+		return apiCall( "customers/#trim( arguments.customer_id )#/subscriptions/#trim( arguments.id )#", setupParams( arguments ) );
+	}
+
+	public struct function updateCustomerSubscription( required string customer_id, required string id, numeric application_fee_percent, any card, string coupon, string plan, boolean prorate, numeric quantity, any trial_end ) {
+		return apiCall( "customers/#trim( arguments.customer_id )#/subscriptions/#trim( arguments.id )#", setupParams( arguments ), "post" );
+	}
+
+	public struct function cancelCustomerSubscription( required string customer_id, required string id, boolean at_period_end ) {
+		return apiCall( "customers/#trim( arguments.customer_id )#/subscriptions/#trim( arguments.id )#", setupParams( arguments ), "delete" );
+	}
+
+	public struct function listCustomerSubscriptions( required string customer_id, string ending_before, numeric limit, string starting_after ) {
+		return apiCall( "customers/#trim( arguments.customer_id )#/subscriptions", setupParams( arguments ) );
 	}
 
 	// Cards
@@ -104,47 +111,47 @@ component {
 		return apiCall( "customers/#trim( arguments.customer_id )#/cards", setupParams( arguments ), "post" );
 	}
 
-	public struct function updateCustomerCard( required string customer_id, required string id, string address_city, string address_line1, string address_line2, string address_state, string address_zip, numeric exp_month, numeric exp_year, string name ) {
+	public struct function getCustomerCard( required string customer_id, required string id ) {
+		return apiCall( "customers/#trim( arguments.customer_id )#/cards/#trim( arguments.id )#", setupParams( arguments ) );
+	}
+
+	public struct function updateCustomerCard( required string customer_id, required string id, string address_city, string address_country, string address_line1, string address_line2, string address_state, string address_zip, numeric exp_month, numeric exp_year, string name ) {
 		return apiCall( "customers/#trim( arguments.customer_id )#/cards/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}
 
-	public struct function getCustomerCard( required string customer_id, required string id ) {
-		return apiCall( "customers/#trim( arguments.customer_id )#/cards/#trim( arguments.id )#" );
-	}
-
 	public struct function deleteCustomerCard( required string customer_id, required string id ) {
-		return apiCall( path = "customers/#trim( arguments.customer_id )#/cards/#trim( arguments.id )#", method = "delete" );
+		return apiCall( "customers/#trim( arguments.customer_id )#/cards/#trim( arguments.id )#", setupParams( arguments ), "delete" );
 	}
 
-	public struct function listCustomerCards( required string customer_id, numeric count, numeric offset ) {
+	public struct function listCustomerCards( required string customer_id, string ending_before, numeric limit, string starting_after ) {
 		return apiCall( "customers/#trim( arguments.customer_id )#/cards", setupParams( arguments ) );
 	}
 
 	// Plans
 
-	public struct function createPlan( required string id, required numeric amount, string currency = variables.defaultCurrency, required string interval, numeric interval_count, required string name, numeric trial_period_days ) {
+	public struct function createPlan( required string id, required numeric amount, string currency = variables.defaultCurrency, required string interval, required string name, numeric interval_count, struct metadata, string statement_description, numeric trial_period_days ) {
 		return apiCall( "plans", setupParams( arguments, true ), "post" );
 	}
 
 	public struct function getPlan( required string id ) {
-		return apiCall( "plans/#trim( arguments.id )#" );
+		return apiCall( "plans/#trim( arguments.id )#", setupParams( arguments ) );
 	}	
 
-	public struct function updatePlan( required string id, required string name ) {
+	public struct function updatePlan( required string id, struct metadata, string name, string statement_description ) {
 		return apiCall( "plans/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}	
 
 	public struct function deletePlan( required string id ) {
-		return apiCall( path = "plans/#trim( arguments.id )#", method = "delete" );
+		return apiCall( "plans/#trim( arguments.id )#", setupParams( arguments ), "delete" );
 	}	
 
-	public struct function listPlans( numeric count, numeric offset ) {
+	public struct function listPlans( string ending_before, numeric limit, string starting_after ) {
 		return apiCall( "plans", setupParams( arguments ) );
 	}
 
 	// Coupons
 
-	public struct function createCoupon( string id, required string duration, numeric amount_off, string currency = variables.defaultCurrency, numeric duration_in_months, numeric max_redemptions, numeric percent_off, any redeem_by ) {
+	public struct function createCoupon( string id, required string duration, numeric amount_off, string currency = variables.defaultCurrency, numeric duration_in_months, numeric max_redemptions, struct metadata, numeric percent_off, any redeem_by ) {
 		// only one of percent_off and amount_off can be provided to the createCoupon function
 		if ( !( structKeyExists( arguments, "amount_off" ) xor structKeyExists( arguments, "percent_off" ) ) ) {
 			throwError( "createCoupon: please provide one and only one of amount_off and percent_off params" );			
@@ -153,59 +160,69 @@ component {
 		if ( arguments.duration == "repeating" xor structKeyExists( arguments, "duration_in_months" ) ) {
 			throwError( "createCoupon: duration_in_months is required when and only when duration equals 'repeating'" );			
 		}
-		return apiCall( "coupons", setupParams( arguments ), "post" );
+		return apiCall( "coupons", setupParams( arguments, true ), "post" );
 	}	
 
 	public struct function getCoupon( required string id ) {
-		return apiCall( "coupons/#trim( arguments.id )#" );
+		return apiCall( "coupons/#trim( arguments.id )#", setupParams( arguments ) );
 	}	
 
 	public struct function deleteCoupon( required string id ) {
-		return apiCall( path = "coupons/#trim( arguments.id )#", method = "delete" );
+		return apiCall( "coupons/#trim( arguments.id )#", setupParams( arguments ), "delete" );
 	}	
 
-	public struct function listCoupons( numeric count, numeric offset ) {
+	public struct function listCoupons( string ending_before, numeric limit, string starting_after ) {
 		return apiCall( "coupons", setupParams( arguments ) );
 	}	
 
+	// Discounts
+
+	public struct function deleteCustomerDiscount( required string id )	{
+		return apiCall( "customers/#trim( arguments.id )#/discount", setupParams( arguments ), "delete" );
+	}
+
+	public struct function deleteCustomerSubscriptionDiscount( required string customer_id, required string id )	{
+		return apiCall( "customers/#trim( arguments.customer_id )#/subscriptions/#trim( arguments.id )#/discount", setupParams( arguments ), "delete" );
+	}
+
 	// Invoices
 
-	public struct function createInvoice( required string customer )	{
+	public struct function createInvoice( required string customer, numeric application_fee, string description, struct metadata )	{
 		return apiCall( "invoices", setupParams( arguments ), "post" );
 	}
 
 	public struct function getInvoice( required string id )	{
-		return apiCall( "invoices/#trim( arguments.id )#" );
+		return apiCall( "invoices/#trim( arguments.id )#", setupParams( arguments ) );
 	}
 
-	public struct function getInvoiceLineItems( required string id, numeric count, string customer, numeric offset )	{
+	public struct function getInvoiceLineItems( required string id, string customer, string ending_before, numeric limit, string starting_after, string subscription )	{
 		return apiCall( "invoices/#trim( arguments.id )#/lines", setupParams( arguments ) );
 	}
 
 	public struct function payInvoice( required string id )	{
-		return apiCall( path = "invoices/#trim( arguments.id )#/pay", method = "post" );
+		return apiCall( "invoices/#trim( arguments.id )#/pay", setupParams( arguments ), "post" );
 	}
 
-	public struct function updateInvoice( required string id, boolean closed )	{
+	public struct function updateInvoice( required string id, boolean closed, string description, struct metadata )	{
 		return apiCall( "invoices/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}
 
-	public struct function listInvoices( numeric count, string customer, any date, numeric offset ) {
+	public struct function listInvoices( string customer, any date, string ending_before, numeric limit, string starting_after ) {
 		return apiCall( "invoices", setupParams( arguments ) );
 	}	
 
-	public struct function getUpcomingInvoice( required string customer ) {
+	public struct function getUpcomingInvoice( required string customer, string subscription ) {
 		return apiCall( "invoices/upcoming", setupParams( arguments ) );
 	}	
 
 	// Invoice Items
 
-	public struct function createInvoiceItem( required string customer, required numeric amount, string currency = variables.defaultCurrency, string invoice, string description, struct metadata )	{
+	public struct function createInvoiceItem( required string customer, required numeric amount, string currency = variables.defaultCurrency, string description, string invoice, struct metadata, string subscription )	{
 		return apiCall( "invoiceitems", setupParams( arguments ), "post" );
 	}
 
 	public struct function getInvoiceItem( required string id ) {
-		return apiCall( "invoiceitems/#trim( arguments.id )#" );
+		return apiCall( "invoiceitems/#trim( arguments.id )#", setupParams( arguments ) );
 	}	
 
 	public struct function updateInvoiceItem( required string id, numeric amount, string description, struct metadata ) {
@@ -213,33 +230,21 @@ component {
 	}	
 
 	public struct function deleteInvoiceItem( required string id ) {
-		return apiCall( path = "invoiceitems/#trim( arguments.id )#", method = "delete" );
+		return apiCall( "invoiceitems/#trim( arguments.id )#", setupParams( arguments ), "delete" );
 	}	
 
-	public struct function listInvoiceItems( numeric count, any created, string customer, numeric offset ) {
+	public struct function listInvoiceItems( any created, string customer, string ending_before, numeric limit, string starting_after ) {
 		return apiCall( "invoiceitems", setupParams( arguments ) );
 	}
 
-	// Recipients
+	// Disputes
 
-	public struct function createRecipient( required string name, required string type, string tax_id, any bank_account, string email, string description, struct metadata ) {
-		return apiCall( "recipients", setupParams( arguments ), "post" );
+	public struct function updateChargeDispute( required string id, string evidence ) {
+		return apiCall( "charges/#trim( arguments.id )#/dispute", setupParams( arguments ), "post" );
 	}
 
-	public struct function getRecipient( required string id ) {
-		return apiCall( "recipients/#trim( arguments.id )#" );
-	}	
-
-	public struct function updateRecipient( required string id, string name, string tax_id, any bank_account, string email, string description, struct metadata ) {
-		return apiCall( "recipients/#trim( arguments.id )#", setupParams( arguments ), "post" );
-	}
-
-	public struct function deleteRecipient( required string id )	{
-		return apiCall( path = "recipients/#trim( arguments.id )#", method = "delete" );
-	}
-
-	public struct function listRecipients( numeric count, numeric offset, boolean verified ) {
-		return apiCall( "recipients", setupParams( arguments ) );
+	public struct function closeChargeDispute( required string id ) {
+		return apiCall( "charges/#trim( arguments.id )#/dispute/close", setupParams( arguments ), "post" );
 	}
 
 	// Transfers
@@ -249,7 +254,7 @@ component {
 	}
 
 	public struct function getTransfer( required string id ) {
-		return apiCall( "transfers/#trim( arguments.id )#" );
+		return apiCall( "transfers/#trim( arguments.id )#", setupParams( arguments ) );
 	}	
 
 	public struct function updateTransfer( required string id, string description, struct metadata ) {
@@ -257,30 +262,82 @@ component {
 	}	
 
 	public struct function cancelTransfer( required string id )	{
-		return apiCall( path = "transfers/#trim( arguments.id )#/cancel", method = "post" );
+		return apiCall( "transfers/#trim( arguments.id )#/cancel", setupParams( arguments ), "post" );
 	}
 
-	public struct function listTransfers( numeric count, any date, numeric offset, string recipient, string status ) {
+	public struct function listTransfers( any created, any date, string ending_before, numeric limit, string recipient, string starting_after, string status ) {
 		return apiCall( "transfers", setupParams( arguments ) );
+	}
+
+	// Recipients
+
+	public struct function createRecipient( required string name, required string type, any bank_account, string email, string description, struct metadata, string tax_id ) {
+		return apiCall( "recipients", setupParams( arguments ), "post" );
+	}
+
+	public struct function getRecipient( required string id ) {
+		return apiCall( "recipients/#trim( arguments.id )#", setupParams( arguments ) );
+	}	
+
+	public struct function updateRecipient( required string id, any bank_account, string email, string description, struct metadata, string name, string tax_id ) {
+		return apiCall( "recipients/#trim( arguments.id )#", setupParams( arguments ), "post" );
+	}
+
+	public struct function deleteRecipient( required string id )	{
+		return apiCall( "recipients/#trim( arguments.id )#", setupParams( arguments ), "delete" );
+	}
+
+	public struct function listRecipients( string ending_before, numeric limit, string starting_after, boolean verified ) {
+		return apiCall( "recipients", setupParams( arguments ) );
+	}
+
+	// Application Fees
+
+	public struct function getApplicationFee( required string id ) {
+		return apiCall( "application_fees/#trim( arguments.id )#", setupParams( arguments ) );
+	}	
+
+	public struct function refundApplicationFee( required string id, numeric amount ) {
+		return apiCall( "application_fees/#trim( arguments.id )#", setupParams( arguments ), "post" );
+	}
+
+	public struct function listApplicationFees( string charge, any created, string ending_before, numeric limit, string starting_after ) {
+		return apiCall( "application_fees", setupParams( arguments ) );
+	}
+
+	// Account
+
+	public struct function getAccountDetails() {
+		return apiCall( "account", setupParams( arguments ) );
+	}
+
+	// Balance
+
+	public struct function getBalance() {
+		return apiCall( "balance", setupParams( arguments ) );
+	}
+
+	public struct function getBalanceTransaction( required string id ) {
+		return apiCall( "balance/history/#trim( arguments.id )#", setupParams( arguments ) );
+	}
+
+	public struct function listBalanceHistory( any available_on, any created, string ending_before, numeric limit, string starting_after, string transfer, string type ) {
+		return apiCall( "balance/history", setupParams( arguments ) );
 	}
 
 	// Events
 
 	public struct function getEvent( required string id ) {
-		return apiCall( "events/#trim( arguments.id )#" );
+		return apiCall( "events/#trim( arguments.id )#", setupParams( arguments ) );
 	}	
 
-	public struct function listEvents( numeric count, any created, numeric offset, string type ) {
+	public struct function listEvents( string ending_before, numeric limit, string starting_after, string type ) {
 		return apiCall( "events", setupParams( arguments ) );
 	}
 
 	// Tokens
 	
-	public struct function createCardToken( struct card, string customer ) {
-		// only one of a customer or a card (token/struct) can be provided to the createCardToken function
-		if ( !( structKeyExists( arguments, "customer" ) xor structKeyExists( arguments, "card" ) ) ) {
-			throwError( "createCardToken: please provide one and only one of customer and card params" );			
-		}
+	public struct function createCardToken( any card, string customer ) {
 		return apiCall( "tokens", setupParams( arguments ), "post" );
 	}
 
@@ -289,22 +346,12 @@ component {
 	}
 
 	public struct function getToken( required string id ) {
-		return apiCall( "tokens/#trim( arguments.id )#" );
+		return apiCall( "tokens/#trim( arguments.id )#", setupParams( arguments ) );
 	}
 
 	// miscellaneous
 
-	public struct function getAccountDetails() {
-		return apiCall( "account" );
-	}
 
-	public struct function getBalance() {
-		return apiCall( "balance" );
-	}
-
-	public struct function listBalanceHistory( any available_on, numeric count, any created, numeric offset, string transfer, string type ) {
-		return apiCall( "balance/history", setupParams( arguments ) );
-	}
 
 	// PRIVATE FUNCTIONS
 
@@ -322,7 +369,19 @@ component {
 	}
 	
 	private any function makeHttpRequest( required string urlPath, required array params, required string method ) {
-		var http = new http( url = arguments.urlPath, method = arguments.method, username = variables.stripeSecretKey, password = "" );
+		var http = new http( url = arguments.urlPath, method = arguments.method, username = variables.apiKey, password = "" );
+
+    // adding a user agent header so that Adobe ColdFusion doesn't get mad about empty HTTP posts
+    http.addParam( type = "header", name = "User-Agent", value = "stripe.cfc" );
+
+		// look for special param 'apiKey' - if it exists it overrides default apiKey
+		for ( var param in arguments.params ) {
+			if ( param.name == "apiKey" ) {
+				http.setUsername( param.value );
+				arrayDelete( arguments.params, param );
+				break;
+			}
+		}
 
 		if ( arguments.method == "post" ) { 
 			for ( var param in arguments.params ) {
@@ -376,7 +435,7 @@ component {
 			}
 		}
 		// special handling for metadata
-		if ( arguments.type == 'metadata' ) {
+		if ( arguments.type == "metadata" ) {
 			if ( arrayLen( structKeyArray( arguments.dictionary ) ) > 10 ) throwError( "There can be a maximum of 10 keys in a metadata struct." );
 			if ( !structIsEmpty( arguments.dictionary ) ) {
 				for ( var field in arguments.dictionary ) {
@@ -408,6 +467,14 @@ component {
 		if ( arrayFindNoCase( variables.integerFields, paramName ) || arrayFindNoCase( variables.integerFields, subKey ) ) {
 			if ( !isInteger( paramValue ) ) {
 				throwError( "field '#paramName#' requires an integer value" );				
+			}
+			return { "name" = paramName, "value" = paramValue };
+		}
+
+		// numeric
+		if ( arrayFindNoCase( variables.numericFields, paramName ) || arrayFindNoCase( variables.numericFields, subKey ) ) {
+			if ( !isNumeric( paramValue ) ) {
+				throwError( "field '#paramName#' requires a numeric value" );				
 			}
 			return { "name" = paramName, "value" = paramValue };
 		}

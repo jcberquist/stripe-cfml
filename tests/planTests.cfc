@@ -2,13 +2,13 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function setup() {
 
-		stripe = new stripe.stripe( request.stripeSecretKey );
+		stripe = new stripe.stripe( request.apiKey );
 
 	}
 
 	public void function testCreatePlan() {
 
-		var plan = { id = createUUID(), amount = 1000, interval = 'month', interval_count = 3, name = "Gold Plan" };
+		var plan = { id = createUUID(), amount = 1000, interval = 'month', interval_count = 3, name = "Gold Plan", metadata = { test = 'value' } };
 
 		var result = stripe.createPlan( argumentCollection = plan );
 
@@ -16,6 +16,7 @@ component extends="mxunit.framework.TestCase" {
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
 		assertEquals( "plan", result.object, "plan object was not returned" );
+		assertEquals( "value", result.metadata.test, "metadata was incorrect" );
 
 	}
 
@@ -41,7 +42,7 @@ component extends="mxunit.framework.TestCase" {
 		var newPlanName = "My New Plan Name";
 
 		var planObject = stripe.createPlan( argumentCollection = plan );
-		var result = stripe.updatePlan( plan.id, newPlanName );
+		var result = stripe.updatePlan( id = plan.id, name = newPlanName );
 
 		debug( planObject );
 		debug( result );
@@ -75,18 +76,15 @@ component extends="mxunit.framework.TestCase" {
 
 		var planOneObject = stripe.createPlan( argumentCollection = planOne );
 		var planTwoObject = stripe.createPlan( argumentCollection = planTwo );
-		var result = stripe.listPlans( 2 );
+		var result = stripe.listPlans( ending_before = planOneObject.id );
 
 		debug( planOneObject );
 		debug( planTwoObject );
 		debug( result );
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
-		assertTrue( result.count >= 2, "plans are not listed" );
-		assertTrue( arrayLen( result.data ) == 2, "plans are not listed" );
+		assertEquals( 1, arrayLen( result.data ), "correct plans are not listed" );
 
 	}
-
-
 	
 }

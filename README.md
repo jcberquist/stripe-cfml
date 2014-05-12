@@ -3,7 +3,7 @@ stripe.cfc
 
 **stripe.cfc** is a(nother) Railo/ColdFusion wrapper for the stripe.com API.
 
-It was tested against and supports all of the routes of the **2013-07-05** version of the stripe.com API. It should run on Railo 3.3+ and ColdFusion 9.0.1+.
+It was tested against and supports all of the routes of the **2014-03-28** version of the stripe.com API. It should run on Railo 3.3+ and ColdFusion 9.0.1+.
 
 Getting Started
 =================
@@ -13,6 +13,19 @@ Getting Started
 		charge = stripe.createCharge( amount = 2000, card = cardToken );
 		// charge is a struct which can be inspected for the result of the create charge api call
 		writeDump( charge );
+
+Changelog
+=================
+
+#### Updated to **2014-03-28** version of the stripe.com API
+
+- Although not listed in any method's arguments, it is now possible to pass in an `apiKey` argument containing a stripe secret key or an access token (for use with Stripe Connect) to any method, and stripe.cfc will use that api key for the api request instead of the default api key passed in when stripe.cfc was initialized.
+- Method arguments have been reordered, with ids first, followed by required arguments in alphabetical order, and then optional arguments in alphabetical order. It is recommended to pass arguments into methods by name, to avoid running into issues caused by the reordering, removal, or addition of arguments.
+- Pagination has undergone a significant change. The `count` and `offset` arguments are gone. They have been replaced by `limit`, `starting_after`, and `ending_before`. Both `starting_after` and `ending_before` take a stripe object ID as a value. See https://stripe.com/docs/api#pagination. While not listed in any list<Object>s() methods, stripe.cfc looks for an `include` array argument that can be used to get the total count of records when using a list method by passing in `include = [ "total_count" ]` to the method.
+- It should also be mentioned that there is a similar `expand` array argument that can be used to expand certain properties of the stripe API response so that it includes more detail. See https://stripe.com/docs/api#expand.
+
+More Details about stripe.cfc
+=================
 
 By default, stripe.cfc converts all UTC timestamps to and from CFML date variables, but this can be disabled by passing in `convertUTCTimestamps = false` when stripe.cfc is initialized.
 
@@ -40,90 +53,119 @@ Available Methods
 =================
 **Charges** https://stripe.com/docs/api#charges
 
-		createCharge( required numeric amount, string currency = variables.defaultCurrency, string customer, any card, string description, boolean capture, numeric application_fee )
+		createCharge( required numeric amount, string currency = variables.defaultCurrency, numeric application_fee, boolean capture, string customer, any card, string description, struct metadata, string statement_description )
 		getCharge( required string id )
-		refundCharge( required string id, numeric amount )
+		updateCharge( required string id, string description, struct metadata )
+		refundCharge( required string id, numeric amount, boolean refund_application_fee )
 		captureCharge( required string id, numeric amount, numeric application_fee )
-		listCharges( numeric count, any created, numeric offset, string customer )
-		updateChargeDispute( required string id, string evidence )
+		listCharges( any created, string customer, string ending_before, numeric limit, string starting_after )
 
 **Customers** https://stripe.com/docs/api#customers
 
-		createCustomer( any card, string email, string description, string coupon, numeric account_balance, string plan, any trial_end, numeric quantity )
+		createCustomer( numeric account_balance, any card, string coupon, string description, string email, struct metadata, string plan, numeric quantity, any trial_end )
 		getCustomer( required string id )
-		updateCustomer( required string id, any card, string default_card, string email, string description, string coupon, numeric account_balance )
+		updateCustomer( required string id, numeric account_balance, any card, string coupon, string default_card, string description, string email, struct metadata )
 		deleteCustomer( required string id )
-		deleteCustomerDiscount( required string id )
-		listCustomers( numeric count, any created, numeric offset )
-		updateCustomerSubscription( required string id, required string plan, string coupon, boolean prorate, any trial_end, any card, numeric quantity )
-		cancelCustomerSubscription( required string id, boolean at_period_end )
+		listCustomers( any created, string ending_before, numeric limit, string starting_after )
+
+**Cards** https://stripe.com/docs/api#cards
+
 		createCustomerCard( required string customer_id, any card )
-		updateCustomerCard( required string customer_id, required string id, string address_city, string address_line1, string address_line2, string address_state, string address_zip, numeric exp_month, numeric exp_year, string name )
 		getCustomerCard( required string customer_id, required string id )
+		updateCustomerCard( required string customer_id, required string id, string address_city, string address_country, string address_line1, string address_line2, string address_state, string address_zip, numeric exp_month, numeric exp_year, string name )
 		deleteCustomerCard( required string customer_id, required string id )
-		listCustomerCards( required string customer_id, numeric count, numeric offset )
+		listCustomerCards( required string customer_id, string ending_before, numeric limit, string starting_after )
+
+**Subscriptions** https://stripe.com/docs/api#subscriptions
+
+		createCustomerSubscription( required string id, required string plan, numeric application_fee_percent, any card, string coupon, boolean prorate, numeric quantity, any trial_end )
+		getCustomerSubscription( required string customer_id, required string id )
+		updateCustomerSubscription( required string customer_id, required string id, numeric application_fee_percent, any card, string coupon, string plan, boolean prorate, numeric quantity, any trial_end )
+		cancelCustomerSubscription( required string customer_id, required string id, boolean at_period_end )
+		listCustomerSubscriptions( required string customer_id, string ending_before, numeric limit, string starting_after )
 
 **Plans** https://stripe.com/docs/api#plans
 
-		createPlan( required string id, required numeric amount, string currency = variables.defaultCurrency, required string interval, numeric interval_count, required string name, numeric trial_period_days )
+		createPlan( required string id, required numeric amount, string currency = variables.defaultCurrency, required string interval, required string name, numeric interval_count, struct metadata, string statement_description, numeric trial_period_days )
 		getPlan( required string id )
-		updatePlan( required string id, required string name )
+		updatePlan( required string id, struct metadata, string name, string statement_description )
 		deletePlan( required string id )
-		listPlans( numeric count, numeric offset )
+		listPlans( string ending_before, numeric limit, string starting_after )
 
 **Coupons** https://stripe.com/docs/api#coupons
 
-		createCoupon( string id, required string duration, numeric amount_off, string currency = variables.defaultCurrency, numeric duration_in_months, numeric max_redemptions, numeric percent_off, any redeem_by )
+		createCoupon( string id, required string duration, numeric amount_off, string currency = variables.defaultCurrency, numeric duration_in_months, numeric max_redemptions, struct metadata, numeric percent_off, any redeem_by )
 		getCoupon( required string id )
 		deleteCoupon( required string id )
-		listCoupons( numeric count, numeric offset )
+		listCoupons( string ending_before, numeric limit, string starting_after )
 
-**InvoiceItems** https://stripe.com/docs/api#invoiceitems
+**Discounts** https://stripe.com/docs/api#discounts
 
-		createInvoiceItem( required string customer, required numeric amount, string currency = variables.defaultCurrency, string invoice, string description )
-		getInvoiceItem( required string id )
-		updateInvoiceItem( required string id, numeric amount, string description )
-		deleteInvoiceItem( required string id )
-		listInvoiceItems( numeric count, any created, string customer, numeric offset )
+		deleteCustomerDiscount( required string id )
+		deleteCustomerSubscriptionDiscount( required string customer_id, required string id )
 
 **Invoices** https://stripe.com/docs/api#invoices
 
-		createInvoice( required string customer )
+		createInvoice( required string customer, numeric application_fee, string description, struct metadata )
 		getInvoice( required string id )
-		getInvoiceLineItems( required string id, numeric count, string customer, numeric offset )
+		getInvoiceLineItems( required string id, string customer, string ending_before, numeric limit, string starting_after, string subscription )
 		payInvoice( required string id )
-		updateInvoice( required string id, boolean closed )
-		listInvoices( numeric count, string customer, any date, numeric offset )
-		getUpcomingInvoice( required string customer )
+		updateInvoice( required string id, boolean closed, string description, struct metadata )
+		listInvoices( string customer, any date, string ending_before, numeric limit, string starting_after )
+		getUpcomingInvoice( required string customer, string subscription )
 
-**Recipients** https://stripe.com/docs/api#recipients
+**Invoice Items** https://stripe.com/docs/api#invoiceitems
 
-		createRecipient( required string name, required string type, string tax_id, any bank_account, string email, string description )
-		getRecipient( required string id )
-		updateRecipient( required string id, string name, string tax_id, any bank_account, string email, string description )
-		deleteRecipient( required string id )
-		listRecipients( numeric count, numeric offset, boolean verified )
+		createInvoiceItem( required string customer, required numeric amount, string currency = variables.defaultCurrency, string description, string invoice, struct metadata, string subscription )
+		getInvoiceItem( required string id )
+		updateInvoiceItem( required string id, numeric amount, string description, struct metadata )
+		deleteInvoiceItem( required string id )
+		listInvoiceItems( any created, string customer, string ending_before, numeric limit, string starting_after )
+
+**Disputes** https://stripe.com/docs/api#disputes
+
+		updateChargeDispute( required string id, string evidence )
+		closeChargeDispute( required string id )
 
 **Transfers** https://stripe.com/docs/api#transfers
 
-		createTransfer( required numeric amount, string currency = variables.defaultCurrency, required string recipient, string description, string statement_descriptor )
+		createTransfer( required numeric amount, string currency = variables.defaultCurrency, required string recipient, string description, string statement_descriptor, struct metadata )
 		getTransfer( required string id )
+		updateTransfer( required string id, string description, struct metadata )
 		cancelTransfer( required string id )
-		listTransfers( numeric count, any date, numeric offset, string recipient, string status )
+		listTransfers( any created, any date, string ending_before, numeric limit, string recipient, string starting_after, string status )
+
+**Recipients** https://stripe.com/docs/api#recipients
+
+		createRecipient( required string name, required string type, any bank_account, string email, string description, struct metadata, string tax_id )
+		getRecipient( required string id )
+		updateRecipient( required string id, any bank_account, string email, string description, struct metadata, string name, string tax_id )
+		deleteRecipient( required string id )
+		listRecipients( string ending_before, numeric limit, string starting_after, boolean verified )
+
+**Application Fees** https://stripe.com/docs/api#application_fees
+
+		getApplicationFee( required string id )
+		refundApplicationFee( required string id, numeric amount )
+		listApplicationFees( string charge, any created, string ending_before, numeric limit, string starting_after )
+
+**Account** https://stripe.com/docs/api#account
+
+		getAccountDetails()
+
+**Balance** https://stripe.com/docs/api#balance
+
+		getBalance()
+		getBalanceTransaction( required string id )
+		listBalanceHistory( any available_on, any created, string ending_before, numeric limit, string starting_after, string transfer, string type )
 
 **Events** https://stripe.com/docs/api#events
 
 		getEvent( required string id )
-		listEvents( numeric count, any created, numeric offset, string type )
+		listEvents( string ending_before, numeric limit, string starting_after, string type )
 
 **Tokens** https://stripe.com/docs/api#tokens
 
-		createCardToken( struct card, string customer )
+		createCardToken( any card, string customer )
 		createBankAccountToken( struct bank_account )
 		getToken( required string id )
-
-**Miscellaneous**
-
-		getAccountDetails(  )
-		getBalance(  )
-		listBalanceHistory( any available_on, numeric count, any created, numeric offset, string transfer, string type )

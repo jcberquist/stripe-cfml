@@ -2,7 +2,7 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function setup() {
 
-		stripe = new stripe.stripe( request.stripeSecretKey );
+		stripe = new stripe.stripe( request.apiKey );
 
 	}
 
@@ -97,14 +97,14 @@ component extends="mxunit.framework.TestCase" {
 
 		var recipientOneObject = stripe.createRecipient( name = "John Doe", type = "individual" );
 		var recipientTwoObject = stripe.createRecipient( name = "Jane Doe", type = "corporation" );
-		var result = stripe.listRecipients( 2 );
+		var result = stripe.listRecipients( limit = 2, include = [ 'total_count' ] );
 
 		debug( recipientOneObject );
 		debug( recipientTwoObject );
 		debug( result );
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
-		assertTrue( result.count >= 2, "recipients are not listed" );
+		assertTrue( result.total_count >= 2, "total_count is missing or invalid" );
 		assertTrue( arrayLen( result.data ) == 2, "recipients are not listed" );
 
 	}

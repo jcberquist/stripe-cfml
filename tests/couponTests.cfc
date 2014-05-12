@@ -2,7 +2,7 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function setup() {
 
-		stripe = new stripe.stripe( request.stripeSecretKey );
+		stripe = new stripe.stripe( request.apiKey );
 
 	}
 
@@ -37,7 +37,7 @@ component extends="mxunit.framework.TestCase" {
 		var coupon = { id = createUUID(), percent_off = 50, duration = 'repeating', duration_in_months = 5 };
 
 		var couponObject = stripe.createCoupon( argumentCollection = coupon );
-		var result = stripe.getCoupon( coupon.id );
+		var result = stripe.getCoupon( couponObject.id );
 
 		debug( couponObject );
 		debug( result );
@@ -70,14 +70,13 @@ component extends="mxunit.framework.TestCase" {
 
 		var couponOneObject = stripe.createCoupon( argumentCollection = couponOne );
 		var couponTwoObject = stripe.createCoupon( argumentCollection = couponTwo );
-		var result = stripe.listCoupons( 2 );
+		var result = stripe.listCoupons( limit = 2 );
 
 		debug( couponOneObject );
 		debug( couponTwoObject );
 		debug( result );
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
-		assertTrue( result.count >= 2, "coupons are not listed" );
 		assertTrue( arrayLen( result.data ) == 2, "coupons are not listed" );
 
 	}

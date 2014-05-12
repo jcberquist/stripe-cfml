@@ -5,7 +5,7 @@ component {
 	public void function onRequestStart() {
 		// test stripe secret key
 		param name="form.stripeTESTSecretKey" default="";
-		request.stripeSecretKey = form.stripeTESTSecretKey;
+		request.apiKey = form.stripeTESTSecretKey;
 	}
 
 }

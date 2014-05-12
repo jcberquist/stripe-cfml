@@ -2,7 +2,7 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function setup() {
 
-		stripe = new stripe.stripe( request.stripeSecretKey );
+		stripe = new stripe.stripe( apiKey = request.apiKey, includeRaw = true );
 		customerObject = stripe.createCustomer( description = 'Test Customer' );
 
 	}
@@ -49,7 +49,7 @@ component extends="mxunit.framework.TestCase" {
 	
 	public void function testUpdateInvoiceItem() {
 
-		var invoiceUpdate = { amount = 2000, description = "Changed the amount!", metadata = { test = "value" } };
+		var invoiceUpdate = { amount = 2000, description = "Changed the amount!", metadata = { test = "value", foo = "" } };
 
 		var invoiceitemObject = stripe.createInvoiceItem( customer = customerObject.id, amount = 5000, description = "You lose! $50 more!", metadata = { foo = "bar" } );
 		var result = stripe.updateInvoiceItem( id = invoiceitemObject.id, amount = invoiceUpdate.amount, description = invoiceUpdate.description, metadata = invoiceUpdate.metadata );
@@ -61,7 +61,7 @@ component extends="mxunit.framework.TestCase" {
 		assertEquals( 200, result.status_code, "expected a 200 status" );
 		assertEquals( invoiceitemObject.id, result.id, "correct invoiceitem object was not returned" );
 		assertEquals( invoiceUpdate.amount, result.amount, "correct invoiceitem amount was not returned" );
-		assertEquals( invoiceUpdate.metadata, result.metadata, "correct invoiceitem metadata was not returned" );
+		assertEquals( { test = "value" }, result.metadata, "correct invoiceitem metadata was not returned" );
 
 	}
 	
@@ -87,14 +87,13 @@ component extends="mxunit.framework.TestCase" {
 
 		var invoiceitemOneObject = stripe.createInvoiceItem( argumentCollection = invoiceItemOne );
 		var invoiceitemTwoObject = stripe.createInvoiceItem( argumentCollection = invoiceItemTwo );
-		var result = stripe.listInvoiceItems( count = 2, customer = customerObject.id );
+		var result = stripe.listInvoiceItems( limit = 2, customer = customerObject.id );
 
 		debug( invoiceitemOneObject );
 		debug( invoiceitemTwoObject );
 		debug( result );
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
-		assertTrue( result.count >= 2, "invoiceitems are not listed" );
 		assertTrue( arrayLen( result.data ) == 2, "invoiceitems are not listed" );
 
 	}

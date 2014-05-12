@@ -2,7 +2,7 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function setup() {
 
-		stripe = new stripe.stripe( stripeSecretKey = request.stripeSecretKey, includeJSON = true );
+		stripe = new stripe.stripe( apiKey = request.apiKey, includeJSON = true );
 
 	}
 
@@ -74,14 +74,13 @@ component extends="mxunit.framework.TestCase" {
 
 		var customerObject = stripe.createCustomer( card = cardOne );
 		var cardCreate = stripe.createCustomerCard( customerObject.id, cardTwo );
-		var result = stripe.listCustomerCards( customer_id = customerObject.id );
+		var result = stripe.listCustomerCards( customer_id = customerObject.id, include = [ 'total_count' ], limit = 2 );
 
 		debug( customerObject );
 		debug( cardCreate );
 		debug( result );
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
-		assertTrue( result.count == 2, "cards are not listed" );
 		assertTrue( arrayLen( result.data ) == 2, "cards are not listed" );
 
 	}

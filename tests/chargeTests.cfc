@@ -2,7 +2,7 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function setup() {
 
-		stripe = new stripe.stripe( stripeSecretKey = request.stripeSecretKey, includeRaw = true );
+		stripe = new stripe.stripe( apiKey = request.apiKey, includeRaw = true );
 
 	}
 
@@ -181,7 +181,7 @@ component extends="mxunit.framework.TestCase" {
 		var chargeOne = stripe.createCharge( amount = 3000,  card = card );
 		var chargeTwo = stripe.createCharge( amount = 2500,  card = card );
 		var created = { "gte" = chargeOne.created, "lt" = dateAdd( "d", 1, chargeOne.created ) };
-		var result = stripe.listCharges( created = created, count = 2 );
+		var result = stripe.listCharges( created = created, limit = 2 );
 
 		debug( chargeOne );
 		debug( chargeTwo );
@@ -192,11 +192,41 @@ component extends="mxunit.framework.TestCase" {
 
 	}
 
+	public void function testListChargesWithPagination() {
+
+		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var chargeOne = stripe.createCharge( amount = 3000,  card = card );
+		var chargeTwo = stripe.createCharge( amount = 2500,  card = card );
+		var result = stripe.listCharges( limit = 1, starting_after = chargeTwo.id, include = [ 'total_count' ] );
+
+		debug( chargeOne );
+		debug( chargeTwo );
+		debug( result );
+
+		assertEquals( 200, result.status_code, "expected a 200 status" );
+		assertEquals( chargeOne.id, result.data[ 1 ].id, "wrong charge returned" );
+		assertTrue( structKeyExists( result, "total_count" ), "total_count missing" );
+
+	}
+
 	public void function testUpdateChargeDispute() {
 
 		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
 		var charge = stripe.createCharge( amount = 3000,  card = card );
 		var result = stripe.updateChargeDispute( charge.id, "Here's evidence showing this charge is legitimate." );
+
+		debug( charge );
+		debug( result );
+
+		assertEquals( 404, result.status_code, "expected a 404 invalid_request_error" );
+
+	}
+
+	public void function testCloseChargeDispute() {
+
+		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var charge = stripe.createCharge( amount = 3000,  card = card );
+		var result = stripe.closeChargeDispute( charge.id );
 
 		debug( charge );
 		debug( result );

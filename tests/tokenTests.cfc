@@ -2,7 +2,7 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function setup() {
 
-		stripe = new stripe.stripe( stripeSecretKey = request.stripeSecretKey );
+		stripe = new stripe.stripe( apiKey = request.apiKey );
 
 	}
 

@@ -37,7 +37,7 @@ results = testSuite.run();
 <form action="" method="post" style="padding:10px;">
 
 <label>stripe.com test secret key</label><br>
-<input name="stripeTESTSecretKey"type="text" value="#request.stripesecretkey#" size="36">	
+<input name="stripeTESTSecretKey"type="text" value="#request.apiKey#" size="36">	
 
 <cfloop array="#structKeyArray( metadata )#" index="cfcName">
 	<fieldset>

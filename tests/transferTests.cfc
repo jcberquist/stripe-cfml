@@ -2,7 +2,7 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function setup() {
 
-		stripe = new stripe.stripe( stripeSecretKey = request.stripeSecretKey, raw = true );
+		stripe = new stripe.stripe( apiKey = request.apiKey, raw = true );
 
 	}
 
@@ -76,14 +76,14 @@ component extends="mxunit.framework.TestCase" {
 		var bank_account = { country = "US", routing_number = "110000000", account_number = "000123456789" };
 		var recipientObject = stripe.createRecipient( name = "John Doe", type = "individual", bank_account = bank_account );
 		var transferObject = stripe.createTransfer( amount = 500, recipient = recipientObject.id );
-		var result = stripe.listTransfers( 2 );
+		var result = stripe.listTransfers( limit = 2, include = [ 'total_count' ] );
 
 		debug( recipientObject );
 		debug( transferObject );
 		debug( result );
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
-		assertTrue( result.count >= 2, "transfers are not listed" );
+		assertTrue( result.total_count >= 2, "transfers are not listed" );
 		assertTrue( arrayLen( result.data ) == 2, "transfers are not listed" );
 
 	}
