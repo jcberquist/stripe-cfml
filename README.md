@@ -45,8 +45,6 @@ Stripe.cfc by default converts all UTC timestamps in the returned JSON object to
 
 **ColdFusion Notes**
 
-ColdFusion will not do a HTTP POST without at least one cfhttpparam. So although a method like createCustomer() can be called without any arguments in Railo, it will throw an error in ColdFusion.
-
 ColdFusion 10 users on linux should see the follow forum thread regarding slow http requests: http://forums.adobe.com/message/4833718.
 
 Available Methods
