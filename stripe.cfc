@@ -22,22 +22,28 @@ component {
 	variables.booleanFields = [ "at_period_end","capture","closed","prorate","refund_application_fee" ];
 	variables.arrayFields = [ "expand","include" ];
 	variables.dictionaryFields = {
+		source = { required = [ "object","number","exp_month","exp_year" ], optional = [ "cvc","name","address_line1","address_line2","address_city","address_zip","address_state","address_country" ] },
 		card = { required = [ "number","exp_month","exp_year" ], optional = [ "cvc","name","address_line1","address_line2","address_city","address_zip","address_state","address_country" ] },
 		bank_account = { required = [ "country","routing_number","account_number" ], optional = [ ] },
 		available_on = { required = [ ],	optional = [ "gt","gte","lt","lte" ] },
 		created = { required = [ ],	optional = [ "gt","gte","lt","lte" ] },
 		date = { required = [ ], optional = [ "gt","gte","lt","lte" ]	},
+		shipping = { required = [ ], optional = [ "address","carrier","phone","name","tracking_number" ]	},
+		address = { required = [ ], optional = [ "line1","city","country","line2","postal_code","state" ]	},
 		metadata = { required = [ ], optional = [ ] }
 	};
 
 	public any function init( required string apiKey, boolean convertUTCTimestamps = true, boolean convertToCents = false, string defaultCurrency = "usd", boolean includeRaw = false, string apiBaseUrl = "https://api.stripe.com/v1/" ) {
 		structAppend( variables, arguments );
+
+		variables.utcBaseDate = dateAdd( "l", createDate( 1970,1,1 ).getTime() * -1, createDate( 1970,1,1 ) );
+
 		return this;
 	}
 
 	// Charges
 
-	public struct function createCharge( required numeric amount, string currency = variables.defaultCurrency, numeric application_fee, boolean capture, string customer, any card, string description, struct metadata, string statement_description ) {
+	public struct function createCharge( required numeric amount, string currency = variables.defaultCurrency, numeric application_fee, boolean capture, string customer, string description, struct metadata, string receipt_email, struct shipping, any source, string statement_descriptor ) {
 		return apiCall( "charges", setupParams( arguments ), "post" );
 	}
 
@@ -49,10 +55,6 @@ component {
 		return apiCall( "charges/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}
 
-	public struct function refundCharge( required string id, numeric amount, boolean refund_application_fee ) {
-		return apiCall( "charges/#trim( arguments.id )#/refund", setupParams( arguments ), "post" );
-	}
-
 	public struct function captureCharge( required string id, numeric amount, numeric application_fee ) {
 		return apiCall( "charges/#trim( arguments.id )#/capture", setupParams( arguments ), "post" );
 	}
@@ -61,9 +63,27 @@ component {
 		return apiCall( "charges", setupParams( arguments ) );
 	}
 
+	// Refunds
+
+	public struct function refundCharge( required string id, numeric amount, struct metadata, string reason, boolean refund_application_fee ) {
+		return apiCall( "charges/#trim( arguments.id )#/refunds", setupParams( arguments ), "post" );
+	}
+
+	public struct function getChargeRefund( required string charge_id, required string id ) {
+		return apiCall( "charges/#trim( arguments.charge_id )#/refunds/#trim( arguments.id )#", setupParams( arguments ) );
+	}
+
+	public struct function updateChargeRefund( required string charge_id, required string id, struct metadata )	{
+		return apiCall( "charges/#trim( arguments.charge_id )#/refunds/#trim( arguments.id )#", setupParams( arguments ), "post" );
+	}
+
+	public struct function listChargeRefunds( required string charge_id, string ending_before, numeric limit, string starting_after ) {
+		return apiCall( "charges/#trim( arguments.charge_id )#/refunds", setupParams( arguments ) );
+	}
+
 	// Customers
 
-	public struct function createCustomer( numeric account_balance, any card, string coupon, string description, string email, struct metadata, string plan, numeric quantity, any trial_end ) {
+	public struct function createCustomer( numeric account_balance, string coupon, string description, string email, struct metadata, string plan, numeric quantity, any source, any trial_end ) {
 		return apiCall( "customers", setupParams( arguments ), "post" );
 	}
 
@@ -71,7 +91,7 @@ component {
 		return apiCall( "customers/#trim( arguments.id )#", setupParams( arguments ) );
 	}
 
-	public struct function updateCustomer( required string id, numeric account_balance, any card, string coupon, string default_card, string description, string email, struct metadata ) {
+	public struct function updateCustomer( required string id, numeric account_balance, any source, string coupon, string default_card, string description, string email, struct metadata ) {
 		return apiCall( "customers/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}
 
@@ -154,11 +174,11 @@ component {
 	public struct function createCoupon( string id, required string duration, numeric amount_off, string currency = variables.defaultCurrency, numeric duration_in_months, numeric max_redemptions, struct metadata, numeric percent_off, any redeem_by ) {
 		// only one of percent_off and amount_off can be provided to the createCoupon function
 		if ( !( structKeyExists( arguments, "amount_off" ) xor structKeyExists( arguments, "percent_off" ) ) ) {
-			throwError( "createCoupon: please provide one and only one of amount_off and percent_off params" );			
+			throwError( "createCoupon: please provide one and only one of amount_off and percent_off params" );
 		}
 		// duration_in_months is required only when duration equals "repeating"
 		if ( arguments.duration == "repeating" xor structKeyExists( arguments, "duration_in_months" ) ) {
-			throwError( "createCoupon: duration_in_months is required when and only when duration equals 'repeating'" );			
+			throwError( "createCoupon: duration_in_months is required when and only when duration equals 'repeating'" );
 		}
 		return apiCall( "coupons", setupParams( arguments, true ), "post" );
 	}
@@ -336,7 +356,7 @@ component {
 	}
 
 	// Tokens
-	
+
 	public struct function createCardToken( any card, string customer ) {
 		return apiCall( "tokens", setupParams( arguments ), "post" );
 	}
@@ -349,10 +369,6 @@ component {
 		return apiCall( "tokens/#trim( arguments.id )#", setupParams( arguments ) );
 	}
 
-	// miscellaneous
-
-
-
 	// PRIVATE FUNCTIONS
 
 	private struct function apiCall( required string path, array params = [ ], string method = "get" )	{
@@ -362,17 +378,26 @@ component {
 		var result = { "api_request_time" = getTickCount() - requestStart, "status_code" = listFirst( apiResponse.statuscode, " " ), "status_text" = listRest( apiResponse.statuscode, " " ) };
 		if ( variables.includeRaw ) {
 			result[ "raw" ] = { "method" = ucase( arguments.method ), "path" = fullApiPath, "params" = serializeJSON( arguments.params ), "response" = apiResponse.fileContent };
-		} 
+		}
 		structAppend(  result, deserializeJSON( apiResponse.fileContent ), true );
-		if ( variables.convertUTCTimestamps || variables.convertToCents ) parseResult( result );	
+		if ( variables.convertUTCTimestamps || variables.convertToCents ) parseResult( result );
 		return result;
 	}
-	
+
 	private any function makeHttpRequest( required string urlPath, required array params, required string method ) {
 		var http = new http( url = arguments.urlPath, method = arguments.method, username = variables.apiKey, password = "" );
 
 		// adding a user agent header so that Adobe ColdFusion doesn't get mad about empty HTTP posts
 		http.addParam( type = "header", name = "User-Agent", value = "stripe.cfc" );
+
+		// look for special param 'idempotencyKey'
+		for ( var param in arguments.params ) {
+			if ( param.name == "idempotencyKey" ) {
+				http.addParam( type = "header", name = "Idempotency-Key", value = param.value );
+				arrayDelete( arguments.params, param );
+				break;
+			}
+		}
 
 		// look for special param 'apiKey' - if it exists it overrides default apiKey
 		for ( var param in arguments.params ) {
@@ -383,13 +408,13 @@ component {
 			}
 		}
 
-		if ( arguments.method == "post" ) { 
+		if ( arguments.method == "post" ) {
 			for ( var param in arguments.params ) {
 				http.addParam( type = "formfield", name = lcase( param.name ), value = param.value );
 			}
 		}
 
-		if ( listFind( "get,delete", arguments.method ) ) { 
+		if ( listFind( "get,delete", arguments.method ) ) {
 			var qs = "";
 			for ( var param in arguments.params ) {
 				qs = listAppend( qs, lcase( param.name ) & "=" & encodeurl( param.value ), "&" );
@@ -399,116 +424,136 @@ component {
 
 		return http.send().getPrefix();
 	}
-	
+
 	private array function setupParams( required struct params, boolean includeIds = false ) {
-		var result = [ ];
+		var filteredParams = { };
 		var paramKeys = structKeyArray( arguments.params );
 		for ( var paramKey in paramKeys ) {
 			if ( structKeyExists( arguments.params, paramKey ) && !isNull( arguments.params[ paramKey ] ) && ( ( paramKey != "id" && right( paramKey, 3 ) != "_id" ) || arguments.includeIds ) ) {
-				if ( arrayFindNoCase( structKeyArray( variables.dictionaryFields ), paramKey ) && isStruct( arguments.params[ paramKey ] ) ) {
-					for ( var item in setupDictionary( paramKey, arguments.params[ paramKey ] ) ) {
-						arrayAppend( result, item );
-					}
-				} else if ( arrayFindNoCase( variables.arrayFields, paramKey ) && isArray( arguments.params[ paramKey ] ) ) {
-					for ( var item in setupArray( paramKey, arguments.params[ paramKey ] ) ) {
-						arrayAppend( result, item );
-					}
-				} else {
-					arrayAppend( result, getValidatedParam( paramKey, arguments.params[ paramKey ] ) );
+				filteredParams[ paramKey ] = params[ paramKey ];
+			}
+		}
+		return parseDictionary( filteredParams );
+	}
+
+	private array function parseDictionary( required struct dictionary, string name = '', string root = '' ) {
+		var result = [ ];
+		var structFieldExists = structKeyExists( variables.dictionaryFields, arguments.name );
+
+		// validate required dictionary keys based on variables.dictionaries
+		if ( structFieldExists ) {
+			for ( var field in variables.dictionaryFields[ arguments.name ].required ) {
+				if ( !structKeyExists( arguments.dictionary, field ) ) {
+					throwError( "'#arguments.name#' dictionary missing required field: #field#" );
 				}
 			}
 		}
-		return result;
-	}
-	
-	private array function setupDictionary( required string type, required struct dictionary ) {
-		var result = [ ];
-		for ( var field in variables.dictionaryFields[ arguments.type ].required ) {
-			if ( !structKeyExists( arguments.dictionary, field ) ) {
-				throwError( "'#arguments.type#' dictionary missing required field: #field#" );				
+
+		// special metadata handling -- metadata has 20 key limit and is cleared by passing empty metadata struct
+		if ( arguments.name == "metadata" ) {
+			if ( arrayLen( structKeyArray( arguments.dictionary ) ) > 20 ) {
+				throwError( "There can be a maximum of 20 keys in a metadata struct." );
 			}
-			arrayAppend( result, getValidatedParam( "#arguments.type#[#field#]", arguments.dictionary[ field ] ) );
-		}
-		for ( var field in variables.dictionaryFields[ arguments.type ].optional ) {
-			if ( structKeyExists( arguments.dictionary, field ) ) {
-				arrayAppend( result, getValidatedParam( "#arguments.type#[#field#]", arguments.dictionary[ field ] ) );
+			if ( structIsEmpty( arguments.dictionary ) ) {
+				arrayAppend( result, { name = arguments.root, value = "" } );
 			}
 		}
-		// special handling for metadata
-		if ( arguments.type == "metadata" ) {
-			if ( arrayLen( structKeyArray( arguments.dictionary ) ) > 10 ) throwError( "There can be a maximum of 10 keys in a metadata struct." );
-			if ( !structIsEmpty( arguments.dictionary ) ) {
-				for ( var field in arguments.dictionary ) {
-					arrayAppend( result, getValidatedParam( "metadata[#lcase( field )#]", arguments.dictionary[ field ], false ) );
+
+		for ( var key in arguments.dictionary ) {
+
+			// confirm that key is a valid one based on variables.dictionaries
+			if ( structFieldExists && arguments.name != "metadata" && !( arrayFindNoCase( variables.dictionaryFields[ arguments.name ].required, key ) || arrayFindNoCase( variables.dictionaryFields[ arguments.name ].optional, key ) ) ) {
+				throwError( "'#arguments.name#' dictionary has invalid field: #key#" );
+			}
+
+			var fullKey = len( arguments.root ) ? arguments.root & '[' & lcase( key ) & ']' : lcase( key );
+			if ( isStruct( arguments.dictionary[ key ] ) ) {
+				for ( var item in parseDictionary( arguments.dictionary[ key ], key, fullKey ) ) {
+					arrayAppend( result, item );
+				}
+			} else if ( isArray( arguments.dictionary[ key ] ) ) {
+				for ( var item in parseArray( arguments.dictionary[ key ], key, fullKey ) ) {
+					arrayAppend( result, item );
 				}
 			} else {
-				arrayAppend( result, getValidatedParam( "metadata", "" ) );
+				// note: metadata struct is special - no validation is done on it
+				arrayAppend( result, { name = fullKey, value = getValidatedParam( key, arguments.dictionary[ key ], arguments.name != "metadata" ) } );
 			}
+
 		}
+
 		return result;
 	}
 
-	private array function setupArray( required string arrayKey, required any arrayVar ) {
+	private array function parseArray( required array list, string name = '', string root = '' ) {
 		var result = [ ];
-		if ( !isArray( arrayVar ) ) arrayVar = [ arrayVar ];
-		for ( var field in arrayVar ) {
-			arrayAppend( result, getValidatedParam( "#arguments.arrayKey#[]", field ) );
+		var arrayFieldExists = arrayFindNoCase( variables.arrayFields, arguments.name );
+
+		if ( !arrayFieldExists ) {
+			throwError( "'#arguments.name#' is not an allowed list variable." );
 		}
+
+		// currently array/lists only contain simple values
+		for ( var item in arguments.list ) {
+			var fullKey = len( arguments.root ) ? arguments.root & "[]" : arguments.name & "[]";
+			arrayAppend( result, { name = fullKey, value = getValidatedParam( arguments.name, item ) } );
+		}
+
 		return result;
 	}
 
-	private struct function getValidatedParam( required string paramName, required any paramValue, boolean parseSubKeys = true ) {
+	private any function getValidatedParam( required string paramName, required any paramValue, boolean validate = true ) {
 		// only simple values
 		if ( !isSimpleValue( paramValue ) ) throwError( "'#paramName#' is not a simple value." );
 
-		var subKey = parseSubKeys ? getSubKey( paramName ) : '';
-
-		// integer
-		if ( arrayFindNoCase( variables.integerFields, paramName ) || arrayFindNoCase( variables.integerFields, subKey ) ) {
-			if ( !isInteger( paramValue ) ) {
-				throwError( "field '#paramName#' requires an integer value" );				
-			}
-			return { "name" = paramName, "value" = paramValue };
+		// if not validation just result trimmed value
+		if ( !arguments.validate ) {
+			return trim( paramValue );
 		}
 
-		// numeric
-		if ( arrayFindNoCase( variables.numericFields, paramName ) || arrayFindNoCase( variables.numericFields, subKey ) ) {
-			if ( !isNumeric( paramValue ) ) {
-				throwError( "field '#paramName#' requires a numeric value" );				
+		// integer
+		if ( arrayFindNoCase( variables.integerFields, paramName ) ) {
+			if ( !isInteger( paramValue ) ) {
+				throwError( "field '#paramName#' requires an integer value" );
 			}
-			return { "name" = paramName, "value" = paramValue };
+			return paramValue;
+		}
+		// numeric
+		if ( arrayFindNoCase( variables.numericFields, paramName ) ) {
+			if ( !isNumeric( paramValue ) ) {
+				throwError( "field '#paramName#' requires a numeric value" );
+			}
+			return paramValue;
 		}
 
 		// currency
-		if ( arrayFindNoCase( variables.currencyFields, paramName ) || arrayFindNoCase( variables.currencyFields, subKey ) ) {
+		if ( arrayFindNoCase( variables.currencyFields, paramName ) ) {
 			if ( !( isNumeric( paramValue ) && ( variables.convertToCents || isValid( "integer", paramValue ) ) ) ) {
-				throwError( "field '#paramName#' requires an numeric/integer value" );				
+				throwError( "field '#paramName#' requires an numeric/integer value" );
 			}
- 			// added rounding due to possible inaccuracies in multiplication - see https://issues.jboss.org/browse/RAILO-767
-			return { "name" = paramName, "value" = ( variables.convertToCents ? round( paramValue * 100 ) : paramValue ) };
+				// added rounding due to possible inaccuracies in multiplication - see https://issues.jboss.org/browse/RAILO-767
+			return ( variables.convertToCents ? round( paramValue * 100 ) : paramValue );
 		}
 
 		// boolean
-		if ( arrayFindNoCase( variables.booleanFields, paramName ) || arrayFindNoCase( variables.booleanFields, subKey ) ) {
-			return { "name" = paramName, "value" = ( paramValue ? "true" : "false" ) };
+		if ( arrayFindNoCase( variables.booleanFields, paramName ) ) {
+			return ( paramValue ? "true" : "false" );
 		}
 
 		// timestamp
-		if ( arrayFindNoCase( variables.timestampFields, paramName ) || arrayFindNoCase( variables.timestampFields, subKey ) ) {
-			return { "name" = paramName, "value" = parseUTCTimestampField( paramValue, paramName ) };
+		if ( arrayFindNoCase( variables.timestampFields, paramName ) ) {
+			return parseUTCTimestampField( paramValue, paramName );
 		}
 
 		// default is string
-		return { "name" = paramName, "value" = trim( paramValue ) };
+		return trim( paramValue );
 	}
-	
-
 
 	private any function parseUTCTimestampField( required any utcField, required string utcFieldName ) {
 		if ( isInteger( arguments.utcField ) ) return arguments.utcField;
 		if ( isDate( arguments.utcField ) ) return getUTCTimestamp( arguments.utcField );
 		if ( arguments.utcField == 'now' && arguments.utcFieldName == 'trial_end' ) return 'now';
-		throwError( "utc timestamp field '#utcFieldName#' is in an invalid format" );				
+		throwError( "utc timestamp field '#utcFieldName#' is in an invalid format" );
 	}
 
 	private void function parseResult( required struct result ) {
@@ -532,8 +577,7 @@ component {
 	}
 
   private numeric function getUTCTimestamp( required date dateToConvert ) {
-	  var utcdate =  dateConvert("local2utc", arguments.dateToConvert );
-	  return dateDiff( "s", createDate( 1970,1,1 ), utcdate );
+	  return dateDiff( "s", variables.utcBaseDate, dateToConvert );
   }
 
 	private string function getSubKey( required string key ) {
@@ -543,8 +587,8 @@ component {
 	}
 
 	private date function parseUTCTimestamp( required numeric utcTimestamp ) {
-	  var utcdate = dateAdd( "s", arguments.utcTimestamp, createDate( 1970,1,1 ) );
-	  return dateConvert("utc2local", utcdate );
+	  var parsed_date = dateAdd( "s", arguments.utcTimestamp, variables.utcBaseDate );
+	  return parsed_date;
 	}
 
 	private boolean function isInteger( required any varToValidate ) {
