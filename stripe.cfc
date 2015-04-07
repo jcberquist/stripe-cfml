@@ -72,7 +72,7 @@ component {
 
 	// Refunds
 
-	public struct function refundCharge( required string id, numeric amount, struct metadata, string reason, boolean refund_application_fee ) {
+	public struct function createChargeRefund( required string id, numeric amount, struct metadata, string reason, boolean refund_application_fee ) {
 		return apiCall( "charges/#trim( arguments.id )#/refunds", setupParams( arguments ), "post" );
 	}
 
@@ -350,7 +350,7 @@ component {
 
 	// Application Fee Refunds
 
-	public struct function refundApplicationFee( required string application_fee_id, numeric amount, struct metadata = { } ) {
+	public struct function createApplicationFeeRefund( required string application_fee_id, numeric amount, struct metadata = { } ) {
 		return apiCall( "application_fees/#trim( arguments.application_fee_id )#/refunds", setupParams( arguments ) );
 	}
 
@@ -433,12 +433,12 @@ component {
 	}
 
 	public struct function listBitcoinReceivers( boolean active, string ending_before, boolean filled, numeric limit, string starting_after, boolean uncaptured_funds ) {
-		return apiCall( "events", setupParams( arguments ) );
+		return apiCall( "bitcoin/receivers", setupParams( arguments ) );
 	}
 
 	// File Uploads
 
-	public struct function uploadFile( required string file, required string purpose ) {
+	public struct function createFileUpload( required string file, required string purpose ) {
 		return apiCall( "files", setupParams( arguments ), "post", true );
 	}
 
@@ -471,41 +471,30 @@ component {
 		// adding a user agent header so that Adobe ColdFusion doesn't get mad about empty HTTP posts
 		http.addParam( type = "header", name = "User-Agent", value = "stripe.cfc" );
 
-		// look for special param 'idempotencyKey'
+		var qs = [ ];
+
+		// look for special params 'idempotencyKey','stripeAccount','apiKey'
 		for ( var param in arguments.params ) {
+
 			if ( param.name == "idempotencyKey" ) {
 				http.addParam( type = "header", name = "Idempotency-Key", value = param.value );
-				arrayDelete( arguments.params, param );
-				break;
-			}
-		}
-
-		// look for special param 'apiKey' - if it exists it overrides default apiKey
-		for ( var param in arguments.params ) {
-			if ( param.name == "apiKey" ) {
+			} else if ( param.name == "apiKey"  ) {
 				http.setUsername( param.value );
-				arrayDelete( arguments.params, param );
-				break;
-			}
-		}
-
-		if ( arguments.method == "post" ) {
-			for ( var param in arguments.params ) {
-				if ( lcase( param.name ) == "file" ) {
-					http.setMultipart( true );
+			} else if ( param.name == "stripeAccount"  ) {
+				http.addParam( type = "header", name = "Stripe-Account", value = param.value );
+			} else if ( arguments.method == "post" ) {
+				if ( param.name == "file" ) {
 					http.addParam( type = "file", name = lcase( param.name ), file = param.value );
 				} else {
 					http.addParam( type = "formfield", name = lcase( param.name ), value = param.value );
 				}
+			} else if ( arrayFind( [ "get","delete" ], arguments.method ) ) {
+				arrayAppend( qs, lcase( param.name ) & "=" & encodeurl( param.value ) );
 			}
 		}
 
-		if ( listFind( "get,delete", arguments.method ) ) {
-			var qs = "";
-			for ( var param in arguments.params ) {
-				qs = listAppend( qs, lcase( param.name ) & "=" & encodeurl( param.value ), "&" );
-			}
-			http.setUrl( arguments.urlPath & "?" & qs );
+		if ( arrayLen( qs ) ) {
+			http.setUrl( arguments.urlPath & "?" & arrayToList( qs, "&" ) );
 		}
 
 		return http.send().getPrefix();
