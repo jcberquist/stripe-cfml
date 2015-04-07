@@ -8,11 +8,11 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testCreateCustomerSubscription() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = '14' };
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
 		var plan = { id = createUUID(), amount = 1000, interval = 'month', interval_count = 3, name = "Gold Plan", trial_period_days = 30 };
 		var planObject = stripe.createPlan( argumentCollection = plan );
-		var customerObject = stripe.createCustomer( card = card );
-		var result = stripe.createCustomerSubscription( id = customerObject.id, plan = planObject.id, trial_end = "now" );
+		var customerObject = stripe.createCustomer( source = source );
+		var result = stripe.createCustomerSubscription( customer_id = customerObject.id, plan = planObject.id, trial_end = "now" );
 
 		debug( planObject );
 		debug( customerObject );
@@ -25,11 +25,11 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testGetCustomerSubscription() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = '14' };
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
 		var plan = { id = createUUID(), amount = 1000, interval = 'month', interval_count = 3, name = "Gold Plan", trial_period_days = 30 };
 		var planObject = stripe.createPlan( argumentCollection = plan );
-		var customerObject = stripe.createCustomer( card = card );
-		var subscription = stripe.createCustomerSubscription( id = customerObject.id, plan = planObject.id, trial_end = "now" );
+		var customerObject = stripe.createCustomer( source = source );
+		var subscription = stripe.createCustomerSubscription( customer_id = customerObject.id, plan = planObject.id, trial_end = "now" );
 		var result = stripe.getCustomerSubscription( customer_id = customerObject.id, id = subscription.id );
 
 		debug( planObject );
@@ -44,11 +44,11 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testUpdateCustomerSubscription() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = '14' };
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
 		var plan = { id = createUUID(), amount = 1000, interval = 'month', interval_count = 3, name = "Gold Plan", trial_period_days = 30 };
 		var planObject = stripe.createPlan( argumentCollection = plan );
-		var customerObject = stripe.createCustomer( card = card );
-		var subscription = stripe.createCustomerSubscription( id = customerObject.id, plan = planObject.id, trial_end = "now" );
+		var customerObject = stripe.createCustomer( source = source );
+		var subscription = stripe.createCustomerSubscription( customer_id = customerObject.id, plan = planObject.id, trial_end = "now" );
 		var result = stripe.updateCustomerSubscription( customer_id = customerObject.id, id = subscription.id, quantity = 2 );
 
 		debug( planObject );
@@ -63,11 +63,11 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testCancelCustomerSubscription() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = '14' };
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
 		var plan = { id = createUUID(), amount = 1000, interval = 'month', interval_count = 3, name = "Gold Plan", trial_period_days = 30 };
 		var planObject = stripe.createPlan( argumentCollection = plan );
-		var customerObject = stripe.createCustomer( card = card );
-		var subscription = stripe.createCustomerSubscription( id = customerObject.id, plan = planObject.id, trial_end = "now" );
+		var customerObject = stripe.createCustomer( source = source );
+		var subscription = stripe.createCustomerSubscription( customer_id = customerObject.id, plan = planObject.id, trial_end = "now" );
 		var result = stripe.cancelCustomerSubscription(  customer_id = customerObject.id, id = subscription.id, at_period_end = true );
 
 		debug( planObject );
@@ -82,12 +82,12 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testListCustomerSubscriptions() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = '14' };
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
 		var plan = { id = createUUID(), amount = 1000, interval = 'month', interval_count = 3, name = "Gold Plan", trial_period_days = 30 };
 		var planObject = stripe.createPlan( argumentCollection = plan );
-		var customerObject = stripe.createCustomer( card = card );
-		var subscription = stripe.createCustomerSubscription( id = customerObject.id, plan = planObject.id, trial_end = "now" );
-		var result = stripe.listCustomerSubscriptions(  customer_id = customerObject.id );
+		var customerObject = stripe.createCustomer( source = source );
+		var subscription = stripe.createCustomerSubscription( customer_id = customerObject.id, plan = planObject.id, trial_end = "now" );
+		var result = stripe.listCustomerSubscriptions(  customer_id = customerObject.id, include = [ 'total_count' ] );
 
 		debug( planObject );
 		debug( customerObject );

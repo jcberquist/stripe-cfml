@@ -47,6 +47,20 @@ component extends="mxunit.framework.TestCase" {
 		assertEquals( coupon.duration, result.duration, "correct coupon object was not returned" );
 	}
 
+	public void function testUpdateCoupon() {
+
+		var coupon = { id = createUUID(), percent_off = 50, duration = 'repeating', duration_in_months = 5 };
+
+		var couponObject = stripe.createCoupon( argumentCollection = coupon );
+		var result = stripe.updateCoupon( id = couponObject.id, metadata = { foo = 'test' } );
+
+		debug( couponObject );
+		debug( result );
+
+		assertEquals( 200, result.status_code, "expected a 200 status" );
+		assertEquals( { foo = 'test' }, result.metadata, "metadata was not updated" );
+	}
+
 	public void function testDeleteCoupon() {
 
 		var coupon = { id = createUUID(), percent_off = 50, duration = 'repeating', duration_in_months = 5 };
@@ -87,5 +101,5 @@ component extends="mxunit.framework.TestCase" {
 	}
 
 
-	
+
 }

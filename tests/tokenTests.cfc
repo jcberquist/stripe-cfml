@@ -8,7 +8,7 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testCreateCardToken() {
 
-		var card = { number = '6011000990139424', exp_month = '12', exp_year = '2014', cvc = '123', name = "John Doe" };
+		var card = { number = '6011000990139424', exp_month = '12', exp_year = year( dateAdd( "yyyy", 1, now() ) ), cvc = '123', name = "John Doe" };
 		var result = stripe.createCardToken( card );
 
 		debug( result );
@@ -21,8 +21,8 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testCreateCardToken_missing_required_field() {
 
-		var card = { number = '6011000990139424', exp_year = '2014', cvc = '123', name = "John Doe" };
-		
+		var card = { number = '6011000990139424', exp_year = year( dateAdd( "yyyy", 1, now() ) ), cvc = '123', name = "John Doe" };
+
 		try {
 			var result = stripe.createCardToken( card );
 			fail( 'method createCardToken was supposed to throw an error' );
@@ -45,11 +45,11 @@ component extends="mxunit.framework.TestCase" {
 		assertTrue( structKeyExists( result, 'id' ), "token key missing" );
 
 	}
-	
+
 	public void function testCreateBankAccountToken_missing_required_field() {
 
 		var bank_account = { routing_number = "110000000", account_number = "000123456789" };
-		
+
 		try {
 			var result = stripe.createBankAccountToken( bank_account );
 			fail( 'method createBankAccountToken was supposed to throw an error' );
@@ -62,7 +62,7 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testGetToken_card() {
 
-		var card = { number = '378282246310005', exp_month = '12', exp_year = '2014', cvc = '123', name = "John Doe" };
+		var card = { number = '378282246310005', exp_month = '12', exp_year = year( dateAdd( "yyyy", 1, now() ) ), cvc = '123', name = "John Doe" };
 		var tokenCreate = stripe.createCardToken( card );
 		var result = stripe.getToken( tokenCreate.id );
 
@@ -76,5 +76,5 @@ component extends="mxunit.framework.TestCase" {
 	}
 
 
-	
+
 }

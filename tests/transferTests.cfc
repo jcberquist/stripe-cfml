@@ -1,18 +1,20 @@
 component extends="mxunit.framework.TestCase" {
 
-	public void function setup() {
+	public void function beforeTests() {
 
-		stripe = new stripe.stripe( apiKey = request.apiKey, raw = true );
+		variables.stripe = new stripe.stripe( apiKey = request.apiKey, raw = true );
+		variables.source = { object = 'card', number = '4000000000000077', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		variables.charge = stripe.createCharge( amount = 5000, source = source );
+		variables.account = stripe.createAccount( email = 'test-#createUUID()#@example.com' );
 
 	}
 
 	public void function testCreateTransfer() {
 
-		var bank_account = { country = "US", routing_number = "110000000", account_number = "000123456789" };
-		var recipientObject = stripe.createRecipient( name = "John Doe", type = "individual", bank_account = bank_account );
-		var result = stripe.createTransfer( amount = 500, recipient = recipientObject.id, metadata = { test = "value" } );
+		var result = stripe.createTransfer( amount = 500, destination = account.id, metadata = { test = "value" } );
 
-		debug( recipientObject );
+		debug( charge );
+		debug( account );
 		debug( result );
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
@@ -23,12 +25,11 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testGetTransfer() {
 
-		var bank_account = { country = "US", routing_number = "110000000", account_number = "000123456789" };
-		var recipientObject = stripe.createRecipient( name = "John Doe", type = "individual", bank_account = bank_account );
-		var transferObject = stripe.createTransfer( amount = 500, recipient = recipientObject.id );
+		var transferObject = stripe.createTransfer( amount = 500, destination = account.id, metadata = { test = "value" } );
 		var result = stripe.getTransfer( transferObject.id );
 
-		debug( recipientObject );
+		debug( charge );
+		debug( account );
 		debug( transferObject );
 		debug( result );
 
@@ -39,12 +40,9 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testUpdateTransfer() {
 
-		var bank_account = { country = "US", routing_number = "110000000", account_number = "000123456789" };
-		var recipientObject = stripe.createRecipient( name = "John Doe", type = "individual", bank_account = bank_account );
-		var transferObject = stripe.createTransfer( amount = 500, recipient = recipientObject.id, metadata = { test = "value" } );
+		var transferObject = stripe.createTransfer( amount = 500, destination = account.id, metadata = { test = "value" } );
 		var result = stripe.updateTransfer( id = transferObject.id, metadata = { test = "new value" } );
 
-		debug( recipientObject );
 		debug( transferObject );
 		debug( result );
 
@@ -54,31 +52,11 @@ component extends="mxunit.framework.TestCase" {
 
 	}
 
-	public void function testCancelTransfer() {
-
-		var expected_error = 'Transfer cannot be canceled, because it has already been submitted. You can currently only cancel pending transfers.';
-		var bank_account = { country = "US", routing_number = "110000000", account_number = "000123456789" };
-		var recipientObject = stripe.createRecipient( name = "John Doe", type = "individual", bank_account = bank_account );
-		var transferObject = stripe.createTransfer( amount = 500, recipient = recipientObject.id );
-		var result = stripe.cancelTransfer( transferObject.id );
-
-		debug( recipientObject );
-		debug( transferObject );
-		debug( result );
-
-		assertEquals( 400, result.status_code, "expected a 400 status" );
-		assertEquals( expected_error, result.error.message, "expected error was not returned" );
-
-	}
-
 	public void function testListTransfers() {
 
-		var bank_account = { country = "US", routing_number = "110000000", account_number = "000123456789" };
-		var recipientObject = stripe.createRecipient( name = "John Doe", type = "individual", bank_account = bank_account );
-		var transferObject = stripe.createTransfer( amount = 500, recipient = recipientObject.id );
+		var transferObject = stripe.createTransfer( amount = 500, destination = account.id );
 		var result = stripe.listTransfers( limit = 2, include = [ 'total_count' ] );
 
-		debug( recipientObject );
 		debug( transferObject );
 		debug( result );
 
@@ -88,4 +66,56 @@ component extends="mxunit.framework.TestCase" {
 
 	}
 
+	public void function testCreateTransferReversal() {
+
+		var transferObject = stripe.createTransfer( amount = 1000, destination = account.id );
+		var result = stripe.createTransferReversal( transfer_id = transferObject.id, amount = 500, description = 'test' );
+
+		debug( transferObject );
+		debug( result );
+
+		assertEquals( 200, result.status_code, "expected a 200 status" );
+
+	}
+
+	public void function testGetTransferReversal() {
+
+		var transferObject = stripe.createTransfer( amount = 1000, destination = account.id );
+		var transferReversal = stripe.createTransferReversal( transfer_id = transferObject.id, amount = 500, description = 'test' );
+		var result = stripe.getTransferReversal( transfer_id = transferObject.id, id = transferReversal.id );
+
+		debug( transferObject );
+		debug( transferReversal );
+		debug( result );
+
+		assertEquals( 200, result.status_code, "expected a 200 status" );
+
+	}
+
+	public void function testUpdateTransferReversal() {
+
+		var transferObject = stripe.createTransfer( amount = 500, destination = account.id, metadata = { test = "value" } );
+		var transferReversal = stripe.createTransferReversal( transfer_id = transferObject.id, amount = 500, description = 'test' );
+		var result = stripe.updateTransferReversal( transfer_id = transferObject.id, id = transferReversal.id, metadata = { test = "new value" } );
+
+		debug( transferObject );
+		debug( transferReversal );
+		debug( result );
+
+		assertEquals( 200, result.status_code, "expected a 200 status" );
+		assertEquals( { test = "new value" }, result.metadata, "correct metadata was not returned" );
+
+	}
+
+	public void function testListTransferReversals() {
+
+		var transferObject = stripe.createTransfer( amount = 500, destination = account.id );
+		var result = stripe.listTransferReversals( transfer_id = transferObject.id, limit = 2, include = [ 'total_count' ] );
+
+		debug( transferObject );
+		debug( result );
+
+		assertEquals( 200, result.status_code, "expected a 200 status" );
+
+	}
 }

@@ -8,8 +8,8 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testCreateChargeWithCard() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
-		var result = stripe.createCharge( amount = 1999,  card = card );
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var result = stripe.createCharge( amount = 1999,  source = source );
 
 		debug( result );
 
@@ -22,7 +22,7 @@ component extends="mxunit.framework.TestCase" {
 
 		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
 		var token = stripe.createCardToken( card );
-		var result = stripe.createCharge( amount = 2000,  card = token.id );
+		var result = stripe.createCharge( amount = 2000,  source = token.id );
 
 		debug( token );
 		debug( result );
@@ -34,8 +34,8 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testCreateChargeWithCustomer() {
 
-		var card = { number = '5555555555554444', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
-		var customer = stripe.createCustomer( email = 'johndoe@example.com', description = 'customer description', card = card );
+		var source = { object = 'card', number = '5555555555554444', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var customer = stripe.createCustomer( email = 'johndoe@example.com', description = 'customer description', source = source );
 		var result = stripe.createCharge( amount = 2000,  customer = customer.id );
 
 		debug( customer );
@@ -50,9 +50,9 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testCreateChargeWithCustomerAndCardID() {
 
-		var card = { number = '5555555555554444', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
-		var customer = stripe.createCustomer( email = 'johndoe@example.com', description = 'customer expand', card = card );
-		var result = stripe.createCharge( amount = 2000,  customer = customer.id, card = customer.default_card, expand = ['customer','invoice'] );
+		var source = { object = 'card', number = '5555555555554444', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var customer = stripe.createCustomer( email = 'johndoe@example.com', description = 'customer expand', source = source );
+		var result = stripe.createCharge( amount = 2000,  customer = customer.id, source = customer.default_source, expand = ['customer','invoice'] );
 
 		debug( customer );
 		debug( result );
@@ -65,9 +65,9 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testCreateChargeWithCardAndMetadata() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
 		var metadata = { key = 'test', foo = 'bar', id = 200 };
-		var result = stripe.createCharge( amount = 1999,  card = card, metadata = metadata );
+		var result = stripe.createCharge( amount = 1999,  source = source, metadata = metadata );
 
 		debug( result );
 
@@ -80,8 +80,8 @@ component extends="mxunit.framework.TestCase" {
 	// test only passes if stripe.com is set to decline charges with failed zip checks
 	public void function testFailedZipCreateChargeWithCard() {
 
-		var card = { number = '4000000000000010', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ), address_zip = '12345' };
-		var result = stripe.createCharge( amount = 2000,  card = card );
+		var source = { object = 'card', number = '4000000000000010', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ), address_zip = '12345' };
+		var result = stripe.createCharge( amount = 2000,  source = source );
 
 		debug( result );
 
@@ -93,8 +93,8 @@ component extends="mxunit.framework.TestCase" {
 	// test only passes if stripe.com is set to decline charges with failed cvc checks
 	public void function testFailedCvcCreateChargeWithCard() {
 
-		var card = { number = '4000000000000101', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ), cvc = '123' };
-		var result = stripe.createCharge( amount = 2000,  card = card );
+		var source = { object = 'card', number = '4000000000000101', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ), cvc = '123' };
+		var result = stripe.createCharge( amount = 2000,  source = source );
 
 		debug( result );
 
@@ -103,10 +103,24 @@ component extends="mxunit.framework.TestCase" {
 		assertEquals( result.error.code, 'incorrect_cvc', "wrong error code" );
 	}
 
+	public void function testCardDeclinedCreateChargeWithCard() {
+
+		var source = { object = 'card', number = '4000000000000002', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ), cvc = '123' };
+		var result = stripe.createCharge( amount = 2000,  source = source );
+		var charge = stripe.getCharge( result.error.charge );
+
+		debug( result );
+		debug( charge );
+
+		assertEquals( 402, result.status_code, "expected a 402 status" );
+		assertTrue( structKeyExists( result, 'error' ) && isStruct( result.error ), "missing error struct" );
+		assertEquals( result.error.code, 'card_declined', "wrong error code" );
+	}
+
 	public void function testChargeRetrieval() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
-		var charge = stripe.createCharge( amount = 2000,  card = card );
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var charge = stripe.createCharge( amount = 2000,  source = source );
 		var result = stripe.getCharge( charge.id );
 
 		debug( charge );
@@ -114,29 +128,14 @@ component extends="mxunit.framework.TestCase" {
 
 		assertEquals( 200, result.status_code, "expected a 200 status" );
 		assertEquals( charge.id, result.id, "wrong charge retrieved" );
-		assertEquals( right( card.number, 4 ), result.card.last4, "wrong card retrieved" );
-
-	}
-
-	public void function testChargeRefund() {
-
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
-		var charge = stripe.createCharge( amount = 3000,  card = card );
-		var result = stripe.refundCharge( charge.id, 1000 );
-
-		debug( charge );
-		debug( result );
-
-		assertEquals( 200, result.status_code, "expected a 200 status" );
-		assertEquals( result.amount_refunded, 1000, "wrong amount refunded" );
-		assertFalse( result.refunded, "charge supposed to be only partially refunded" );
+		assertEquals( right( card.number, 4 ), result.source.last4, "wrong card retrieved" );
 
 	}
 
 	public void function testChargeCapture() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
-		var charge = stripe.createCharge( amount = 3000,  card = card, capture = false );
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var charge = stripe.createCharge( amount = 3000,  source = source, capture = false );
 		var result = stripe.captureCharge( charge.id, 2500 );
 
 		debug( charge );
@@ -151,8 +150,8 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testListChargesWithCreatedDate() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
-		var charge = stripe.createCharge( amount = 3000,  card = card );
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var charge = stripe.createCharge( amount = 3000,  source = source );
 		var result = stripe.listCharges( created = charge.created );
 
 		debug( charge );
@@ -164,9 +163,9 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testListChargesWithCreatedTimestamp() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
-		var charge = stripe.createCharge( amount = 3000,  card = card );
-		var result = stripe.listCharges( created = charge.created );
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var charge = stripe.createCharge( amount = 3000,  source = source );
+		var result = stripe.listCharges( created = int( charge.created.getTime() / 1000 ) );
 
 		debug( charge );
 		debug( result );
@@ -177,9 +176,9 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testListChargesWithCreatedDictionary() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
-		var chargeOne = stripe.createCharge( amount = 3000,  card = card );
-		var chargeTwo = stripe.createCharge( amount = 2500,  card = card );
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var chargeOne = stripe.createCharge( amount = 3000,  source = source );
+		var chargeTwo = stripe.createCharge( amount = 2500,  source = source );
 		var created = { "gte" = chargeOne.created, "lt" = dateAdd( "d", 1, chargeOne.created ) };
 		var result = stripe.listCharges( created = created, limit = 2 );
 
@@ -194,9 +193,9 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testListChargesWithPagination() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
-		var chargeOne = stripe.createCharge( amount = 3000,  card = card );
-		var chargeTwo = stripe.createCharge( amount = 2500,  card = card );
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var chargeOne = stripe.createCharge( amount = 3000,  source = source );
+		var chargeTwo = stripe.createCharge( amount = 2500,  source = source );
 		var result = stripe.listCharges( limit = 1, starting_after = chargeTwo.id, include = [ 'total_count' ] );
 
 		debug( chargeOne );
@@ -211,9 +210,9 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testUpdateChargeDispute() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
-		var charge = stripe.createCharge( amount = 3000,  card = card );
-		var result = stripe.updateChargeDispute( charge.id, "Here's evidence showing this charge is legitimate." );
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var charge = stripe.createCharge( amount = 3000,  source = source );
+		var result = stripe.updateChargeDispute( id = charge.id, evidence = { cancellation_policy_disclosure = "Here's evidence showing this charge is legitimate." } );
 
 		debug( charge );
 		debug( result );
@@ -224,8 +223,8 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testCloseChargeDispute() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
-		var charge = stripe.createCharge( amount = 3000,  card = card );
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var charge = stripe.createCharge( amount = 3000,  source = source );
 		var result = stripe.closeChargeDispute( charge.id );
 
 		debug( charge );
@@ -237,9 +236,10 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testUpdateCharge() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
 		var metadata = { key = 'test', foo = 'bar', id = 200 };
-		var chargeResult = stripe.createCharge( amount = 1999,  card = card, description = 'description', metadata = metadata );
+		metadata = { };
+		var chargeResult = stripe.createCharge( amount = 1999,  source = source, description = 'description', metadata = metadata );
 		var result = stripe.updateCharge( id = chargeResult.id, description = 'new description', metadata = {} );
 
 		debug( chargeResult );

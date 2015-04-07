@@ -24,12 +24,12 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testCreateInvoiceWithSubscription() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = '14' };
-		var customerObject = stripe.createCustomer( description = 'Test Customer', card = card );
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var customerObject = stripe.createCustomer( description = 'Test Customer', source = source );
 		var plan = { id = createUUID(), amount = 1000, interval = 'month', interval_count = 3, name = "Gold Plan", trial_period_days = 30 };
 		var planObject = stripe.createPlan( argumentCollection = plan );
-		var subscriptionObjectOne = stripe.createCustomerSubscription( id = customerObject.id, plan = planObject.id, trial_end = "now" );
-		var subscriptionObjectTwo = stripe.createCustomerSubscription( id = customerObject.id, plan = planObject.id );
+		var subscriptionObjectOne = stripe.createCustomerSubscription( customer_id = customerObject.id, plan = planObject.id, trial_end = "now" );
+		var subscriptionObjectTwo = stripe.createCustomerSubscription( customer_id = customerObject.id, plan = planObject.id );
 		var invoiceitemObjectOne = stripe.createInvoiceItem( customer = customerObject.id, amount = 1000, description = "Extra Fee", subscription = subscriptionObjectOne.id );
 		var invoiceitemObjectTwo = stripe.createInvoiceItem( customer = customerObject.id, amount = 500, description = "Test Fee", subscription = subscriptionObjectTwo.id );
 		var result = stripe.createInvoice( customer = customerObject.id, subscription = subscriptionObjectTwo.id );
@@ -83,10 +83,10 @@ component extends="mxunit.framework.TestCase" {
 	}
 
 	public void function testPayInvoice() {
-		
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = '14' };
 
-		var customerObject = stripe.createCustomer( card = card );
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+
+		var customerObject = stripe.createCustomer( source = source );
 		var invoiceitemObject = stripe.createInvoiceItem( customer = customerObject.id, amount = 1000, description = "Extra Fee" );
 		var invoiceObject = stripe.createInvoice( customerObject.id );
 		var result = stripe.payInvoice( invoiceObject.id );
@@ -104,10 +104,10 @@ component extends="mxunit.framework.TestCase" {
 	}
 
 	public void function testUpdateInvoice() {
-		
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = '14' };
 
-		var customerObject = stripe.createCustomer( card = card );
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+
+		var customerObject = stripe.createCustomer( source = source );
 		var invoiceitemObject = stripe.createInvoiceItem( customer = customerObject.id, amount = 1000, description = "Extra Fee" );
 		var invoiceObject = stripe.createInvoice( customerObject.id );
 		var result = stripe.updateInvoice( id = invoiceObject.id, closed = true );
@@ -126,9 +126,9 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testListInvoices() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = '14' };
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
 
-		var customerObject = stripe.createCustomer( card = card );
+		var customerObject = stripe.createCustomer( source = source );
 		var invoiceitemObject = stripe.createInvoiceItem( customer = customerObject.id, amount = 1000, description = "Extra Fee" );
 		var invoiceObject = stripe.createInvoice( customerObject.id );
 
@@ -142,13 +142,13 @@ component extends="mxunit.framework.TestCase" {
 		assertEquals( 200, result.status_code, "expected a 200 status" );
 		assertTrue( arrayLen( result.data ) == 1, "invoice is not listed" );
 
-	}	
+	}
 
 	public void function testListInvoicesWithDateDictionary() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = '14' };
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
 
-		var customerObject = stripe.createCustomer( card = card );
+		var customerObject = stripe.createCustomer( source = source );
 		var invoiceitemObject = stripe.createInvoiceItem( customer = customerObject.id, amount = 1000, description = "Extra Fee" );
 		var invoiceObject = stripe.createInvoice( customerObject.id );
 
@@ -168,9 +168,9 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function testGetUpcomingInvoice() {
 
-		var card = { number = '4242424242424242', exp_month = '5', exp_year = '14' };
+		var source = { object = 'card', number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
 
-		var customerObject = stripe.createCustomer( card = card );
+		var customerObject = stripe.createCustomer( source = source );
 		var invoiceitemObject = stripe.createInvoiceItem( customer = customerObject.id, amount = 1000, description = "Extra Fee" );
 
 		var result = stripe.getUpcomingInvoice( customerObject.id );
@@ -182,6 +182,6 @@ component extends="mxunit.framework.TestCase" {
 		assertEquals( 200, result.status_code, "expected a 200 status" );
 		assertTrue( result.lines.total_count >= 1, "lines not returned" );
 
-	}	
+	}
 
 }

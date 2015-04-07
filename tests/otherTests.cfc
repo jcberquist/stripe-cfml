@@ -2,17 +2,7 @@ component extends="mxunit.framework.TestCase" {
 
 	public void function setup() {
 
-		stripe = new stripe.stripe( request.apiKey );
-
-	}
-
-	public void function testGetAccountDetails() {
-
-		var result = stripe.getAccountDetails();
-
-		debug( result );
-
-		assertEquals( 200, result.status_code, "expected a 200 status" );
+		stripe = new stripe.stripe( apiKey = request.apiKey, includeRaw = true );
 
 	}
 
