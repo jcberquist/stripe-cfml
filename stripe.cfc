@@ -491,6 +491,7 @@ component {
 			} else if ( arrayFind( [ "get","delete" ], arguments.method ) ) {
 				arrayAppend( qs, lcase( param.name ) & "=" & encodeurl( param.value ) );
 			}
+
 		}
 
 		if ( arrayLen( qs ) ) {
