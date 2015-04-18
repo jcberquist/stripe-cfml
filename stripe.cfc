@@ -298,7 +298,7 @@ component {
 
 	// Transfer Reversals
 
-	public struct function createTransferReversal( required string transfer_id, numeric amount string description, struct metadata, boolean refund_application_fee ) {
+	public struct function createTransferReversal( required string transfer_id, numeric amount, string description, struct metadata, boolean refund_application_fee ) {
 		return apiCall( "transfers/#trim( arguments.transfer_id )#/reversals", setupParams( arguments ), "post" );
 	}
 
