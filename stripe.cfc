@@ -298,7 +298,7 @@ component {
 
 	// Transfer Reversals
 
-	public struct function createTransferReversal( required string transfer_id, numeric amount string description, struct metadata, boolean refund_application_fee ) {
+	public struct function createTransferReversal( required string transfer_id, numeric amount, string description, struct metadata, boolean refund_application_fee ) {
 		return apiCall( "transfers/#trim( arguments.transfer_id )#/reversals", setupParams( arguments ), "post" );
 	}
 
@@ -368,7 +368,7 @@ component {
 
 	// Accounts
 
-	public struct function createAccount( any bank_account, string business_name, string business_url, string country, boolean debit_negative_balances, string default_currency, string email, struct legal_entity, boolean managed, struct metadata, string string product_description, string statement_descriptor, string support_phone, struct tos_acceptance, struct transfer_schedule ) {
+	public struct function createAccount( any bank_account, string business_name, string business_url, string country, boolean debit_negative_balances, string default_currency, string email, struct legal_entity, boolean managed, struct metadata, string product_description, string statement_descriptor, string support_phone, struct tos_acceptance, struct transfer_schedule ) {
 		return apiCall( "accounts", setupParams( arguments ), "post" );
 	}
 
@@ -376,7 +376,7 @@ component {
 		return apiCall( "accounts/#trim( arguments.id )#" );
 	}
 
-	public struct function updateAccount( required string id, any bank_account, string business_name, string business_url, boolean debit_negative_balances, string default_currency, string email, struct legal_entity, struct metadata, string string product_description, string statement_descriptor, string support_phone, struct tos_acceptance, struct transfer_schedule ) {
+	public struct function updateAccount( required string id, any bank_account, string business_name, string business_url, boolean debit_negative_balances, string default_currency, string email, struct legal_entity, struct metadata, string product_description, string statement_descriptor, string support_phone, struct tos_acceptance, struct transfer_schedule ) {
 		return apiCall( "accounts/#trim( arguments.id )#", setupParams( arguments ), "post" );
 	}
 
