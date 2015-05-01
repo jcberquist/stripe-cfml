@@ -651,7 +651,7 @@ component {
 					}
 				}
 				if ( variables.convertUTCTimestamps && arrayFindNoCase( variables.timestampFields, key ) ) result[ key ] = parseUTCTimestamp( result[ key ] );
-				if ( variables.convertToCents && arrayFindNoCase( variables.currencyFields, key ) ) result[ key ] = result[ key ] / 100;
+				if ( variables.convertToCents && arrayFindNoCase( variables.currencyFields, key ) && isInteger( result[ key ] ) ) result[ key ] = result[ key ] / 100;
 			}
 		}
 	}

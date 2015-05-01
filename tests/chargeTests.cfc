@@ -77,6 +77,21 @@ component extends="mxunit.framework.TestCase" {
 
 	}
 
+	public void function testCreateChargeWithApplicationFeeAndConvertToCents() {
+
+		var stripe_convertToCents = new stripe.stripe( apiKey = request.apiKey, convertToCents = true );
+		var newAccount = stripe.createAccount( email = 'test-#createUUID()#@example.com' );
+		var card = { number = '4242424242424242', exp_month = '5', exp_year = year( dateAdd( "yyyy", 1, now() ) ) };
+		var token = stripe_convertToCents.createCardToken( card );
+		var result = stripe_convertToCents.createCharge( amount = 19.99,  source = token.id, stripeAccount = newAccount.id, application_fee = 5 );
+
+		debug( newAccount );
+		debug( result );
+
+		assertEquals( 200, result.status_code, "expected a 200 status" );
+
+	}
+
 	// test only passes if stripe.com is set to decline charges with failed zip checks
 	public void function testFailedZipCreateChargeWithCard() {
 
