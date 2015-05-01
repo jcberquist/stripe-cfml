@@ -660,13 +660,13 @@ component {
 		return replacelist( urlEncodedFormat( arguments.str, "utf-8" ), "%2D,%2E,%5F,%7E", "-,.,_,~" );
 	}
 
-  private numeric function getUTCTimestamp( required date dateToConvert ) {
-	  return dateDiff( "s", variables.utcBaseDate, dateToConvert );
-  }
+	private numeric function getUTCTimestamp( required date dateToConvert ) {
+		return dateDiff( "s", variables.utcBaseDate, dateToConvert );
+	}
 
 	private date function parseUTCTimestamp( required numeric utcTimestamp ) {
-	  var parsed_date = dateAdd( "s", arguments.utcTimestamp, variables.utcBaseDate );
-	  return parsed_date;
+		var parsed_date = dateAdd( "s", arguments.utcTimestamp, variables.utcBaseDate );
+		return parsed_date;
 	}
 
 	private boolean function isInteger( required any varToValidate ) {
