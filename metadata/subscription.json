@@ -1,0 +1,10 @@
+{
+    "canceled_at": "datetime",
+    "created": "datetime",
+    "current_period_end": "datetime",
+    "current_period_start": "datetime",
+    "ended_at": "datetime",
+    "start": "datetime",
+    "trial_end": "datetime",
+    "trial_start": "datetime"
+}

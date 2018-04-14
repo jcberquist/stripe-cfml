@@ -1,11 +1,11 @@
 component {
+    rootPath = getDirectoryFromPath( getCurrentTemplatePath() ).replace( '\', '/', 'all' ).replaceNoCase( 'tests/', '' );
 
-	this.mappings[ '/stripe' ] = getDirectoryFromPath( getCurrentTemplatePath() ) & '../';
+    this.mappings[ "/tests" ] = rootPath & '/tests';
+    this.mappings[ "/lib" ] = rootPath & '/lib';
 
-	public void function onRequestStart() {
-		// test stripe secret key
-		param name="form.stripeTESTSecretKey" default="";
-		request.apiKey = form.stripeTESTSecretKey;
-	}
-
+    public boolean function onRequestStart( String targetPage ) {
+        setting requestTimeout="9999";
+        return true;
+    }
 }

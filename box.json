@@ -1,0 +1,12 @@
+{
+    "devDependencies": {
+        "testbox": "^2.6.0+156"
+    },
+    "installPaths": {
+        "testbox": "testbox"
+    },
+    "testbox": {
+        "runner": "http://127.0.0.1:45000/tests/runner.cfm",
+        "tests_root": ""
+    }
+}

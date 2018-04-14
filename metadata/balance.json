@@ -1,0 +1,17 @@
+{
+    "available": {
+        "amount": "currency",
+        "source_types": {
+            "card": "currency"
+        }
+    },
+    "connect_reserved": {
+        "amount": "currency"
+    },
+    "pending": {
+        "amount": "currency",
+        "source_types": {
+            "card": "currency"
+        }
+    }
+}

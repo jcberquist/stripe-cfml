@@ -1,0 +1,7 @@
+{
+    "amount": "currency",
+    "period": {
+        "end": "datetime",
+        "start": "datetime"
+    }
+}

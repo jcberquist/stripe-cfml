@@ -1,0 +1,15 @@
+{
+    "amount_due": "currency",
+    "application_fee": "currency",
+    "date": "datetime",
+    "due_date": "datetime",
+    "ending_balance": "currency",
+    "next_payment_attempt": "datetime",
+    "period_end": "datetime",
+    "period_start": "datetime",
+    "starting_balance": "currency",
+    "subscription_proration_date": "datetime",
+    "subtotal": "currency",
+    "tax": "currency",
+    "total": "currency"
+}

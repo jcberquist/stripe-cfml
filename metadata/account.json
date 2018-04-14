@@ -1,0 +1,9 @@
+{
+    "created": "datetime",
+    "tos_acceptance": {
+        "date": "datetime"
+    },
+    "verification": {
+        "due_by": "datetime"
+    }
+}

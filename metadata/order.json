@@ -1,0 +1,7 @@
+{
+    "amount": "currency",
+    "amount_returned": "currency",
+    "application_fee": "currency",
+    "created": "datetime",
+    "updated": "datetime"
+}
