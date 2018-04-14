@@ -1,12 +1,48 @@
 {
-    "devDependencies": {
-        "testbox": "^2.6.0+156"
+    "name":"Stripe CFML",
+    "version":"1.0.0",
+    "author":"John Berquist",
+    "location":"jcberquist/stripe-cfml#v1.0.0",
+    "homepage":"https://github.com/jcberquist/stripe-cfml",
+    "documentation":"",
+    "repository":{
+        "type":"",
+        "URL":""
     },
-    "installPaths": {
-        "testbox": "testbox"
+    "bugs":"",
+    "slug":"stripecfml",
+    "shortDescription":"Stripe CFML is a CFML (Lucee and ColdFusion) library for interacting with the Stripe API.",
+    "description":"",
+    "instructions":"",
+    "changelog":"",
+    "type":"modules",
+    "keywords":[
+        "stripe",
+        "api"
+    ],
+    "private":false,
+    "projectURL":"",
+    "license":[
+        {
+            "type":"MIT",
+            "URL":""
+        }
+    ],
+    "contributors":[],
+    "dependencies":{},
+    "devDependencies":{
+        "testbox":"^2.6.0+156"
     },
-    "testbox": {
-        "runner": "http://127.0.0.1:45000/tests/runner.cfm",
-        "tests_root": ""
+    "installPaths":{
+        "testbox":"testbox"
+    },
+    "scripts":{},
+    "ignore":[
+        "**/.*",
+        "tests"
+    ],
+    "testbox":{
+        "runner":"http://127.0.0.1:45000/tests/runner.cfm",
+        "tests_root":""
     }
 }
