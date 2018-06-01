@@ -3,46 +3,50 @@
 **stripe-cfml** is a CFML (Lucee and ColdFusion) library for interacting with the Stripe API.
 
 ## Installation
-This wrapper can be installed as standalone or as a ColdBox Module. Either approach requires a simple CommandBox command:
-
-`box install stripecfml`
-
-### Standalone
-
-This component will be installed into a directory called `stripecfml` in whichever directory you have chosen and can then be instantiated directly like so:
+This wrapper can be installed as standalone library or as a ColdBox Module. Either approach requires a simple CommandBox command:
 
 ```
-new stripecfml.stripe(
-    apiKey = '', // Required
-    config = {} // Default value in init
+$ box install stripecfml
+```
+
+Alternatively the git repository can be cloned into the desired directory.
+
+### Standalone Usage
+
+Once the library has been installed, the core `stripe` component can be instantiated directly:
+
+```cfc
+stripe = new path.to.stripecfml.stripe(
+    apiKey = ''
+    config = {}
 );
 ```
 
 ### ColdBox Module
 
-To use the component as a ColdBox Module you will need to create a configuration object in your applications configuration file: `config/Coldbox.cfc` with the following settings:
+To use the library as a ColdBox Module, add the init arguments to the `moduleSettings` struct in `config/Coldbox.cfc`:
 
-```
-stripeAPI = {
-    apiKey = '', // Required
-    config = {} // Default value in init
+```cfc
+moduleSettings = {
+    stripecfml: {
+        apiKey: '',
+        config: {}
+    }
 }
 ```
 
-You can then leverage the CFC via the injection DSL: `stripeAPI@stripeAPI`:
+You can then leverage the library via the injection DSL: `stripe@stripecfml`:
 
+```cfc
+property name="stripe" inject="stripe@stripecfml";
 ```
-property name="stripeAPI" inject="stripeAPI@stripeAPI";
-```
 
-
+*Note: You can bypass the init arguments altogether and use Java system properties or environment variables to configure stripe-cfml. See [Configuration via environment variables and system properties](#configuration-via-environment-variables-and-system-properties) below.*
 
 ## Getting Started
 
 ```cfc
 // To charge $20 to a card for which a card token has been created
-stripe = new path.to.stripe('stripe_api_key');
-
 charge = stripe.charges.create({amount: 2000, currency: 'usd', source: cardToken});
 // OR
 charge = stripe.charges.create(amount = 2000, currency = 'usd', source = cardToken);
@@ -85,7 +89,7 @@ charge = stripe.charges.create(
     amount = 2000,
     currency = 'usd',
     source = cardToken,
-    tripeAccount = 'abc',
+    stripeAccount = 'abc',
     idempotencyKey = 'def'
 );
 // OR
