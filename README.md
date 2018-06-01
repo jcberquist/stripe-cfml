@@ -2,6 +2,41 @@
 
 **stripe-cfml** is a CFML (Lucee and ColdFusion) library for interacting with the Stripe API.
 
+## Installation
+This wrapper can be installed as standalone or as a ColdBox Module. Either approach requires a simple CommandBox command:
+
+`box install stripecfml`
+
+### Standalone
+
+This component will be installed into a directory called `stripecfml` in whichever directory you have chosen and can then be instantiated directly like so:
+
+```
+new stripecfml.stripe(
+    apiKey = '', // Required
+    config = {} // Default value in init
+);
+```
+
+### ColdBox Module
+
+To use the component as a ColdBox Module you will need to create a configuration object in your applications configuration file: `config/Coldbox.cfc` with the following settings:
+
+```
+stripeAPI = {
+    apiKey = '', // Required
+    config = {} // Default value in init
+}
+```
+
+You can then leverage the CFC via the injection DSL: `stripeAPI@stripeAPI`:
+
+```
+property name="stripeAPI" inject="stripeAPI@stripeAPI";
+```
+
+
+
 ## Getting Started
 
 ```cfc
