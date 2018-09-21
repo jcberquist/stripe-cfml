@@ -39,7 +39,10 @@ component extends="abstract.apiResource" {
                         amount: 'currency'
                     }
                 },
-                path: '/invoices/upcoming'
+                path: '/invoices/upcoming',
+                positionalArgs: [
+                    'customer'
+                ]
             },
             'update': {
                 arguments: {
