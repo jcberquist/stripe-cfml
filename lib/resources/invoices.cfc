@@ -33,11 +33,13 @@ component extends="abstract.apiResource" {
             },
             'retrieveUpcoming': {
                 arguments: {
+                    subscription_proration_date: 'timestamp',
+                    subscription_trial_end: 'timestamp',
                     invoice_items: {
                         amount: 'currency'
                     }
                 },
-                path: '/invoices/{invoice_id}/upcoming'
+                path: '/invoices/upcoming'
             },
             'update': {
                 arguments: {

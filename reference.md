@@ -149,7 +149,7 @@ stripe.invoices.list();
 stripe.invoices.pay(invoice_id);
 stripe.invoices.retrieve(invoice_id);
 stripe.invoices.retrieveLines(invoice_id);
-stripe.invoices.retrieveUpcoming(invoice_id);
+stripe.invoices.retrieveUpcoming();
 stripe.invoices.update(invoice_id);
 ```
 
