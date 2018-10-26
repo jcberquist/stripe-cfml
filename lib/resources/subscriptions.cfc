@@ -4,7 +4,8 @@ component extends="abstract.apiResource" {
         methods: {
             'create': {
                 arguments: {
-                    trial_end: 'timestamp'
+                    trial_end: 'timestamp',
+                    billing_cycle_anchor: 'timestamp'
                 },
                 httpMethod: 'post',
                 path: '/subscriptions'
@@ -29,7 +30,8 @@ component extends="abstract.apiResource" {
             'update': {
                 arguments: {
                     proration_date: 'timestamp',
-                    trial_end: 'timestamp'
+                    trial_end: 'timestamp',
+                    billing_cycle_anchor: 'timestamp'
                 },
                 httpMethod: 'post',
                 path: '/subscriptions/{subscription_id}'
