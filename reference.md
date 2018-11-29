@@ -146,11 +146,13 @@ stripe.invoiceItems.update(invoiceitem_id);
 ```cfc
 stripe.invoices.create();
 stripe.invoices.list();
+stripe.invoices.markUncollectible(invoice_id);
 stripe.invoices.pay(invoice_id);
 stripe.invoices.retrieve(invoice_id);
 stripe.invoices.retrieveLines(invoice_id);
 stripe.invoices.retrieveUpcoming(customer);
 stripe.invoices.update(invoice_id);
+stripe.invoices.void(invoice_id);
 ```
 
 ## stripe.orderReturns
