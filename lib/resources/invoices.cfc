@@ -17,6 +17,10 @@ component extends="abstract.apiResource" {
                 },
                 path: '/invoices'
             },
+            'markUncollectible': {
+                httpMethod: 'post',
+                path: '/invoices/{invoice_id}/mark_uncollectible'
+            },
             'pay': {
                 httpMethod: 'post',
                 path: '/invoices/{invoice_id}/pay'
@@ -52,6 +56,10 @@ component extends="abstract.apiResource" {
                 },
                 httpMethod: 'post',
                 path: '/invoices/{invoice_id}'
+            },
+            'void': {
+                httpMethod: 'post',
+                path: '/invoices/{invoice_id}/void'
             }
         }
     };
