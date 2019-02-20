@@ -145,6 +145,7 @@ stripe.invoiceItems.update(invoiceitem_id);
 
 ```cfc
 stripe.invoices.create();
+stripe.invoices.delete(invoice_id);
 stripe.invoices.list();
 stripe.invoices.markUncollectible(invoice_id);
 stripe.invoices.pay(invoice_id);
