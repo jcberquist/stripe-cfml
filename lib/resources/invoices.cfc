@@ -10,6 +10,10 @@ component extends="abstract.apiResource" {
                 httpMethod: 'post',
                 path: '/invoices'
             },
+            'delete': {
+                httpMethod: 'delete',
+                path: '/invoices/{invoice_id}'
+            },
             'list': {
                 arguments: {
                     date: 'datefilter',
