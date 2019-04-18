@@ -6,6 +6,7 @@ component extends="abstract.apiResource" {
                 arguments: {
                     amount: 'currency',
                     application_fee: 'currency',
+                    application_fee_amount: 'currency',
                     destination: {
                         amount: 'currency'
                     }
@@ -17,6 +18,7 @@ component extends="abstract.apiResource" {
                 arguments: {
                     amount: 'currency',
                     application_fee: 'currency',
+                    application_fee_amount: 'currency',
                     currency: 'iso_currency_code',
                     destination: {
                         amount: 'currency'

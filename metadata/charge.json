@@ -1,5 +1,6 @@
 {
     "amount": "currency",
     "amount_refunded": "currency",
+    "application_fee_amount": "currency",
     "created": "datetime"
 }
