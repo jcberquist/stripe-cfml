@@ -1,6 +1,15 @@
 component {
 
     variables.argumentTypes = {
+        currencyfilter: {
+            _complex: {
+                'gt': 'currency',
+                'gte': 'currency',
+                'lt': 'currency',
+                'lte': 'currency'
+            },
+            _simple: 'currency'
+        },
         datefilter: {
             _complex: {
                 'gt': 'timestamp',
