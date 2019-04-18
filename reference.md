@@ -346,18 +346,18 @@ stripe.usageRecords.create();
 ## stripe.radar.valueListItems
 
 ```cfc
-stripe.valueListItems.create();
-stripe.valueListItems.delete(value_list_item_id);
-stripe.valueListItems.list();
-stripe.valueListItems.retrieve(value_list_item_id);
+stripe.radar.valueListItems.create();
+stripe.radar.valueListItems.delete(value_list_item_id);
+stripe.radar.valueListItems.list();
+stripe.radar.valueListItems.retrieve(value_list_item_id);
 ```
 
 ## stripe.radar.valueLists
 
 ```cfc
-stripe.valueLists.create();
-stripe.valueLists.delete(value_list_id);
-stripe.valueLists.list();
-stripe.valueLists.retrieve(value_list_id);
-stripe.valueLists.update(value_list_id);
+stripe.radar.valueLists.create();
+stripe.radar.valueLists.delete(value_list_id);
+stripe.radar.valueLists.list();
+stripe.radar.valueLists.retrieve(value_list_id);
+stripe.radar.valueLists.update(value_list_id);
 ```
