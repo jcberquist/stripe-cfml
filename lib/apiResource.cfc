@@ -2,11 +2,20 @@ component {
 
     variables.metadata = { };
 
-    function init( required any stripe, required any config ) {
+    function init( required any stripe, required any config, required string resourceName ) {
         variables.stripe = arguments.stripe;
         variables.config = arguments.config;
-        variables.resourceName = getMetadata( this ).name.listLast( '.' );
-        variables.metadata = loadMetadata( variables.metadata );
+        variables.resourceName = resourceName;
+        var resource = new 'resources.#resourceName#'();
+        variables.metadata = loadMetadata( resource.metadata );
+        var resourceMetadata = getMetadata( resource );
+        if ( resourceMetadata.keyExists( 'functions' ) ) {
+            for ( var func in getMetadata( resource ).functions ) {
+                if ( func.access == 'public' ) {
+                    this[ func.name ] = resource[ func.name ];
+                }
+            }
+        }
         return this;
     }
 
@@ -29,7 +38,9 @@ component {
             }
         }
 
-        loaded.methodNameList = arrayMap( loaded.methods.keyArray(), function( mn ) {
+        var methodNameArray = loaded.methods.keyArray();
+        arraySort( methodNameArray, 'text' );
+        loaded.methodNameList = arrayMap( methodNameArray, function( mn ) {
             return 'stripe.#resourceName#.#mn#()';
         } );
         var length = arrayLen( loaded.methodNameList );

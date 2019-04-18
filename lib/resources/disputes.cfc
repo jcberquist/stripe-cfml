@@ -1,6 +1,6 @@
-component extends="abstract.apiResource" {
+component {
 
-    variables.metadata = {
+    this.metadata = {
         methods: {
             'close': {
                 httpMethod: 'post',

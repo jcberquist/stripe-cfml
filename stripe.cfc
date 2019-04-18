@@ -11,9 +11,16 @@ component {
             response: new lib.parsers.response( configObj, objectMetadata )
         };
 
-        for ( var resourceFile in listResources( basePath ) ) {
-            var resource = resourceFile.listFirst( '.' );
-            this[ resource ] = new 'lib.resources.#resource#'( this, configObj );
+        for ( var resourcePath in listResources( basePath ) ) {
+            var resourceParts = resourcePath.listFirst( '.' ).listToArray( '/' );
+            var parent = this;
+            for ( var i = 1; i < resourceParts.len(); i++ ) {
+                if ( !structKeyExists( parent, resourceParts[ i ] ) ) {
+                    parent[ resourceParts[ i ] ] = { };
+                }
+                parent = parent[ resourceParts[ i ] ];
+            }
+            parent[ resourceParts[ i ] ] = new lib.apiResource( this, configObj, resourceParts.toList( '.' ) );
         }
 
         this[ 'webhooks' ] = new lib.webhooks( parsers.response );
@@ -143,7 +150,11 @@ component {
     }
 
     private array function listResources( required string basePath ) {
-        return directoryList( '#basePath#/lib/resources', false, 'name', '*.cfc' );
+        var resourcePath = basePath & 'lib/resources/';
+        var paths = directoryList( resourcePath, true, 'path', '*.cfc' );
+        return paths.map( function( path ) {
+            return path.replace( resourcePath, '' );
+        } );
     }
 
 }

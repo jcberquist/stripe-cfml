@@ -1,6 +1,6 @@
-component extends="abstract.apiResource" {
+component {
 
-    variables.metadata = {
+    this.metadata = {
         methods: {
             'capture': {
                 arguments: {
@@ -33,6 +33,14 @@ component extends="abstract.apiResource" {
                 },
                 path: '/charges'
             },
+            'markAsFraudulent': {
+                httpMethod: 'post',
+                path: '/charges/{charge_id}'
+            },
+            'markAsSafe': {
+                httpMethod: 'post',
+                path: '/charges/{charge_id}'
+            },
             'retrieve': {
                 path: '/charges/{charge_id}'
             },
@@ -45,12 +53,12 @@ component extends="abstract.apiResource" {
 
     public struct function markAsSafe() {
         var argOverrides = { fraud_details: { user_report: 'safe' } };
-        return stripe.call( 'charges', 'markAsSafe', arguments, metadata.methods.update, argOverrides );
+        return stripe.call( 'charges', 'markAsSafe', arguments, metadata.methods.markAsSafe, argOverrides );
     }
 
     public struct function markAsFraudulent() {
         var argOverrides = { fraud_details: { user_report: 'fraudulent' } };
-        return stripe.call( 'charges', 'markAsFraudulent', arguments, metadata.methods.update, argOverrides );
+        return stripe.call( 'charges', 'markAsFraudulent', arguments, metadata.methods.markAsFraudulent, argOverrides );
     }
 
 }

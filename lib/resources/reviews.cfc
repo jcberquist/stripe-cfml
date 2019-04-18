@@ -2,14 +2,18 @@ component {
 
     this.metadata = {
         methods: {
+            'approve': {
+                httpMethod: 'post',
+                path: '/reviews/{review_id}/approve'
+            },
             'list': {
                 arguments: {
                     created: 'datefilter'
                 },
-                path: '/order_returns'
+                path: '/reviews'
             },
             'retrieve': {
-                path: '/order_returns/{order_return_id}'
+                path: '/reviews/{review_id}'
             }
         }
     };
