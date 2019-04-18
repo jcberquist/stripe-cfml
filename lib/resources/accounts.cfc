@@ -19,6 +19,10 @@ component extends="abstract.apiResource" {
                 httpMethod: 'post',
                 path: '/accounts/{account_id}/login_links'
             },
+            'createPerson': {
+                httpMethod: 'post',
+                path: '/accounts/{account_id}/persons'
+            },
             'delete': {
                 httpMethod: 'delete',
                 path: '/accounts/{account_id}'
@@ -27,11 +31,18 @@ component extends="abstract.apiResource" {
                 httpMethod: 'delete',
                 path: '/accounts/{account_id}/external_accounts/{source_id}'
             },
+            'deletePerson': {
+                httpMethod: 'delete',
+                path: '/accounts/{account_id}/persons/{person_id}'
+            },
             'list': {
                 path: '/accounts'
             },
             'listExternalAccounts': {
                 path: '/accounts/{account_id}/external_accounts'
+            },
+            'listPersons': {
+                path: '/accounts/{account_id}/persons'
             },
             'reject': {
                 httpMethod: 'post',
@@ -42,6 +53,9 @@ component extends="abstract.apiResource" {
             },
             'retrieveExternalAccount': {
                 path: '/accounts/{account_id}/external_accounts/{source_id}'
+            },
+            'retrievePerson': {
+                path: '/accounts/{account_id}/persons/{person_id}'
             },
             'update': {
                 arguments: {
@@ -55,6 +69,10 @@ component extends="abstract.apiResource" {
             'updateExternalAccount': {
                 httpMethod: 'post',
                 path: '/accounts/{account_id}/external_accounts/{source_id}'
+            },
+            'updatePerson': {
+                httpMethod: 'post',
+                path: '/accounts/{account_id}/persons/{person_id}'
             }
         }
     };
