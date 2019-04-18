@@ -4,8 +4,8 @@ component {
         methods: {
             'create': {
                 arguments: {
-                    trial_end: 'timestamp',
-                    billing_cycle_anchor: 'timestamp'
+                    billing_cycle_anchor: 'timestamp',
+                    trial_end: 'timestamp'
                 },
                 httpMethod: 'post',
                 path: '/subscriptions'
@@ -29,9 +29,9 @@ component {
             },
             'update': {
                 arguments: {
+                    billing_cycle_anchor: 'timestamp',
                     proration_date: 'timestamp',
-                    trial_end: 'timestamp',
-                    billing_cycle_anchor: 'timestamp'
+                    trial_end: 'timestamp'
                 },
                 httpMethod: 'post',
                 path: '/subscriptions/{subscription_id}'

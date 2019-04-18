@@ -8,16 +8,21 @@ For documentation on which arguments can be passed to each method please see the
 stripe.accounts.create();
 stripe.accounts.createExternalAccount(account_id);
 stripe.accounts.createLoginLink(account_id);
+stripe.accounts.createPerson(account_id);
 stripe.accounts.delete(account_id);
 stripe.accounts.deleteExternalAccount(account_id, source_id);
+stripe.accounts.deletePerson(account_id, person_id);
 stripe.accounts.list();
 stripe.accounts.listExternalAccounts(account_id);
+stripe.accounts.listPersons(account_id);
 stripe.accounts.reject(account_id);
 stripe.accounts.retrieve();
 stripe.accounts.retrieve(account_id);
 stripe.accounts.retrieveExternalAccount(account_id, source_id);
+stripe.accounts.retrievePerson(account_id, person_id);
 stripe.accounts.update(account_id);
 stripe.accounts.updateExternalAccount(account_id, source_id);
+stripe.accounts.updatePerson(account_id, person_id);
 ```
 
 ## stripe.applePayDomains
@@ -54,10 +59,10 @@ stripe.balance.retrieveTransaction(balance_transaction_id);
 stripe.charges.capture(charge_id);
 stripe.charges.create();
 stripe.charges.list();
+stripe.charges.markAsFraudulent(charge_id);
+stripe.charges.markAsSafe(charge_id);
 stripe.charges.retrieve(charge_id);
 stripe.charges.update(charge_id);
-stripe.charges.markAsSafe(charge_id);
-stripe.charges.markAsFraudulent(charge_id);
 ```
 
 ## stripe.countrySpecs
@@ -123,12 +128,29 @@ stripe.exchangeRates.list();
 stripe.exchangeRates.retrieve(exchange_rate_id);
 ```
 
+## stripe.fileLinks
+
+```cfc
+stripe.fileLinks.create();
+stripe.fileLinks.list();
+stripe.fileLinks.retrieve(file_link_id);
+stripe.fileLinks.update(file_link_id);
+```
+
 ## stripe.fileUploads
 
 ```cfc
 stripe.fileUploads.create();
 stripe.fileUploads.list();
 stripe.fileUploads.retrieve(file_upload_id);
+```
+
+## stripe.files
+
+```cfc
+stripe.files.create();
+stripe.files.list();
+stripe.files.retrieve(file_id);
 ```
 
 ## stripe.invoiceItems
@@ -174,6 +196,29 @@ stripe.orders.returnOrder(order_id);
 stripe.orders.update(order_id);
 ```
 
+## stripe.paymentIntents
+
+```cfc
+stripe.paymentIntents.cancel(payment_intent_id);
+stripe.paymentIntents.capture(payment_intent_id);
+stripe.paymentIntents.confirm(payment_intent_id);
+stripe.paymentIntents.create();
+stripe.paymentIntents.list();
+stripe.paymentIntents.retrieve(payment_intent_id);
+stripe.paymentIntents.update(payment_intent_id);
+```
+
+## stripe.paymentMethods
+
+```cfc
+stripe.paymentMethods.attach(payment_method_id);
+stripe.paymentMethods.create();
+stripe.paymentMethods.detach(payment_method_id);
+stripe.paymentMethods.list();
+stripe.paymentMethods.retrieve(payment_method_id);
+stripe.paymentMethods.update(payment_method_id);
+```
+
 ## stripe.payouts
 
 ```cfc
@@ -211,6 +256,14 @@ stripe.refunds.create();
 stripe.refunds.list();
 stripe.refunds.retrieve(refund_id);
 stripe.refunds.update(refund_id);
+```
+
+## stripe.reviews
+
+```cfc
+stripe.reviews.approve(review_id);
+stripe.reviews.list();
+stripe.reviews.retrieve(review_id);
 ```
 
 ## stripe.skus
@@ -261,6 +314,16 @@ stripe.tokens.create();
 stripe.tokens.retrieve(token_id);
 ```
 
+## stripe.topups
+
+```cfc
+stripe.topups.cancel(topup_id);
+stripe.topups.create();
+stripe.topups.list();
+stripe.topups.retrieve(topup_id);
+stripe.topups.update(topup_id);
+```
+
 ## stripe.transfers
 
 ```cfc
@@ -278,4 +341,23 @@ stripe.transfers.updateReversal(transfer_id, transfer_reversal_id);
 
 ```cfc
 stripe.usageRecords.create();
+```
+
+## stripe.radar.valueListItems
+
+```cfc
+stripe.valueListItems.create();
+stripe.valueListItems.delete(value_list_item_id);
+stripe.valueListItems.list();
+stripe.valueListItems.retrieve(value_list_item_id);
+```
+
+## stripe.radar.valueLists
+
+```cfc
+stripe.valueLists.create();
+stripe.valueLists.delete(value_list_id);
+stripe.valueLists.list();
+stripe.valueLists.retrieve(value_list_id);
+stripe.valueLists.update(value_list_id);
 ```

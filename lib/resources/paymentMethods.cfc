@@ -6,13 +6,13 @@ component {
                 httpMethod: 'post',
                 path: '/payment_methods/{payment_method_id}/attach'
             },
-            'detach': {
-                httpMethod: 'post',
-                path: '/payment_methods/{payment_method_id}/detach'
-            },
             'create': {
                 httpMethod: 'post',
                 path: '/payment_methods'
+            },
+            'detach': {
+                httpMethod: 'post',
+                path: '/payment_methods/{payment_method_id}/detach'
             },
             'list': {
                 path: '/payment_methods'

@@ -41,11 +41,11 @@ component {
             },
             'retrieveUpcoming': {
                 arguments: {
-                    subscription_proration_date: 'timestamp',
-                    subscription_trial_end: 'timestamp',
                     invoice_items: {
                         amount: 'currency'
-                    }
+                    },
+                    subscription_proration_date: 'timestamp',
+                    subscription_trial_end: 'timestamp'
                 },
                 path: '/invoices/upcoming',
                 positionalArgs: [
