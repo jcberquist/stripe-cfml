@@ -138,12 +138,14 @@ component {
     }
 
     private struct function loadMetadata( required string basePath ) {
+        var metadataPath = basePath & 'metadata/';
         var metadata = { };
-        var jsonFiles = directoryList( '#basePath#/metadata/', false, 'path' );
+        var jsonFiles = directoryList( metadataPath, true, 'path', '*.json' );
         for ( var path in jsonFiles ) {
             var metaName = path.replace( '\', '/', 'all' )
-                .listLast( '/' )
-                .listFirst( '.' );
+                .replace( metadataPath, '' )
+                .listFirst( '.' )
+                .replace( '/', '.', 'all' );
             metadata[ metaName ] = deserializeJSON( fileRead( path ) );
         }
         return metadata;
@@ -153,7 +155,7 @@ component {
         var resourcePath = basePath & 'lib/resources/';
         var paths = directoryList( resourcePath, true, 'path', '*.cfc' );
         return paths.map( function( path ) {
-            return path.replace( resourcePath, '' );
+            return path.replace( '\', '/', 'all' ).replace( resourcePath, '' );
         } );
     }
 
