@@ -81,6 +81,16 @@ stripe.coupons.retrieve(coupon_id);
 stripe.coupons.update(coupon_id);
 ```
 
+## stripe.creditNotes
+
+```cfc
+stripe.creditNotes.create();
+stripe.creditNotes.list();
+stripe.creditNotes.retrieve(credit_note_id);
+stripe.creditNotes.update(credit_note_id);
+stripe.creditNotes.voidCreditNote(credit_note_id);
+```
+
 ## stripe.customers
 
 ```cfc
@@ -341,6 +351,117 @@ stripe.transfers.updateReversal(transfer_id, transfer_reversal_id);
 
 ```cfc
 stripe.usageRecords.create();
+```
+
+## stripe.webhookEndpoints
+
+```cfc
+stripe.webhookEndpoints.create();
+stripe.webhookEndpoints.delete(webhook_endpoint_id);
+stripe.webhookEndpoints.list();
+stripe.webhookEndpoints.retrieve(webhook_endpoint_id);
+stripe.webhookEndpoints.update(webhook_endpoint_id);
+```
+
+## stripe.reporting.reportRuns
+
+```cfc
+stripe.reporting.reportRuns.create();
+stripe.reporting.reportRuns.list();
+stripe.reporting.reportRuns.retrieve(report_run_id);
+```
+
+## stripe.reporting.reportTypes
+
+```cfc
+stripe.reporting.reportTypes.list();
+stripe.reporting.reportTypes.retrieve(report_type_id);
+```
+
+## stripe.issuing.authorizations
+
+```cfc
+stripe.issuing.authorizations.approve(authorization_id);
+stripe.issuing.authorizations.decline(authorization_id);
+stripe.issuing.authorizations.list();
+stripe.issuing.authorizations.retrieve(authorization_id);
+stripe.issuing.authorizations.update(authorization_id);
+```
+
+## stripe.issuing.cardholders
+
+```cfc
+stripe.issuing.cardholders.create();
+stripe.issuing.cardholders.list();
+stripe.issuing.cardholders.retrieve(cardholder_id);
+stripe.issuing.cardholders.update(cardholder_id);
+```
+
+## stripe.issuing.cards
+
+```cfc
+stripe.issuing.cards.create();
+stripe.issuing.cards.list();
+stripe.issuing.cards.retrieve(card_id);
+stripe.issuing.cards.retrieveDetails(card_id);
+stripe.issuing.cards.update(card_id);
+```
+
+## stripe.issuing.disputes
+
+```cfc
+stripe.issuing.disputes.create();
+stripe.issuing.disputes.list();
+stripe.issuing.disputes.retrieve(dispute_id);
+stripe.issuing.disputes.update(dispute_id);
+```
+
+## stripe.issuing.transactions
+
+```cfc
+stripe.issuing.transactions.list();
+stripe.issuing.transactions.retrieve(transaction_id);
+stripe.issuing.transactions.update(transaction_id);
+```
+
+## stripe.terminal.connectionTokens
+
+```cfc
+stripe.terminal.connectionTokens.create();
+```
+
+## stripe.terminal.locations
+
+```cfc
+stripe.terminal.locations.create();
+stripe.terminal.locations.delete(location_id);
+stripe.terminal.locations.list();
+stripe.terminal.locations.retrieve(location_id);
+stripe.terminal.locations.update(location_id);
+```
+
+## stripe.terminal.readers
+
+```cfc
+stripe.terminal.readers.create();
+stripe.terminal.readers.delete(reader_id);
+stripe.terminal.readers.list();
+stripe.terminal.readers.retrieve(reader_id);
+stripe.terminal.readers.update(reader_id);
+```
+
+## stripe.checkout.sessions
+
+```cfc
+stripe.checkout.sessions.create();
+stripe.checkout.sessions.retrieve(session_id);
+```
+
+## stripe.sigma.scheduledQueryRuns
+
+```cfc
+stripe.sigma.scheduledQueryRuns.list();
+stripe.sigma.scheduledQueryRuns.retrieve(scheduled_query_run_id);
 ```
 
 ## stripe.radar.valueListItems
