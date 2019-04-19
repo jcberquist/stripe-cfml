@@ -1,0 +1,8 @@
+{
+    "authorization_controls": {
+        "spending_limits": {
+            "amount": "currency"
+        }
+    },
+    "created": "datetime"
+}
