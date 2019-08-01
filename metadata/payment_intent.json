@@ -4,5 +4,8 @@
     "amount_received": "currency",
     "application_fee_amount": "currency",
     "canceled_at": "datetime",
-    "created": "datetime"
+    "created": "datetime",
+    "transfer_data": {
+        "amount": "currency"
+    }
 }

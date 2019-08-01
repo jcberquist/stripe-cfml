@@ -4,6 +4,7 @@ component {
         methods: {
             'create': {
                 arguments: {
+                    currency: 'iso_currency_code',
                     items: {
                         amount: 'currency'
                     }

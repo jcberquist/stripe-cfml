@@ -1,7 +1,7 @@
 {
     "authorized_amount": "currency",
+    "created": "datetime",
     "held_amount": "currency",
     "pending_authorized_amount": "currency",
-    "pending_held_amount": "currency",
-    "created": "datetime"
+    "pending_held_amount": "currency"
 }

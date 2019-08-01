@@ -13,7 +13,13 @@ component {
         boolean multipart = false,
         numeric timeout = 50
     ) {
-        var httpRequest = { attrColl: { method: httpMethod, url: path, timeout: timeout } };
+        var httpRequest = {
+            attrColl: {
+                method: httpMethod,
+                url: path,
+                timeout: timeout
+            }
+        };
 
         if ( serverVersion == 'lucee' ) {
             httpRequest.attrColl[ 'encodeurl' ] = false;
@@ -43,12 +49,12 @@ component {
     private struct function exec( required struct httpRequest ) {
         var result = '';
         httpRequest.attrColl.result = 'result';
-        cfhttp( attributeCollection=httpRequest.attrColl ) {
+        cfhttp(attributeCollection=httpRequest.attrColl) {
             for ( var header in httpRequest.headers ) {
-                cfhttpparam( type='header', name=header.name, value=header.value );
+                cfhttpparam(type="header", name=header.name, value=header.value);
             }
             if ( arrayFindNoCase( [ 'POST', 'PUT' ], httpRequest.attrColl.method ) ) {
-                cfhttpparam( type='body', value=httpRequest.body );
+                cfhttpparam(type="body", value=httpRequest.body);
             }
         }
         return result;
@@ -57,7 +63,12 @@ component {
     private array function parseHeaders( required struct headers ) {
         var sortedKeyArray = headers.keyArray();
         sortedKeyArray.sort( 'textnocase' );
-        var processedHeaders = sortedKeyArray.map( function( key ) { return { name: key, value: trim( headers[ key ] ) }; } );
+        var processedHeaders = sortedKeyArray.map( function( key ) {
+            return {
+                name: key,
+                value: trim( headers[ key ] )
+            };
+        } );
         return processedHeaders;
     }
 
@@ -89,9 +100,16 @@ component {
                     return p.name == contentTypeKey;
                 } );
                 var contentTypeValue = contentTypeIndex ? params[ contentTypeIndex ].value : 'application/octet-stream';
-                var contentType = createObject( 'java', 'org.apache.http.entity.ContentType' ).create( contentTypeValue );
+                var contentType = createObject( 'java', 'org.apache.http.entity.ContentType' ).create(
+                    contentTypeValue
+                );
 
-                entityBuilder.addBinaryBody( javacast( 'string', prefix ), param.value, contentType, javacast( 'string', filename ) );
+                entityBuilder.addBinaryBody(
+                    javacast( 'string', prefix ),
+                    param.value,
+                    contentType,
+                    javacast( 'string', filename )
+                );
                 binaryFields.append( [ param.name, contentTypeKey, filenameKey ], true );
             }
         }
@@ -103,11 +121,14 @@ component {
         var entity = entityBuilder.build();
         var outputStream = createObject( 'java', 'java.io.ByteArrayOutputStream' ).init( entity.getContentLength() );
         entity.writeTo( outputStream );
-        return { contentType: entity.getContentType().getValue(), body: outputStream.toByteArray() };
+        return {
+            contentType: entity.getContentType().getValue(),
+            body: outputStream.toByteArray()
+        };
     }
 
     private string function encodeUrl( required string str ) {
-        return replacelist( urlEncodedFormat( arguments.str, "utf-8" ), "%2D,%2E,%5F,%7E", "-,.,_,~" );
+        return replaceList( urlEncodedFormat( arguments.str, 'utf-8' ), '%2D,%2E,%5F,%7E', '-,.,_,~' );
     }
 
 }

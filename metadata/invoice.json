@@ -1,15 +1,31 @@
 {
     "amount_due": "currency",
+    "amount_paid": "currency",
+    "amount_remaining": "currency",
     "application_fee": "currency",
+    "application_fee_amount": "currency",
+    "created": "datetime",
     "date": "datetime",
     "due_date": "datetime",
     "ending_balance": "currency",
     "next_payment_attempt": "datetime",
     "period_end": "datetime",
     "period_start": "datetime",
+    "post_payment_credit_notes_amount": "currency",
+    "pre_payment_credit_notes_amount": "currency",
     "starting_balance": "currency",
+    "status_transitions": {
+        "finalized_at": "datetime",
+        "marked_uncollectible_at": "datetime",
+        "paid_at": "datetime",
+        "voided_at": "datetime"
+    },
     "subscription_proration_date": "datetime",
     "subtotal": "currency",
     "tax": "currency",
-    "total": "currency"
+    "total": "currency",
+    "total_tax_amounts": {
+        "amount": "currency"
+    },
+    "webhooks_delivered_at": "datetime"
 }

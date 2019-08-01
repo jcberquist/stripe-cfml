@@ -33,14 +33,6 @@ component {
                 },
                 path: '/charges'
             },
-            'markAsFraudulent': {
-                httpMethod: 'post',
-                path: '/charges/{charge_id}'
-            },
-            'markAsSafe': {
-                httpMethod: 'post',
-                path: '/charges/{charge_id}'
-            },
             'retrieve': {
                 path: '/charges/{charge_id}'
             },
@@ -50,15 +42,5 @@ component {
             }
         }
     };
-
-    public struct function markAsSafe() {
-        var argOverrides = { fraud_details: { user_report: 'safe' } };
-        return stripe.call( 'charges', 'markAsSafe', arguments, metadata.methods.markAsSafe, argOverrides );
-    }
-
-    public struct function markAsFraudulent() {
-        var argOverrides = { fraud_details: { user_report: 'fraudulent' } };
-        return stripe.call( 'charges', 'markAsFraudulent', arguments, metadata.methods.markAsFraudulent, argOverrides );
-    }
 
 }

@@ -90,7 +90,10 @@ component {
     }
 
     private function parseType( key, methodArgumentMetdata ) {
-        var base_type = { _simple: 'string', _complex: { } };
+        var base_type = {
+            _simple: 'string',
+            _complex: { }
+        };
         if ( methodArgumentMetdata.keyExists( key ) ) {
             var type = methodArgumentMetdata[ key ];
             if ( isStruct( type ) ) {
@@ -112,7 +115,7 @@ component {
         switch ( type ) {
             case 'currency':
                 var amount = value;
-                if (config.get( 'convert_to_cents' )) {
+                if ( config.get( 'convert_to_cents' ) ) {
                     amount = round( value * 100 );
                 }
                 return parseInteger( amount );
@@ -129,16 +132,25 @@ component {
         for ( var k in src ) {
             var outKey = !isNull( base_key ) ? '#base_key#[#k#]' : k;
             if ( isNull( base_key ) || base_key != 'metadata' ) {
-                outKey = lcase( outKey );
+                outKey = lCase( outKey );
             }
 
             if ( isSimpleValue( src[ k ] ) ) {
-                flattened.append( { name: outKey, value: src[ k ] } );
+                flattened.append( {
+                    name: outKey,
+                    value: src[ k ]
+                } );
             } else if ( isBinary( src[ k ] ) ) {
-                flattened.append( { name: outKey, value: src[ k ] } );
+                flattened.append( {
+                    name: outKey,
+                    value: src[ k ]
+                } );
             } else if ( isStruct( src[ k ] ) ) {
                 if ( structIsEmpty( src[ k ] ) ) {
-                    flattened.append( { name: outKey, value: '' } );
+                    flattened.append( {
+                        name: outKey,
+                        value: ''
+                    } );
                 } else {
                     var nested = flatten( src[ k ], outKey );
                     flattened.append( nested, true );
@@ -150,7 +162,10 @@ component {
                     if ( isStruct( item ) ) {
                         flattened.append( flatten( item, arr_key ), true );
                     } else {
-                        flattened.append( { name: arr_key, value: item } );
+                        flattened.append( {
+                            name: arr_key,
+                            value: item
+                        } );
                     }
                     arrIndex++;
                 }
@@ -163,14 +178,14 @@ component {
         if ( parserUtils.isInteger( utcField ) ) return utcField;
         if ( isDate( utcField ) ) return parserUtils.getUTCTimestamp( utcField );
         if ( utcField == 'now' ) return 'now';
-        throw( "utc timestamp field is in an invalid format" );
+        throw( 'utc timestamp field is in an invalid format' );
     }
 
     private function parseInteger( v ) {
         if ( !parserUtils.isInteger( v ) ) {
             throw( '`#v#` must be an integer.' );
         }
-        return int(v);
+        return int( v );
     }
 
 }

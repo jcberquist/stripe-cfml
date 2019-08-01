@@ -38,6 +38,9 @@ component {
             'list': {
                 path: '/accounts'
             },
+            'listCapabilities': {
+                path: '/accounts/{account_id}/capabilities'
+            },
             'listExternalAccounts': {
                 path: '/accounts/{account_id}/external_accounts'
             },
@@ -50,6 +53,9 @@ component {
             },
             'retrieve': {
                 path: '/accounts/{account_id}'
+            },
+            'retrieveCapability': {
+                path: '/accounts/{account_id}/capabilities/{capability_id}'
             },
             'retrieveExternalAccount': {
                 path: '/accounts/{account_id}/external_accounts/{source_id}'
@@ -65,6 +71,10 @@ component {
                 },
                 httpMethod: 'post',
                 path: '/accounts/{account_id}'
+            },
+            'updateCapability': {
+                httpMethod: 'post',
+                path: '/accounts/{account_id}/capabilities/{capability_id}'
             },
             'updateExternalAccount': {
                 httpMethod: 'post',
@@ -90,9 +100,19 @@ component {
             methodMetadata.path = '/account';
             methodMetadata.pathArgs = [ ];
             methodMetadata.positionalArgs = [ ];
-            return stripe.call( 'accounts', 'retrieve', arguments, methodMetadata );
+            return stripe.call(
+                'accounts',
+                'retrieve',
+                arguments,
+                methodMetadata
+            );
         }
-        return stripe.call( 'accounts', 'retrieve', arguments, metadata.methods.retrieve );
+        return stripe.call(
+            'accounts',
+            'retrieve',
+            arguments,
+            metadata.methods.retrieve
+        );
     }
 
 }

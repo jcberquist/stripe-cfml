@@ -14,7 +14,10 @@ component {
     }
 
     public struct function parse( required any headersSource, required struct methodMetadata ) {
-        var headerData = { headers: { }, headerArgNames: [ ] };
+        var headerData = {
+            headers: { },
+            headerArgNames: [ ]
+        };
 
         for ( var key in headerKeys ) {
             var headerName = headerKeys[ key ];

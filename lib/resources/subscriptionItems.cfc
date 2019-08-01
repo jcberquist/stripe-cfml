@@ -10,6 +10,9 @@ component {
                 path: '/subscription_items'
             },
             'delete': {
+                arguments: {
+                    proration_date: 'timestamp'
+                },
                 httpMethod: 'delete',
                 path: '/subscription_items/{subscription_item_id}'
             },

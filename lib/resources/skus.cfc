@@ -4,6 +4,7 @@ component {
         methods: {
             'create': {
                 arguments: {
+                    currency: 'iso_currency_code',
                     price: 'currency'
                 },
                 httpMethod: 'post',
@@ -21,6 +22,7 @@ component {
             },
             'update': {
                 arguments: {
+                    currency: 'iso_currency_code',
                     price: 'currency'
                 },
                 httpMethod: 'post',

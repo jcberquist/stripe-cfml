@@ -7,8 +7,7 @@ component {
                     timestamp: 'timestamp'
                 },
                 httpMethod: 'post',
-                path: '/subscription_items/{subscription_item}/usage_records',
-                positionalArgs: []
+                path: '/subscription_items/{subscription_item_id}/usage_records'
             }
         }
     };

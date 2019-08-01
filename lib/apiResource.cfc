@@ -24,7 +24,12 @@ component {
             var message = '`stripe.#resourceName#.#missingMethodName#()` is not a valid method for `stripe.#resourceName#`. Available methods are #metadata.methodNameList#.';
             throw( message );
         }
-        return stripe.call( resourceName, missingMethodName, missingMethodArguments, metadata.methods[ missingMethodName ] );
+        return stripe.call(
+            resourceName,
+            missingMethodName,
+            missingMethodArguments,
+            metadata.methods[ missingMethodName ]
+        );
     }
 
     private struct function loadMetadata( metadata ) {
@@ -51,16 +56,18 @@ component {
     }
 
     private struct function getBaseMethodMetadata() {
-        return { endpoint: config.get( 'endpoint' ), httpMethod: 'get', multipart: false, arguments: { } };
+        return {
+            endpoint: config.get( 'endpoint' ),
+            httpMethod: 'get',
+            multipart: false,
+            arguments: { }
+        };
     }
 
     private array function parsePath( required string path ) {
-        return arrayMap(
-            reMatch( '\{([a-z_]+)\}', path),
-            function( s ) {
-                return mid( s, 2, len( s ) - 2 );
-            }
-        );
+        return arrayMap( reMatch( '\{([a-z_]+)\}', path ), function( s ) {
+            return mid( s, 2, len( s ) - 2 );
+        } );
     }
 
 }

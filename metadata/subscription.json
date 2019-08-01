@@ -1,7 +1,7 @@
 {
+    "billing_cycle_anchor": "datetime",
     "canceled_at": "datetime",
     "created": "datetime",
-    "billing_cycle_anchor": "datetime",
     "current_period_end": "datetime",
     "current_period_start": "datetime",
     "ended_at": "datetime",

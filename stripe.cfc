@@ -120,9 +120,17 @@ component {
         required any argCollection,
         required struct methodMetadata,
         required string argumentsType
-
     ) {
-        var sourceKeys = [ { name: 'params', offset: 1 }, { name: 'headers', offset: 2 } ];
+        var sourceKeys = [
+            {
+                name: 'params',
+                offset: 1
+            },
+            {
+                name: 'headers',
+                offset: 2
+            }
+        ];
         var sources = { };
         for ( var source in sourceKeys ) {
             if ( argumentsType == 'positional' ) {
@@ -142,7 +150,8 @@ component {
         var metadata = { };
         var jsonFiles = directoryList( metadataPath, true, 'path', '*.json' );
         for ( var path in jsonFiles ) {
-            var metaName = path.replace( '\', '/', 'all' )
+            var metaName = path
+                .replace( '\', '/', 'all' )
                 .replace( metadataPath, '' )
                 .listFirst( '.' )
                 .replace( '/', '.', 'all' );

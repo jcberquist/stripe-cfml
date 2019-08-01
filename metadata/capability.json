@@ -1,0 +1,6 @@
+{
+    "requested_at": "datetime",
+    "requirements": {
+        "current_deadline": "datetime"
+    }
+}

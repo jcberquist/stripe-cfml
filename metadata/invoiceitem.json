@@ -1,5 +1,9 @@
 {
     "amount": "currency",
     "date": "datetime",
-    "proration": "boolean"
+    "period": {
+        "end": "datetime",
+        "start": "datetime"
+    },
+    "unit_amount": "currency"
 }

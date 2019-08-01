@@ -3,5 +3,8 @@
     "period": {
         "end": "datetime",
         "start": "datetime"
+    },
+    "tax_amounts": {
+        "amount": "currency"
     }
 }

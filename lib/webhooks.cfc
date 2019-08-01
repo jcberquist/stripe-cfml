@@ -3,9 +3,7 @@ component {
     variables.default_tolerance = 300;
     variables.expected_scheme = 'v1';
 
-    public any function init(
-        required any responseParser
-    ) {
+    public any function init( required any responseParser ) {
         variables.messageDigest = createObject( 'java', 'java.security.MessageDigest' );
         variables.parserUtils = new parsers.parserUtils();
         variables.responseParser = arguments.responseParser;
@@ -40,7 +38,12 @@ component {
             throw( 'No signatures found with expected scheme' );
         }
 
-        var expectedSignature = hmac( details.timestamp & '.' & payload, secret, 'hmacSHA256', 'utf-8' ).lcase();
+        var expectedSignature = hmac(
+            details.timestamp & '.' & payload,
+            secret,
+            'hmacSHA256',
+            'utf-8'
+        ).lcase();
 
         var validSignatures = arrayFilter( details.signatures, function( s ) {
             return MessageDigest.isEqual( s.getBytes(), expectedSignature.getBytes() );
@@ -57,23 +60,28 @@ component {
         }
     }
 
-    private struct function parseHeader(
-        required string header
-    ) {
-        return arrayReduce( listToArray( header ), function( parsed, item ) {
-            var key = listFirst( item, '=' );
-            var value = listRest( item, '=' );
+    private struct function parseHeader( required string header ) {
+        return arrayReduce(
+            listToArray( header ),
+            function( parsed, item ) {
+                var key = listFirst( item, '=' );
+                var value = listRest( item, '=' );
 
-            if ( key == 't' ) {
-                parsed.timestamp = value;
+                if ( key == 't' ) {
+                    parsed.timestamp = value;
+                }
+
+                if ( key == variables.expected_scheme ) {
+                    parsed.signatures.append( value );
+                }
+
+                return parsed;
+            },
+            {
+                timestamp: -1,
+                signatures: [ ]
             }
-
-            if ( key == variables.expected_scheme ) {
-                parsed.signatures.append( value );
-            }
-
-            return parsed;
-        }, { timestamp: -1, signatures: [ ] } );
+        );
     }
 
 }
