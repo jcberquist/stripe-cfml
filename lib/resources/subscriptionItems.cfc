@@ -9,6 +9,13 @@ component {
                 httpMethod: 'post',
                 path: '/subscription_items'
             },
+            'createUsageRecord': {
+                arguments: {
+                    timestamp: 'timestamp'
+                },
+                httpMethod: 'post',
+                path: '/subscription_items/{subscription_item_id}/usage_records'
+            },
             'delete': {
                 arguments: {
                     proration_date: 'timestamp'

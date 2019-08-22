@@ -436,6 +436,7 @@ stripe.sources.verify(source_id);
 
 ```cfc
 stripe.subscriptionItems.create();
+stripe.subscriptionItems.createUsageRecord(subscription_item_id);
 stripe.subscriptionItems.delete(subscription_item_id);
 stripe.subscriptionItems.list();
 stripe.subscriptionItems.retrieve(subscription_item_id);
