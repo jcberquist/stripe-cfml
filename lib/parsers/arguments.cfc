@@ -146,12 +146,7 @@ component {
                     value: src[ k ]
                 } );
             } else if ( isStruct( src[ k ] ) ) {
-                if ( structIsEmpty( src[ k ] ) ) {
-                    flattened.append( {
-                        name: outKey,
-                        value: ''
-                    } );
-                } else {
+                if ( !structIsEmpty( src[ k ] ) ) {
                     var nested = flatten( src[ k ], outKey );
                     flattened.append( nested, true );
                 }

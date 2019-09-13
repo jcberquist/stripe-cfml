@@ -65,6 +65,13 @@ component extends=testbox.system.BaseSpec {
                 expect( out ).toBe( expected );
             } );
 
+            it( 'ignores empty structs', function() {
+                var out = argumentParser.flatten( {
+                    a: { }
+                } );
+                expect( out ).toBeEmpty();
+            } );
+
             it( 'serializes simple value arrays', function() {
                 var out = argumentParser.flatten( {
                     a: [ 'b', 'c' ]
