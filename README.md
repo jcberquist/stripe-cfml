@@ -17,7 +17,7 @@ Once the library has been installed, the core `stripe` component can be instanti
 
 ```cfc
 stripe = new path.to.stripecfml.stripe(
-    apiKey = ''
+    apiKey = '',
     config = {}
 );
 ```
