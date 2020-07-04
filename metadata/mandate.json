@@ -1,0 +1,5 @@
+{
+    "customer_acceptance": {
+        "accepted_at": "datetime"
+    }
+}

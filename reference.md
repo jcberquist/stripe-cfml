@@ -67,6 +67,12 @@ stripe.balanceTransactions.list();
 stripe.balanceTransactions.retrieve(balance_transaction_id);
 ```
 
+## stripe.billingPortal.sessions
+
+```cfc
+stripe.billingPortal.sessions.create();
+```
+
 ## stripe.charges
 
 ```cfc
@@ -81,6 +87,8 @@ stripe.charges.update(charge_id);
 
 ```cfc
 stripe.checkout.sessions.create();
+stripe.checkout.sessions.list();
+stripe.checkout.sessions.listLineItems(session_id);
 stripe.checkout.sessions.retrieve(session_id);
 ```
 
@@ -106,6 +114,9 @@ stripe.coupons.update(coupon_id);
 ```cfc
 stripe.creditNotes.create();
 stripe.creditNotes.list();
+stripe.creditNotes.listLineItems(credit_note_id);
+stripe.creditNotes.listPreviewLineItems();
+stripe.creditNotes.preview();
 stripe.creditNotes.retrieve(credit_note_id);
 stripe.creditNotes.update(credit_note_id);
 stripe.creditNotes.voidCreditNote(credit_note_id);
@@ -219,6 +230,13 @@ stripe.invoices.update(invoice_id);
 stripe.invoices.voidInvoice(invoice_id);
 ```
 
+## stripe.issuerFraudRecords
+
+```cfc
+stripe.issuerFraudRecords.list();
+stripe.issuerFraudRecords.retrieve(issuer_fraud_record_id);
+```
+
 ## stripe.issuing.authorizations
 
 ```cfc
@@ -263,6 +281,12 @@ stripe.issuing.disputes.update(dispute_id);
 stripe.issuing.transactions.list();
 stripe.issuing.transactions.retrieve(transaction_id);
 stripe.issuing.transactions.update(transaction_id);
+```
+
+## stripe.mandates
+
+```cfc
+stripe.mandates.retrieve(mandate_id);
 ```
 
 ## stripe.orderReturns
@@ -324,6 +348,15 @@ stripe.plans.delete(plan_id);
 stripe.plans.list();
 stripe.plans.retrieve(plan_id);
 stripe.plans.update(plan_id);
+```
+
+## stripe.prices
+
+```cfc
+stripe.prices.create();
+stripe.prices.list();
+stripe.prices.retrieve(price_id);
+stripe.prices.update(price_id);
 ```
 
 ## stripe.products
@@ -439,8 +472,20 @@ stripe.subscriptionItems.create();
 stripe.subscriptionItems.createUsageRecord(subscription_item_id);
 stripe.subscriptionItems.delete(subscription_item_id);
 stripe.subscriptionItems.list();
+stripe.subscriptionItems.listUsageRecordSummaries(subscription_item_id);
 stripe.subscriptionItems.retrieve(subscription_item_id);
 stripe.subscriptionItems.update(subscription_item_id);
+```
+
+## stripe.subscriptionSchedules
+
+```cfc
+stripe.subscriptionSchedules.cancel(subscription_schedule_id);
+stripe.subscriptionSchedules.create();
+stripe.subscriptionSchedules.list();
+stripe.subscriptionSchedules.release(subscription_schedule_id);
+stripe.subscriptionSchedules.retrieve(subscription_schedule_id);
+stripe.subscriptionSchedules.update(subscription_schedule_id);
 ```
 
 ## stripe.subscriptions
