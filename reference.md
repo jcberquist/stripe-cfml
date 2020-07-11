@@ -202,6 +202,23 @@ stripe.files.list();
 stripe.files.retrieve(file_id);
 ```
 
+## stripe.identity.verificationIntents
+
+```cfc
+stripe.identity.verificationIntents.create();
+stripe.identity.verificationIntents.list();
+stripe.identity.verificationIntents.retrieve(verification_intent_id);
+stripe.identity.verificationIntents.update(verification_intent_id);
+stripe.identity.verificationIntents.cancel(verification_intent_id);
+```
+
+## stripe.identity.verificationReports
+
+```cfc
+stripe.identity.verificationIntents.list();
+stripe.identity.verificationIntents.retrieve(verification_report_id);
+```
+
 ## stripe.invoiceItems
 
 ```cfc
