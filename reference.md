@@ -215,8 +215,8 @@ stripe.identity.verificationIntents.cancel(verification_intent_id);
 ## stripe.identity.verificationReports
 
 ```cfc
-stripe.identity.verificationIntents.list();
-stripe.identity.verificationIntents.retrieve(verification_report_id);
+stripe.identity.verificationReports.list();
+stripe.identity.verificationReports.retrieve(verification_report_id);
 ```
 
 ## stripe.invoiceItems
