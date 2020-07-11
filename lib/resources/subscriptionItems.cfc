@@ -26,6 +26,9 @@ component {
             'list': {
                 path: '/subscription_items'
             },
+            'listUsageRecordSummaries': {
+                path: '/subscription_items/{subscription_item_id}/usage_record_summaries'
+            },
             'retrieve': {
                 path: '/subscription_items/{subscription_item_id}'
             },

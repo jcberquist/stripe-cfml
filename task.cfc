@@ -63,7 +63,7 @@ component accessors="true" {
     }
 
     function compare( string stripeNodePath ) {
-        var jsPath = resolvePath( stripeNodePath ) & 'lib/resources/';
+        var jsPath = resolvePath( stripeNodePath ).replace( '\', '/', 'all' ) & 'lib/resources/';
         var resourcePath = resolvePath( './lib/resources/' );
 
         var jsResources = directoryList( jsPath, true, 'path', '*.js' ).sort( 'text' );
@@ -71,8 +71,8 @@ component accessors="true" {
 
         var jsMap = jsResources.reduce( ( r, p ) => {
             var key = p
-                .replace( jsPath, '' )
                 .replace( '\', '/', 'all' )
+                .replace( jsPath, '' )
                 .lcase()
                 .left( -3 );
             r[ key ] = p;

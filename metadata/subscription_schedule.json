@@ -1,0 +1,13 @@
+{
+    "canceled_at": "datetime",
+    "completed_at": "datetime",
+    "created": "datetime",
+    "phases": {
+        "billing_thresholds": {
+            "amount_gte": "currency"
+        },
+        "start_date": "datetime",
+        "trial_end": "datetime"
+    },
+    "released_at": "datetime"
+}

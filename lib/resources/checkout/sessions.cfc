@@ -17,6 +17,12 @@ component {
                 httpMethod: 'post',
                 path: '/checkout/sessions'
             },
+            'list': {
+                path: '/checkout/sessions'
+            },
+            'listLineItems': {
+                path: '/checkout/sessions/{session_id}/line_items'
+            },
             'retrieve': {
                 path: '/checkout/sessions/{session_id}'
             }
