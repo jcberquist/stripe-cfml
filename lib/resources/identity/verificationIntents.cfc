@@ -16,7 +16,7 @@ component {
                 httpMethod: 'post',
                 path: '/identity/verification_intents/{verification_intent_id}'
             },
-            'update': {
+            'cancel': {
                 httpMethod: 'post',
                 path: '/identity/verification_intents/{verification_intent_id}/cancel'
             }
