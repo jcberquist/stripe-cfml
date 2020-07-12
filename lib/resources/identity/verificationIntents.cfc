@@ -2,6 +2,10 @@ component {
 
     this.metadata = {
         methods: {
+            'cancel': {
+                httpMethod: 'post',
+                path: '/identity/verification_intents/{verification_intent_id}/cancel'
+            },
             'create': {
                 httpMethod: 'post',
                 path: '/identity/verification_intents'
@@ -15,10 +19,6 @@ component {
             'update': {
                 httpMethod: 'post',
                 path: '/identity/verification_intents/{verification_intent_id}'
-            },
-            'cancel': {
-                httpMethod: 'post',
-                path: '/identity/verification_intents/{verification_intent_id}/cancel'
             }
         }
     };

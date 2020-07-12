@@ -205,11 +205,11 @@ stripe.files.retrieve(file_id);
 ## stripe.identity.verificationIntents
 
 ```cfc
+stripe.identity.verificationIntents.cancel(verification_intent_id);
 stripe.identity.verificationIntents.create();
 stripe.identity.verificationIntents.list();
 stripe.identity.verificationIntents.retrieve(verification_intent_id);
 stripe.identity.verificationIntents.update(verification_intent_id);
-stripe.identity.verificationIntents.cancel(verification_intent_id);
 ```
 
 ## stripe.identity.verificationReports
