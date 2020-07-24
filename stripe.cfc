@@ -91,6 +91,15 @@ component {
             methodMetadata.multipart
         );
 
+        // if we weren't able to connect to Stripe at all, throw an error
+        if ( rawResponse.status_code == 0 ) {
+            throw(
+				type = 'StripeConnectionFailure',
+				message = 'Could not connect to Stripe API: ' & rawResponse.status_text,
+				detail = rawResponse.errorDetail
+			);
+        }
+
         var response = { };
         response[ 'duration' ] = getTickCount() - requestStart;
         response[ 'requestId' ] = rawResponse.responseheader[ 'Request-Id' ];
