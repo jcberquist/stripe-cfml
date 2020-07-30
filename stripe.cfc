@@ -92,7 +92,7 @@ component {
         );
 
         // if we weren't able to connect to Stripe at all, throw an error
-        if ( rawResponse.status_code == 0 ) {
+        if ( rawResponse.statuscode == 0 ) {
             throw(
                 type = 'StripeConnectionFailure',
                 message = 'Could not connect to Stripe API: ' & rawResponse.status_text,
