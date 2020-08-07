@@ -4,7 +4,7 @@ component {
     variables.expected_scheme = 'v1';
 
     public any function init( required any responseParser ) {
-        variables.messageDigest = createObject( 'java', 'java.security.MessageDigest' );
+        variables.MessageDigest = createObject( 'java', 'java.security.MessageDigest' );
         variables.parserUtils = new parsers.parserUtils();
         variables.responseParser = arguments.responseParser;
         return this;
@@ -31,11 +31,11 @@ component {
         var details = parseHeader( header );
 
         if ( details.timestamp == -1 ) {
-            throw( 'Unable to extract timestamp and signatures from header' );
+            verificationFailure( 'Unable to extract timestamp and signatures from header' );
         }
 
         if ( !arrayLen( details.signatures ) ) {
-            throw( 'No signatures found with expected scheme' );
+            verificationFailure( 'No signatures found with expected scheme' );
         }
 
         var expectedSignature = hmac(
@@ -50,13 +50,13 @@ component {
         } );
 
         if ( !arrayLen( validSignatures ) ) {
-            throw( 'No signatures found matching the expected signature for payload.' );
+            verificationFailure( 'No signatures found matching the expected signature for payload.' );
         }
 
         var timestampAge = parserUtils.getUTCTimestamp( now() ) - details.timestamp;
 
         if ( tolerance > 0 && timestampAge > tolerance ) {
-            throw( 'Timestamp outside the tolerance zone' );
+            verificationFailure( 'Timestamp outside the tolerance zone' );
         }
     }
 
@@ -82,6 +82,10 @@ component {
                 signatures: [ ]
             }
         );
+    }
+
+    private void function verificationFailure( required string message ) {
+        throw( type = 'StripeSignatureVerificationException', message = message );
     }
 
 }

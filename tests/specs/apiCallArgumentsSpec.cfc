@@ -56,7 +56,7 @@ component extends=testbox.system.BaseSpec {
                     }
                 );
                 var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
-                debug(httpRequest.attrColl.url);
+                debug( httpRequest.attrColl.url );
                 expect( httpRequest.attrColl.url ).toBe(
                     'https://api.stripe.com/v1/subscription_items/subscription_item_id/usage_records'
                 );
