@@ -15,7 +15,7 @@ component extends=testbox.system.BaseSpec {
                     responseHeader: {
                         'Request-Id': ''
                     },
-                    statuscode: 200,
+                    statuscode: '200 OK',
                     filecontent: '{}'
                 }
             );
@@ -59,7 +59,7 @@ component extends=testbox.system.BaseSpec {
                     responseHeader: {
                         'Request-Id': ''
                     },
-                    statuscode: 200,
+                    statuscode: '200 OK',
                     filecontent: '{"object":"charge","amount":2005}'
                 }
             );

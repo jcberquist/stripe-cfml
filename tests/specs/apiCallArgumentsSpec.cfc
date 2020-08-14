@@ -10,7 +10,7 @@ component extends=testbox.system.BaseSpec {
                 responseHeader: {
                     'Request-Id': ''
                 },
-                statuscode: 200,
+                statuscode: '200 OK',
                 filecontent: '{}'
             }
         );
