@@ -1,8 +1,8 @@
 {
     "name":"Stripe CFML",
-    "version":"2.3.1",
+    "version":"2.3.2",
     "author":"John Berquist",
-    "location":"jcberquist/stripe-cfml#v2.3.1",
+    "location":"jcberquist/stripe-cfml#v2.3.2",
     "homepage":"https://github.com/jcberquist/stripe-cfml",
     "documentation":"",
     "repository":{
