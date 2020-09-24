@@ -18,6 +18,10 @@ component {
             'retrieve': {
                 path: '/issuing/disputes/{dispute_id}'
             },
+            'submit': {
+                httpMethod: 'post',
+                path: '/issuing/disputes/{dispute_id}/submit'
+            },
             'update': {
                 httpMethod: 'post',
                 path: '/issuing/disputes/{dispute_id}'

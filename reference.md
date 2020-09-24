@@ -289,6 +289,7 @@ stripe.issuing.cards.update(card_id);
 stripe.issuing.disputes.create();
 stripe.issuing.disputes.list();
 stripe.issuing.disputes.retrieve(dispute_id);
+stripe.issuing.disputes.submit(dispute_id);
 stripe.issuing.disputes.update(dispute_id);
 ```
 
