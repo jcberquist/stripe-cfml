@@ -17,17 +17,26 @@ component {
                         add_invoice_items: {
                             price_data: {
                                 currency: 'iso_currency_code',
-                                unit_amount: 'currency'
+                                unit_amount: 'currency',
+                                unit_amount_decimal: 'currency'
                             }
                         },
                         billing_thresholds: {
                             amount_gte: 'currency'
                         },
                         end_date: 'timestamp',
+                        items: {
+                            price_data: {
+                                currency: 'iso_currency_code',
+                                unit_amount: 'currency',
+                                unit_amount_decimal: 'currency'
+                            }
+                        },
                         plans: {
                             price_data: {
                                 currency: 'iso_currency_code',
-                                unit_amount: 'currency'
+                                unit_amount: 'currency',
+                                unit_amount_decimal: 'currency'
                             }
                         },
                         trial_end: 'timestamp'
@@ -64,17 +73,26 @@ component {
                         add_invoice_items: {
                             price_data: {
                                 currency: 'iso_currency_code',
-                                unit_amount: 'currency'
+                                unit_amount: 'currency',
+                                unit_amount_decimal: 'currency'
                             }
                         },
                         billing_thresholds: {
                             amount_gte: 'currency'
                         },
                         end_date: 'timestamp',
+                        items: {
+                            price_data: {
+                                currency: 'iso_currency_code',
+                                unit_amount: 'currency',
+                                unit_amount_decimal: 'currency'
+                            }
+                        },
                         plans: {
                             price_data: {
                                 currency: 'iso_currency_code',
-                                unit_amount: 'currency'
+                                unit_amount: 'currency',
+                                unit_amount_decimal: 'currency'
                             }
                         },
                         trial_end: 'timestamp'
