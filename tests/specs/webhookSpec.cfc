@@ -33,7 +33,6 @@ component extends=testbox.system.BaseSpec {
 
 
                 var event = stripe.webhooks.constructEvent( event, header, secret );
-                debug( event );
                 expect( event.data.object.created ).toBeTypeOf( 'date' );
                 expect( event.data.object.amount ).toBe( 221.50 );
             } );
