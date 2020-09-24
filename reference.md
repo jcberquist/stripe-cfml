@@ -387,6 +387,15 @@ stripe.products.retrieve(product_id);
 stripe.products.update(product_id);
 ```
 
+## stripe.promotionCodes
+
+```cfc
+stripe.promotionCodes.create();
+stripe.promotionCodes.list();
+stripe.promotionCodes.retrieve(promotion_code_id);
+stripe.promotionCodes.update(promotion_code_id);
+```
+
 ## stripe.radar.earlyFraudWarnings
 
 ```cfc
