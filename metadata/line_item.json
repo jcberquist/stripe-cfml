@@ -1,5 +1,8 @@
 {
     "amount": "currency",
+    "discount_amounts": {
+        "amount": "currency"
+    },
     "period": {
         "end": "datetime",
         "start": "datetime"
