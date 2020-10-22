@@ -1,7 +1,7 @@
 {
     "amount": "currency",
-    "credit_amount" : "currency",
-    "out_of_band_amount" : "currency",
-    "refund_amount" : "currency",
-    "created": "datetime"
+    "created": "datetime",
+    "credit_amount": "currency",
+    "out_of_band_amount": "currency",
+    "refund_amount": "currency"
 }

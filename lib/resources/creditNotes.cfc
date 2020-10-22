@@ -6,13 +6,13 @@ component {
                 arguments: {
                     amount: 'currency',
                     credit_amount: 'currency',
-                    refund_amount: 'currency',
+                    lines: {
+                        amount: 'currency',
+                        unit_amount: 'currency',
+                        unit_amount_decimal: 'currency'
+                    },
                     out_of_band_amount: 'currency',
-                    lines : {
-                        amount : "currency",
-                        unit_amount : "currency",
-                        unit_amount_decimal : "currency"
-                    }
+                    refund_amount: 'currency'
                 },
                 httpMethod: 'post',
                 path: '/credit_notes'
@@ -44,7 +44,7 @@ component {
                     lines: {
                         amount: 'currency',
                         unit_amount: 'currency',
-                        unit_amount_decimal : "currency"
+                        unit_amount_decimal: 'currency'
                     },
                     out_of_band_amount: 'currency',
                     refund_amount: 'currency'

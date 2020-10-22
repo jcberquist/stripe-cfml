@@ -1,11 +1,11 @@
 {
-    "amount" : "currency",
-    "unit_amount" : "currency",
-    "unit_amount_decimal" : "currency",
-    "discount_amounts" : {
-        "amount" : "currency"
+    "amount": "currency",
+    "discount_amounts": {
+        "amount": "currency"
     },
-    "tax_amounts" : {
-        "amount" : "currency"
-    }
+    "tax_amounts": {
+        "amount": "currency"
+    },
+    "unit_amount": "currency",
+    "unit_amount_decimal": "currency"
 }
