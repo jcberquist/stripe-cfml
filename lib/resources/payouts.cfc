@@ -23,6 +23,10 @@ component {
             'retrieve': {
                 path: '/payouts/{payout_id}'
             },
+            'reverse': {
+                httpMethod: 'post',
+                path: '/payouts/{payout_id}/reverse'
+            },
             'update': {
                 httpMethod: 'post',
                 path: '/payouts/{payout_id}'

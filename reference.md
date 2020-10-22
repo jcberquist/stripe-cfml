@@ -355,6 +355,7 @@ stripe.payouts.cancel(payout_id);
 stripe.payouts.create();
 stripe.payouts.list();
 stripe.payouts.retrieve(payout_id);
+stripe.payouts.reverse(payout_id);
 stripe.payouts.update(payout_id);
 ```
 
@@ -452,6 +453,12 @@ stripe.reporting.reportTypes.retrieve(report_type_id);
 stripe.reviews.approve(review_id);
 stripe.reviews.list();
 stripe.reviews.retrieve(review_id);
+```
+
+## stripe.setupAttempts
+
+```cfc
+stripe.setupAttempts.list();
 ```
 
 ## stripe.setupIntents
