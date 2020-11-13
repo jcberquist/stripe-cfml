@@ -4,6 +4,7 @@ component {
         .replace( '\', '/', 'all' )
         .replaceNoCase( 'tests/', '' );
 
+    this.mappings[ '/testbox' ] = rootPath & '/testbox';
     this.mappings[ '/tests' ] = rootPath & '/tests';
     this.mappings[ '/lib' ] = rootPath & '/lib';
 

@@ -6,10 +6,10 @@
     "homepage":"https://github.com/jcberquist/stripe-cfml",
     "documentation":"",
     "repository":{
-        "type":"",
-        "URL":""
+        "type":"git",
+        "URL":"https://github.com/jcberquist/stripe-cfml"
     },
-    "bugs":"",
+    "bugs":"https://github.com/jcberquist/stripe-cfml/issues",
     "slug":"stripecfml",
     "shortDescription":"Stripe CFML is a CFML (Lucee and ColdFusion) library for interacting with the Stripe API.",
     "description":"",
@@ -25,18 +25,27 @@
     "license":[
         {
             "type":"MIT",
-            "URL":""
+            "URL":"https://github.com/jcberquist/stripe-cfml/blob/master/LICENSE"
         }
     ],
-    "contributors":[],
-    "dependencies":{},
+    "contributors":[
+        "jcberquist",
+        "elpete"
+    ],
+    "dependencies":{
+        "str":"^1.0.7"
+    },
     "devDependencies":{
         "testbox":"^4.0.0"
     },
     "installPaths":{
-        "testbox":"testbox/"
+        "testbox":"testbox/",
+        "str":"modules/str/"
     },
-    "scripts":{},
+    "scripts":{
+        "format": "cfformat run handlers/**/*.cfc,lib/**/*.cfc,tests/**/*.cfc,ModuleConfig.cfc,stripe.cfc,task.cfc --overwrite",
+        "format:check": "cfformat check handlers/**/*.cfc,lib/**/*.cfc,tests/**/*.cfc,ModuleConfig.cfc,stripe.cfc,task.cfc"
+    },
     "ignore":[
         "**/.*",
         "tests"
