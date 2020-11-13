@@ -1,0 +1,61 @@
+name: PRs and Branches
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    name: Tests
+    strategy:
+      fail-fast: true
+      matrix:
+        cfengine: ["lucee@5", "adobe@2016", "adobe@2018"]
+        coldbox: ["coldbox@5", "coldbox@6"]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 11 
+
+      - name: Set Up CommandBox
+        uses: elpete/setup-commandbox@v1.0.0
+      
+      - name: Install dependencies
+        run: |
+          box install
+          box install ${{ matrix.coldbox }} --noSave
+      
+      - name: Start server
+        run: box server start cfengine=${{ matrix.cfengine }} --noSaveSettings
+
+      - name: Run TestBox Tests
+        run: box testbox run
+
+  format:
+    runs-on: ubuntu-latest
+    name: Format
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 11 
+
+      - name: Set Up CommandBox
+        uses: elpete/setup-commandbox@v1.0.0
+      
+      - name: Install CFFormat
+        run: box install commandbox-cfformat
+      
+      - name: Run CFFormat
+        run: box run-script format
+
+      - name: Commit Format Changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply cfformat changes
