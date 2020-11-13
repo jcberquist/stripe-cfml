@@ -33,18 +33,20 @@
         "elpete"
     ],
     "dependencies":{
-        "str":"^1.0.7"
+        "str":"^2.0.0"
     },
     "devDependencies":{
-        "testbox":"^4.0.0"
+        "testbox":"^4.0.0",
+        "coldbox":"^6.1.0+1309"
     },
     "installPaths":{
         "testbox":"testbox/",
-        "str":"modules/str/"
+        "str":"modules/str/",
+        "coldbox":"tests/resources/app/coldbox/"
     },
     "scripts":{
-        "format": "cfformat run handlers/**/*.cfc,lib/**/*.cfc,tests/**/*.cfc,ModuleConfig.cfc,stripe.cfc,task.cfc --overwrite",
-        "format:check": "cfformat check handlers/**/*.cfc,lib/**/*.cfc,tests/**/*.cfc,ModuleConfig.cfc,stripe.cfc,task.cfc"
+        "format":"cfformat run handlers/**/*.cfc,lib/**/*.cfc,tests/specs/**/*.cfc,ModuleConfig.cfc,stripe.cfc,task.cfc --overwrite",
+        "format:check":"cfformat check handlers/**/*.cfc,lib/**/*.cfc,tests/specs/**/*.cfc,ModuleConfig.cfc,stripe.cfc,task.cfc"
     },
     "ignore":[
         "**/.*",
