@@ -48,7 +48,7 @@
 		moduleSettings = {
 			"stripe-cfml" = {
 				"endpointSecret" = "abc"
-            }
+			}
 		};
 
 		// custom settings

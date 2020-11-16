@@ -1,5 +1,6 @@
 component {
 
+    this.name = 'stripecfml';
     this.title = 'Stripe CFML';
     this.author = 'John Berquist';
     this.webURL = 'https://github.com/jcberquist/stripe-cfml';
