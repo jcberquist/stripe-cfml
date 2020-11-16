@@ -158,7 +158,7 @@ See <https://stripe.com/docs/webhooks> and <https://stripe.com/docs/webhooks/sig
 ### ColdBox Interception Points for Webhooks
 
 ColdBox users can automatically convert incoming webhooks to interception point events.  To do this,
-point Stripe at `/stripe-cfml/webhooks`.  `stripe-cfml` will take care of verifying the validity
+point Stripe at `/stripecfml/webhooks`.  `stripe-cfml` will take care of verifying the validity
 of incoming webhooks and announcing the associated interception point.
 
 Interception Points are a combination of `onStripe` and the camelCase version of the webhook type.
@@ -169,7 +169,7 @@ To use this feature, you will need to set your `endpointSecret` in your module s
 
 ```cfc
 moduleSettings = {
-    "stripe-cfml": {
+    "stripecfml": {
         "apiKey": getSystemSetting( "STRIPE_API_KEY" ),
         "endpointSecret": getSystemSetting( "STRIPE_ENDPOINT_SECRET" )
     }
