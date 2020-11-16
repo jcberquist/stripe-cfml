@@ -48,9 +48,9 @@ component {
     }
 
     /**
-    * Generate an interceptor state name from a Sendgrid event name.
+    * Generate an interceptor state name from a Stripe event name.
     *
-    * @webhookEvent The Sendgrid webhook event struct.
+    * @webhookEvent The Stripe webhook event struct.
     *
     * @returns An interceptor state name.
     */
