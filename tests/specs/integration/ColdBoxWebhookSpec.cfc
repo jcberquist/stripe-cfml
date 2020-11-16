@@ -1,6 +1,6 @@
 component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
 
-    property name="endpointSecret" inject="coldbox:setting:endpointSecret@stripe-cfml";
+    property name="endpointSecret" inject="coldbox:setting:endpointSecret@stripecfml";
     property name="interceptorService" inject="coldbox:interceptorService";
 
     function beforeAll() {

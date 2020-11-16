@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+        with:
+          path: stripecfml # checkout as stripecfml because that is how the module installs
 
       - name: Setup Java JDK
         uses: actions/setup-java@v1.4.3

@@ -46,7 +46,7 @@
 		};
 
 		moduleSettings = {
-			"stripe-cfml" = {
+			"stripecfml" = {
 				"endpointSecret" = "abc"
 			}
 		};

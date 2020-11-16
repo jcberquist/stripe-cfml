@@ -1,6 +1,6 @@
 component {
 
-    property name="endpointSecret" inject="coldbox:setting:endpointSecret@stripe-cfml";
+    property name="endpointSecret" inject="coldbox:setting:endpointSecret@stripecfml";
     property name="interceptorService" inject="coldbox:interceptorService";
     property name="stripe" inject="stripe@stripecfml";
     property name="log" inject="logbox:logger:{this}";
