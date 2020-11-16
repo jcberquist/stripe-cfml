@@ -32,9 +32,7 @@
         "jcberquist",
         "elpete"
     ],
-    "dependencies":{
-        "str":"^2.0.0"
-    },
+    "dependencies":{},
     "devDependencies":{
         "testbox":"^4.0.0",
         "coldbox":"^6.1.0+1309"

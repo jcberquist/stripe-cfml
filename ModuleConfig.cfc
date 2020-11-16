@@ -7,7 +7,7 @@ component {
     this.entryPoint = 'stripecfml';
     this.modelNamespace = 'stripecfml';
     this.cfmapping = 'stripecfml';
-    this.dependencies = [ 'str' ];
+    this.dependencies = [ ];
 
     /**
     * apiKey is required, but note that it can be set via a Java system property

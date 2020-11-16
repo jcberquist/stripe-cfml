@@ -4,7 +4,6 @@ component {
     property name="interceptorService" inject="coldbox:interceptorService";
     property name="stripe" inject="stripe@stripecfml";
     property name="log" inject="logbox:logger:{this}";
-    property name="str" inject="@Str";
 
     function handle( event, rc, prc ) {
         try {
@@ -67,7 +66,12 @@ component {
     * @returns A normalized Stripe webhook event name.
     */
     private function normalizeEventName( eventName ) {
-        return variables.str.camel( eventName );
+        return reReplace(
+            eventName,
+            '(?:^|[._])(\w)',
+            '\u\1',
+            'all'
+        );
     }
 
 }
