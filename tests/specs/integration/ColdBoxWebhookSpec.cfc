@@ -30,7 +30,7 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
                     .$args( json = true )
                     .$results( deserializeJSON( stripeEvent ) );
 
-                var event = post( '/stripe-cfml/webhooks' );
+                var event = post( '/stripecfml/webhooks' );
 
                 var res = event.getRenderData();
                 expect( res.statusCode ).toBe( 400 );
@@ -62,7 +62,7 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
                     .$args( json = true )
                     .$results( deserializeJSON( stripeEvent ) );
 
-                var event = post( '/stripe-cfml/webhooks' );
+                var event = post( '/stripecfml/webhooks' );
 
                 var res = event.getRenderData();
                 expect( res.statusCode ).toBe( 200 );

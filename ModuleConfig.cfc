@@ -4,9 +4,9 @@ component {
     this.author = 'John Berquist';
     this.webURL = 'https://github.com/jcberquist/stripe-cfml';
     this.description = 'This module will provide you with connectivity to the Stripe API for any ColdFusion (CFML) application.';
-    this.entryPoint = 'stripe-cfml';
-    this.modelNamespace = 'stripe-cfml';
-    this.cfmapping = 'stripe-cfml';
+    this.entryPoint = 'stripecfml';
+    this.modelNamespace = 'stripecfml';
+    this.cfmapping = 'stripecfml';
     this.dependencies = [ 'str' ];
 
     /**
