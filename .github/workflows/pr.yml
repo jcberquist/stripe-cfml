@@ -25,13 +25,13 @@ jobs:
         uses: elpete/setup-commandbox@v1.0.0
       
       - name: Install dependencies
-        run: box install
+        run: cd stripecfml && box install
       
       - name: Start server
-        run: box server start cfengine=${{ matrix.cfengine }} --noSaveSettings
+        run: cd stripecfml && box server start cfengine=${{ matrix.cfengine }} --noSaveSettings
 
       - name: Run TestBox Tests
-        run: box testbox run
+        run: cd stripecfml && box testbox run
 
   format:
     runs-on: ubuntu-latest
