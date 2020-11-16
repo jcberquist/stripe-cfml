@@ -3,7 +3,7 @@ component extends="coldbox.system.testing.BaseTestCase" {
     function beforeAll() {
         super.beforeAll();
 
-        getController().getModuleService().registerAndActivateModule( 'stripe-cfml', 'testingModuleRoot' );
+        getController().getModuleService().registerAndActivateModule( 'stripecfml', 'testingModuleRoot' );
 
         getWireBox().autowire( this );
     }

@@ -30,7 +30,9 @@
     ],
     "contributors":[
         "jcberquist",
-        "elpete"
+        "elpete",
+        "MordantWastrel",
+        "sjdaniels"
     ],
     "dependencies":{},
     "devDependencies":{

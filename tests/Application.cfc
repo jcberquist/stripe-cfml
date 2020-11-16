@@ -11,7 +11,7 @@ component {
     rootPath = reReplaceNoCase( this.mappings[ '/tests' ], 'tests(\\|/)', '' );
     this.mappings[ '/root' ] = rootPath;
     this.mappings[ '/testingModuleRoot' ] = listDeleteAt( rootPath, listLen( rootPath, '\/' ), '\/' );
-    this.mappings[ '/stripe-cfml' ] = listDeleteAt( rootPath, listLen( rootPath, '\/' ), '\/' );
+    this.mappings[ '/stripecfml' ] = listDeleteAt( rootPath, listLen( rootPath, '\/' ), '\/' );
     this.mappings[ '/lib' ] = rootPath & '/lib';
     this.mappings[ '/app' ] = testsPath & 'resources/app';
     this.mappings[ '/coldbox' ] = testsPath & 'resources/app/coldbox';
