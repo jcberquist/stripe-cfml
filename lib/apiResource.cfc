@@ -6,7 +6,7 @@ component {
         variables.stripe = arguments.stripe;
         variables.config = arguments.config;
         variables.resourceName = resourceName;
-        var resource = new 'resources.#resourceName#'();
+        var resource = new 'resources.#resourceName#'( );
         variables.metadata = loadMetadata( resource.metadata );
         var resourceMetadata = getMetadata( resource );
         if ( resourceMetadata.keyExists( 'functions' ) ) {

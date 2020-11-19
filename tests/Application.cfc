@@ -1,15 +1,29 @@
 component {
 
-    rootPath = getDirectoryFromPath( getCurrentTemplatePath() )
-        .replace( '\', '/', 'all' )
-        .replaceNoCase( 'tests/', '' );
+    this.name = 'stripe-cfml-testing-suite-' & hash( getCurrentTemplatePath() );
+    this.sessionManagement = true;
+    this.setClientCookies = true;
+    this.sessionTimeout = createTimespan( 0, 0, 15, 0 );
+    this.applicationTimeout = createTimespan( 0, 0, 15, 0 );
 
-    this.mappings[ '/tests' ] = rootPath & '/tests';
+    testsPath = getDirectoryFromPath( getCurrentTemplatePath() );
+    this.mappings[ '/tests' ] = testsPath;
+    rootPath = reReplaceNoCase( this.mappings[ '/tests' ], 'tests(\\|/)', '' );
+    this.mappings[ '/root' ] = rootPath;
+    this.mappings[ '/testingModuleRoot' ] = listDeleteAt( rootPath, listLen( rootPath, '\/' ), '\/' );
+    this.mappings[ '/stripecfml' ] = listDeleteAt( rootPath, listLen( rootPath, '\/' ), '\/' );
     this.mappings[ '/lib' ] = rootPath & '/lib';
+    this.mappings[ '/app' ] = testsPath & 'resources/app';
+    this.mappings[ '/coldbox' ] = testsPath & 'resources/app/coldbox';
+    this.mappings[ '/testbox' ] = rootPath & '/testbox';
 
-    public boolean function onRequestStart( String targetPage ) {
+
+    function onRequestStart() {
         setting requestTimeout="9999";
+        structDelete( application, 'cbController' );
+        structDelete( application, 'wirebox' );
         return true;
     }
 
 }
+
