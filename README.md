@@ -177,3 +177,5 @@ moduleSettings = {
 ```
 
 More information about endpoint secrets can be found on [Stripe's website](https://stripe.com/docs/webhooks/signatures).
+
+> This library installs via CommandBox as `stripecfml`.  To fully test the ColdBox functionality of this package, you must clone this repo as `stripecfml`, e.g. `git clone git@github.com:jcberquist/stripe-cfml.git stripecfml`.
