@@ -1,3 +1,6 @@
+/**
+* Identity beta 4 and later.
+*/
 component {
 
     this.metadata = {

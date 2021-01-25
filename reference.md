@@ -203,6 +203,7 @@ stripe.files.retrieve(file_id);
 ```
 
 ## stripe.identity.verificationIntents
+
 Identity beta 3 and earlier.
 
 ```cfc
@@ -213,7 +214,15 @@ stripe.identity.verificationIntents.retrieve(verification_intent_id);
 stripe.identity.verificationIntents.update(verification_intent_id);
 ```
 
+## stripe.identity.verificationReports
+
+```cfc
+stripe.identity.verificationReports.list();
+stripe.identity.verificationReports.retrieve(verification_report_id);
+```
+
 ## stripe.identity.verificationSessions
+
 Identity beta 4 and later.
 
 ```cfc
@@ -222,13 +231,6 @@ stripe.identity.verificationSessions.create();
 stripe.identity.verificationSessions.list();
 stripe.identity.verificationSessions.retrieve(verification_session_id);
 stripe.identity.verificationSessions.update(verification_session_id);
-```
-
-## stripe.identity.verificationReports
-
-```cfc
-stripe.identity.verificationReports.list();
-stripe.identity.verificationReports.retrieve(verification_report_id);
 ```
 
 ## stripe.invoiceItems

@@ -141,6 +141,7 @@ component accessors="true" {
         var lf = server.separator.line;
 
         var cfcName = relativePath.replace( '/', '.', 'all' ).left( -4 );
+        var cfcDoc = meta.doc.len() ? '#lf##lf##meta.doc#' : '';
 
         var methods = [ ];
         for ( var methodName in meta.data.methods ) {
@@ -161,23 +162,39 @@ component accessors="true" {
             methods.append( 'stripe.accounts.retrieve();' );
         }
 
-        return '#### stripe.#cfcName##lf##lf#```cfc#lf##methods.sort( 'text' ).toList( lf )##lf#```';
+
+        return '#### stripe.#cfcName##cfcDoc##lf##lf#```cfc#lf##methods.sort( 'text' ).toList( lf )##lf#```';
     }
 
     function loadMetadata( srcCode ) {
         var patternClass = createObject( 'java', 'java.util.regex.Pattern' );
+
         var unquoteKeyRegex = patternClass.compile( '\b([A-Za-z_]+)\s*:' );
         var metaRegex = patternClass.compile( 'this\.metadata\s*=\s*(\{.*?\n\s{4}\})', 32 );
+        var docRegex = patternClass.compile( '^/\*\*(.*?)\*/', 32 );
+
         var metaMatcher = metaRegex.matcher( srcCode );
+
         if ( metaMatcher.find() ) {
             var rawMeta = metaMatcher.group( 1 );
             var meta = unquoteKeyRegex
                 .matcher( rawMeta )
                 .replaceAll( '"$1":' )
                 .replace( '''', '"', 'all' );
+
+            var docMatcher = docRegex.matcher( srcCode );
+            var doc = '';
+            if ( docMatcher.find() ) {
+                doc = docMatcher
+                    .group( 1 )
+                    .reReplace( '(\n)\s*\*\s*', '\1', 'all' )
+                    .trim();
+            }
+
             return {
                 raw: rawMeta,
-                data: deserializeJSON( meta )
+                data: deserializeJSON( meta ),
+                doc: doc
             }
         }
     }
