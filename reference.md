@@ -67,6 +67,15 @@ stripe.balanceTransactions.list();
 stripe.balanceTransactions.retrieve(balance_transaction_id);
 ```
 
+## stripe.billingPortal.configurations
+
+```cfc
+stripe.billingPortal.configurations.create();
+stripe.billingPortal.configurations.list();
+stripe.billingPortal.configurations.retrieve(configuration_id);
+stripe.billingPortal.configurations.update(configuration_id);
+```
+
 ## stripe.billingPortal.sessions
 
 ```cfc
