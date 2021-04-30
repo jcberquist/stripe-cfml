@@ -35,20 +35,20 @@ component {
         required struct methodMetadata,
         struct argOverrides = { }
     ) {
-        var argumentsType = determineArgumentsType( argCollection, methodMetadata );
-        var sources = getSources( argCollection, methodMetadata, argumentsType );
+        var hasPositionalArguments = arrayLen( argCollection ) == 0 || structKeyExists( argCollection, '1' );
+        var sources = getSources( argCollection, methodMetadata, hasPositionalArguments );
         var ignoredArgs = [ ];
 
         // collect positional args and add to params
-        if ( argumentsType == 'positional' ) {
+        if ( hasPositionalArguments ) {
             var argIndex = 1;
             for ( var argName in methodMetadata.positionalArgs ) {
                 if ( arrayLen( argCollection ) < argIndex ) {
-                    throw(
+                    validationFailure(
                         '`#resourceName#.#methodName#()` missing positional argument `#argName#` at index [#argIndex#]'
                     );
                 } else if ( !isSimpleValue( argCollection[ argIndex ] ) ) {
-                    throw(
+                    validationFailure(
                         '`#resourceName#.#methodName#()` positional argument `#argName#` at index [#argIndex#] is not a simple value'
                     );
                 } else {
@@ -57,12 +57,13 @@ component {
 
                 argIndex++;
             }
-        } else if ( argumentsType == 'nested' ) {
+        } else {
             for ( var argName in methodMetadata.positionalArgs ) {
                 if ( !structKeyExists( argCollection, argName ) ) {
-                    throw( '`#resourceName#.#methodName#()` missing required argument `#argName#`' );
+                    validationFailure( '`#resourceName#.#methodName#()` missing required argument `#argName#`' );
+                } else if ( !isSimpleValue( argCollection[ argName ] ) ) {
+                    validationFailure( '`#resourceName#.#methodName#()` argument `#argName#` is not a simple value' );
                 }
-                sources.params[ argName ] = argCollection[ argName ];
             }
         }
 
@@ -76,8 +77,10 @@ component {
         }
 
         // headers
-        var headerData = parsers.headers.parse( sources.headers, methodMetadata );
-        ignoredArgs.append( headerData.headerArgNames, true );
+        var headerData = parsers.headers.parse( sources.headers, methodMetadata, hasPositionalArguments );
+        if ( !hasPositionalArguments ) {
+            ignoredArgs.append( headerData.headerArgNames, true );
+        }
 
         // params
         var params = parsers.arguments.parse( sources.params, methodMetadata.arguments, ignoredArgs );
@@ -112,23 +115,10 @@ component {
         return response;
     }
 
-    public string function determineArgumentsType( required any argCollection, required struct methodMetadata ) {
-        if ( arrayLen( argCollection ) == 0 || structKeyExists( argCollection, '1' ) ) {
-            return 'positional';
-        }
-        var nestedNamedKeys = [ 'params', 'headers' ];
-        for ( var key in structKeyArray( argCollection ) ) {
-            if ( !( methodMetadata.positionalArgs.findNoCase( key ) || nestedNamedKeys.findNoCase( key ) ) ) {
-                return 'flat';
-            }
-        }
-        return 'nested';
-    }
-
     private any function getSources(
         required any argCollection,
         required struct methodMetadata,
-        required string argumentsType
+        required boolean hasPositionalArguments
     ) {
         var sourceKeys = [
             {
@@ -142,11 +132,9 @@ component {
         ];
         var sources = { };
         for ( var source in sourceKeys ) {
-            if ( argumentsType == 'positional' ) {
+            if ( hasPositionalArguments ) {
                 var sourceIndex = arrayLen( methodMetadata.positionalArgs ) + source.offset;
                 sources[ source.name ] = arrayLen( argCollection ) >= sourceIndex ? argCollection[ sourceIndex ] : { };
-            } else if ( argumentsType == 'nested' ) {
-                sources[ source.name ] = structKeyExists( argCollection, source.name ) ? argCollection[ source.name ] : { };
             } else {
                 sources[ source.name ] = argCollection;
             }
@@ -175,6 +163,10 @@ component {
         return paths.map( function( path ) {
             return path.replace( '\', '/', 'all' ).replace( resourcePath, '' );
         } );
+    }
+
+    private void function validationFailure( required string message ) {
+        throw( type = 'StripeValidationException', message = message );
     }
 
 }

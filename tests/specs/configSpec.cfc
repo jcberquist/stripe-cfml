@@ -25,7 +25,7 @@ component extends=testbox.system.BaseSpec {
             } );
 
             it( 'can specify an api version to use', function() {
-                var res = stripe.accounts.retrieve();
+                var res = stripe.accounts.retrieve( account_id = 'account_id' );
                 var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
                 expect( httpRequest.headers ).toHaveLength( 2 );
                 expect( httpRequest.headers[ 2 ].name ).toBeWithCase( 'Stripe-Version' );

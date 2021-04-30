@@ -13,7 +13,11 @@ component {
         return this;
     }
 
-    public struct function parse( required any headersSource, required struct methodMetadata ) {
+    public struct function parse(
+        required any headersSource,
+        required struct methodMetadata,
+        required boolean hasPositionalArguments
+    ) {
         var headerData = {
             headers: { },
             headerArgNames: [ ]
@@ -22,15 +26,19 @@ component {
         for ( var key in headerKeys ) {
             var headerName = headerKeys[ key ];
             var argNames = [ key, key.replace( '_', '' ) ];
-            headerData.headerArgNames.append( argNames, true );
-
             var configSetting = config.get( key );
             if ( len( configSetting ) ) {
                 headerData.headers[ headerName ] = configSetting;
             }
 
+            if ( key == 'api_version' && !hasPositionalArguments ) {
+                // api_version is not supported as a header named argument
+                continue;
+            }
+
             for ( var argName in argNames ) {
                 if ( structKeyExists( headersSource, argName ) ) {
+                    headerData.headerArgNames.append( argName );
                     headerData.headers[ headerName ] = headersSource[ argName ];
                 }
             }

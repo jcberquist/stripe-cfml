@@ -59,7 +59,6 @@ writeDump(charge);
 
 ```cfc
 stripe.customers.updateSource('customer_id', 'source_id', {metadata = {'a': 1}});
-stripe.customers.updateSource(customer_id = 'customer_id', source_id = 'source_id', params = {metadata: {'a': 1}});
 stripe.customers.updateSource(customer_id = 'customer_id', source_id = 'source_id', metadata = {'a': 1});
 ```
 
@@ -69,7 +68,7 @@ Note that the `customers` component and the method name, `updateSource`, do not 
 
 There are a several arguments you can pass to any method that are passed to the Stripe API as headers: `apiKey`, `stripeVersion` (or `apiVersion`), `idempotencyKey`, and `stripeAccount`.
 
-- `apiKey` and `stripeVersion` will override the default values passed into the `stripe.cfc` init method (see [Configuration](#Configuration) below).
+- `apiKey` and `stripeVersion` will override the default values passed into the `stripe.cfc` init method (see [Configuration](#Configuration) below). *Note that `apiVersion` will also work as an alternate to `stripeVersion` when positional arguments are used, but is not supported when using named arguments.*
 - `idempotencyKey` is used to allow you to make idempotent requests (see https://stripe.com/docs/api#idempotent_requests).
 - `stripeAccount` is used when making API requests on behalf of a connected account - see https://stripe.com/docs/connect/authentication.
 
@@ -92,13 +91,7 @@ charge = stripe.charges.create(
     stripeAccount = 'abc',
     idempotencyKey = 'def'
 );
-// OR
-charge = stripe.charges.create(
-    params = {amount: 2000, currency: 'usd', source: cardToken},
-    headers = {stripeAccount: 'abc', idempotencyKey: 'def'}
-);
 ```
-
 ## Configuration
 
 You can pass some configuration parameters in a struct to the constructor of `stripe.cfc`:
@@ -113,14 +106,14 @@ config = {
 stripe = new stripe('stripe_api_key', config);
 ```
 
-- `apiVersion` specifies the version of the Stripe API to use - see [versioning](https://stripe.com/docs/api#versioning) in the documentation.
+- `apiVersion` specifies the version of the Stripe API to use - see [versioning](https://stripe.com/docs/api#versioning) in the documentation. This can also be specified as `stripeVersion`.
 - `defaultCurrency` specifies the currency to use when making requests (e.g. `usd`) - when it is specified in the config you do not need to specify it when making requests.
 - `convertTimestamps` (default: `true`) - The Stripe API expects all datetimes to be given as Unix timestamps; when this setting is true, `stripe-cfml` converts all CFML date objects passed into methods to UNIX timestamps and converts timestamps in the API responses back to CFML date objects.
 - `convertToCents` (default: `false`) - when this is set to `true` all currency amounts passed in are multiplied by 100 and all amounts in the responses are divided by 100. (This enables one to work in dollar amounts instead of cents, if so desired.)
 
 ### Configuration via environment variables and system properties
 
-All of these configuration keys, including the Stripe secret key, can be specified in environment variables or Java system properties instead of being passed in at initialization. When using environment variables your config keys should be prefixed with `STRIPE_` and underscores are used to separate words: `STRIPE_API_KEY`, `STRIPE_API_VERSION`, `STRIPE_DEFAULT_CURRENCY`, `STRIPE_CONVERT_TIMESTAMPS`, and `STRIPE_CONVERT_TO_CENTS`. When using system properties your config keys should be prefixed with `stripe.` and all lowercase: `stripe.apikey`, `stripe.apiversion`, `stripe.defaultcurrency`, `stripe.converttimestamps`, and `stripe.converttocents`.
+All of these configuration keys, including the Stripe secret key, can be specified in environment variables or Java system properties instead of being passed in at initialization. When using environment variables your config keys should be prefixed with `STRIPE_` and underscores are used to separate words: `STRIPE_API_KEY`, `API_VERSION`, `STRIPE_DEFAULT_CURRENCY`, `STRIPE_CONVERT_TIMESTAMPS`, and `STRIPE_CONVERT_TO_CENTS`. When using system properties your config keys should be prefixed with `stripe.` and all lowercase: `stripe.apikey`, `stripe.version`, `stripe.defaultcurrency`, `stripe.converttimestamps`, and `stripe.converttocents`.
 
 ## Responses
 
