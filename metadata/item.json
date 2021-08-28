@@ -1,0 +1,10 @@
+{
+    "amount_subtotal": "currency",
+    "amount_total": "currency",
+    "discounts": {
+        "amount": "currency"
+    },
+    "taxes": {
+        "amount": "currency"
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "amount_subtotal": "currency",
+    "amount_total": "currency",
+    "application_fee_amount": "currency",
+    "computed": {
+        "recurring": {
+            "amount_subtotal": "currency",
+            "amount_total": "currency",
+            "total_details": {
+                "amount_discount": "currency",
+                "amount_shipping": "currency",
+                "amount_tax": "currency",
+                "breakdown": {
+                    "discounts": {
+                        "amount": "currency"
+                    },
+                    "taxes": {
+                        "amount": "currency"
+                    }
+                }
+            }
+        }
+    },
+    "created": "datetime",
+    "expires_at": "datetime",
+    "status_transitions": {
+        "accepted_at": "datetime",
+        "canceled_at": "datetime",
+        "finalized_at": "datetime"
+    },
+    "subscription_data": {
+        "effective_date": "datetime"
+    },
+    "total_details": {
+        "amount_discount": "currency",
+        "amount_shipping": "currency",
+        "amount_tax": "currency",
+        "breakdown": {
+            "discounts": {
+                "amount": "currency"
+            },
+            "taxes": {
+                "amount": "currency"
+            }
+        }
+    },
+    "transfer_data": {
+        "amount": "currency"
+    }
+}

@@ -421,6 +421,21 @@ stripe.promotionCodes.retrieve(promotion_code_id);
 stripe.promotionCodes.update(promotion_code_id);
 ```
 
+## stripe.quotes
+
+```cfc
+stripe.quotes.accept(quote_id);
+stripe.quotes.cancel(quote_id);
+stripe.quotes.create();
+stripe.quotes.finalizeQuote(quote_id);
+stripe.quotes.list();
+stripe.quotes.listComputedUpfrontLineItems(quote_id);
+stripe.quotes.listLineItems(quote_id);
+stripe.quotes.pdf(quote_id);
+stripe.quotes.retrieve(quote_id);
+stripe.quotes.update(quote_id);
+```
+
 ## stripe.radar.earlyFraudWarnings
 
 ```cfc
@@ -555,6 +570,13 @@ stripe.subscriptions.deleteDiscount(subscription_id);
 stripe.subscriptions.list();
 stripe.subscriptions.retrieve(subscription_id);
 stripe.subscriptions.update(subscription_id);
+```
+
+## stripe.taxCodes
+
+```cfc
+stripe.taxCodes.list();
+stripe.taxCodes.retrieve(tax_code_id);
 ```
 
 ## stripe.taxRates
