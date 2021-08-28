@@ -16,6 +16,10 @@ component {
             'list': {
                 path: '/identity/verification_sessions'
             },
+            'redact': {
+                httpMethod: 'post',
+                path: '/identity/verification_sessions/{verification_session_id}/redact'
+            },
             'retrieve': {
                 path: '/identity/verification_sessions/{verification_session_id}'
             },

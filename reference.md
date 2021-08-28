@@ -238,6 +238,7 @@ Identity beta 4 and later.
 stripe.identity.verificationSessions.cancel(verification_session_id);
 stripe.identity.verificationSessions.create();
 stripe.identity.verificationSessions.list();
+stripe.identity.verificationSessions.redact(verification_session_id);
 stripe.identity.verificationSessions.retrieve(verification_session_id);
 stripe.identity.verificationSessions.update(verification_session_id);
 ```
