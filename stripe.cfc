@@ -108,10 +108,11 @@ component {
         response[ 'requestId' ] = rawResponse.responseheader[ 'Request-Id' ];
         response[ 'headers' ] = rawResponse.responseheader;
         response[ 'status' ] = listFirst( rawResponse.statuscode, ' ' );
-        response[ 'content' ] = deserializeJSON( rawResponse.filecontent );
-
-        parsers.response.parse( response.content );
-
+        response[ 'content' ] = rawResponse.filecontent;
+        if ( response.headers[ 'Content-Type' ] == 'application/json' ) {
+            response.content = deserializeJSON( response.content );
+            parsers.response.parse( response.content );
+        }
         return response;
     }
 

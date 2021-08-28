@@ -8,6 +8,7 @@ component extends=testbox.system.BaseSpec {
             'exec',
             {
                 responseHeader: {
+                    'Content-Type': 'application/json',
                     'Request-Id': ''
                 },
                 statuscode: '200 OK',
