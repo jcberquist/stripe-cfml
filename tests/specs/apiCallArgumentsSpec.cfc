@@ -111,6 +111,30 @@ component extends=testbox.system.BaseSpec {
                 } ).toThrow( 'StripeValidationException', exceptionRegex );
             } );
         } );
+
+        describe( 'The stripe.accounts.retrieve() method', function() {
+            afterEach( function() {
+                httpService.$reset();
+            } );
+
+            it( 'supports being called with no arguments', function() {
+                var res = stripe.accounts.retrieve();
+                var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
+                expect( httpRequest.attrColl.url ).toBe( 'https://api.stripe.com/v1/account' );
+            } );
+
+            it( 'supports being called with a positional account_id', function() {
+                var res = stripe.accounts.retrieve( 'account_id' );
+                var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
+                expect( httpRequest.attrColl.url ).toBe( 'https://api.stripe.com/v1/accounts/account_id' );
+            } );
+
+            it( 'supports being called with a named account_id', function() {
+                var res = stripe.accounts.retrieve( account_id = 'account_id' );
+                var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
+                expect( httpRequest.attrColl.url ).toBe( 'https://api.stripe.com/v1/accounts/account_id' );
+            } );
+        } );
     }
 
 }

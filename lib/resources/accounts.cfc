@@ -92,7 +92,7 @@ component {
             arrayLen( arguments ) == 0 ||
             (
                 !structKeyExists( arguments, 'account_id' ) &&
-                ( !structKeyExists( arguments, 'params' ) || !structKeyExists( arguments.params, 'account_id' ) )
+                !( structKeyExists( arguments, '1' ) && isSimpleValue( arguments[ 1 ] ) )
             )
         ) {
             // special case return `/account` instead of default since no account id was supplied
