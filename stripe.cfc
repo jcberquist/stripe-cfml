@@ -105,14 +105,25 @@ component {
 
         var response = { };
         response[ 'duration' ] = getTickCount() - requestStart;
-        response[ 'requestId' ] = rawResponse.responseheader[ 'Request-Id' ];
         response[ 'headers' ] = rawResponse.responseheader;
         response[ 'status' ] = listFirst( rawResponse.statuscode, ' ' );
         response[ 'content' ] = rawResponse.filecontent;
+
+        if ( structKeyExists( response.headers, 'Request-Id' ) ) {
+            response[ 'requestId' ] = response.headers[ 'Request-Id' ];
+        } else {
+            throw(
+                type = 'StripeResponseException',
+                message = 'Request-Id is missing from the response headers',
+                extendedInfo = serializeJSON( response )
+            );
+        }
+
         if ( response.headers[ 'Content-Type' ] == 'application/json' ) {
             response.content = deserializeJSON( response.content );
             parsers.response.parse( response.content );
         }
+
         return response;
     }
 
