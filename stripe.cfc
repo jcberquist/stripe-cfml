@@ -111,7 +111,7 @@ component {
 
         if ( structKeyExists( response.headers, 'Request-Id' ) ) {
             response[ 'requestId' ] = response.headers[ 'Request-Id' ];
-        } else {
+        } else if ( int( response.status ) >= 200 && int( response.status ) < 300 ) {
             throw(
                 type = 'StripeResponseException',
                 message = 'Request-Id is missing from the response headers',

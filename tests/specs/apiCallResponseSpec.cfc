@@ -23,7 +23,7 @@ component extends=testbox.system.BaseSpec {
                 httpService.$reset();
             } );
 
-            it( 'throws an error when the Request-Id header is missing', function() {
+            it( 'throws an error when the Request-Id header is missing on a 200 request', function() {
                 httpService.$(
                     'exec',
                     {
@@ -38,6 +38,26 @@ component extends=testbox.system.BaseSpec {
                 expect( function() {
                     res = stripe.accounts.retrieve();
                 } ).toThrow(
+                    type = 'StripeResponseException',
+                    regex = 'Request-Id is missing from the response headers'
+                );
+            } );
+
+            it( 'does not throw an error when the Request-Id header is missing on a non 200 request', function() {
+                httpService.$(
+                    'exec',
+                    {
+                        responseHeader: {
+                            'Content-Type': 'application/json'
+                        },
+                        statuscode: '401 Not Authorized',
+                        filecontent: '{}'
+                    }
+                );
+
+                expect( function() {
+                    res = stripe.accounts.retrieve();
+                } ).notToThrow(
                     type = 'StripeResponseException',
                     regex = 'Request-Id is missing from the response headers'
                 );
