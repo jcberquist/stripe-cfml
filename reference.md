@@ -89,6 +89,7 @@ stripe.charges.capture(charge_id);
 stripe.charges.create();
 stripe.charges.list();
 stripe.charges.retrieve(charge_id);
+stripe.charges.search();
 stripe.charges.update(charge_id);
 ```
 
@@ -96,6 +97,7 @@ stripe.charges.update(charge_id);
 
 ```cfc
 stripe.checkout.sessions.create();
+stripe.checkout.sessions.expire(session_id);
 stripe.checkout.sessions.list();
 stripe.checkout.sessions.listLineItems(session_id);
 stripe.checkout.sessions.retrieve(session_id);
@@ -136,6 +138,7 @@ stripe.creditNotes.voidCreditNote(credit_note_id);
 ```cfc
 stripe.customers.create();
 stripe.customers.createBalanceTransaction(customer_id);
+stripe.customers.createFundingInstructions(customer_id);
 stripe.customers.createSource(customer_id);
 stripe.customers.createTaxId(customer_id);
 stripe.customers.delete(customer_id);
@@ -144,14 +147,19 @@ stripe.customers.deleteSource(customer_id, source_id);
 stripe.customers.deleteTaxId(customer_id, tax_id);
 stripe.customers.list();
 stripe.customers.listBalanceTransactions(customer_id);
+stripe.customers.listPaymentMethods(customer_id);
 stripe.customers.listSources(customer_id);
 stripe.customers.listTaxIds(customer_id);
 stripe.customers.retrieve(customer_id);
 stripe.customers.retrieveBalanceTransaction(customer_id, customer_balance_transaction_id);
+stripe.customers.retrieveCashBalance(customer_id);
+stripe.customers.retrievePaymentMethod(customer_id, payment_method_id);
 stripe.customers.retrieveSource(customer_id, source_id);
 stripe.customers.retrieveTaxId(customer_id, tax_id);
+stripe.customers.search();
 stripe.customers.update(customer_id);
 stripe.customers.updateBalanceTransaction(customer_id, customer_balance_transaction_id);
+stripe.customers.updateCashBalance(customer_id);
 stripe.customers.updateSource(customer_id, source_id);
 stripe.customers.verifySource(customer_id, source_id);
 ```
@@ -266,6 +274,7 @@ stripe.invoices.markUncollectible(invoice_id);
 stripe.invoices.pay(invoice_id);
 stripe.invoices.retrieve(invoice_id);
 stripe.invoices.retrieveUpcoming();
+stripe.invoices.search();
 stripe.invoices.sendInvoice(invoice_id);
 stripe.invoices.update(invoice_id);
 stripe.invoices.voidInvoice(invoice_id);
@@ -341,24 +350,30 @@ stripe.orderReturns.retrieve(order_return_id);
 ## stripe.orders
 
 ```cfc
+stripe.orders.cancel(order_id);
 stripe.orders.create();
 stripe.orders.list();
-stripe.orders.pay(order_id);
+stripe.orders.listLineItems(order_id);
+stripe.orders.reopen(order_id);
 stripe.orders.retrieve(order_id);
-stripe.orders.returnOrder(order_id);
+stripe.orders.submit(order_id);
 stripe.orders.update(order_id);
 ```
 
 ## stripe.paymentIntents
 
 ```cfc
+stripe.paymentIntents.applyCustomerBalance(payment_intent_id);
 stripe.paymentIntents.cancel(payment_intent_id);
 stripe.paymentIntents.capture(payment_intent_id);
 stripe.paymentIntents.confirm(payment_intent_id);
 stripe.paymentIntents.create();
+stripe.paymentIntents.incrementAuthorization(payment_intent_id);
 stripe.paymentIntents.list();
 stripe.paymentIntents.retrieve(payment_intent_id);
+stripe.paymentIntents.search();
 stripe.paymentIntents.update(payment_intent_id);
+stripe.paymentIntents.verifyMicrodeposits(payment_intent_id);
 ```
 
 ## stripe.paymentMethods
@@ -399,6 +414,7 @@ stripe.plans.update(plan_id);
 stripe.prices.create();
 stripe.prices.list();
 stripe.prices.retrieve(price_id);
+stripe.prices.search();
 stripe.prices.update(price_id);
 ```
 
@@ -409,6 +425,7 @@ stripe.products.create();
 stripe.products.delete(product_id);
 stripe.products.list();
 stripe.products.retrieve(product_id);
+stripe.products.search();
 stripe.products.update(product_id);
 ```
 
@@ -465,6 +482,7 @@ stripe.radar.valueLists.update(value_list_id);
 ## stripe.refunds
 
 ```cfc
+stripe.refunds.cancel(refund_id);
 stripe.refunds.create();
 stripe.refunds.list();
 stripe.refunds.retrieve(refund_id);
@@ -509,6 +527,7 @@ stripe.setupIntents.create();
 stripe.setupIntents.list();
 stripe.setupIntents.retrieve(setup_intent_id);
 stripe.setupIntents.update(setup_intent_id);
+stripe.setupIntents.verifyMicrodeposits(setup_intent_id);
 ```
 
 ## stripe.sigma.scheduledQueryRuns
@@ -569,6 +588,7 @@ stripe.subscriptions.delete(subscription_id);
 stripe.subscriptions.deleteDiscount(subscription_id);
 stripe.subscriptions.list();
 stripe.subscriptions.retrieve(subscription_id);
+stripe.subscriptions.search();
 stripe.subscriptions.update(subscription_id);
 ```
 
@@ -607,10 +627,14 @@ stripe.terminal.locations.update(location_id);
 ## stripe.terminal.readers
 
 ```cfc
+stripe.terminal.readers.cancelAction(reader_id);
 stripe.terminal.readers.create();
 stripe.terminal.readers.delete(reader_id);
 stripe.terminal.readers.list();
+stripe.terminal.readers.processPaymentIntent(reader_id);
+stripe.terminal.readers.processSetupIntent(reader_id);
 stripe.terminal.readers.retrieve(reader_id);
+stripe.terminal.readers.setReaderDisplay(reader_id);
 stripe.terminal.readers.update(reader_id);
 ```
 

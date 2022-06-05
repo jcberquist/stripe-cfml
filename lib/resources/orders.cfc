@@ -2,6 +2,10 @@ component {
 
     this.metadata = {
         methods: {
+            'cancel': {
+                httpMethod: 'post',
+                path: '/orders/{order_id}/cancel'
+            },
             'create': {
                 arguments: {
                     currency: 'iso_currency_code',
@@ -24,24 +28,22 @@ component {
                 },
                 path: '/orders'
             },
-            'pay': {
-                arguments: {
-                    application_fee: 'currency'
-                },
+            'listLineItems': {
+                path: '/orders/{order_id}/line_items'
+            },
+            'reopen': {
                 httpMethod: 'post',
-                path: '/orders/{order_id}/pay'
+                path: '/orders/{order_id}/reopen'
             },
             'retrieve': {
                 path: '/orders/{order_id}'
             },
-            'returnOrder': {
+            'submit': {
                 arguments: {
-                    items: {
-                        amount: 'currency'
-                    }
+                    expected_total: 'currency'
                 },
                 httpMethod: 'post',
-                path: '/orders/{order_id}/returns'
+                path: '/orders/{order_id}/submit'
             },
             'update': {
                 httpMethod: 'post',

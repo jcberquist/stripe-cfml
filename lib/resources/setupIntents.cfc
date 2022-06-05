@@ -26,6 +26,13 @@ component {
             'update': {
                 httpMethod: 'post',
                 path: '/setup_intents/{setup_intent_id}'
+            },
+            'verifyMicrodeposits': {
+                arguments: {
+                    amounts: 'currency'
+                },
+                httpMethod: 'post',
+                path: '/setup_intents/{setup_intent_id}/verify_microdeposits'
             }
         }
     };

@@ -17,6 +17,10 @@ component {
                 httpMethod: 'post',
                 path: '/checkout/sessions'
             },
+            'expire': {
+                httpMethod: 'post',
+                path: '/checkout/sessions/{session_id}/expire'
+            },
             'list': {
                 path: '/checkout/sessions'
             },

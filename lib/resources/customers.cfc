@@ -17,6 +17,10 @@ component {
                 httpMethod: 'post',
                 path: '/customers/{customer_id}/balance_transactions'
             },
+            'createFundingInstructions': {
+                httpMethod: 'post',
+                path: '/customers/{customer_id}/funding_instructions'
+            },
             'createSource': {
                 arguments: {
                     created: 'datefilter'
@@ -53,6 +57,9 @@ component {
             'listBalanceTransactions': {
                 path: '/customers/{customer_id}/balance_transactions'
             },
+            'listPaymentMethods': {
+                path: '/customers/{customer_id}/payment_methods'
+            },
             'listSources': {
                 path: '/customers/{customer_id}/sources'
             },
@@ -65,11 +72,20 @@ component {
             'retrieveBalanceTransaction': {
                 path: '/customers/{customer_id}/balance_transactions/{customer_balance_transaction_id}'
             },
+            'retrieveCashBalance': {
+                path: '/customers/{customer_id}/cash_balance'
+            },
+            'retrievePaymentMethod': {
+                path: '/customers/{customer_id}/payment_methods/{payment_method_id}'
+            },
             'retrieveSource': {
                 path: '/customers/{customer_id}/sources/{source_id}'
             },
             'retrieveTaxId': {
                 path: '/customers/{customer_id}/tax_ids/{tax_id}'
+            },
+            'search': {
+                path: '/customers/search'
             },
             'update': {
                 arguments: {
@@ -82,6 +98,10 @@ component {
             'updateBalanceTransaction': {
                 httpMethod: 'post',
                 path: '/customers/{customer_id}/balance_transactions/{customer_balance_transaction_id}'
+            },
+            'updateCashBalance': {
+                httpMethod: 'post',
+                path: '/customers/{customer_id}/cash_balance'
             },
             'updateSource': {
                 httpMethod: 'post',

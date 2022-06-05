@@ -36,6 +36,9 @@ component {
             'retrieve': {
                 path: '/charges/{charge_id}'
             },
+            'search': {
+                path: '/charges/search'
+            },
             'update': {
                 httpMethod: 'post',
                 path: '/charges/{charge_id}'

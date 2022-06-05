@@ -24,6 +24,9 @@ component {
             'retrieve': {
                 path: '/prices/{price_id}'
             },
+            'search': {
+                path: '/prices/search'
+            },
             'update': {
                 httpMethod: 'post',
                 path: '/prices/{price_id}'

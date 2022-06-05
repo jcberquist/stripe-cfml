@@ -27,6 +27,9 @@ component {
             'retrieve': {
                 path: '/subscriptions/{subscription_id}'
             },
+            'search': {
+                path: '/subscriptions/search'
+            },
             'update': {
                 arguments: {
                     billing_cycle_anchor: 'timestamp',

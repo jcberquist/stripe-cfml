@@ -19,6 +19,9 @@ component {
             'retrieve': {
                 path: '/products/{product_id}'
             },
+            'search': {
+                path: '/products/search'
+            },
             'update': {
                 httpMethod: 'post',
                 path: '/products/{product_id}'

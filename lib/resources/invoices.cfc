@@ -69,6 +69,9 @@ component {
                 },
                 path: '/invoices/upcoming'
             },
+            'search': {
+                path: '/invoices/search'
+            },
             'sendInvoice': {
                 httpMethod: 'post',
                 path: '/invoices/{invoice_id}/send'
