@@ -638,6 +638,16 @@ stripe.terminal.readers.setReaderDisplay(reader_id);
 stripe.terminal.readers.update(reader_id);
 ```
 
+## stripe.testHelpers.testClocks
+
+```cfc
+stripe.testHelpers.testClocks.create();
+stripe.testHelpers.testClocks.delete(clock_id);
+stripe.testHelpers.testClocks.list();
+stripe.testHelpers.testClocks.retrieve(clock_id);
+stripe.testHelpers.testClocks.advance(clock_id);
+```
+
 ## stripe.tokens
 
 ```cfc
