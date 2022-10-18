@@ -119,9 +119,17 @@ component {
             );
         }
 
-        if ( response.headers[ 'Content-Type' ] == 'application/json' ) {
-            response.content = deserializeJSON( response.content );
-            parsers.response.parse( response.content );
+        if ( structKeyExists( response.headers, 'Content-Type' ) ) {
+            if ( response.headers[ 'Content-Type' ] == 'application/json' ) {
+                response.content = deserializeJSON( response.content );
+                parsers.response.parse( response.content );
+            }
+        } else if ( int( response.status ) >= 200 && int( response.status ) < 300 ) {
+            throw(
+                type = 'StripeResponseException',
+                message = 'Content-Type is missing from the response headers',
+                extendedInfo = serializeJSON( response )
+            );
         }
 
         return response;
