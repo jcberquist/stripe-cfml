@@ -4,7 +4,7 @@ component {
         methods: {
             'approve': {
                 arguments: {
-                    held_amount: 'currency'
+                    amount: 'currency'
                 },
                 httpMethod: 'post',
                 path: '/issuing/authorizations/{authorization_id}/approve'

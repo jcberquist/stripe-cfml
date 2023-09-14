@@ -4,7 +4,6 @@ component {
         methods: {
             'create': {
                 arguments: {
-                    account_balance: 'currency',
                     balance: 'currency'
                 },
                 httpMethod: 'post',
@@ -12,19 +11,20 @@ component {
             },
             'createBalanceTransaction': {
                 arguments: {
-                    amount: 'currency'
+                    amount: 'currency',
+                    currency: 'iso_currency_code'
                 },
                 httpMethod: 'post',
                 path: '/customers/{customer_id}/balance_transactions'
             },
             'createFundingInstructions': {
+                arguments: {
+                    currency: 'iso_currency_code'
+                },
                 httpMethod: 'post',
                 path: '/customers/{customer_id}/funding_instructions'
             },
             'createSource': {
-                arguments: {
-                    created: 'datefilter'
-                },
                 httpMethod: 'post',
                 path: '/customers/{customer_id}/sources'
             },
@@ -57,6 +57,9 @@ component {
             'listBalanceTransactions': {
                 path: '/customers/{customer_id}/balance_transactions'
             },
+            'listCashBalanceTransactions': {
+                path: '/customers/{customer_id}/cash_balance_transactions'
+            },
             'listPaymentMethods': {
                 path: '/customers/{customer_id}/payment_methods'
             },
@@ -70,7 +73,7 @@ component {
                 path: '/customers/{customer_id}'
             },
             'retrieveBalanceTransaction': {
-                path: '/customers/{customer_id}/balance_transactions/{customer_balance_transaction_id}'
+                path: '/customers/{customer_id}/balance_transactions/{balance_transaction_id}'
             },
             'retrieveCashBalance': {
                 path: '/customers/{customer_id}/cash_balance'
@@ -89,7 +92,6 @@ component {
             },
             'update': {
                 arguments: {
-                    account_balance: 'currency',
                     balance: 'currency'
                 },
                 httpMethod: 'post',
@@ -97,7 +99,7 @@ component {
             },
             'updateBalanceTransaction': {
                 httpMethod: 'post',
-                path: '/customers/{customer_id}/balance_transactions/{customer_balance_transaction_id}'
+                path: '/customers/{customer_id}/balance_transactions/{balance_transaction_id}'
             },
             'updateCashBalance': {
                 httpMethod: 'post',

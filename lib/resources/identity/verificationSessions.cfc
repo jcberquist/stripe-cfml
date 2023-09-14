@@ -1,6 +1,3 @@
-/**
-* Identity beta 4 and later.
-*/
 component {
 
     this.metadata = {
@@ -14,6 +11,9 @@ component {
                 path: '/identity/verification_sessions'
             },
             'list': {
+                arguments: {
+                    created: 'datefilter'
+                },
                 path: '/identity/verification_sessions'
             },
             'redact': {

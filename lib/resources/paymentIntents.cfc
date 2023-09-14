@@ -17,12 +17,37 @@ component {
             'capture': {
                 arguments: {
                     amount_to_capture: 'currency',
-                    application_fee_amount: 'currency'
+                    application_fee_amount: 'currency',
+                    transfer_data: {
+                        amount: 'currency'
+                    }
                 },
                 httpMethod: 'post',
                 path: '/payment_intents/{payment_intent_id}/capture'
             },
             'confirm': {
+                arguments: {
+                    mandate_data: {
+                        customer_acceptance: {
+                            accepted_at: 'timestamp'
+                        }
+                    },
+                    payment_method_options: {
+                        card: {
+                            mandate_options: {
+                                amount: 'currency',
+                                end_date: 'timestamp',
+                                start_date: 'timestamp'
+                            }
+                        },
+                        konbini: {
+                            expires_at: 'timestamp'
+                        },
+                        pix: {
+                            expires_at: 'timestamp'
+                        }
+                    }
+                },
                 httpMethod: 'post',
                 path: '/payment_intents/{payment_intent_id}/confirm'
             },
@@ -31,6 +56,26 @@ component {
                     amount: 'currency',
                     application_fee_amount: 'currency',
                     currency: 'iso_currency_code',
+                    mandate_data: {
+                        customer_acceptance: {
+                            accepted_at: 'timestamp'
+                        }
+                    },
+                    payment_method_options: {
+                        card: {
+                            mandate_options: {
+                                amount: 'currency',
+                                end_date: 'timestamp',
+                                start_date: 'timestamp'
+                            }
+                        },
+                        konbini: {
+                            expires_at: 'timestamp'
+                        },
+                        pix: {
+                            expires_at: 'timestamp'
+                        }
+                    },
                     transfer_data: {
                         amount: 'currency'
                     }
@@ -65,6 +110,22 @@ component {
                 arguments: {
                     amount: 'currency',
                     application_fee_amount: 'currency',
+                    currency: 'iso_currency_code',
+                    payment_method_options: {
+                        card: {
+                            mandate_options: {
+                                amount: 'currency',
+                                end_date: 'timestamp',
+                                start_date: 'timestamp'
+                            }
+                        },
+                        konbini: {
+                            expires_at: 'timestamp'
+                        },
+                        pix: {
+                            expires_at: 'timestamp'
+                        }
+                    },
                     transfer_data: {
                         amount: 'currency'
                     }

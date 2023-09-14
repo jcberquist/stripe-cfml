@@ -6,10 +6,10 @@ component {
                 arguments: {
                     amount: 'currency',
                     credit_amount: 'currency',
+                    effective_at: 'timestamp',
                     lines: {
                         amount: 'currency',
-                        unit_amount: 'currency',
-                        unit_amount_decimal: 'currency'
+                        unit_amount: 'currency'
                     },
                     out_of_band_amount: 'currency',
                     refund_amount: 'currency'
@@ -27,10 +27,10 @@ component {
                 arguments: {
                     amount: 'currency',
                     credit_amount: 'currency',
+                    effective_at: 'timestamp',
                     lines: {
                         amount: 'currency',
-                        unit_amount: 'currency',
-                        unit_amount_decimal: 'currency'
+                        unit_amount: 'currency'
                     },
                     out_of_band_amount: 'currency',
                     refund_amount: 'currency'
@@ -41,10 +41,10 @@ component {
                 arguments: {
                     amount: 'currency',
                     credit_amount: 'currency',
+                    effective_at: 'timestamp',
                     lines: {
                         amount: 'currency',
-                        unit_amount: 'currency',
-                        unit_amount_decimal: 'currency'
+                        unit_amount: 'currency'
                     },
                     out_of_band_amount: 'currency',
                     refund_amount: 'currency'

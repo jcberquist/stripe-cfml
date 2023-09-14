@@ -7,7 +7,7 @@ component {
                     amount: 'currency',
                     application_fee: 'currency',
                     application_fee_amount: 'currency',
-                    destination: {
+                    transfer_data: {
                         amount: 'currency'
                     }
                 },
@@ -21,6 +21,9 @@ component {
                     application_fee_amount: 'currency',
                     currency: 'iso_currency_code',
                     destination: {
+                        amount: 'currency'
+                    },
+                    transfer_data: {
                         amount: 'currency'
                     }
                 },

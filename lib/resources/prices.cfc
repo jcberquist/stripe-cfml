@@ -5,6 +5,11 @@ component {
             'create': {
                 arguments: {
                     currency: 'iso_currency_code',
+                    custom_unit_amount: {
+                        maximum: 'currency',
+                        minimum: 'currency',
+                        preset: 'currency'
+                    },
                     tiers: {
                         flat_amount: 'currency',
                         unit_amount: 'currency'
@@ -16,8 +21,7 @@ component {
             },
             'list': {
                 arguments: {
-                    created: 'datefilter',
-                    currency: 'iso_currency_code'
+                    created: 'datefilter'
                 },
                 path: '/prices'
             },

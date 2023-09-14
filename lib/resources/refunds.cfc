@@ -8,12 +8,16 @@ component {
             },
             'create': {
                 arguments: {
-                    amount: 'currency'
+                    amount: 'currency',
+                    currency: 'iso_currency_code'
                 },
                 httpMethod: 'post',
                 path: '/refunds'
             },
             'list': {
+                arguments: {
+                    created: 'datefilter'
+                },
                 path: '/refunds'
             },
             'retrieve': {

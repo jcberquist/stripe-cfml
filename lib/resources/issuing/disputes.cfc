@@ -4,7 +4,25 @@ component {
         methods: {
             'create': {
                 arguments: {
-                    amount: 'currency'
+                    amount: 'currency',
+                    evidence: {
+                        canceled: {
+                            canceled_at: 'timestamp',
+                            expected_at: 'timestamp',
+                            returned_at: 'timestamp'
+                        },
+                        merchandise_not_as_described: {
+                            received_at: 'timestamp',
+                            returned_at: 'timestamp'
+                        },
+                        not_received: {
+                            expected_at: 'timestamp'
+                        },
+                        service_not_as_described: {
+                            canceled_at: 'timestamp',
+                            received_at: 'timestamp'
+                        }
+                    }
                 },
                 httpMethod: 'post',
                 path: '/issuing/disputes'
@@ -23,6 +41,27 @@ component {
                 path: '/issuing/disputes/{dispute_id}/submit'
             },
             'update': {
+                arguments: {
+                    amount: 'currency',
+                    evidence: {
+                        canceled: {
+                            canceled_at: 'timestamp',
+                            expected_at: 'timestamp',
+                            returned_at: 'timestamp'
+                        },
+                        merchandise_not_as_described: {
+                            received_at: 'timestamp',
+                            returned_at: 'timestamp'
+                        },
+                        not_received: {
+                            expected_at: 'timestamp'
+                        },
+                        service_not_as_described: {
+                            canceled_at: 'timestamp',
+                            received_at: 'timestamp'
+                        }
+                    }
+                },
                 httpMethod: 'post',
                 path: '/issuing/disputes/{dispute_id}'
             }

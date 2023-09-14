@@ -8,13 +8,13 @@ component {
             },
             'delete': {
                 httpMethod: 'delete',
-                path: '/apple_pay/domains/{apple_pay_domain_id}'
+                path: '/apple_pay/domains/{domain_id}'
             },
             'list': {
                 path: '/apple_pay/domains'
             },
             'retrieve': {
-                path: '/apple_pay/domains/{apple_pay_domain_id}'
+                path: '/apple_pay/domains/{domain_id}'
             }
         }
     };

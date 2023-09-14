@@ -10,6 +10,10 @@ component {
                         end: 'timestamp',
                         start: 'timestamp'
                     },
+                    price_data: {
+                        currency: 'iso_currency_code',
+                        unit_amount: 'currency'
+                    },
                     unit_amount: 'currency'
                 },
                 httpMethod: 'post',
@@ -34,6 +38,10 @@ component {
                     period: {
                         end: 'timestamp',
                         start: 'timestamp'
+                    },
+                    price_data: {
+                        currency: 'iso_currency_code',
+                        unit_amount: 'currency'
                     },
                     unit_amount: 'currency'
                 },

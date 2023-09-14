@@ -22,11 +22,11 @@ component {
                 path: '/application_fees/{application_fee_id}'
             },
             'retrieveRefund': {
-                path: '/application_fees/{application_fee_id}/refunds/{fee_refund_id}'
+                path: '/application_fees/{application_fee_id}/refunds/{refund_id}'
             },
             'updateRefund': {
                 httpMethod: 'post',
-                path: '/application_fees/{application_fee_id}/refunds/{fee_refund_id}'
+                path: '/application_fees/{application_fee_id}/refunds/{refund_id}'
             }
         }
     };

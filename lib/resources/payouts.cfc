@@ -8,6 +8,7 @@ component {
             },
             'create': {
                 arguments: {
+                    amount: 'currency',
                     currency: 'iso_currency_code'
                 },
                 httpMethod: 'post',

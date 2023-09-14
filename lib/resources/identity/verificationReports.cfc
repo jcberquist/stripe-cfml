@@ -3,6 +3,9 @@ component {
     this.metadata = {
         methods: {
             'list': {
+                arguments: {
+                    created: 'datefilter'
+                },
                 path: '/identity/verification_reports'
             },
             'retrieve': {

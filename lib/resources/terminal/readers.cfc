@@ -18,6 +18,13 @@ component {
                 path: '/terminal/readers'
             },
             'processPaymentIntent': {
+                arguments: {
+                    process_config: {
+                        tipping: {
+                            amount_eligible: 'currency'
+                        }
+                    }
+                },
                 httpMethod: 'post',
                 path: '/terminal/readers/{reader_id}/process_payment_intent'
             },
@@ -25,17 +32,26 @@ component {
                 httpMethod: 'post',
                 path: '/terminal/readers/{reader_id}/process_setup_intent'
             },
+            'refundPayment': {
+                arguments: {
+                    amount: 'currency'
+                },
+                httpMethod: 'post',
+                path: '/terminal/readers/{reader_id}/refund_payment'
+            },
             'retrieve': {
                 path: '/terminal/readers/{reader_id}'
             },
             'setReaderDisplay': {
                 arguments: {
-                    currency: 'iso_currency_code',
-                    line_items: {
-                        amount: 'currency'
-                    },
-                    tax: 'currency',
-                    total: 'currency'
+                    cart: {
+                        currency: 'iso_currency_code',
+                        line_items: {
+                            amount: 'currency'
+                        },
+                        tax: 'currency',
+                        total: 'currency'
+                    }
                 },
                 httpMethod: 'post',
                 path: '/terminal/readers/{reader_id}/set_reader_display'

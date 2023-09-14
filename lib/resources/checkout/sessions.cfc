@@ -4,13 +4,35 @@ component {
         methods: {
             'create': {
                 arguments: {
+                    currency: 'iso_currency_code',
+                    expires_at: 'timestamp',
                     line_items: {
-                        amount: 'currency'
+                        price_data: {
+                            currency: 'iso_currency_code',
+                            unit_amount: 'currency'
+                        }
                     },
                     payment_intent_data: {
-                        application_fee_amount: 'currency'
+                        application_fee_amount: 'currency',
+                        transfer_data: {
+                            amount: 'currency'
+                        }
+                    },
+                    payment_method_options: {
+                        acss_debit: {
+                            currency: 'iso_currency_code'
+                        }
+                    },
+                    shipping_options: {
+                        shipping_rate_data: {
+                            fixed_amount: {
+                                amount: 'currency',
+                                currency: 'iso_currency_code'
+                            }
+                        }
                     },
                     subscription_data: {
+                        billing_cycle_anchor: 'timestamp',
                         trial_end: 'timestamp'
                     }
                 },

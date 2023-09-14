@@ -4,8 +4,7 @@ component {
         methods: {
             'create': {
                 arguments: {
-                    authorization_controls: {
-                        max_amount: 'currency',
+                    spending_controls: {
                         spending_limits: {
                             amount: 'currency'
                         }
@@ -23,13 +22,9 @@ component {
             'retrieve': {
                 path: '/issuing/cards/{card_id}'
             },
-            'retrieveDetails': {
-                path: '/issuing/cards/{card_id}/details'
-            },
             'update': {
                 arguments: {
-                    authorization_controls: {
-                        max_amount: 'currency',
+                    spending_controls: {
                         spending_limits: {
                             amount: 'currency'
                         }

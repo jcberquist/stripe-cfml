@@ -16,6 +16,7 @@ component {
                     expires_at: 'timestamp',
                     line_items: {
                         price_data: {
+                            currency: 'iso_currency_code',
                             unit_amount: 'currency'
                         }
                     },
@@ -30,6 +31,9 @@ component {
                 path: '/quotes'
             },
             'finalizeQuote': {
+                arguments: {
+                    expires_at: 'timestamp'
+                },
                 httpMethod: 'post',
                 path: '/quotes/{quote_id}/finalize'
             },
@@ -56,6 +60,7 @@ component {
                     expires_at: 'timestamp',
                     line_items: {
                         price_data: {
+                            currency: 'iso_currency_code',
                             unit_amount: 'currency'
                         }
                     },

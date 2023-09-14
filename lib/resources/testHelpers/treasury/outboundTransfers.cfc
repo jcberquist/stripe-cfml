@@ -1,0 +1,7 @@
+component {
+
+    this.metadata = {
+        methods: {}
+    };
+
+}

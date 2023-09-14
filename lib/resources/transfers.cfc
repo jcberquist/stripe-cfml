@@ -24,16 +24,13 @@ component {
                 path: '/transfers'
             },
             'listReversals': {
-                arguments: {
-                    limit: 'integer'
-                },
                 path: '/transfers/{transfer_id}/reversals'
             },
             'retrieve': {
                 path: '/transfers/{transfer_id}'
             },
             'retrieveReversal': {
-                path: '/transfers/{transfer_id}/reversals/{transfer_reversal_id}'
+                path: '/transfers/{transfer_id}/reversals/{reversal_id}'
             },
             'update': {
                 httpMethod: 'post',
@@ -41,7 +38,7 @@ component {
             },
             'updateReversal': {
                 httpMethod: 'post',
-                path: '/transfers/{transfer_id}/reversals/{transfer_reversal_id}'
+                path: '/transfers/{transfer_id}/reversals/{reversal_id}'
             }
         }
     };

@@ -4,7 +4,6 @@ component {
         methods: {
             'list': {
                 arguments: {
-                    available_on: 'datefilter',
                     created: 'datefilter'
                 },
                 path: '/balance_transactions'

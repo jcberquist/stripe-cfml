@@ -5,7 +5,11 @@ component {
             'create': {
                 arguments: {
                     amount: 'currency',
-                    currency: 'iso_currency_code'
+                    currency: 'iso_currency_code',
+                    tiers: {
+                        flat_amount: 'currency',
+                        unit_amount: 'currency'
+                    }
                 },
                 httpMethod: 'post',
                 path: '/plans'

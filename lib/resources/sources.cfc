@@ -4,9 +4,20 @@ component {
         methods: {
             'create': {
                 arguments: {
+                    amount: 'currency',
+                    currency: 'iso_currency_code',
                     mandate: {
                         acceptance: {
-                            date: 'timestamp'
+                            date: 'timestamp',
+                            online: {
+                                date: 'timestamp'
+                            }
+                        },
+                        amount: 'currency'
+                    },
+                    source_order: {
+                        items: {
+                            amount: 'currency'
                         }
                     }
                 },
@@ -21,9 +32,19 @@ component {
             },
             'update': {
                 arguments: {
+                    amount: 'currency',
                     mandate: {
                         acceptance: {
-                            date: 'timestamp'
+                            date: 'timestamp',
+                            online: {
+                                date: 'timestamp'
+                            }
+                        },
+                        amount: 'currency'
+                    },
+                    source_order: {
+                        items: {
+                            amount: 'currency'
                         }
                     }
                 },

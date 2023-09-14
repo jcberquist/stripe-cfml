@@ -5,6 +5,7 @@ component {
             'create': {
                 arguments: {
                     amount_off: 'currency',
+                    currency: 'iso_currency_code',
                     redeem_by: 'timestamp'
                 },
                 httpMethod: 'post',

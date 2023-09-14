@@ -4,6 +4,30 @@ component {
         methods: {
             'create': {
                 arguments: {
+                    business_profile: {
+                        monthly_estimated_revenue: {
+                            amount: 'currency',
+                            currency: 'iso_currency_code'
+                        }
+                    },
+                    company: {
+                        ownership_declaration: {
+                            date: 'timestamp'
+                        }
+                    },
+                    default_currency: 'iso_currency_code',
+                    settings: {
+                        card_issuing: {
+                            tos_acceptance: {
+                                date: 'timestamp'
+                            }
+                        },
+                        treasury: {
+                            tos_acceptance: {
+                                date: 'timestamp'
+                            }
+                        }
+                    },
                     tos_acceptance: {
                         date: 'timestamp'
                     }
@@ -29,13 +53,16 @@ component {
             },
             'deleteExternalAccount': {
                 httpMethod: 'delete',
-                path: '/accounts/{account_id}/external_accounts/{source_id}'
+                path: '/accounts/{account_id}/external_accounts/{external_account_id}'
             },
             'deletePerson': {
                 httpMethod: 'delete',
                 path: '/accounts/{account_id}/persons/{person_id}'
             },
             'list': {
+                arguments: {
+                    created: 'datefilter'
+                },
                 path: '/accounts'
             },
             'listCapabilities': {
@@ -58,13 +85,37 @@ component {
                 path: '/accounts/{account_id}/capabilities/{capability_id}'
             },
             'retrieveExternalAccount': {
-                path: '/accounts/{account_id}/external_accounts/{source_id}'
+                path: '/accounts/{account_id}/external_accounts/{external_account_id}'
             },
             'retrievePerson': {
                 path: '/accounts/{account_id}/persons/{person_id}'
             },
             'update': {
                 arguments: {
+                    business_profile: {
+                        monthly_estimated_revenue: {
+                            amount: 'currency',
+                            currency: 'iso_currency_code'
+                        }
+                    },
+                    company: {
+                        ownership_declaration: {
+                            date: 'timestamp'
+                        }
+                    },
+                    default_currency: 'iso_currency_code',
+                    settings: {
+                        card_issuing: {
+                            tos_acceptance: {
+                                date: 'timestamp'
+                            }
+                        },
+                        treasury: {
+                            tos_acceptance: {
+                                date: 'timestamp'
+                            }
+                        }
+                    },
                     tos_acceptance: {
                         date: 'timestamp'
                     }
@@ -78,7 +129,7 @@ component {
             },
             'updateExternalAccount': {
                 httpMethod: 'post',
-                path: '/accounts/{account_id}/external_accounts/{source_id}'
+                path: '/accounts/{account_id}/external_accounts/{external_account_id}'
             },
             'updatePerson': {
                 httpMethod: 'post',

@@ -4,7 +4,14 @@ component {
         methods: {
             'create': {
                 arguments: {
-                    authorization_controls: {
+                    individual: {
+                        card_issuing: {
+                            user_terms_acceptance: {
+                                date: 'timestamp'
+                            }
+                        }
+                    },
+                    spending_controls: {
                         spending_limits: {
                             amount: 'currency'
                         }
@@ -24,7 +31,14 @@ component {
             },
             'update': {
                 arguments: {
-                    authorization_controls: {
+                    individual: {
+                        card_issuing: {
+                            user_terms_acceptance: {
+                                date: 'timestamp'
+                            }
+                        }
+                    },
+                    spending_controls: {
                         spending_limits: {
                             amount: 'currency'
                         }

@@ -17,28 +17,24 @@ component {
                         add_invoice_items: {
                             price_data: {
                                 currency: 'iso_currency_code',
-                                unit_amount: 'currency',
-                                unit_amount_decimal: 'currency'
+                                unit_amount: 'currency'
                             }
                         },
                         billing_thresholds: {
                             amount_gte: 'currency'
                         },
+                        currency: 'iso_currency_code',
                         end_date: 'timestamp',
                         items: {
+                            billing_thresholds: {
+                                usage_gte: 'currency'
+                            },
                             price_data: {
                                 currency: 'iso_currency_code',
-                                unit_amount: 'currency',
-                                unit_amount_decimal: 'currency'
+                                unit_amount: 'currency'
                             }
                         },
-                        plans: {
-                            price_data: {
-                                currency: 'iso_currency_code',
-                                unit_amount: 'currency',
-                                unit_amount_decimal: 'currency'
-                            }
-                        },
+                        iterations: 'timestamp',
                         trial_end: 'timestamp'
                     },
                     start_date: 'timestamp'
@@ -73,8 +69,7 @@ component {
                         add_invoice_items: {
                             price_data: {
                                 currency: 'iso_currency_code',
-                                unit_amount: 'currency',
-                                unit_amount_decimal: 'currency'
+                                unit_amount: 'currency'
                             }
                         },
                         billing_thresholds: {
