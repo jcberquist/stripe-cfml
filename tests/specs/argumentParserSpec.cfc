@@ -115,6 +115,12 @@ component extends=testbox.system.BaseSpec {
         } );
 
         describe( 'The parseSimpleValue() method', function() {
+            it( 'converts booleans to string true/false value', function() {
+                var value = javacast( 'boolean', 1 );
+                var parsed = argumentParser.parseSimpleValue( value, 'boolean' );
+                expect( compare( parsed, 'true' ) ).toBe( 0 );
+            } );
+
             it( 'converts cfml dates to unix timestamps', function() {
                 var datetime = now();
                 datetime.setTime( javacast( 'long', '1521518884000' ) );

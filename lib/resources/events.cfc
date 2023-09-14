@@ -4,7 +4,8 @@ component {
         methods: {
             'list': {
                 arguments: {
-                    created: 'datefilter'
+                    created: 'datefilter',
+                    delivery_success: 'boolean'
                 },
                 path: '/events'
             },

@@ -4,7 +4,8 @@ component {
         methods: {
             'create': {
                 arguments: {
-                    balance: 'currency'
+                    balance: 'currency',
+                    validate: 'boolean'
                 },
                 httpMethod: 'post',
                 path: '/customers'
@@ -25,6 +26,9 @@ component {
                 path: '/customers/{customer_id}/funding_instructions'
             },
             'createSource': {
+                arguments: {
+                    validate: 'boolean'
+                },
                 httpMethod: 'post',
                 path: '/customers/{customer_id}/sources'
             },
@@ -95,7 +99,8 @@ component {
             },
             'update': {
                 arguments: {
-                    balance: 'currency'
+                    balance: 'currency',
+                    validate: 'boolean'
                 },
                 httpMethod: 'post',
                 path: '/customers/{customer_id}'

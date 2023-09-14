@@ -16,6 +16,9 @@ component {
                 path: '/disputes/{dispute_id}'
             },
             'update': {
+                arguments: {
+                    submit: 'boolean'
+                },
                 httpMethod: 'post',
                 path: '/disputes/{dispute_id}'
             }

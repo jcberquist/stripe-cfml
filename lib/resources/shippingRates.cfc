@@ -14,6 +14,7 @@ component {
             },
             'list': {
                 arguments: {
+                    active: 'boolean',
                     created: 'datefilter'
                 },
                 path: '/shipping_rates'
@@ -22,6 +23,9 @@ component {
                 path: '/shipping_rates/{shipping_rate_id}'
             },
             'update': {
+                arguments: {
+                    active: 'boolean'
+                },
                 httpMethod: 'post',
                 path: '/shipping_rates/{shipping_rate_id}'
             }

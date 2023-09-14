@@ -20,6 +20,7 @@ component {
             'processPaymentIntent': {
                 arguments: {
                     process_config: {
+                        skip_tipping: 'boolean',
                         tipping: {
                             amount_eligible: 'currency'
                         }
@@ -29,12 +30,17 @@ component {
                 path: '/terminal/readers/{reader_id}/process_payment_intent'
             },
             'processSetupIntent': {
+                arguments: {
+                    customer_consent_collected: 'boolean'
+                },
                 httpMethod: 'post',
                 path: '/terminal/readers/{reader_id}/process_setup_intent'
             },
             'refundPayment': {
                 arguments: {
-                    amount: 'currency'
+                    amount: 'currency',
+                    refund_application_fee: 'boolean',
+                    reverse_transfer: 'boolean'
                 },
                 httpMethod: 'post',
                 path: '/terminal/readers/{reader_id}/refund_payment'

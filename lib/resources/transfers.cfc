@@ -12,7 +12,8 @@ component {
             },
             'createReversal': {
                 arguments: {
-                    amount: 'currency'
+                    amount: 'currency',
+                    refund_application_fee: 'boolean'
                 },
                 httpMethod: 'post',
                 path: '/transfers/{transfer_id}/reversals'

@@ -4,10 +4,12 @@ component {
         methods: {
             'create': {
                 arguments: {
+                    active: 'boolean',
                     default_price_data: {
                         currency: 'iso_currency_code',
                         unit_amount: 'currency'
-                    }
+                    },
+                    shippable: 'boolean'
                 },
                 httpMethod: 'post',
                 path: '/products'
@@ -18,7 +20,9 @@ component {
             },
             'list': {
                 arguments: {
-                    created: 'datefilter'
+                    active: 'boolean',
+                    created: 'datefilter',
+                    shippable: 'boolean'
                 },
                 path: '/products'
             },
@@ -29,6 +33,10 @@ component {
                 path: '/products/search'
             },
             'update': {
+                arguments: {
+                    active: 'boolean',
+                    shippable: 'boolean'
+                },
                 httpMethod: 'post',
                 path: '/products/{product_id}'
             }

@@ -4,8 +4,10 @@ component {
         methods: {
             'create': {
                 arguments: {
+                    active: 'boolean',
                     expires_at: 'timestamp',
                     restrictions: {
+                        first_time_transaction: 'boolean',
                         minimum_amount: 'currency',
                         minimum_amount_currency: 'iso_currency_code'
                     }
@@ -15,6 +17,7 @@ component {
             },
             'list': {
                 arguments: {
+                    active: 'boolean',
                     created: 'datefilter'
                 },
                 path: '/promotion_codes'
@@ -23,6 +26,9 @@ component {
                 path: '/promotion_codes/{promotion_code_id}'
             },
             'update': {
+                arguments: {
+                    active: 'boolean'
+                },
                 httpMethod: 'post',
                 path: '/promotion_codes/{promotion_code_id}'
             }

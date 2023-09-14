@@ -11,7 +11,8 @@ component {
             },
             'list': {
                 arguments: {
-                    created: 'datefilter'
+                    created: 'datefilter',
+                    expired: 'boolean'
                 },
                 path: '/file_links'
             },

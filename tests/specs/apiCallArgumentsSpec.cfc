@@ -110,6 +110,18 @@ component extends=testbox.system.BaseSpec {
                     stripe.customers.updateSource( customer_id = 'customer_id', source_id = { } );
                 } ).toThrow( 'StripeValidationException', exceptionRegex );
             } );
+
+            it( 'supports truthy boolean arguments', function() {
+                var res = stripe.paymentIntents.create( {
+                    'amount': 1400,
+                    'currency': 'usd',
+                    'automatic_payment_methods': {
+                        'enabled': javacast( 'boolean', 1 )
+                    }
+                } );
+                var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
+                expect( httpRequest.body ).toBe( 'amount=1400&automatic_payment_methods%5Benabled%5D=true&currency=usd' );
+            } );
         } );
 
         describe( 'The stripe.accounts.retrieve() method', function() {

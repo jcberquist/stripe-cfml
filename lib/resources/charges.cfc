@@ -19,6 +19,7 @@ component {
                     amount: 'currency',
                     application_fee: 'currency',
                     application_fee_amount: 'currency',
+                    capture: 'boolean',
                     currency: 'iso_currency_code',
                     destination: {
                         amount: 'currency'

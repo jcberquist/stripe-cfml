@@ -25,6 +25,7 @@ component {
             },
             'delete': {
                 arguments: {
+                    clear_usage: 'boolean',
                     proration_date: 'timestamp'
                 },
                 httpMethod: 'delete',
@@ -44,6 +45,7 @@ component {
                     billing_thresholds: {
                         usage_gte: 'currency'
                     },
+                    off_session: 'boolean',
                     price_data: {
                         currency: 'iso_currency_code',
                         unit_amount: 'currency'

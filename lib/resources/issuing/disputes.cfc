@@ -8,6 +8,7 @@ component {
                     evidence: {
                         canceled: {
                             canceled_at: 'timestamp',
+                            cancellation_policy_provided: 'boolean',
                             expected_at: 'timestamp',
                             returned_at: 'timestamp'
                         },
@@ -46,6 +47,7 @@ component {
                     evidence: {
                         canceled: {
                             canceled_at: 'timestamp',
+                            cancellation_policy_provided: 'boolean',
                             expected_at: 'timestamp',
                             returned_at: 'timestamp'
                         },

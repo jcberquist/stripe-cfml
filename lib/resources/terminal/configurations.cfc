@@ -71,6 +71,9 @@ component {
                 path: '/terminal/configurations/{configuration_id}'
             },
             'list': {
+                arguments: {
+                    is_account_default: 'boolean'
+                },
                 path: '/terminal/configurations'
             },
             'retrieve': {

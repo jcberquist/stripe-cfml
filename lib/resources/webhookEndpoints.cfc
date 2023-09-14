@@ -3,6 +3,9 @@ component {
     this.metadata = {
         methods: {
             'create': {
+                arguments: {
+                    connect: 'boolean'
+                },
                 httpMethod: 'post',
                 path: '/webhook_endpoints'
             },
@@ -17,6 +20,9 @@ component {
                 path: '/webhook_endpoints/{webhook_endpoint_id}'
             },
             'update': {
+                arguments: {
+                    disabled: 'boolean'
+                },
                 httpMethod: 'post',
                 path: '/webhook_endpoints/{webhook_endpoint_id}'
             }

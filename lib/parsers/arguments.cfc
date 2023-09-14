@@ -113,6 +113,8 @@ component {
 
     private function parseSimpleValue( value, type ) {
         switch ( type ) {
+            case 'boolean':
+                return value ? 'true' : 'false';
             case 'currency':
                 var amount = value;
                 if ( config.get( 'convert_to_cents' ) ) {

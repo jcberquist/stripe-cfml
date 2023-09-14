@@ -4,6 +4,9 @@ component {
         methods: {
             'create': {
                 arguments: {
+                    shipping: {
+                        require_signature: 'boolean'
+                    },
                     spending_controls: {
                         spending_limits: {
                             amount: 'currency'

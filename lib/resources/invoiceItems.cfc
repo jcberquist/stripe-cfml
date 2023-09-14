@@ -6,6 +6,7 @@ component {
                 arguments: {
                     amount: 'currency',
                     currency: 'iso_currency_code',
+                    discountable: 'boolean',
                     period: {
                         end: 'timestamp',
                         start: 'timestamp'
@@ -25,7 +26,8 @@ component {
             },
             'list': {
                 arguments: {
-                    created: 'datefilter'
+                    created: 'datefilter',
+                    pending: 'boolean'
                 },
                 path: '/invoiceitems'
             },
@@ -35,6 +37,7 @@ component {
             'update': {
                 arguments: {
                     amount: 'currency',
+                    discountable: 'boolean',
                     period: {
                         end: 'timestamp',
                         start: 'timestamp'

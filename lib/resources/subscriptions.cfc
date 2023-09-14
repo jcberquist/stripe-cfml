@@ -3,6 +3,10 @@ component {
     this.metadata = {
         methods: {
             'cancel': {
+                arguments: {
+                    invoice_now: 'boolean',
+                    prorate: 'boolean'
+                },
                 httpMethod: 'delete',
                 path: '/subscriptions/{subscription_id}'
             },
@@ -14,12 +18,17 @@ component {
                             unit_amount: 'currency'
                         }
                     },
+                    automatic_tax: {
+                        enabled: 'boolean'
+                    },
                     backdate_start_date: 'timestamp',
                     billing_cycle_anchor: 'timestamp',
                     billing_thresholds: {
-                        amount_gte: 'currency'
+                        amount_gte: 'currency',
+                        reset_billing_cycle_anchor: 'boolean'
                     },
                     cancel_at: 'timestamp',
+                    cancel_at_period_end: 'boolean',
                     currency: 'iso_currency_code',
                     items: {
                         billing_thresholds: {
@@ -30,6 +39,7 @@ component {
                             unit_amount: 'currency'
                         }
                     },
+                    off_session: 'boolean',
                     payment_settings: {
                         payment_method_options: {
                             card: {
@@ -39,7 +49,8 @@ component {
                             }
                         }
                     },
-                    trial_end: 'timestamp'
+                    trial_end: 'timestamp',
+                    trial_from_plan: 'boolean'
                 },
                 httpMethod: 'post',
                 path: '/subscriptions'
@@ -50,6 +61,9 @@ component {
             },
             'list': {
                 arguments: {
+                    automatic_tax: {
+                        enabled: 'boolean'
+                    },
                     created: 'datefilter',
                     current_period_end: 'datefilter',
                     current_period_start: 'datefilter'
@@ -77,19 +91,27 @@ component {
                             unit_amount: 'currency'
                         }
                     },
+                    automatic_tax: {
+                        enabled: 'boolean'
+                    },
                     billing_thresholds: {
-                        amount_gte: 'currency'
+                        amount_gte: 'currency',
+                        reset_billing_cycle_anchor: 'boolean'
                     },
                     cancel_at: 'timestamp',
+                    cancel_at_period_end: 'boolean',
                     items: {
                         billing_thresholds: {
                             usage_gte: 'currency'
                         },
+                        clear_usage: 'boolean',
+                        deleted: 'boolean',
                         price_data: {
                             currency: 'iso_currency_code',
                             unit_amount: 'currency'
                         }
                     },
+                    off_session: 'boolean',
                     pause_collection: {
                         resumes_at: 'timestamp'
                     },
@@ -103,7 +125,8 @@ component {
                         }
                     },
                     proration_date: 'timestamp',
-                    trial_end: 'timestamp'
+                    trial_end: 'timestamp',
+                    trial_from_plan: 'boolean'
                 },
                 httpMethod: 'post',
                 path: '/subscriptions/{subscription_id}'

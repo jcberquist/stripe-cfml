@@ -13,7 +13,13 @@ component {
             'create': {
                 arguments: {
                     application_fee_amount: 'currency',
+                    automatic_tax: {
+                        enabled: 'boolean'
+                    },
                     expires_at: 'timestamp',
+                    from_quote: {
+                        is_revision: 'boolean'
+                    },
                     line_items: {
                         price_data: {
                             currency: 'iso_currency_code',
@@ -57,6 +63,9 @@ component {
             'update': {
                 arguments: {
                     application_fee_amount: 'currency',
+                    automatic_tax: {
+                        enabled: 'boolean'
+                    },
                     expires_at: 'timestamp',
                     line_items: {
                         price_data: {

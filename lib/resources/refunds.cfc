@@ -9,7 +9,9 @@ component {
             'create': {
                 arguments: {
                     amount: 'currency',
-                    currency: 'iso_currency_code'
+                    currency: 'iso_currency_code',
+                    refund_application_fee: 'boolean',
+                    reverse_transfer: 'boolean'
                 },
                 httpMethod: 'post',
                 path: '/refunds'
