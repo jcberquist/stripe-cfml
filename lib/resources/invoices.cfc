@@ -125,7 +125,6 @@ component {
             'update': {
                 arguments: {
                     application_fee_amount: 'currency',
-                    days_until_due: 'timestamp',
                     due_date: 'timestamp',
                     effective_at: 'timestamp',
                     shipping_cost: {

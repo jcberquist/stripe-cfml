@@ -78,6 +78,9 @@ component {
             'retrieveCashBalance': {
                 path: '/customers/{customer_id}/cash_balance'
             },
+            'retrieveCashBalanceTransaction': {
+                path: '/customers/{customer_id}/cash_balance_transactions/{cash_balance_transaction_id}'
+            },
             'retrievePaymentMethod': {
                 path: '/customers/{customer_id}/payment_methods/{payment_method_id}'
             },

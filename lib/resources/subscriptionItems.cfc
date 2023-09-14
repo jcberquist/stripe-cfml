@@ -41,6 +41,13 @@ component {
             },
             'update': {
                 arguments: {
+                    billing_thresholds: {
+                        usage_gte: 'currency'
+                    },
+                    price_data: {
+                        currency: 'iso_currency_code',
+                        unit_amount: 'currency'
+                    },
                     proration_date: 'timestamp'
                 },
                 httpMethod: 'post',

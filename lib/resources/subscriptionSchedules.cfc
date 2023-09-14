@@ -34,7 +34,6 @@ component {
                                 unit_amount: 'currency'
                             }
                         },
-                        iterations: 'timestamp',
                         trial_end: 'timestamp'
                     },
                     start_date: 'timestamp'
@@ -75,24 +74,20 @@ component {
                         billing_thresholds: {
                             amount_gte: 'currency'
                         },
+                        currency: 'iso_currency_code',
                         end_date: 'timestamp',
                         items: {
+                            billing_thresholds: {
+                                usage_gte: 'currency'
+                            },
                             price_data: {
                                 currency: 'iso_currency_code',
-                                unit_amount: 'currency',
-                                unit_amount_decimal: 'currency'
+                                unit_amount: 'currency'
                             }
                         },
-                        plans: {
-                            price_data: {
-                                currency: 'iso_currency_code',
-                                unit_amount: 'currency',
-                                unit_amount_decimal: 'currency'
-                            }
-                        },
+                        start_date: 'timestamp',
                         trial_end: 'timestamp'
-                    },
-                    start_date: 'timestamp'
+                    }
                 },
                 httpMethod: 'post',
                 path: '/subscription_schedules/{subscription_schedule_id}'
