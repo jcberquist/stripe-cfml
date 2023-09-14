@@ -8,6 +8,12 @@ For documentation on which arguments can be passed to each method please see the
 stripe.accountLinks.create();
 ```
 
+## stripe.accountSessions
+
+```cfc
+stripe.accountSessions.create();
+```
+
 ## stripe.accounts
 
 ```cfc
@@ -16,7 +22,7 @@ stripe.accounts.createExternalAccount(account_id);
 stripe.accounts.createLoginLink(account_id);
 stripe.accounts.createPerson(account_id);
 stripe.accounts.delete(account_id);
-stripe.accounts.deleteExternalAccount(account_id, source_id);
+stripe.accounts.deleteExternalAccount(account_id, external_account_id);
 stripe.accounts.deletePerson(account_id, person_id);
 stripe.accounts.list();
 stripe.accounts.listCapabilities(account_id);
@@ -26,11 +32,11 @@ stripe.accounts.reject(account_id);
 stripe.accounts.retrieve();
 stripe.accounts.retrieve(account_id);
 stripe.accounts.retrieveCapability(account_id, capability_id);
-stripe.accounts.retrieveExternalAccount(account_id, source_id);
+stripe.accounts.retrieveExternalAccount(account_id, external_account_id);
 stripe.accounts.retrievePerson(account_id, person_id);
 stripe.accounts.update(account_id);
 stripe.accounts.updateCapability(account_id, capability_id);
-stripe.accounts.updateExternalAccount(account_id, source_id);
+stripe.accounts.updateExternalAccount(account_id, external_account_id);
 stripe.accounts.updatePerson(account_id, person_id);
 ```
 
@@ -38,9 +44,9 @@ stripe.accounts.updatePerson(account_id, person_id);
 
 ```cfc
 stripe.applePayDomains.create();
-stripe.applePayDomains.delete(apple_pay_domain_id);
+stripe.applePayDomains.delete(domain_id);
 stripe.applePayDomains.list();
-stripe.applePayDomains.retrieve(apple_pay_domain_id);
+stripe.applePayDomains.retrieve(domain_id);
 ```
 
 ## stripe.applicationFees
@@ -50,8 +56,17 @@ stripe.applicationFees.createRefund(application_fee_id);
 stripe.applicationFees.list();
 stripe.applicationFees.listRefunds(application_fee_id);
 stripe.applicationFees.retrieve(application_fee_id);
-stripe.applicationFees.retrieveRefund(application_fee_id, fee_refund_id);
-stripe.applicationFees.updateRefund(application_fee_id, fee_refund_id);
+stripe.applicationFees.retrieveRefund(application_fee_id, refund_id);
+stripe.applicationFees.updateRefund(application_fee_id, refund_id);
+```
+
+## stripe.apps.secrets
+
+```cfc
+stripe.apps.secrets.create();
+stripe.apps.secrets.deleteWhere();
+stripe.apps.secrets.find();
+stripe.apps.secrets.list();
 ```
 
 ## stripe.balance
@@ -147,18 +162,20 @@ stripe.customers.deleteSource(customer_id, source_id);
 stripe.customers.deleteTaxId(customer_id, tax_id);
 stripe.customers.list();
 stripe.customers.listBalanceTransactions(customer_id);
+stripe.customers.listCashBalanceTransactions(customer_id);
 stripe.customers.listPaymentMethods(customer_id);
 stripe.customers.listSources(customer_id);
 stripe.customers.listTaxIds(customer_id);
 stripe.customers.retrieve(customer_id);
-stripe.customers.retrieveBalanceTransaction(customer_id, customer_balance_transaction_id);
+stripe.customers.retrieveBalanceTransaction(customer_id, balance_transaction_id);
 stripe.customers.retrieveCashBalance(customer_id);
+stripe.customers.retrieveCashBalanceTransaction(customer_id, cash_balance_transaction_id);
 stripe.customers.retrievePaymentMethod(customer_id, payment_method_id);
 stripe.customers.retrieveSource(customer_id, source_id);
 stripe.customers.retrieveTaxId(customer_id, tax_id);
 stripe.customers.search();
 stripe.customers.update(customer_id);
-stripe.customers.updateBalanceTransaction(customer_id, customer_balance_transaction_id);
+stripe.customers.updateBalanceTransaction(customer_id, balance_transaction_id);
 stripe.customers.updateCashBalance(customer_id);
 stripe.customers.updateSource(customer_id, source_id);
 stripe.customers.verifySource(customer_id, source_id);
@@ -219,6 +236,23 @@ stripe.files.list();
 stripe.files.retrieve(file_id);
 ```
 
+## stripe.financialConnections.accounts
+
+```cfc
+stripe.financialConnections.accounts.disconnect(account_id);
+stripe.financialConnections.accounts.list();
+stripe.financialConnections.accounts.listOwners(account_id);
+stripe.financialConnections.accounts.refresh(account_id);
+stripe.financialConnections.accounts.retrieve(account_id);
+```
+
+## stripe.financialConnections.sessions
+
+```cfc
+stripe.financialConnections.sessions.create();
+stripe.financialConnections.sessions.retrieve(session_id);
+```
+
 ## stripe.identity.verificationIntents
 
 Identity beta 3 and earlier.
@@ -239,8 +273,6 @@ stripe.identity.verificationReports.retrieve(verification_report_id);
 ```
 
 ## stripe.identity.verificationSessions
-
-Identity beta 4 and later.
 
 ```cfc
 stripe.identity.verificationSessions.cancel(verification_session_id);
@@ -269,7 +301,7 @@ stripe.invoices.delete(invoice_id);
 stripe.invoices.finalizeInvoice(invoice_id);
 stripe.invoices.list();
 stripe.invoices.listLineItems(invoice_id);
-stripe.invoices.listUpcomingLineItems();
+stripe.invoices.listUpcomingLines();
 stripe.invoices.markUncollectible(invoice_id);
 stripe.invoices.pay(invoice_id);
 stripe.invoices.retrieve(invoice_id);
@@ -312,7 +344,6 @@ stripe.issuing.cardholders.update(cardholder_id);
 stripe.issuing.cards.create();
 stripe.issuing.cards.list();
 stripe.issuing.cards.retrieve(card_id);
-stripe.issuing.cards.retrieveDetails(card_id);
 stripe.issuing.cards.update(card_id);
 ```
 
@@ -374,6 +405,26 @@ stripe.paymentIntents.retrieve(payment_intent_id);
 stripe.paymentIntents.search();
 stripe.paymentIntents.update(payment_intent_id);
 stripe.paymentIntents.verifyMicrodeposits(payment_intent_id);
+```
+
+## stripe.paymentLinks
+
+```cfc
+stripe.paymentLinks.create();
+stripe.paymentLinks.list();
+stripe.paymentLinks.listLineItems(payment_link_id);
+stripe.paymentLinks.retrieve(payment_link_id);
+stripe.paymentLinks.update(payment_link_id);
+```
+
+## stripe.paymentMethodDomains
+
+```cfc
+stripe.paymentMethodDomains.create();
+stripe.paymentMethodDomains.list();
+stripe.paymentMethodDomains.retrieve(payment_method_domain_id);
+stripe.paymentMethodDomains.update(payment_method_domain_id);
+stripe.paymentMethodDomains.validate(payment_method_domain_id);
 ```
 
 ## stripe.paymentMethods
@@ -530,6 +581,15 @@ stripe.setupIntents.update(setup_intent_id);
 stripe.setupIntents.verifyMicrodeposits(setup_intent_id);
 ```
 
+## stripe.shippingRates
+
+```cfc
+stripe.shippingRates.create();
+stripe.shippingRates.list();
+stripe.shippingRates.retrieve(shipping_rate_id);
+stripe.shippingRates.update(shipping_rate_id);
+```
+
 ## stripe.sigma.scheduledQueryRuns
 
 ```cfc
@@ -583,13 +643,37 @@ stripe.subscriptionSchedules.update(subscription_schedule_id);
 ## stripe.subscriptions
 
 ```cfc
+stripe.subscriptions.cancel(subscription_id);
 stripe.subscriptions.create();
-stripe.subscriptions.delete(subscription_id);
 stripe.subscriptions.deleteDiscount(subscription_id);
 stripe.subscriptions.list();
+stripe.subscriptions.resume(subscription_id);
 stripe.subscriptions.retrieve(subscription_id);
 stripe.subscriptions.search();
 stripe.subscriptions.update(subscription_id);
+```
+
+## stripe.tax.calculations
+
+```cfc
+stripe.tax.calculations.create();
+stripe.tax.calculations.listLineItems(calculation_id);
+```
+
+## stripe.tax.settings
+
+```cfc
+stripe.tax.settings.retrieve();
+stripe.tax.settings.update();
+```
+
+## stripe.tax.transactions
+
+```cfc
+stripe.tax.transactions.createFromCalculation();
+stripe.tax.transactions.createReversal();
+stripe.tax.transactions.listLineItems(transaction_id);
+stripe.tax.transactions.retrieve(transaction_id);
 ```
 
 ## stripe.taxCodes
@@ -606,6 +690,16 @@ stripe.taxRates.create();
 stripe.taxRates.list();
 stripe.taxRates.retrieve(tax_rate_id);
 stripe.taxRates.update(tax_rate_id);
+```
+
+## stripe.terminal.configurations
+
+```cfc
+stripe.terminal.configurations.create();
+stripe.terminal.configurations.delete(configuration_id);
+stripe.terminal.configurations.list();
+stripe.terminal.configurations.retrieve(configuration_id);
+stripe.terminal.configurations.update(configuration_id);
 ```
 
 ## stripe.terminal.connectionTokens
@@ -633,19 +727,83 @@ stripe.terminal.readers.delete(reader_id);
 stripe.terminal.readers.list();
 stripe.terminal.readers.processPaymentIntent(reader_id);
 stripe.terminal.readers.processSetupIntent(reader_id);
+stripe.terminal.readers.refundPayment(reader_id);
 stripe.terminal.readers.retrieve(reader_id);
 stripe.terminal.readers.setReaderDisplay(reader_id);
 stripe.terminal.readers.update(reader_id);
 ```
 
+## stripe.testHelpers.customers
+
+```cfc
+stripe.testHelpers.customers.fundCashBalance(customer_id);
+```
+
+## stripe.testHelpers.issuing.cards
+
+```cfc
+stripe.testHelpers.issuing.cards.deliverCard(card_id);
+stripe.testHelpers.issuing.cards.failCard(card_id);
+stripe.testHelpers.issuing.cards.returnCard(card_id);
+stripe.testHelpers.issuing.cards.shipCard(card_id);
+```
+
+## stripe.testHelpers.refunds
+
+```cfc
+stripe.testHelpers.refunds.expire(refund_id);
+```
+
+## stripe.testHelpers.terminal.readers
+
+```cfc
+stripe.testHelpers.terminal.readers.presentPaymentMethod(reader_id);
+```
+
 ## stripe.testHelpers.testClocks
 
 ```cfc
+stripe.testHelpers.testClocks.advance(test_clock_id);
 stripe.testHelpers.testClocks.create();
-stripe.testHelpers.testClocks.delete(clock_id);
+stripe.testHelpers.testClocks.delete(test_clock_id);
 stripe.testHelpers.testClocks.list();
-stripe.testHelpers.testClocks.retrieve(clock_id);
-stripe.testHelpers.testClocks.advance(clock_id);
+stripe.testHelpers.testClocks.retrieve(test_clock_id);
+```
+
+## stripe.testHelpers.treasury.inboundTransfers
+
+```cfc
+stripe.testHelpers.treasury.inboundTransfers.fail(inbound_transfer_id);
+stripe.testHelpers.treasury.inboundTransfers.returnInboundTransfer(inbound_transfer_id);
+stripe.testHelpers.treasury.inboundTransfers.succeed(inbound_transfer_id);
+```
+
+## stripe.testHelpers.treasury.outboundPayments
+
+```cfc
+stripe.testHelpers.treasury.outboundPayments.fail(outbound_payment_id);
+stripe.testHelpers.treasury.outboundPayments.post(outbound_payment_id);
+stripe.testHelpers.treasury.outboundPayments.returnOutboundPayment(outbound_payment_id);
+```
+
+## stripe.testHelpers.treasury.outboundTransfers
+
+```cfc
+stripe.testHelpers.treasury.outboundTransfers.fail(outbound_transfer_id);
+stripe.testHelpers.treasury.outboundTransfers.post(outbound_transfer_id);
+stripe.testHelpers.treasury.outboundTransfers.returnOutboundTransfer(outbound_transfer_id);
+```
+
+## stripe.testHelpers.treasury.receivedCredits
+
+```cfc
+stripe.testHelpers.treasury.receivedCredits.create();
+```
+
+## stripe.testHelpers.treasury.receivedDebits
+
+```cfc
+stripe.testHelpers.treasury.receivedDebits.create();
 ```
 
 ## stripe.tokens
@@ -673,9 +831,91 @@ stripe.transfers.createReversal(transfer_id);
 stripe.transfers.list();
 stripe.transfers.listReversals(transfer_id);
 stripe.transfers.retrieve(transfer_id);
-stripe.transfers.retrieveReversal(transfer_id, transfer_reversal_id);
+stripe.transfers.retrieveReversal(transfer_id, reversal_id);
 stripe.transfers.update(transfer_id);
-stripe.transfers.updateReversal(transfer_id, transfer_reversal_id);
+stripe.transfers.updateReversal(transfer_id, reversal_id);
+```
+
+## stripe.treasury.creditReversals
+
+```cfc
+stripe.treasury.creditReversals.create();
+stripe.treasury.creditReversals.list();
+stripe.treasury.creditReversals.retrieve(credit_reversal_id);
+```
+
+## stripe.treasury.debitReversals
+
+```cfc
+stripe.treasury.debitReversals.create();
+stripe.treasury.debitReversals.list();
+stripe.treasury.debitReversals.retrieve(debit_reversal_id);
+```
+
+## stripe.treasury.financialAccounts
+
+```cfc
+stripe.treasury.financialAccounts.create();
+stripe.treasury.financialAccounts.list();
+stripe.treasury.financialAccounts.retrieve(financial_account_id);
+stripe.treasury.financialAccounts.retrieveFeatures(financial_account_id);
+stripe.treasury.financialAccounts.update(financial_account_id);
+stripe.treasury.financialAccounts.updateFeatures(financial_account_id);
+```
+
+## stripe.treasury.inboundTransfers
+
+```cfc
+stripe.treasury.inboundTransfers.cancel(inbound_transfer_id);
+stripe.treasury.inboundTransfers.create();
+stripe.treasury.inboundTransfers.list();
+stripe.treasury.inboundTransfers.retrieve(inbound_transfer_id);
+```
+
+## stripe.treasury.outboundPayments
+
+```cfc
+stripe.treasury.outboundPayments.cancel(outbound_payment_id);
+stripe.treasury.outboundPayments.create();
+stripe.treasury.outboundPayments.list();
+stripe.treasury.outboundPayments.retrieve(outbound_payment_id);
+```
+
+## stripe.treasury.outboundTransfers
+
+```cfc
+stripe.treasury.outboundTransfers.cancel(outbound_transfer_id);
+stripe.treasury.outboundTransfers.create();
+stripe.treasury.outboundTransfers.list();
+stripe.treasury.outboundTransfers.retrieve(outbound_transfer_id);
+```
+
+## stripe.treasury.receivedCredits
+
+```cfc
+stripe.treasury.receivedCredits.list();
+stripe.treasury.receivedCredits.retrieve(received_credit_id);
+```
+
+## stripe.treasury.receivedDebits
+
+```cfc
+stripe.treasury.receivedDebits.list();
+stripe.treasury.receivedDebits.retrieve(received_debit_id);
+```
+
+## stripe.treasury.transactionEntries
+
+```cfc
+stripe.treasury.transactionEntries.list();
+stripe.treasury.transactionEntries.retrieve(transaction_entry_id);
+```
+
+## stripe.treasury.transactions
+
+```cfc
+stripe.treasury.transactions.list();
+stripe.treasury.transactions.retrieve(transaction_id);
 ```
 
 ## stripe.usageRecordSummaries
