@@ -1,5 +1,6 @@
 {
     "amount": "currency",
+    "amount_excluding_tax": "currency",
     "discount_amounts": {
         "amount": "currency"
     },
@@ -8,6 +9,7 @@
         "start": "datetime"
     },
     "tax_amounts": {
-        "amount": "currency"
+        "amount": "currency",
+        "taxable_amount": "currency"
     }
 }

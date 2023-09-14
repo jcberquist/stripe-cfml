@@ -1,11 +1,13 @@
 {
     "amount": "currency",
+    "amount_excluding_tax": "currency",
+    "discount_amount": "currency",
     "discount_amounts": {
         "amount": "currency"
     },
     "tax_amounts": {
-        "amount": "currency"
+        "amount": "currency",
+        "taxable_amount": "currency"
     },
-    "unit_amount": "currency",
-    "unit_amount_decimal": "currency"
+    "unit_amount": "currency"
 }

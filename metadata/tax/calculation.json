@@ -1,0 +1,19 @@
+{
+    "amount_total": "currency",
+    "expires_at": "datetime",
+    "shipping_cost": {
+        "amount": "currency",
+        "amount_tax": "currency",
+        "tax_breakdown": {
+            "amount": "currency",
+            "taxable_amount": "currency"
+        }
+    },
+    "tax_amount_exclusive": "currency",
+    "tax_amount_inclusive": "currency",
+    "tax_breakdown": {
+        "amount": "currency",
+        "taxable_amount": "currency"
+    },
+    "tax_date": "datetime"
+}

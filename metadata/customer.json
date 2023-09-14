@@ -1,4 +1,4 @@
 {
-    "amount": "currency",
+    "balance": "currency",
     "created": "datetime"
 }

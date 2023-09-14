@@ -1,0 +1,12 @@
+{
+    "balance": {
+        "as_of": "datetime"
+    },
+    "balance_refresh": {
+        "last_attempted_at": "datetime"
+    },
+    "created": "datetime",
+    "ownership_refresh": {
+        "last_attempted_at": "datetime"
+    }
+}

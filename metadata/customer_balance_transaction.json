@@ -1,4 +1,5 @@
 {
     "amount": "currency",
-    "created": "datetime"
+    "created": "datetime",
+    "ending_balance": "currency"
 }

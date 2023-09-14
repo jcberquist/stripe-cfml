@@ -1,10 +1,13 @@
 {
+    "amount_discount": "currency",
     "amount_subtotal": "currency",
+    "amount_tax": "currency",
     "amount_total": "currency",
     "discounts": {
         "amount": "currency"
     },
     "taxes": {
-        "amount": "currency"
+        "amount": "currency",
+        "taxable_amount": "currency"
     }
 }

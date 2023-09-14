@@ -1,0 +1,5 @@
+{
+    "created": "datetime",
+    "deletes_after": "datetime",
+    "frozen_time": "datetime"
+}

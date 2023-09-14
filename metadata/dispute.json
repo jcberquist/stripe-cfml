@@ -2,6 +2,6 @@
     "amount": "currency",
     "created": "datetime",
     "evidence_details": {
-        "due_by": "timestamp"
+        "due_by": "datetime"
     }
 }

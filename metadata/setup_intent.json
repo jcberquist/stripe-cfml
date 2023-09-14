@@ -1,0 +1,22 @@
+{
+    "created": "datetime",
+    "next_action": {
+        "cashapp_handle_redirect_or_display_qr_code": {
+            "qr_code": {
+                "expires_at": "datetime"
+            }
+        },
+        "verify_with_microdeposits": {
+            "arrival_date": "datetime"
+        }
+    },
+    "payment_method_options": {
+        "card": {
+            "mandate_options": {
+                "amount": "currency",
+                "end_date": "datetime",
+                "start_date": "datetime"
+            }
+        }
+    }
+}

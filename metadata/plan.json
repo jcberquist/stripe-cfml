@@ -1,4 +1,8 @@
 {
     "amount": "currency",
-    "created": "datetime"
+    "created": "datetime",
+    "tiers": {
+        "flat_amount": "currency",
+        "unit_amount": "currency"
+    }
 }

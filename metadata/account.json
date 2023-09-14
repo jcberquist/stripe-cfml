@@ -1,9 +1,22 @@
 {
+    "business_profile": {
+        "monthly_estimated_revenue": {
+            "amount": "currency"
+        }
+    },
+    "company": {
+        "ownership_declaration": {
+            "date": "datetime"
+        }
+    },
     "created": "datetime",
+    "future_requirements": {
+        "current_deadline": "datetime"
+    },
+    "requirements": {
+        "current_deadline": "datetime"
+    },
     "tos_acceptance": {
         "date": "datetime"
-    },
-    "verification": {
-        "due_by": "datetime"
     }
 }

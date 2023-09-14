@@ -1,9 +1,11 @@
 {
-    "authorization_controls": {
-        "max_amount": "currency",
+    "created": "datetime",
+    "shipping": {
+        "eta": "datetime"
+    },
+    "spending_controls": {
         "spending_limits": {
             "amount": "currency"
         }
-    },
-    "created": "datetime"
+    }
 }
