@@ -3,10 +3,15 @@
         "as_of": "datetime"
     },
     "balance_refresh": {
-        "last_attempted_at": "datetime"
+        "last_attempted_at": "datetime",
+        "next_refresh_available_at": "datetime"
     },
     "created": "datetime",
     "ownership_refresh": {
         "last_attempted_at": "datetime"
+    },
+    "transaction_refresh": {
+        "last_attempted_at": "datetime",
+        "next_refresh_available_at": "datetime"
     }
 }

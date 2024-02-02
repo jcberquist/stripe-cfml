@@ -5,9 +5,11 @@ component {
             'create': {
                 arguments: {
                     business_profile: {
+                        annual_revenue: {
+                            amount: 'currency'
+                        },
                         monthly_estimated_revenue: {
-                            amount: 'currency',
-                            currency: 'iso_currency_code'
+                            amount: 'currency'
                         }
                     },
                     capabilities: {
@@ -95,10 +97,16 @@ component {
                         promptpay_payments: {
                             requested: 'boolean'
                         },
+                        revolut_pay_payments: {
+                            requested: 'boolean'
+                        },
                         sepa_debit_payments: {
                             requested: 'boolean'
                         },
                         sofort_payments: {
+                            requested: 'boolean'
+                        },
+                        swish_payments: {
                             requested: 'boolean'
                         },
                         'tax_reporting_us_1099_k': {
@@ -128,7 +136,13 @@ component {
                             date: 'timestamp'
                         }
                     },
-                    default_currency: 'iso_currency_code',
+                    individual: {
+                        relationship: {
+                            director: 'boolean',
+                            executive: 'boolean',
+                            owner: 'boolean'
+                        }
+                    },
                     settings: {
                         card_issuing: {
                             tos_acceptance: {
@@ -170,9 +184,15 @@ component {
             },
             'createPerson': {
                 arguments: {
+                    additional_tos_acceptances: {
+                        account: {
+                            date: 'timestamp'
+                        }
+                    },
                     relationship: {
                         director: 'boolean',
                         executive: 'boolean',
+                        legal_guardian: 'boolean',
                         owner: 'boolean',
                         representative: 'boolean'
                     }
@@ -209,6 +229,7 @@ component {
                     relationship: {
                         director: 'boolean',
                         executive: 'boolean',
+                        legal_guardian: 'boolean',
                         owner: 'boolean',
                         representative: 'boolean'
                     }
@@ -234,9 +255,11 @@ component {
             'update': {
                 arguments: {
                     business_profile: {
+                        annual_revenue: {
+                            amount: 'currency'
+                        },
                         monthly_estimated_revenue: {
-                            amount: 'currency',
-                            currency: 'iso_currency_code'
+                            amount: 'currency'
                         }
                     },
                     capabilities: {
@@ -324,10 +347,16 @@ component {
                         promptpay_payments: {
                             requested: 'boolean'
                         },
+                        revolut_pay_payments: {
+                            requested: 'boolean'
+                        },
                         sepa_debit_payments: {
                             requested: 'boolean'
                         },
                         sofort_payments: {
+                            requested: 'boolean'
+                        },
+                        swish_payments: {
                             requested: 'boolean'
                         },
                         'tax_reporting_us_1099_k': {
@@ -355,6 +384,13 @@ component {
                         owners_provided: 'boolean',
                         ownership_declaration: {
                             date: 'timestamp'
+                        }
+                    },
+                    individual: {
+                        relationship: {
+                            director: 'boolean',
+                            executive: 'boolean',
+                            owner: 'boolean'
                         }
                     },
                     settings: {
@@ -401,9 +437,15 @@ component {
             },
             'updatePerson': {
                 arguments: {
+                    additional_tos_acceptances: {
+                        account: {
+                            date: 'timestamp'
+                        }
+                    },
                     relationship: {
                         director: 'boolean',
                         executive: 'boolean',
+                        legal_guardian: 'boolean',
                         owner: 'boolean',
                         representative: 'boolean'
                     }

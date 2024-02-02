@@ -1,5 +1,8 @@
 {
     "business_profile": {
+        "annual_revenue": {
+            "amount": "currency"
+        },
         "monthly_estimated_revenue": {
             "amount": "currency"
         }

@@ -18,6 +18,7 @@
             "cashback_amount": "currency"
         },
         "created": "datetime",
-        "merchant_amount": "currency"
+        "merchant_amount": "currency",
+        "requested_at": "datetime"
     }
 }

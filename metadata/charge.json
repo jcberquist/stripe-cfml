@@ -12,9 +12,19 @@
         "shipping_amount": "currency"
     },
     "payment_method_details": {
+        "card": {
+            "amount_authorized": "currency",
+            "capture_before": "datetime",
+            "overcapture": {
+                "maximum_amount_capturable": "currency"
+            }
+        },
         "card_present": {
             "amount_authorized": "currency",
-            "capture_before": "datetime"
+            "capture_before": "datetime",
+            "offline": {
+                "stored_at": "datetime"
+            }
         }
     },
     "transfer_data": {

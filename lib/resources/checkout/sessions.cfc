@@ -77,6 +77,9 @@ component {
                 path: '/checkout/sessions/{session_id}/expire'
             },
             'list': {
+                arguments: {
+                    created: 'datefilter'
+                },
                 path: '/checkout/sessions'
             },
             'listLineItems': {

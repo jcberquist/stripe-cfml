@@ -6,10 +6,14 @@ component {
                 arguments: {
                     created: 'datefilter'
                 },
-                path: '/radar/early_fraud_warnings'
+                path: '/issuing/tokens'
             },
             'retrieve': {
-                path: '/radar/early_fraud_warnings/{early_fraud_warning_id}'
+                path: '/issuing/tokens/{token_id}'
+            },
+            'update': {
+                httpMethod: 'post',
+                path: '/issuing/tokens/{token_id}'
             }
         }
     };

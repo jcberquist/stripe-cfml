@@ -4,12 +4,12 @@ component {
         methods: {
             'list': {
                 arguments: {
-                    created: 'datefilter'
+                    transacted_at: 'datefilter'
                 },
-                path: '/radar/early_fraud_warnings'
+                path: '/financial_connections/transactions'
             },
             'retrieve': {
-                path: '/radar/early_fraud_warnings/{early_fraud_warning_id}'
+                path: '/financial_connections/transactions/{transaction_id}'
             }
         }
     };

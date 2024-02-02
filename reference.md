@@ -118,6 +118,30 @@ stripe.checkout.sessions.listLineItems(session_id);
 stripe.checkout.sessions.retrieve(session_id);
 ```
 
+## stripe.climate.orders
+
+```cfc
+stripe.climate.orders.cancel(order_id);
+stripe.climate.orders.create();
+stripe.climate.orders.list();
+stripe.climate.orders.retrieve(order_id);
+stripe.climate.orders.update(order_id);
+```
+
+## stripe.climate.products
+
+```cfc
+stripe.climate.products.list();
+stripe.climate.products.retrieve(product_id);
+```
+
+## stripe.climate.suppliers
+
+```cfc
+stripe.climate.suppliers.list();
+stripe.climate.suppliers.retrieve(supplier_id);
+```
+
 ## stripe.countrySpecs
 
 ```cfc
@@ -146,6 +170,12 @@ stripe.creditNotes.preview();
 stripe.creditNotes.retrieve(credit_note_id);
 stripe.creditNotes.update(credit_note_id);
 stripe.creditNotes.voidCreditNote(credit_note_id);
+```
+
+## stripe.customerSessions
+
+```cfc
+stripe.customerSessions.create();
 ```
 
 ## stripe.customers
@@ -244,6 +274,8 @@ stripe.financialConnections.accounts.list();
 stripe.financialConnections.accounts.listOwners(account_id);
 stripe.financialConnections.accounts.refresh(account_id);
 stripe.financialConnections.accounts.retrieve(account_id);
+stripe.financialConnections.accounts.subscribe(account_id);
+stripe.financialConnections.accounts.unsubscribe(account_id);
 ```
 
 ## stripe.financialConnections.sessions
@@ -251,6 +283,13 @@ stripe.financialConnections.accounts.retrieve(account_id);
 ```cfc
 stripe.financialConnections.sessions.create();
 stripe.financialConnections.sessions.retrieve(session_id);
+```
+
+## stripe.financialConnections.transactions
+
+```cfc
+stripe.financialConnections.transactions.list();
+stripe.financialConnections.transactions.retrieve(transaction_id);
 ```
 
 ## stripe.identity.verificationIntents
@@ -357,6 +396,14 @@ stripe.issuing.disputes.submit(dispute_id);
 stripe.issuing.disputes.update(dispute_id);
 ```
 
+## stripe.issuing.tokens
+
+```cfc
+stripe.issuing.tokens.list();
+stripe.issuing.tokens.retrieve(token_id);
+stripe.issuing.tokens.update(token_id);
+```
+
 ## stripe.issuing.transactions
 
 ```cfc
@@ -415,6 +462,15 @@ stripe.paymentLinks.list();
 stripe.paymentLinks.listLineItems(payment_link_id);
 stripe.paymentLinks.retrieve(payment_link_id);
 stripe.paymentLinks.update(payment_link_id);
+```
+
+## stripe.paymentMethodConfigurations
+
+```cfc
+stripe.paymentMethodConfigurations.create();
+stripe.paymentMethodConfigurations.list();
+stripe.paymentMethodConfigurations.retrieve(payment_method_configuration_id);
+stripe.paymentMethodConfigurations.update(payment_method_configuration_id);
 ```
 
 ## stripe.paymentMethodDomains
@@ -660,6 +716,15 @@ stripe.tax.calculations.create();
 stripe.tax.calculations.listLineItems(calculation_id);
 ```
 
+## stripe.tax.registrations
+
+```cfc
+stripe.tax.registrations.create();
+stripe.tax.registrations.list();
+stripe.tax.registrations.retrieve(registration_id);
+stripe.tax.registrations.update(registration_id);
+```
+
 ## stripe.tax.settings
 
 ```cfc
@@ -739,6 +804,16 @@ stripe.terminal.readers.update(reader_id);
 stripe.testHelpers.customers.fundCashBalance(customer_id);
 ```
 
+## stripe.testHelpers.issuing.authorizations
+
+```cfc
+stripe.testHelpers.issuing.authorizations.capture(authorization_id);
+stripe.testHelpers.issuing.authorizations.create();
+stripe.testHelpers.issuing.authorizations.expire(authorization_id);
+stripe.testHelpers.issuing.authorizations.increment(authorization_id);
+stripe.testHelpers.issuing.authorizations.reverse(authorization_id);
+```
+
 ## stripe.testHelpers.issuing.cards
 
 ```cfc
@@ -746,6 +821,14 @@ stripe.testHelpers.issuing.cards.deliverCard(card_id);
 stripe.testHelpers.issuing.cards.failCard(card_id);
 stripe.testHelpers.issuing.cards.returnCard(card_id);
 stripe.testHelpers.issuing.cards.shipCard(card_id);
+```
+
+## stripe.testHelpers.issuing.transactions
+
+```cfc
+stripe.testHelpers.issuing.transactions.createForceCapture();
+stripe.testHelpers.issuing.transactions.createUnlinkedRefund();
+stripe.testHelpers.issuing.transactions.refund(transaction_id);
 ```
 
 ## stripe.testHelpers.refunds

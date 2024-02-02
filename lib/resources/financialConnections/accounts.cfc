@@ -18,6 +18,14 @@ component {
             },
             'retrieve': {
                 path: '/financial_connections/accounts/{account_id}'
+            },
+            'subscribe': {
+                httpMethod: 'post',
+                path: '/financial_connections/accounts/{account_id}/subscribe'
+            },
+            'unsubscribe': {
+                httpMethod: 'post',
+                path: '/financial_connections/accounts/{account_id}/unsubscribe'
             }
         }
     };

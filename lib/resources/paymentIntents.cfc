@@ -18,6 +18,7 @@ component {
                 arguments: {
                     amount_to_capture: 'currency',
                     application_fee_amount: 'currency',
+                    final_capture: 'boolean',
                     transfer_data: {
                         amount: 'currency'
                     }

@@ -9,6 +9,10 @@ component {
                     effective_at: 'timestamp',
                     lines: {
                         amount: 'currency',
+                        tax_amounts: {
+                            amount: 'currency',
+                            taxable_amount: 'currency'
+                        },
                         unit_amount: 'currency'
                     },
                     out_of_band_amount: 'currency',
@@ -30,6 +34,10 @@ component {
                     effective_at: 'timestamp',
                     lines: {
                         amount: 'currency',
+                        tax_amounts: {
+                            amount: 'currency',
+                            taxable_amount: 'currency'
+                        },
                         unit_amount: 'currency'
                     },
                     out_of_band_amount: 'currency',
@@ -44,6 +52,10 @@ component {
                     effective_at: 'timestamp',
                     lines: {
                         amount: 'currency',
+                        tax_amounts: {
+                            amount: 'currency',
+                            taxable_amount: 'currency'
+                        },
                         unit_amount: 'currency'
                     },
                     out_of_band_amount: 'currency',

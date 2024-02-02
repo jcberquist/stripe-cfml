@@ -4,6 +4,9 @@ component {
         methods: {
             'create': {
                 arguments: {
+                    offline: {
+                        enabled: 'boolean'
+                    },
                     tipping: {
                         aud: {
                             fixed_amounts: 'currency',
@@ -81,6 +84,9 @@ component {
             },
             'update': {
                 arguments: {
+                    offline: {
+                        enabled: 'boolean'
+                    },
                     tipping: {
                         aud: {
                             fixed_amounts: 'currency',
