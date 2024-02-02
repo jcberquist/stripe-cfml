@@ -357,7 +357,6 @@ component {
                             date: 'timestamp'
                         }
                     },
-                    default_currency: 'iso_currency_code',
                     settings: {
                         card_issuing: {
                             tos_acceptance: {
