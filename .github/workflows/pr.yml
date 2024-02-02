@@ -9,16 +9,17 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        cfengine: ["lucee@5", "adobe@2016", "adobe@2018"]
+        cfengine: ["lucee@5", "adobe@2016", "adobe@2018", "adobe@2021"]
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.2.0
         with:
           path: stripecfml # checkout as stripecfml because that is how the module installs
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v1.4.3
+        uses: actions/setup-java@v3.9.0
         with:
+          distribution: 'zulu'
           java-version: 11 
 
       - name: Set Up CommandBox
@@ -38,12 +39,13 @@ jobs:
     name: Format
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.2.0
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v1.4.3
+        uses: actions/setup-java@v3.9.0
         with:
-          java-version: 11 
+          distribution: 'zulu'
+          java-version: 11
 
       - name: Set Up CommandBox
         uses: elpete/setup-commandbox@v1.0.0
