@@ -143,7 +143,6 @@ component {
                 arguments: {
                     amount: 'currency',
                     application_fee_amount: 'currency',
-                    currency: 'iso_currency_code',
                     payment_method_options: {
                         card: {
                             installments: {
