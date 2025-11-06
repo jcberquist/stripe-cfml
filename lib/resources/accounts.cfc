@@ -1,7 +1,13 @@
+/**
+* https://docs.stripe.com/api/accounts
+*/
 component {
 
     this.metadata = {
         methods: {
+            /**
+            * https://docs.stripe.com/api/accounts/create
+            */
             'create': {
                 arguments: {
                     business_profile: {
@@ -171,6 +177,9 @@ component {
                 httpMethod: 'post',
                 path: '/accounts'
             },
+            /**
+            * https://docs.stripe.com/api/external_account_bank_accounts/create
+            */
             'createExternalAccount': {
                 arguments: {
                     default_for_currency: 'boolean'
@@ -178,10 +187,16 @@ component {
                 httpMethod: 'post',
                 path: '/accounts/{account_id}/external_accounts'
             },
+            /**
+            * https://docs.stripe.com/api/login_links/create
+            */
             'createLoginLink': {
                 httpMethod: 'post',
                 path: '/accounts/{account_id}/login_links'
             },
+            /**
+            * https://docs.stripe.com/api/persons/create
+            */
             'createPerson': {
                 arguments: {
                     additional_tos_acceptances: {
@@ -200,30 +215,51 @@ component {
                 httpMethod: 'post',
                 path: '/accounts/{account_id}/persons'
             },
+            /**
+            * https://docs.stripe.com/api/accounts/delete
+            */
             'delete': {
                 httpMethod: 'delete',
                 path: '/accounts/{account_id}'
             },
+            /**
+            * https://docs.stripe.com/api/external_account_bank_accounts/delete
+            */
             'deleteExternalAccount': {
                 httpMethod: 'delete',
                 path: '/accounts/{account_id}/external_accounts/{external_account_id}'
             },
+            /**
+            * https://docs.stripe.com/api/persons/delete
+            */
             'deletePerson': {
                 httpMethod: 'delete',
                 path: '/accounts/{account_id}/persons/{person_id}'
             },
+            /**
+            * https://docs.stripe.com/api/accounts/list
+            */
             'list': {
                 arguments: {
                     created: 'datefilter'
                 },
                 path: '/accounts'
             },
+            /**
+            * https://docs.stripe.com/api/capabilities/list
+            */
             'listCapabilities': {
                 path: '/accounts/{account_id}/capabilities'
             },
+            /**
+            * https://docs.stripe.com/api/external_account_bank_accounts/list
+            */
             'listExternalAccounts': {
                 path: '/accounts/{account_id}/external_accounts'
             },
+            /**
+            * https://docs.stripe.com/api/persons/list
+            */
             'listPersons': {
                 arguments: {
                     relationship: {
@@ -236,22 +272,40 @@ component {
                 },
                 path: '/accounts/{account_id}/persons'
             },
+            /**
+            * https://docs.stripe.com/api/accounts/reject
+            */
             'reject': {
                 httpMethod: 'post',
                 path: '/accounts/{account_id}/reject'
             },
+            /**
+            * https://docs.stripe.com/api/accounts/retrieve
+            */
             'retrieve': {
                 path: '/accounts/{account_id}'
             },
+            /**
+            * https://docs.stripe.com/api/capabilities/retrieve
+            */
             'retrieveCapability': {
                 path: '/accounts/{account_id}/capabilities/{capability_id}'
             },
+            /**
+            * https://docs.stripe.com/api/external_account_bank_accounts/retrieve
+            */
             'retrieveExternalAccount': {
                 path: '/accounts/{account_id}/external_accounts/{external_account_id}'
             },
+            /**
+            * https://docs.stripe.com/api/persons/retrieve
+            */
             'retrievePerson': {
                 path: '/accounts/{account_id}/persons/{person_id}'
             },
+            /**
+            * https://docs.stripe.com/api/accounts/update
+            */
             'update': {
                 arguments: {
                     business_profile: {
@@ -421,6 +475,9 @@ component {
                 httpMethod: 'post',
                 path: '/accounts/{account_id}'
             },
+            /**
+            * https://docs.stripe.com/api/capabilities/update
+            */
             'updateCapability': {
                 arguments: {
                     requested: 'boolean'
@@ -428,6 +485,9 @@ component {
                 httpMethod: 'post',
                 path: '/accounts/{account_id}/capabilities/{capability_id}'
             },
+            /**
+            * https://docs.stripe.com/api/external_account_bank_accounts/update
+            */
             'updateExternalAccount': {
                 arguments: {
                     default_for_currency: 'boolean'
@@ -435,6 +495,9 @@ component {
                 httpMethod: 'post',
                 path: '/accounts/{account_id}/external_accounts/{external_account_id}'
             },
+            /**
+            * https://docs.stripe.com/api/persons/update
+            */
             'updatePerson': {
                 arguments: {
                     additional_tos_acceptances: {

@@ -1,7 +1,13 @@
+/**
+* https://docs.stripe.com/api/account_sessions
+*/
 component {
 
     this.metadata = {
         methods: {
+            /**
+            * https://docs.stripe.com/api/account_sessions/create
+            */
             'create': {
                 arguments: {
                     components: {
