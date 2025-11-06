@@ -1,9 +1,11 @@
 component {
 
-    public struct function init( string apiKey = '', struct config = { } ) {
+    public struct function init( string apiKey = '', struct config = { }, string basePath = '' ) {
         var configObj = new lib.config( apiKey, config );
-        var basePath = getDirectoryFromPath( getMetadata( this ).path ).replace( '\', '/', 'all' );
-        variables.objectMetadata = loadMetadata( basePath );
+        if( arguments.basePath == "" ) {
+            arguments.basePath = getDirectoryFromPath( getMetadata( this ).path ).replace( '\', '/', 'all' );
+        }
+        variables.objectMetadata = loadMetadata( arguments.basePath );
         variables.httpService = new lib.httpService();
         variables.parsers = {
             arguments: new lib.parsers.arguments( configObj ),
@@ -11,7 +13,7 @@ component {
             response: new lib.parsers.response( configObj, objectMetadata )
         };
 
-        for ( var resourcePath in listResources( basePath ) ) {
+        for ( var resourcePath in listResources( arguments.basePath ) ) {
             var resourceParts = resourcePath.listFirst( '.' ).listToArray( '/' );
             var parent = this;
             for ( var i = 1; i < resourceParts.len(); i++ ) {
