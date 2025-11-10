@@ -1,0 +1,26 @@
+{
+    "methods": {
+        "activate": {
+            "httpMethod": "post",
+            "path": "/v1/billing/alerts/{alert_id}/activate"
+        },
+        "archive": {
+            "httpMethod": "post",
+            "path": "/v1/billing/alerts/{alert_id}/archive"
+        },
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/billing/alerts"
+        },
+        "deactivate": {
+            "httpMethod": "post",
+            "path": "/v1/billing/alerts/{alert_id}/deactivate"
+        },
+        "list": {
+            "path": "/v1/billing/alerts"
+        },
+        "retrieve": {
+            "path": "/v1/billing/alerts/{alert_id}"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "name":"stripecfml-boxlang",
+    "app":{
+        "cfengine":"boxlang@1.7"
+    },
+    "web":{
+        "http":{
+            "port":"45002"
+        }
+    },
+    "scripts":{
+        "onServerInitialInstall":"install bx-compat-cfml"
+    }
+}

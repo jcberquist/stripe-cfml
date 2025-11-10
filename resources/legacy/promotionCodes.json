@@ -1,0 +1,34 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "active": "boolean",
+                "expires_at": "timestamp",
+                "restrictions": {
+                    "first_time_transaction": "boolean",
+                    "minimum_amount": "currency",
+                    "minimum_amount_currency": "iso_currency_code"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/promotion_codes"
+        },
+        "list": {
+            "arguments": {
+                "active": "boolean",
+                "created": "datefilter"
+            },
+            "path": "/v1/promotion_codes"
+        },
+        "retrieve": {
+            "path": "/v1/promotion_codes/{promotion_code_id}"
+        },
+        "update": {
+            "arguments": {
+                "active": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/promotion_codes/{promotion_code_id}"
+        }
+    }
+}

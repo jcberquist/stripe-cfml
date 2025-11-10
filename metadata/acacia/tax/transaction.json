@@ -1,0 +1,13 @@
+{
+    "created": "datetime",
+    "posted_at": "datetime",
+    "shipping_cost": {
+        "amount": "currency",
+        "amount_tax": "currency",
+        "tax_breakdown": {
+            "amount": "currency",
+            "taxable_amount": "currency"
+        }
+    },
+    "tax_date": "datetime"
+}

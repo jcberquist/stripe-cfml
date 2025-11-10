@@ -1,0 +1,16 @@
+{
+    "methods": {
+        "activate": {
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/personalization_designs/{personalization_design_id}/activate"
+        },
+        "deactivate": {
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/personalization_designs/{personalization_design_id}/deactivate"
+        },
+        "reject": {
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/personalization_designs/{personalization_design_id}/reject"
+        }
+    }
+}

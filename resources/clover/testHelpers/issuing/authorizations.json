@@ -1,0 +1,70 @@
+{
+    "methods": {
+        "capture": {
+            "arguments": {
+                "capture_amount": "currency",
+                "close_authorization": "boolean",
+                "purchase_details": {
+                    "flight": {
+                        "departure_at": "timestamp",
+                        "refundable": "boolean",
+                        "segments": {
+                            "stopover_allowed": "boolean"
+                        }
+                    },
+                    "lodging": {
+                        "check_in_at": "timestamp"
+                    }
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/authorizations/{authorization_id}/capture"
+        },
+        "create": {
+            "arguments": {
+                "amount": "currency",
+                "amount_details": {
+                    "cashback_amount": "currency"
+                },
+                "currency": "iso_currency_code",
+                "is_amount_controllable": "boolean",
+                "merchant_amount": "currency"
+            },
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/authorizations"
+        },
+        "expire": {
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/authorizations/{authorization_id}/expire"
+        },
+        "finalizeAmount": {
+            "arguments": {
+                "final_amount": "currency"
+            },
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/authorizations/{authorization_id}/finalize_amount"
+        },
+        "increment": {
+            "arguments": {
+                "increment_amount": "currency",
+                "is_amount_controllable": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/authorizations/{authorization_id}/increment"
+        },
+        "respond": {
+            "arguments": {
+                "confirmed": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/authorizations/{authorization_id}/fraud_challenges/respond"
+        },
+        "reverse": {
+            "arguments": {
+                "reverse_amount": "currency"
+            },
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/authorizations/{authorization_id}/reverse"
+        }
+    }
+}

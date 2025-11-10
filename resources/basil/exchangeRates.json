@@ -1,0 +1,10 @@
+{
+    "methods": {
+        "list": {
+            "path": "/v1/exchange_rates"
+        },
+        "retrieve": {
+            "path": "/v1/exchange_rates/{exchange_rate_id}"
+        }
+    }
+}

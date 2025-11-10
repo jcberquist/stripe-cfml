@@ -25,7 +25,7 @@ component {
             if ( variables.log.canDebug() ) {
                 variables.log.debug( 'Announcing #stateName# Stripe event', stripeEvent );
             }
-            variables.interceptorService.processState( stateName, stripeEvent );
+            variables.interceptorService.announce( stateName, stripeEvent );
 
             variables.log.debug( 'Event announced.  Returning 200 to Stripe.' );
             event.renderData(

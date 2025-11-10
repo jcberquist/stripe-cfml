@@ -122,8 +122,7 @@ component extends=testbox.system.BaseSpec {
             } );
 
             it( 'converts cfml dates to unix timestamps', function() {
-                var datetime = now();
-                datetime.setTime( javacast( 'long', '1521518884000' ) );
+                var datetime = parseDateTime( '2018-03-20T04:08:04Z' );
                 var parsed = argumentParser.parseSimpleValue( datetime, 'timestamp' );
                 expect( parsed ).toBe( 1521518884 );
             } );

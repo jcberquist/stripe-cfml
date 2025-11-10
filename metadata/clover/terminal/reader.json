@@ -1,0 +1,31 @@
+{
+    "action": {
+        "collect_payment_method": {
+            "collect_config": {
+                "tipping": {
+                    "amount_eligible": "currency"
+                }
+            }
+        },
+        "process_payment_intent": {
+            "process_config": {
+                "tipping": {
+                    "amount_eligible": "currency"
+                }
+            }
+        },
+        "refund_payment": {
+            "amount": "currency"
+        },
+        "set_reader_display": {
+            "cart": {
+                "line_items": {
+                    "amount": "currency"
+                },
+                "tax": "currency",
+                "total": "currency"
+            }
+        }
+    },
+    "last_seen_at": "datetime"
+}

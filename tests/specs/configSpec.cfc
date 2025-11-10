@@ -4,7 +4,8 @@ component extends=testbox.system.BaseSpec {
         describe( 'The config struct passed at initialization', function() {
             var config = {
                 apiVersion: 'latest',
-                defaultCurrency: 'usd'
+                defaultCurrency: 'usd',
+                resources: [ 'accounts', 'charges' ]
             };
             var stripe = new stripe( 'fake_key', config );
             var httpService = getProperty( stripe, 'httpService' );
@@ -33,6 +34,25 @@ component extends=testbox.system.BaseSpec {
                 expect( httpRequest.headers[ 2 ].value ).toBeWithCase( 'latest' );
             } );
 
+            it( 'sets the major api version from the passed in stripe api version', function() {
+                var _config = {
+                    apiVersion: '2024-06-20',
+                    defaultCurrency: 'usd',
+                    resources: [ 'accounts' ]
+                };
+                var _stripe = new stripe( 'fake_key', _config );
+                var majorApiVersion = _stripe.getConfig().get( 'major_api_version' );
+                expect( majorApiVersion ).toBe( 'legacy' );
+                var _config = {
+                    apiVersion: '2025-08-27.basil',
+                    defaultCurrency: 'usd',
+                    resources: [ 'accounts' ]
+                };
+                var _stripe = new stripe( 'fake_key', _config );
+                var majorApiVersion = _stripe.getConfig().get( 'major_api_version' );
+                expect( majorApiVersion ).toBe( 'basil' );
+            } );
+
             it( 'can supply a default iso currency code to requests that don''t supply it', function() {
                 var res = stripe.charges.create( customer = 'customer_id', amount = 2000 );
                 var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
@@ -49,7 +69,8 @@ component extends=testbox.system.BaseSpec {
         describe( 'The convertToCents setting', function() {
             var config = {
                 defaultCurrency: 'usd',
-                convertToCents: true
+                convertToCents: true,
+                resources: [ 'charges' ]
             };
             var stripe = new stripe( 'fake_key', config );
             var httpService = getProperty( stripe, 'httpService' );

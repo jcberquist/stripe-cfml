@@ -1,0 +1,53 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "amount": "currency",
+                "currency": "iso_currency_code",
+                "discountable": "boolean",
+                "period": {
+                    "end": "timestamp",
+                    "start": "timestamp"
+                },
+                "price_data": {
+                    "currency": "iso_currency_code",
+                    "unit_amount": "currency"
+                },
+                "unit_amount": "currency"
+            },
+            "httpMethod": "post",
+            "path": "/v1/invoiceitems"
+        },
+        "delete": {
+            "httpMethod": "delete",
+            "path": "/v1/invoiceitems/{invoiceitem_id}"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter",
+                "pending": "boolean"
+            },
+            "path": "/v1/invoiceitems"
+        },
+        "retrieve": {
+            "path": "/v1/invoiceitems/{invoiceitem_id}"
+        },
+        "update": {
+            "arguments": {
+                "amount": "currency",
+                "discountable": "boolean",
+                "period": {
+                    "end": "timestamp",
+                    "start": "timestamp"
+                },
+                "price_data": {
+                    "currency": "iso_currency_code",
+                    "unit_amount": "currency"
+                },
+                "unit_amount": "currency"
+            },
+            "httpMethod": "post",
+            "path": "/v1/invoiceitems/{invoiceitem_id}"
+        }
+    }
+}

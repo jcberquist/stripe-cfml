@@ -1,7 +1,9 @@
-component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
+component extends="tests.resources.ModuleIntegrationSpec" {
 
     property name="endpointSecret" inject="coldbox:setting:endpointSecret@stripecfml";
     property name="interceptorService" inject="coldbox:interceptorService";
+
+    variables.appMapping = '/app';
 
     function beforeAll() {
         super.beforeAll();

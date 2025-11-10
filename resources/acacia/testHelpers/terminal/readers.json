@@ -1,0 +1,11 @@
+{
+    "methods": {
+        "presentPaymentMethod": {
+            "arguments": {
+                "amount_tip": "currency"
+            },
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/terminal/readers/{reader_id}/present_payment_method"
+        }
+    }
+}

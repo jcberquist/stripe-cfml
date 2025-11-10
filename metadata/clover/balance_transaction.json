@@ -1,0 +1,10 @@
+{
+    "amount": "currency",
+    "available_on": "datetime",
+    "created": "datetime",
+    "fee": "currency",
+    "fee_details": {
+        "amount": "currency"
+    },
+    "net": "currency"
+}

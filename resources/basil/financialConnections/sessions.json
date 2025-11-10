@@ -1,0 +1,11 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/financial_connections/sessions"
+        },
+        "retrieve": {
+            "path": "/v1/financial_connections/sessions/{session_id}"
+        }
+    }
+}

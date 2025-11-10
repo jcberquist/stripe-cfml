@@ -1,0 +1,17 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/forwarding/requests"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/forwarding/requests"
+        },
+        "retrieve": {
+            "path": "/v1/forwarding/requests/{request_id}"
+        }
+    }
+}

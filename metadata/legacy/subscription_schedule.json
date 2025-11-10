@@ -1,0 +1,23 @@
+{
+    "canceled_at": "datetime",
+    "completed_at": "datetime",
+    "created": "datetime",
+    "current_phase": {
+        "end_date": "datetime",
+        "start_date": "datetime"
+    },
+    "default_settings": {
+        "billing_thresholds": {
+            "amount_gte": "currency"
+        }
+    },
+    "phases": {
+        "billing_thresholds": {
+            "amount_gte": "currency"
+        },
+        "end_date": "datetime",
+        "start_date": "datetime",
+        "trial_end": "datetime"
+    },
+    "released_at": "datetime"
+}

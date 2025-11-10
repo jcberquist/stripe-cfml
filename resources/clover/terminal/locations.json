@@ -1,0 +1,22 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/terminal/locations"
+        },
+        "delete": {
+            "httpMethod": "delete",
+            "path": "/v1/terminal/locations/{location_id}"
+        },
+        "list": {
+            "path": "/v1/terminal/locations"
+        },
+        "retrieve": {
+            "path": "/v1/terminal/locations/{location_id}"
+        },
+        "update": {
+            "httpMethod": "post",
+            "path": "/v1/terminal/locations/{location_id}"
+        }
+    }
+}

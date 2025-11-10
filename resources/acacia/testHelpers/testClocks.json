@@ -1,0 +1,28 @@
+{
+    "methods": {
+        "advance": {
+            "arguments": {
+                "frozen_time": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/test_clocks/{test_clock_id}/advance"
+        },
+        "create": {
+            "arguments": {
+                "frozen_time": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/test_clocks"
+        },
+        "delete": {
+            "httpMethod": "delete",
+            "path": "/v1/test_helpers/test_clocks/{test_clock_id}"
+        },
+        "list": {
+            "path": "/v1/test_helpers/test_clocks"
+        },
+        "retrieve": {
+            "path": "/v1/test_helpers/test_clocks/{test_clock_id}"
+        }
+    }
+}

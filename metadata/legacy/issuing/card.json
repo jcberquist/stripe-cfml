@@ -1,0 +1,11 @@
+{
+    "created": "datetime",
+    "shipping": {
+        "eta": "datetime"
+    },
+    "spending_controls": {
+        "spending_limits": {
+            "amount": "currency"
+        }
+    }
+}

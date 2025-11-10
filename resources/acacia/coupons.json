@@ -1,0 +1,30 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "amount_off": "currency",
+                "currency": "iso_currency_code",
+                "redeem_by": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/coupons"
+        },
+        "delete": {
+            "httpMethod": "delete",
+            "path": "/v1/coupons/{coupon_id}"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/coupons"
+        },
+        "retrieve": {
+            "path": "/v1/coupons/{coupon_id}"
+        },
+        "update": {
+            "httpMethod": "post",
+            "path": "/v1/coupons/{coupon_id}"
+        }
+    }
+}

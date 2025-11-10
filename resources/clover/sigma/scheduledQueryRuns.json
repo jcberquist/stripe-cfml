@@ -1,0 +1,10 @@
+{
+    "methods": {
+        "list": {
+            "path": "/v1/sigma/scheduled_query_runs"
+        },
+        "retrieve": {
+            "path": "/v1/sigma/scheduled_query_runs/{scheduled_query_run_id}"
+        }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "discount_amount": "currency",
+    "tax": {
+        "total_tax_amount": "currency"
+    }
+}

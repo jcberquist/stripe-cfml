@@ -1,0 +1,21 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "components": {
+                    "buy_button": {
+                        "enabled": "boolean"
+                    },
+                    "payment_element": {
+                        "enabled": "boolean"
+                    },
+                    "pricing_table": {
+                        "enabled": "boolean"
+                    }
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/customer_sessions"
+        }
+    }
+}

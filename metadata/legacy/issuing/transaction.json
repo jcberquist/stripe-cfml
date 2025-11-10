@@ -1,0 +1,14 @@
+{
+    "amount": "currency",
+    "amount_details": {
+        "cashback_amount": "currency"
+    },
+    "created": "datetime",
+    "merchant_amount": "currency",
+    "purchase_details": {
+        "receipt": {
+            "total": "currency",
+            "unit_cost": "currency"
+        }
+    }
+}

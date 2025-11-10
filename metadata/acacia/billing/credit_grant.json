@@ -1,0 +1,12 @@
+{
+    "amount": {
+        "monetary": {
+            "value": "currency"
+        }
+    },
+    "created": "datetime",
+    "effective_at": "datetime",
+    "expires_at": "datetime",
+    "updated": "datetime",
+    "voided_at": "datetime"
+}

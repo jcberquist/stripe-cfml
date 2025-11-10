@@ -18,7 +18,9 @@ Once the library has been installed, the core `stripe` component can be instanti
 ```cfc
 stripe = new path.to.stripecfml.stripe(
     apiKey = '',
-    config = {}
+    config = {
+        apiVersion: '2025-10-29.clover'
+    }
 );
 ```
 
@@ -30,7 +32,9 @@ To use the library as a ColdBox Module, add the init arguments to the `moduleSet
 moduleSettings = {
     stripecfml: {
         apiKey: '',
-        config: {}
+        config: {
+            apiVersion: '2025-10-29.clover'
+        }
     }
 }
 ```
@@ -43,19 +47,46 @@ property name="stripe" inject="stripe@stripecfml";
 
 *Note: You can bypass the init arguments altogether and use Java system properties or environment variables to configure stripe-cfml. See [Configuration via environment variables and system properties](#configuration-via-environment-variables-and-system-properties) below.*
 
+## API Version
+
+As of major version 4 of `stripe-cfml`, it is highly recommended that you pass in the API version you intend to use in the config when instantiating `stripe.cfc`. Stripe has moved to major version releases denoted by code names, and they preserve backwards compatibility within updates to each major version. API versions are now specified by a release date, followed by the major version (e.g. `2025-10-29.clover`). To work with this, `stripe-cfml` now bases available methods and object signatures on the Stripe major version. If an API version is not specified, Stripe falls back to the default version set on your account, and that might not line up with the metadata for the latest API version, which is what `stripe-cfml` will fall back on. If you specify an API version that came before the named major versions (e.g. `2024-06-20`) `stripe-cfml` will fall back on the metadata and method signatures belonging to the last release before Stripe moved to the named major versions.
+
+Please see [versioning](https://stripe.com/docs/api#versioning) and [changelog](https://docs.stripe.com/changelog) in the Stripe documentation for more details.
+
 ## Getting Started
 
 ```cfc
 // To charge $20 to a card for which a card token has been created
-charge = stripe.charges.create({amount: 2000, currency: 'usd', source: cardToken});
+paymentIntent = = stripe.paymentIntents.create({
+    amount: 2000,
+    currency: 'usd',
+    payment_method_data: {
+        type: 'card',
+        card: {
+            token: cardToken
+        }
+    },
+    confirm: true
+});
 // OR
-charge = stripe.charges.create(amount = 2000, currency = 'usd', source = cardToken);
+paymentIntent = = stripe.paymentIntents.create(
+    amount = 2000,
+    currency = 'usd',
+    payment_method_data = {
+        type: 'card',
+        card: {
+            token: cardToken
+        }
+    },
+    confirm = true
+);
 
-// charge is a struct which can be inspected for the result of the create charge api call
-writeDump(charge);
+
+// paymentIntent is a struct which can be inspected for the result of the create payment intent api call
+writeDump(paymentIntent);
 ```
 
-**stripe-cfml** is modeled after the official Stripe SDKs. In particular it copies the class and method names used in the Node SDK. The Node examples given in the official Stripe documentation are simply able to be copied and used (with the notable difference that this library does not make use of callbacks - everything is done synchronously). However, since CFML supports named arguments, you can also use named arguments instead of passing the arguments in a single struct.  The following examples are all valid ways of using this library:
+**stripe-cfml** is modeled after the official Stripe SDKs. In particular it copies the class and method names used in the Node SDK. The Node examples given in the official Stripe documentation are simply able to be copied and used (without the async/await approach of that SDK). However, since CFML supports named arguments, you can also use named arguments instead of passing the arguments in a single struct.  The following examples are all valid ways of using this library:
 
 ```cfc
 stripe.customers.updateSource('customer_id', 'source_id', {metadata = {'a': 1}});
@@ -101,15 +132,17 @@ config = {
     apiVersion: '',
     defaultCurrency: '',
     convertTimestamps: true,
-    convertToCents: false
+    convertToCents: false,
+    resources: ['accounts', 'customers', 'paymentIntents']
 }
 stripe = new stripe('stripe_api_key', config);
 ```
 
-- `apiVersion` specifies the version of the Stripe API to use - see [versioning](https://stripe.com/docs/api#versioning) in the documentation. This can also be specified as `stripeVersion`.
+- `apiVersion` specifies the version of the Stripe API to use.
 - `defaultCurrency` specifies the currency to use when making requests (e.g. `usd`) - when it is specified in the config you do not need to specify it when making requests.
 - `convertTimestamps` (default: `true`) - The Stripe API expects all datetimes to be given as Unix timestamps; when this setting is true, `stripe-cfml` converts all CFML date objects passed into methods to UNIX timestamps and converts timestamps in the API responses back to CFML date objects.
 - `convertToCents` (default: `false`) - when this is set to `true` all currency amounts passed in are multiplied by 100 and all amounts in the responses are divided by 100. (This enables one to work in dollar amounts instead of cents, if so desired.)
+- `resources` (default: `[]`) - By default, `stripe-cfml` will load all available api resources. If you know you only intend to interact with a handful of resources (e.g. `customers` and `paymentIntents`), then you can specify those in the `resources` array, and only for those resources will the JSON source files be loaded and parsed, and `lib.apiResource` components instantiated.
 
 ### Configuration via environment variables and system properties
 

@@ -1,0 +1,455 @@
+{
+    "methods": {
+        "addLines": {
+            "arguments": {
+                "lines": {
+                    "amount": "currency",
+                    "discountable": "boolean",
+                    "period": {
+                        "end": "timestamp",
+                        "start": "timestamp"
+                    },
+                    "price_data": {
+                        "currency": "iso_currency_code",
+                        "unit_amount": "currency"
+                    },
+                    "tax_amounts": {
+                        "amount": "currency",
+                        "tax_rate_data": {
+                            "inclusive": "boolean"
+                        },
+                        "taxable_amount": "currency"
+                    }
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/invoices/{invoice_id}/add_lines"
+        },
+        "create": {
+            "arguments": {
+                "application_fee_amount": "currency",
+                "auto_advance": "boolean",
+                "automatic_tax": {
+                    "enabled": "boolean"
+                },
+                "automatically_finalizes_at": "timestamp",
+                "due_date": "timestamp",
+                "effective_at": "timestamp",
+                "payment_settings": {
+                    "payment_method_options": {
+                        "card": {
+                            "installments": {
+                                "enabled": "boolean"
+                            }
+                        }
+                    }
+                },
+                "shipping_cost": {
+                    "shipping_rate_data": {
+                        "fixed_amount": {
+                            "amount": "currency",
+                            "currency": "iso_currency_code"
+                        }
+                    }
+                },
+                "transfer_data": {
+                    "amount": "currency"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/invoices"
+        },
+        "createPreview": {
+            "arguments": {
+                "automatic_tax": {
+                    "enabled": "boolean"
+                },
+                "invoice_items": {
+                    "amount": "currency",
+                    "currency": "iso_currency_code",
+                    "discountable": "boolean",
+                    "period": {
+                        "end": "timestamp",
+                        "start": "timestamp"
+                    },
+                    "price_data": {
+                        "currency": "iso_currency_code",
+                        "unit_amount": "currency"
+                    },
+                    "unit_amount": "currency"
+                },
+                "schedule_details": {
+                    "phases": {
+                        "add_invoice_items": {
+                            "price_data": {
+                                "currency": "iso_currency_code",
+                                "unit_amount": "currency"
+                            }
+                        },
+                        "automatic_tax": {
+                            "enabled": "boolean"
+                        },
+                        "billing_thresholds": {
+                            "amount_gte": "currency",
+                            "reset_billing_cycle_anchor": "boolean"
+                        },
+                        "currency": "iso_currency_code",
+                        "end_date": "timestamp",
+                        "items": {
+                            "billing_thresholds": {
+                                "usage_gte": "currency"
+                            },
+                            "price_data": {
+                                "currency": "iso_currency_code",
+                                "unit_amount": "currency"
+                            }
+                        },
+                        "start_date": "timestamp",
+                        "trial": "boolean",
+                        "trial_end": "timestamp"
+                    }
+                },
+                "subscription_details": {
+                    "billing_cycle_anchor": "timestamp",
+                    "cancel_at": "timestamp",
+                    "cancel_at_period_end": "boolean",
+                    "cancel_now": "boolean",
+                    "items": {
+                        "billing_thresholds": {
+                            "usage_gte": "currency"
+                        },
+                        "clear_usage": "boolean",
+                        "deleted": "boolean",
+                        "price_data": {
+                            "currency": "iso_currency_code",
+                            "unit_amount": "currency"
+                        }
+                    },
+                    "proration_date": "timestamp",
+                    "start_date": "timestamp",
+                    "trial_end": "timestamp"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/invoices/create_preview"
+        },
+        "delete": {
+            "httpMethod": "delete",
+            "path": "/v1/invoices/{invoice_id}"
+        },
+        "finalizeInvoice": {
+            "arguments": {
+                "auto_advance": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/invoices/{invoice_id}/finalize"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter",
+                "due_date": "datefilter"
+            },
+            "path": "/v1/invoices"
+        },
+        "listLineItems": {
+            "path": "/v1/invoices/{invoice_id}/lines"
+        },
+        "listUpcomingLines": {
+            "arguments": {
+                "automatic_tax": {
+                    "enabled": "boolean"
+                },
+                "invoice_items": {
+                    "amount": "currency",
+                    "currency": "iso_currency_code",
+                    "discountable": "boolean",
+                    "period": {
+                        "end": "timestamp",
+                        "start": "timestamp"
+                    },
+                    "price_data": {
+                        "currency": "iso_currency_code",
+                        "unit_amount": "currency"
+                    },
+                    "unit_amount": "currency"
+                },
+                "schedule_details": {
+                    "phases": {
+                        "add_invoice_items": {
+                            "price_data": {
+                                "currency": "iso_currency_code",
+                                "unit_amount": "currency"
+                            }
+                        },
+                        "automatic_tax": {
+                            "enabled": "boolean"
+                        },
+                        "billing_thresholds": {
+                            "amount_gte": "currency",
+                            "reset_billing_cycle_anchor": "boolean"
+                        },
+                        "currency": "iso_currency_code",
+                        "end_date": "timestamp",
+                        "items": {
+                            "billing_thresholds": {
+                                "usage_gte": "currency"
+                            },
+                            "price_data": {
+                                "currency": "iso_currency_code",
+                                "unit_amount": "currency"
+                            }
+                        },
+                        "start_date": "timestamp",
+                        "trial": "boolean",
+                        "trial_end": "timestamp"
+                    }
+                },
+                "subscription_billing_cycle_anchor": "timestamp",
+                "subscription_cancel_at": "timestamp",
+                "subscription_cancel_at_period_end": "boolean",
+                "subscription_cancel_now": "boolean",
+                "subscription_details": {
+                    "billing_cycle_anchor": "timestamp",
+                    "cancel_at": "timestamp",
+                    "cancel_at_period_end": "boolean",
+                    "cancel_now": "boolean",
+                    "items": {
+                        "billing_thresholds": {
+                            "usage_gte": "currency"
+                        },
+                        "clear_usage": "boolean",
+                        "deleted": "boolean",
+                        "price_data": {
+                            "currency": "iso_currency_code",
+                            "unit_amount": "currency"
+                        }
+                    },
+                    "proration_date": "timestamp",
+                    "start_date": "timestamp",
+                    "trial_end": "timestamp"
+                },
+                "subscription_items": {
+                    "billing_thresholds": {
+                        "usage_gte": "currency"
+                    },
+                    "clear_usage": "boolean",
+                    "deleted": "boolean",
+                    "price_data": {
+                        "currency": "iso_currency_code",
+                        "unit_amount": "currency"
+                    }
+                },
+                "subscription_proration_date": "timestamp",
+                "subscription_start_date": "timestamp",
+                "subscription_trial_end": "timestamp",
+                "subscription_trial_from_plan": "boolean"
+            },
+            "path": "/v1/invoices/upcoming/lines"
+        },
+        "markUncollectible": {
+            "httpMethod": "post",
+            "path": "/v1/invoices/{invoice_id}/mark_uncollectible"
+        },
+        "pay": {
+            "arguments": {
+                "forgive": "boolean",
+                "off_session": "boolean",
+                "paid_out_of_band": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/invoices/{invoice_id}/pay"
+        },
+        "removeLines": {
+            "httpMethod": "post",
+            "path": "/v1/invoices/{invoice_id}/remove_lines"
+        },
+        "retrieve": {
+            "path": "/v1/invoices/{invoice_id}"
+        },
+        "retrieveUpcoming": {
+            "arguments": {
+                "automatic_tax": {
+                    "enabled": "boolean"
+                },
+                "invoice_items": {
+                    "amount": "currency",
+                    "currency": "iso_currency_code",
+                    "discountable": "boolean",
+                    "period": {
+                        "end": "timestamp",
+                        "start": "timestamp"
+                    },
+                    "price_data": {
+                        "currency": "iso_currency_code",
+                        "unit_amount": "currency"
+                    },
+                    "unit_amount": "currency"
+                },
+                "schedule_details": {
+                    "phases": {
+                        "add_invoice_items": {
+                            "price_data": {
+                                "currency": "iso_currency_code",
+                                "unit_amount": "currency"
+                            }
+                        },
+                        "automatic_tax": {
+                            "enabled": "boolean"
+                        },
+                        "billing_thresholds": {
+                            "amount_gte": "currency",
+                            "reset_billing_cycle_anchor": "boolean"
+                        },
+                        "currency": "iso_currency_code",
+                        "end_date": "timestamp",
+                        "items": {
+                            "billing_thresholds": {
+                                "usage_gte": "currency"
+                            },
+                            "price_data": {
+                                "currency": "iso_currency_code",
+                                "unit_amount": "currency"
+                            }
+                        },
+                        "start_date": "timestamp",
+                        "trial": "boolean",
+                        "trial_end": "timestamp"
+                    }
+                },
+                "subscription_billing_cycle_anchor": "timestamp",
+                "subscription_cancel_at": "timestamp",
+                "subscription_cancel_at_period_end": "boolean",
+                "subscription_cancel_now": "boolean",
+                "subscription_details": {
+                    "billing_cycle_anchor": "timestamp",
+                    "cancel_at": "timestamp",
+                    "cancel_at_period_end": "boolean",
+                    "cancel_now": "boolean",
+                    "items": {
+                        "billing_thresholds": {
+                            "usage_gte": "currency"
+                        },
+                        "clear_usage": "boolean",
+                        "deleted": "boolean",
+                        "price_data": {
+                            "currency": "iso_currency_code",
+                            "unit_amount": "currency"
+                        }
+                    },
+                    "proration_date": "timestamp",
+                    "start_date": "timestamp",
+                    "trial_end": "timestamp"
+                },
+                "subscription_items": {
+                    "billing_thresholds": {
+                        "usage_gte": "currency"
+                    },
+                    "clear_usage": "boolean",
+                    "deleted": "boolean",
+                    "price_data": {
+                        "currency": "iso_currency_code",
+                        "unit_amount": "currency"
+                    }
+                },
+                "subscription_proration_date": "timestamp",
+                "subscription_start_date": "timestamp",
+                "subscription_trial_end": "timestamp",
+                "subscription_trial_from_plan": "boolean"
+            },
+            "path": "/v1/invoices/upcoming"
+        },
+        "search": {
+            "path": "/v1/invoices/search"
+        },
+        "sendInvoice": {
+            "httpMethod": "post",
+            "path": "/v1/invoices/{invoice_id}/send"
+        },
+        "update": {
+            "arguments": {
+                "application_fee_amount": "currency",
+                "auto_advance": "boolean",
+                "automatic_tax": {
+                    "enabled": "boolean"
+                },
+                "automatically_finalizes_at": "timestamp",
+                "due_date": "timestamp",
+                "effective_at": "timestamp",
+                "payment_settings": {
+                    "payment_method_options": {
+                        "card": {
+                            "installments": {
+                                "enabled": "boolean"
+                            }
+                        }
+                    }
+                },
+                "shipping_cost": {
+                    "shipping_rate_data": {
+                        "fixed_amount": {
+                            "amount": "currency",
+                            "currency": "iso_currency_code"
+                        }
+                    }
+                },
+                "transfer_data": {
+                    "amount": "currency"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/invoices/{invoice_id}"
+        },
+        "updateLineItem": {
+            "arguments": {
+                "amount": "currency",
+                "discountable": "boolean",
+                "period": {
+                    "end": "timestamp",
+                    "start": "timestamp"
+                },
+                "price_data": {
+                    "currency": "iso_currency_code",
+                    "unit_amount": "currency"
+                },
+                "tax_amounts": {
+                    "amount": "currency",
+                    "tax_rate_data": {
+                        "inclusive": "boolean"
+                    },
+                    "taxable_amount": "currency"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/invoices/{invoice_id}/lines/{line_id}"
+        },
+        "updateLines": {
+            "arguments": {
+                "lines": {
+                    "amount": "currency",
+                    "discountable": "boolean",
+                    "period": {
+                        "end": "timestamp",
+                        "start": "timestamp"
+                    },
+                    "price_data": {
+                        "currency": "iso_currency_code",
+                        "unit_amount": "currency"
+                    },
+                    "tax_amounts": {
+                        "amount": "currency",
+                        "tax_rate_data": {
+                            "inclusive": "boolean"
+                        },
+                        "taxable_amount": "currency"
+                    }
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/invoices/{invoice_id}/update_lines"
+        },
+        "voidInvoice": {
+            "httpMethod": "post",
+            "path": "/v1/invoices/{invoice_id}/void"
+        }
+    }
+}

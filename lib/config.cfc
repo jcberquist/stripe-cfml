@@ -1,13 +1,17 @@
 component {
 
+    variables.majorApiVersions = [ 'clover', 'basil', 'acacia' ];
+
     variables.settings = {
         api_key: '',
         api_version: '',
+        major_api_version: majorApiVersions[ 1 ],
         convert_timestamps: true,
         convert_to_cents: false,
         default_currency: '',
-        endpoint: 'api.stripe.com/v1',
-        stripe_version: ''
+        host: 'api.stripe.com',
+        stripe_version: '',
+        resources: [ ]
     };
 
     public any function init( string apiKey = '', struct config = { } ) {
@@ -16,6 +20,24 @@ component {
         if ( len( apiKey ) ) {
             settings.api_key = apiKey;
         }
+
+        // resources can be passed in as a list
+        if ( isSimpleValue( settings.resources ) ) {
+            settings.resources = listToArray( settings.resources );
+        }
+
+        // if an api version was set, check for major version
+        if ( len( settings.api_version ) ) {
+            if ( listLen( settings.api_version, '.' ) == 2 ) {
+                var majorVersion = listLast( settings.api_version, '.' );
+                if ( majorApiVersions.find( majorVersion ) ) {
+                    settings.major_api_version = majorVersion;
+                }
+            } else {
+                settings.major_api_version = 'legacy';
+            }
+        }
+
         return this;
     }
 

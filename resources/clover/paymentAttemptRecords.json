@@ -1,0 +1,10 @@
+{
+    "methods": {
+        "list": {
+            "path": "/v1/payment_attempt_records"
+        },
+        "retrieve": {
+            "path": "/v1/payment_attempt_records/{payment_attempt_record_id}"
+        }
+    }
+}

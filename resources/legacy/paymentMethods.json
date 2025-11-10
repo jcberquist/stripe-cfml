@@ -1,0 +1,26 @@
+{
+    "methods": {
+        "attach": {
+            "httpMethod": "post",
+            "path": "/v1/payment_methods/{payment_method_id}/attach"
+        },
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/payment_methods"
+        },
+        "detach": {
+            "httpMethod": "post",
+            "path": "/v1/payment_methods/{payment_method_id}/detach"
+        },
+        "list": {
+            "path": "/v1/payment_methods"
+        },
+        "retrieve": {
+            "path": "/v1/payment_methods/{payment_method_id}"
+        },
+        "update": {
+            "httpMethod": "post",
+            "path": "/v1/payment_methods/{payment_method_id}"
+        }
+    }
+}

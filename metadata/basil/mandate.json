@@ -1,0 +1,8 @@
+{
+    "customer_acceptance": {
+        "accepted_at": "datetime"
+    },
+    "single_use": {
+        "amount": "currency"
+    }
+}

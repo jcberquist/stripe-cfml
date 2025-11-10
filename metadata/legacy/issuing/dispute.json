@@ -1,0 +1,22 @@
+{
+    "amount": "currency",
+    "created": "datetime",
+    "evidence": {
+        "canceled": {
+            "canceled_at": "datetime",
+            "expected_at": "datetime",
+            "returned_at": "datetime"
+        },
+        "merchandise_not_as_described": {
+            "received_at": "datetime",
+            "returned_at": "datetime"
+        },
+        "not_received": {
+            "expected_at": "datetime"
+        },
+        "service_not_as_described": {
+            "canceled_at": "datetime",
+            "received_at": "datetime"
+        }
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "amount": "currency",
+    "created": "datetime",
+    "expected_availability_date": "datetime"
+}

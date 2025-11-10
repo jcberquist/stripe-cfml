@@ -1,0 +1,76 @@
+{
+    "methods": {
+        "reportPayment": {
+            "arguments": {
+                "amount_requested": {
+                    "currency": "iso_currency_code",
+                    "value": "currency"
+                },
+                "failed": {
+                    "failed_at": "timestamp"
+                },
+                "guaranteed": {
+                    "guaranteed_at": "timestamp"
+                },
+                "initiated_at": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/payment_records/report_payment"
+        },
+        "reportPaymentAttempt": {
+            "arguments": {
+                "failed": {
+                    "failed_at": "timestamp"
+                },
+                "guaranteed": {
+                    "guaranteed_at": "timestamp"
+                },
+                "initiated_at": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/payment_records/{payment_record_id}/report_payment_attempt"
+        },
+        "reportPaymentAttemptCanceled": {
+            "arguments": {
+                "canceled_at": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/payment_records/{payment_record_id}/report_payment_attempt_canceled"
+        },
+        "reportPaymentAttemptFailed": {
+            "arguments": {
+                "failed_at": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/payment_records/{payment_record_id}/report_payment_attempt_failed"
+        },
+        "reportPaymentAttemptGuaranteed": {
+            "arguments": {
+                "guaranteed_at": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/payment_records/{payment_record_id}/report_payment_attempt_guaranteed"
+        },
+        "reportPaymentAttemptInformational": {
+            "httpMethod": "post",
+            "path": "/v1/payment_records/{payment_record_id}/report_payment_attempt_informational"
+        },
+        "reportRefund": {
+            "arguments": {
+                "amount": {
+                    "currency": "iso_currency_code",
+                    "value": "currency"
+                },
+                "initiated_at": "timestamp",
+                "refunded": {
+                    "refunded_at": "timestamp"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/payment_records/{payment_record_id}/report_refund"
+        },
+        "retrieve": {
+            "path": "/v1/payment_records/{payment_record_id}"
+        }
+    }
+}

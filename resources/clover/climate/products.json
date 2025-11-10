@@ -1,0 +1,10 @@
+{
+    "methods": {
+        "list": {
+            "path": "/v1/climate/products"
+        },
+        "retrieve": {
+            "path": "/v1/climate/products/{product_id}"
+        }
+    }
+}

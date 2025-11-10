@@ -1,0 +1,10 @@
+{
+    "methods": {
+        "list": {
+            "path": "/v1/invoice_payments"
+        },
+        "retrieve": {
+            "path": "/v1/invoice_payments/{invoice_payment_id}"
+        }
+    }
+}

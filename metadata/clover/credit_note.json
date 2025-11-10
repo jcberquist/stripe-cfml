@@ -1,0 +1,37 @@
+{
+    "amount": "currency",
+    "amount_shipping": "currency",
+    "created": "datetime",
+    "discount_amount": "currency",
+    "discount_amounts": {
+        "amount": "currency"
+    },
+    "effective_at": "datetime",
+    "out_of_band_amount": "currency",
+    "post_payment_amount": "currency",
+    "pre_payment_amount": "currency",
+    "pretax_credit_amounts": {
+        "amount": "currency"
+    },
+    "refunds": {
+        "amount_refunded": "currency"
+    },
+    "shipping_cost": {
+        "amount_subtotal": "currency",
+        "amount_tax": "currency",
+        "amount_total": "currency",
+        "taxes": {
+            "amount": "currency",
+            "taxable_amount": "currency"
+        }
+    },
+    "subtotal": "currency",
+    "subtotal_excluding_tax": "currency",
+    "total": "currency",
+    "total_excluding_tax": "currency",
+    "total_taxes": {
+        "amount": "currency",
+        "taxable_amount": "currency"
+    },
+    "voided_at": "datetime"
+}

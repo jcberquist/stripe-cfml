@@ -1,0 +1,85 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "allow_promotion_codes": "boolean",
+                "application_fee_amount": "currency",
+                "automatic_tax": {
+                    "enabled": "boolean"
+                },
+                "currency": "iso_currency_code",
+                "custom_fields": {
+                    "optional": "boolean"
+                },
+                "invoice_creation": {
+                    "enabled": "boolean"
+                },
+                "line_items": {
+                    "adjustable_quantity": {
+                        "enabled": "boolean"
+                    },
+                    "price_data": {
+                        "currency": "iso_currency_code",
+                        "unit_amount": "currency"
+                    }
+                },
+                "optional_items": {
+                    "adjustable_quantity": {
+                        "enabled": "boolean"
+                    }
+                },
+                "phone_number_collection": {
+                    "enabled": "boolean"
+                },
+                "tax_id_collection": {
+                    "enabled": "boolean"
+                },
+                "transfer_data": {
+                    "amount": "currency"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/payment_links"
+        },
+        "list": {
+            "arguments": {
+                "active": "boolean"
+            },
+            "path": "/v1/payment_links"
+        },
+        "listLineItems": {
+            "path": "/v1/payment_links/{payment_link_id}/line_items"
+        },
+        "retrieve": {
+            "path": "/v1/payment_links/{payment_link_id}"
+        },
+        "update": {
+            "arguments": {
+                "active": "boolean",
+                "allow_promotion_codes": "boolean",
+                "automatic_tax": {
+                    "enabled": "boolean"
+                },
+                "custom_fields": {
+                    "optional": "boolean"
+                },
+                "invoice_creation": {
+                    "enabled": "boolean"
+                },
+                "line_items": {
+                    "adjustable_quantity": {
+                        "enabled": "boolean"
+                    }
+                },
+                "phone_number_collection": {
+                    "enabled": "boolean"
+                },
+                "tax_id_collection": {
+                    "enabled": "boolean"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/payment_links/{payment_link_id}"
+        }
+    }
+}

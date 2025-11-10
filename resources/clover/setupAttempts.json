@@ -1,0 +1,10 @@
+{
+    "methods": {
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/setup_attempts"
+        }
+    }
+}

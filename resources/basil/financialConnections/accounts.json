@@ -1,0 +1,29 @@
+{
+    "methods": {
+        "disconnect": {
+            "httpMethod": "post",
+            "path": "/v1/financial_connections/accounts/{account_id}/disconnect"
+        },
+        "list": {
+            "path": "/v1/financial_connections/accounts"
+        },
+        "listOwners": {
+            "path": "/v1/financial_connections/accounts/{account_id}/owners"
+        },
+        "refresh": {
+            "httpMethod": "post",
+            "path": "/v1/financial_connections/accounts/{account_id}/refresh"
+        },
+        "retrieve": {
+            "path": "/v1/financial_connections/accounts/{account_id}"
+        },
+        "subscribe": {
+            "httpMethod": "post",
+            "path": "/v1/financial_connections/accounts/{account_id}/subscribe"
+        },
+        "unsubscribe": {
+            "httpMethod": "post",
+            "path": "/v1/financial_connections/accounts/{account_id}/unsubscribe"
+        }
+    }
+}

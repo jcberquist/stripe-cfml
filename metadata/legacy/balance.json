@@ -1,0 +1,52 @@
+{
+    "available": {
+        "amount": "currency",
+        "source_types": {
+            "bank_account": "currency",
+            "card": "currency",
+            "fpx": "currency"
+        }
+    },
+    "connect_reserved": {
+        "amount": "currency",
+        "source_types": {
+            "bank_account": "currency",
+            "card": "currency",
+            "fpx": "currency"
+        }
+    },
+    "instant_available": {
+        "amount": "currency",
+        "net_available": {
+            "amount": "currency",
+            "source_types": {
+                "bank_account": "currency",
+                "card": "currency",
+                "fpx": "currency"
+            }
+        },
+        "source_types": {
+            "bank_account": "currency",
+            "card": "currency",
+            "fpx": "currency"
+        }
+    },
+    "issuing": {
+        "available": {
+            "amount": "currency",
+            "source_types": {
+                "bank_account": "currency",
+                "card": "currency",
+                "fpx": "currency"
+            }
+        }
+    },
+    "pending": {
+        "amount": "currency",
+        "source_types": {
+            "bank_account": "currency",
+            "card": "currency",
+            "fpx": "currency"
+        }
+    }
+}
