@@ -1,0 +1,33 @@
+{
+    "amount": "currency",
+    "amount_captured": "currency",
+    "amount_refunded": "currency",
+    "application_fee_amount": "currency",
+    "created": "datetime",
+    "level3": {
+        "line_items": {
+            "discount_amount": "currency",
+            "tax_amount": "currency"
+        },
+        "shipping_amount": "currency"
+    },
+    "payment_method_details": {
+        "card": {
+            "amount_authorized": "currency",
+            "capture_before": "datetime",
+            "overcapture": {
+                "maximum_amount_capturable": "currency"
+            }
+        },
+        "card_present": {
+            "amount_authorized": "currency",
+            "capture_before": "datetime",
+            "offline": {
+                "stored_at": "datetime"
+            }
+        }
+    },
+    "transfer_data": {
+        "amount": "currency"
+    }
+}

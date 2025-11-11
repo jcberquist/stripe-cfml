@@ -1,0 +1,41 @@
+{
+    "after_expiration": {
+        "recovery": {
+            "expires_at": "datetime"
+        }
+    },
+    "amount_subtotal": "currency",
+    "amount_total": "currency",
+    "created": "datetime",
+    "currency_conversion": {
+        "amount_subtotal": "currency",
+        "amount_total": "currency"
+    },
+    "expires_at": "datetime",
+    "shipping_cost": {
+        "amount_subtotal": "currency",
+        "amount_tax": "currency",
+        "amount_total": "currency",
+        "taxes": {
+            "amount": "currency",
+            "taxable_amount": "currency"
+        }
+    },
+    "shipping_options": {
+        "shipping_amount": "currency"
+    },
+    "total_details": {
+        "amount_discount": "currency",
+        "amount_shipping": "currency",
+        "amount_tax": "currency",
+        "breakdown": {
+            "discounts": {
+                "amount": "currency"
+            },
+            "taxes": {
+                "amount": "currency",
+                "taxable_amount": "currency"
+            }
+        }
+    }
+}

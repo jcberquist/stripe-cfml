@@ -1,0 +1,26 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "active_from": "timestamp",
+                "expires_at": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/tax/registrations"
+        },
+        "list": {
+            "path": "/v1/tax/registrations"
+        },
+        "retrieve": {
+            "path": "/v1/tax/registrations/{registration_id}"
+        },
+        "update": {
+            "arguments": {
+                "active_from": "timestamp",
+                "expires_at": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/tax/registrations/{registration_id}"
+        }
+    }
+}

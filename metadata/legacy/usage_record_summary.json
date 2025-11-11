@@ -1,0 +1,6 @@
+{
+    "period": {
+        "end": "datetime",
+        "start": "datetime"
+    }
+}

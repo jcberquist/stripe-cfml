@@ -1,0 +1,13 @@
+{
+    "created": "datetime",
+    "custom_unit_amount": {
+        "maximum": "currency",
+        "minimum": "currency",
+        "preset": "currency"
+    },
+    "tiers": {
+        "flat_amount": "currency",
+        "unit_amount": "currency"
+    },
+    "unit_amount": "currency"
+}

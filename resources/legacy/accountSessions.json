@@ -1,0 +1,78 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "components": {
+                    "account_management": {
+                        "enabled": "boolean",
+                        "features": {
+                            "external_account_collection": "boolean"
+                        }
+                    },
+                    "account_onboarding": {
+                        "enabled": "boolean",
+                        "features": {
+                            "external_account_collection": "boolean"
+                        }
+                    },
+                    "balances": {
+                        "enabled": "boolean",
+                        "features": {
+                            "edit_payout_schedule": "boolean",
+                            "external_account_collection": "boolean",
+                            "instant_payouts": "boolean",
+                            "standard_payouts": "boolean"
+                        }
+                    },
+                    "documents": {
+                        "enabled": "boolean"
+                    },
+                    "notification_banner": {
+                        "enabled": "boolean",
+                        "features": {
+                            "external_account_collection": "boolean"
+                        }
+                    },
+                    "payment_details": {
+                        "enabled": "boolean",
+                        "features": {
+                            "capture_payments": "boolean",
+                            "destination_on_behalf_of_charge_management": "boolean",
+                            "dispute_management": "boolean",
+                            "refund_management": "boolean"
+                        }
+                    },
+                    "payments": {
+                        "enabled": "boolean",
+                        "features": {
+                            "capture_payments": "boolean",
+                            "destination_on_behalf_of_charge_management": "boolean",
+                            "dispute_management": "boolean",
+                            "refund_management": "boolean"
+                        }
+                    },
+                    "payouts": {
+                        "enabled": "boolean",
+                        "features": {
+                            "edit_payout_schedule": "boolean",
+                            "external_account_collection": "boolean",
+                            "instant_payouts": "boolean",
+                            "standard_payouts": "boolean"
+                        }
+                    },
+                    "payouts_list": {
+                        "enabled": "boolean"
+                    },
+                    "tax_registrations": {
+                        "enabled": "boolean"
+                    },
+                    "tax_settings": {
+                        "enabled": "boolean"
+                    }
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/account_sessions"
+        }
+    }
+}

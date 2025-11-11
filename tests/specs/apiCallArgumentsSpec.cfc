@@ -1,7 +1,17 @@
 component extends=testbox.system.BaseSpec {
 
     function beforeAll() {
-        stripe = new stripe( 'fake_key' );
+        stripe = new stripe(
+            'fake_key',
+            {
+                resources: [
+                    'customers',
+                    'charges',
+                    'accounts',
+                    'paymentIntents'
+                ]
+            }
+        );
         httpService = getProperty( stripe, 'httpService' );
         prepareMock( httpService );
         httpService.$(

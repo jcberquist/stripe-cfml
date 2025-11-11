@@ -1,0 +1,53 @@
+{
+    "amount_due": "currency",
+    "amount_paid": "currency",
+    "amount_remaining": "currency",
+    "amount_shipping": "currency",
+    "application_fee_amount": "currency",
+    "automatically_finalizes_at": "datetime",
+    "created": "datetime",
+    "due_date": "datetime",
+    "effective_at": "datetime",
+    "ending_balance": "currency",
+    "next_payment_attempt": "datetime",
+    "period_end": "datetime",
+    "period_start": "datetime",
+    "post_payment_credit_notes_amount": "currency",
+    "pre_payment_credit_notes_amount": "currency",
+    "shipping_cost": {
+        "amount_subtotal": "currency",
+        "amount_tax": "currency",
+        "amount_total": "currency",
+        "taxes": {
+            "amount": "currency",
+            "taxable_amount": "currency"
+        }
+    },
+    "starting_balance": "currency",
+    "status_transitions": {
+        "finalized_at": "datetime",
+        "marked_uncollectible_at": "datetime",
+        "paid_at": "datetime",
+        "voided_at": "datetime"
+    },
+    "subtotal_excluding_tax": "currency",
+    "tax": "currency",
+    "threshold_reason": {
+        "amount_gte": "currency"
+    },
+    "total_discount_amounts": {
+        "amount": "currency"
+    },
+    "total_excluding_tax": "currency",
+    "total_pretax_credit_amounts": {
+        "amount": "currency"
+    },
+    "total_tax_amounts": {
+        "amount": "currency",
+        "taxable_amount": "currency"
+    },
+    "transfer_data": {
+        "amount": "currency"
+    },
+    "webhooks_delivered_at": "datetime"
+}

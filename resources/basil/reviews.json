@@ -1,0 +1,17 @@
+{
+    "methods": {
+        "approve": {
+            "httpMethod": "post",
+            "path": "/v1/reviews/{review_id}/approve"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/reviews"
+        },
+        "retrieve": {
+            "path": "/v1/reviews/{review_id}"
+        }
+    }
+}

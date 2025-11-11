@@ -1,0 +1,17 @@
+{
+    "amount": "currency",
+    "discount_amounts": {
+        "amount": "currency"
+    },
+    "period": {
+        "end": "datetime",
+        "start": "datetime"
+    },
+    "pretax_credit_amounts": {
+        "amount": "currency"
+    },
+    "taxes": {
+        "amount": "currency",
+        "taxable_amount": "currency"
+    }
+}

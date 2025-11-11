@@ -1,0 +1,11 @@
+{
+    "name":"stripecfml-adobe",
+    "app":{
+        "cfengine":"adobe@2021"
+    },
+    "web":{
+        "http":{
+            "port":"45000"
+        }
+    }
+}

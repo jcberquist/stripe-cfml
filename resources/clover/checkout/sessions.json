@@ -1,0 +1,129 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "adaptive_pricing": {
+                    "enabled": "boolean"
+                },
+                "after_expiration": {
+                    "recovery": {
+                        "allow_promotion_codes": "boolean",
+                        "enabled": "boolean"
+                    }
+                },
+                "allow_promotion_codes": "boolean",
+                "automatic_tax": {
+                    "enabled": "boolean"
+                },
+                "currency": "iso_currency_code",
+                "custom_fields": {
+                    "optional": "boolean"
+                },
+                "expires_at": "timestamp",
+                "invoice_creation": {
+                    "enabled": "boolean"
+                },
+                "line_items": {
+                    "adjustable_quantity": {
+                        "enabled": "boolean"
+                    },
+                    "price_data": {
+                        "currency": "iso_currency_code",
+                        "unit_amount": "currency"
+                    }
+                },
+                "name_collection": {
+                    "business": {
+                        "enabled": "boolean",
+                        "optional": "boolean"
+                    },
+                    "individual": {
+                        "enabled": "boolean",
+                        "optional": "boolean"
+                    }
+                },
+                "optional_items": {
+                    "adjustable_quantity": {
+                        "enabled": "boolean"
+                    }
+                },
+                "payment_intent_data": {
+                    "application_fee_amount": "currency",
+                    "transfer_data": {
+                        "amount": "currency"
+                    }
+                },
+                "payment_method_options": {
+                    "acss_debit": {
+                        "currency": "iso_currency_code"
+                    },
+                    "card": {
+                        "installments": {
+                            "enabled": "boolean"
+                        }
+                    },
+                    "klarna": {
+                        "subscriptions": {
+                            "next_billing": {
+                                "amount": "currency"
+                            }
+                        }
+                    },
+                    "p24": {
+                        "tos_shown_and_accepted": "boolean"
+                    }
+                },
+                "phone_number_collection": {
+                    "enabled": "boolean"
+                },
+                "shipping_options": {
+                    "shipping_rate_data": {
+                        "fixed_amount": {
+                            "amount": "currency",
+                            "currency": "iso_currency_code"
+                        }
+                    }
+                },
+                "subscription_data": {
+                    "billing_cycle_anchor": "timestamp",
+                    "trial_end": "timestamp"
+                },
+                "tax_id_collection": {
+                    "enabled": "boolean"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/checkout/sessions"
+        },
+        "expire": {
+            "httpMethod": "post",
+            "path": "/v1/checkout/sessions/{session_id}/expire"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/checkout/sessions"
+        },
+        "listLineItems": {
+            "path": "/v1/checkout/sessions/{session_id}/line_items"
+        },
+        "retrieve": {
+            "path": "/v1/checkout/sessions/{session_id}"
+        },
+        "update": {
+            "arguments": {
+                "shipping_options": {
+                    "shipping_rate_data": {
+                        "fixed_amount": {
+                            "amount": "currency",
+                            "currency": "iso_currency_code"
+                        }
+                    }
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/checkout/sessions/{session_id}"
+        }
+    }
+}

@@ -9,15 +9,7 @@ component {
 
     public void function parse( required struct response ) {
         if ( response.keyExists( 'object' ) && isSimpleValue( response.object ) ) {
-            var metadata = objectMetadata.keyExists( response.object ) ? objectMetadata[ response.object ] : { };
-
-            // almost all objects have a `created` timestamp
-            // adding a check here so any object metadata that only
-            // needs to register `created` can be implicit
-            if ( !metadata.keyExists( 'created' ) ) {
-                metadata[ 'created' ] = 'datetime';
-            }
-
+            var metadata = variables.objectMetadata.get( response.object );
             parseResTypes( response, metadata );
         }
 

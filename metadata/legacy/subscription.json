@@ -1,0 +1,33 @@
+{
+    "billing_cycle_anchor": "datetime",
+    "billing_thresholds": {
+        "amount_gte": "currency"
+    },
+    "cancel_at": "datetime",
+    "canceled_at": "datetime",
+    "created": "datetime",
+    "current_period_end": "datetime",
+    "current_period_start": "datetime",
+    "ended_at": "datetime",
+    "next_pending_invoice_item_invoice": "datetime",
+    "pause_collection": {
+        "resumes_at": "datetime"
+    },
+    "payment_settings": {
+        "payment_method_options": {
+            "card": {
+                "mandate_options": {
+                    "amount": "currency"
+                }
+            }
+        }
+    },
+    "pending_update": {
+        "billing_cycle_anchor": "datetime",
+        "expires_at": "datetime",
+        "trial_end": "datetime"
+    },
+    "start_date": "datetime",
+    "trial_end": "datetime",
+    "trial_start": "datetime"
+}

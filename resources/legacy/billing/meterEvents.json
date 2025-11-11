@@ -1,0 +1,11 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "timestamp": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/billing/meter_events"
+        }
+    }
+}

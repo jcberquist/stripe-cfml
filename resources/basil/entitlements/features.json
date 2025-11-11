@@ -1,0 +1,24 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/entitlements/features"
+        },
+        "list": {
+            "arguments": {
+                "archived": "boolean"
+            },
+            "path": "/v1/entitlements/features"
+        },
+        "retrieve": {
+            "path": "/v1/entitlements/features/{feature_id}"
+        },
+        "update": {
+            "arguments": {
+                "active": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/entitlements/features/{feature_id}"
+        }
+    }
+}

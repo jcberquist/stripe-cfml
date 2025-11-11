@@ -1,0 +1,17 @@
+{
+    "methods": {
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/issuing/transactions"
+        },
+        "retrieve": {
+            "path": "/v1/issuing/transactions/{transaction_id}"
+        },
+        "update": {
+            "httpMethod": "post",
+            "path": "/v1/issuing/transactions/{transaction_id}"
+        }
+    }
+}

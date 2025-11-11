@@ -1,0 +1,15 @@
+{
+    "amount": "currency",
+    "created": "datetime",
+    "receiver": {
+        "amount_charged": "currency",
+        "amount_received": "currency",
+        "amount_returned": "currency"
+    },
+    "source_order": {
+        "amount": "currency",
+        "items": {
+            "amount": "currency"
+        }
+    }
+}

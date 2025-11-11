@@ -1,0 +1,594 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "business_profile": {
+                    "annual_revenue": {
+                        "amount": "currency",
+                        "currency": "iso_currency_code"
+                    },
+                    "monthly_estimated_revenue": {
+                        "amount": "currency",
+                        "currency": "iso_currency_code"
+                    }
+                },
+                "capabilities": {
+                    "acss_debit_payments": {
+                        "requested": "boolean"
+                    },
+                    "affirm_payments": {
+                        "requested": "boolean"
+                    },
+                    "afterpay_clearpay_payments": {
+                        "requested": "boolean"
+                    },
+                    "alma_payments": {
+                        "requested": "boolean"
+                    },
+                    "amazon_pay_payments": {
+                        "requested": "boolean"
+                    },
+                    "au_becs_debit_payments": {
+                        "requested": "boolean"
+                    },
+                    "bacs_debit_payments": {
+                        "requested": "boolean"
+                    },
+                    "bancontact_payments": {
+                        "requested": "boolean"
+                    },
+                    "bank_transfer_payments": {
+                        "requested": "boolean"
+                    },
+                    "billie_payments": {
+                        "requested": "boolean"
+                    },
+                    "blik_payments": {
+                        "requested": "boolean"
+                    },
+                    "boleto_payments": {
+                        "requested": "boolean"
+                    },
+                    "card_issuing": {
+                        "requested": "boolean"
+                    },
+                    "card_payments": {
+                        "requested": "boolean"
+                    },
+                    "cartes_bancaires_payments": {
+                        "requested": "boolean"
+                    },
+                    "cashapp_payments": {
+                        "requested": "boolean"
+                    },
+                    "crypto_payments": {
+                        "requested": "boolean"
+                    },
+                    "eps_payments": {
+                        "requested": "boolean"
+                    },
+                    "fpx_payments": {
+                        "requested": "boolean"
+                    },
+                    "gb_bank_transfer_payments": {
+                        "requested": "boolean"
+                    },
+                    "giropay_payments": {
+                        "requested": "boolean"
+                    },
+                    "grabpay_payments": {
+                        "requested": "boolean"
+                    },
+                    "ideal_payments": {
+                        "requested": "boolean"
+                    },
+                    "india_international_payments": {
+                        "requested": "boolean"
+                    },
+                    "jcb_payments": {
+                        "requested": "boolean"
+                    },
+                    "jp_bank_transfer_payments": {
+                        "requested": "boolean"
+                    },
+                    "kakao_pay_payments": {
+                        "requested": "boolean"
+                    },
+                    "klarna_payments": {
+                        "requested": "boolean"
+                    },
+                    "konbini_payments": {
+                        "requested": "boolean"
+                    },
+                    "kr_card_payments": {
+                        "requested": "boolean"
+                    },
+                    "legacy_payments": {
+                        "requested": "boolean"
+                    },
+                    "link_payments": {
+                        "requested": "boolean"
+                    },
+                    "mobilepay_payments": {
+                        "requested": "boolean"
+                    },
+                    "multibanco_payments": {
+                        "requested": "boolean"
+                    },
+                    "mx_bank_transfer_payments": {
+                        "requested": "boolean"
+                    },
+                    "naver_pay_payments": {
+                        "requested": "boolean"
+                    },
+                    "nz_bank_account_becs_debit_payments": {
+                        "requested": "boolean"
+                    },
+                    "oxxo_payments": {
+                        "requested": "boolean"
+                    },
+                    "p24_payments": {
+                        "requested": "boolean"
+                    },
+                    "pay_by_bank_payments": {
+                        "requested": "boolean"
+                    },
+                    "payco_payments": {
+                        "requested": "boolean"
+                    },
+                    "paynow_payments": {
+                        "requested": "boolean"
+                    },
+                    "pix_payments": {
+                        "requested": "boolean"
+                    },
+                    "promptpay_payments": {
+                        "requested": "boolean"
+                    },
+                    "revolut_pay_payments": {
+                        "requested": "boolean"
+                    },
+                    "samsung_pay_payments": {
+                        "requested": "boolean"
+                    },
+                    "satispay_payments": {
+                        "requested": "boolean"
+                    },
+                    "sepa_bank_transfer_payments": {
+                        "requested": "boolean"
+                    },
+                    "sepa_debit_payments": {
+                        "requested": "boolean"
+                    },
+                    "sofort_payments": {
+                        "requested": "boolean"
+                    },
+                    "swish_payments": {
+                        "requested": "boolean"
+                    },
+                    "tax_reporting_us_1099_k": {
+                        "requested": "boolean"
+                    },
+                    "tax_reporting_us_1099_misc": {
+                        "requested": "boolean"
+                    },
+                    "transfers": {
+                        "requested": "boolean"
+                    },
+                    "treasury": {
+                        "requested": "boolean"
+                    },
+                    "twint_payments": {
+                        "requested": "boolean"
+                    },
+                    "us_bank_account_ach_payments": {
+                        "requested": "boolean"
+                    },
+                    "us_bank_transfer_payments": {
+                        "requested": "boolean"
+                    },
+                    "zip_payments": {
+                        "requested": "boolean"
+                    }
+                },
+                "company": {
+                    "directors_provided": "boolean",
+                    "directorship_declaration": {
+                        "date": "timestamp"
+                    },
+                    "executives_provided": "boolean",
+                    "owners_provided": "boolean",
+                    "ownership_declaration": {
+                        "date": "timestamp"
+                    }
+                },
+                "individual": {
+                    "relationship": {
+                        "director": "boolean",
+                        "executive": "boolean",
+                        "owner": "boolean"
+                    }
+                },
+                "settings": {
+                    "card_issuing": {
+                        "tos_acceptance": {
+                            "date": "timestamp"
+                        }
+                    },
+                    "card_payments": {
+                        "decline_on": {
+                            "avs_failure": "boolean",
+                            "cvc_failure": "boolean"
+                        }
+                    },
+                    "payouts": {
+                        "debit_negative_balances": "boolean"
+                    },
+                    "treasury": {
+                        "tos_acceptance": {
+                            "date": "timestamp"
+                        }
+                    }
+                },
+                "tos_acceptance": {
+                    "date": "timestamp"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/accounts"
+        },
+        "createExternalAccount": {
+            "arguments": {
+                "default_for_currency": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/accounts/{account_id}/external_accounts"
+        },
+        "createLoginLink": {
+            "httpMethod": "post",
+            "path": "/v1/accounts/{account_id}/login_links"
+        },
+        "createPerson": {
+            "arguments": {
+                "additional_tos_acceptances": {
+                    "account": {
+                        "date": "timestamp"
+                    }
+                },
+                "relationship": {
+                    "authorizer": "boolean",
+                    "director": "boolean",
+                    "executive": "boolean",
+                    "legal_guardian": "boolean",
+                    "owner": "boolean",
+                    "representative": "boolean"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/accounts/{account_id}/persons"
+        },
+        "delete": {
+            "httpMethod": "delete",
+            "path": "/v1/accounts/{account_id}"
+        },
+        "deleteExternalAccount": {
+            "httpMethod": "delete",
+            "path": "/v1/accounts/{account_id}/external_accounts/{external_account_id}"
+        },
+        "deletePerson": {
+            "httpMethod": "delete",
+            "path": "/v1/accounts/{account_id}/persons/{person_id}"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/accounts"
+        },
+        "listCapabilities": {
+            "path": "/v1/accounts/{account_id}/capabilities"
+        },
+        "listExternalAccounts": {
+            "path": "/v1/accounts/{account_id}/external_accounts"
+        },
+        "listPersons": {
+            "arguments": {
+                "relationship": {
+                    "authorizer": "boolean",
+                    "director": "boolean",
+                    "executive": "boolean",
+                    "legal_guardian": "boolean",
+                    "owner": "boolean",
+                    "representative": "boolean"
+                }
+            },
+            "path": "/v1/accounts/{account_id}/persons"
+        },
+        "reject": {
+            "httpMethod": "post",
+            "path": "/v1/accounts/{account_id}/reject"
+        },
+        "retrieveCapability": {
+            "path": "/v1/accounts/{account_id}/capabilities/{capability_id}"
+        },
+        "retrieveCurrent": {
+            "path": "/v1/account"
+        },
+        "retrieveExternalAccount": {
+            "path": "/v1/accounts/{account_id}/external_accounts/{external_account_id}"
+        },
+        "retrievePerson": {
+            "path": "/v1/accounts/{account_id}/persons/{person_id}"
+        },
+        "update": {
+            "arguments": {
+                "business_profile": {
+                    "annual_revenue": {
+                        "amount": "currency",
+                        "currency": "iso_currency_code"
+                    },
+                    "monthly_estimated_revenue": {
+                        "amount": "currency",
+                        "currency": "iso_currency_code"
+                    }
+                },
+                "capabilities": {
+                    "acss_debit_payments": {
+                        "requested": "boolean"
+                    },
+                    "affirm_payments": {
+                        "requested": "boolean"
+                    },
+                    "afterpay_clearpay_payments": {
+                        "requested": "boolean"
+                    },
+                    "alma_payments": {
+                        "requested": "boolean"
+                    },
+                    "amazon_pay_payments": {
+                        "requested": "boolean"
+                    },
+                    "au_becs_debit_payments": {
+                        "requested": "boolean"
+                    },
+                    "bacs_debit_payments": {
+                        "requested": "boolean"
+                    },
+                    "bancontact_payments": {
+                        "requested": "boolean"
+                    },
+                    "bank_transfer_payments": {
+                        "requested": "boolean"
+                    },
+                    "billie_payments": {
+                        "requested": "boolean"
+                    },
+                    "blik_payments": {
+                        "requested": "boolean"
+                    },
+                    "boleto_payments": {
+                        "requested": "boolean"
+                    },
+                    "card_issuing": {
+                        "requested": "boolean"
+                    },
+                    "card_payments": {
+                        "requested": "boolean"
+                    },
+                    "cartes_bancaires_payments": {
+                        "requested": "boolean"
+                    },
+                    "cashapp_payments": {
+                        "requested": "boolean"
+                    },
+                    "crypto_payments": {
+                        "requested": "boolean"
+                    },
+                    "eps_payments": {
+                        "requested": "boolean"
+                    },
+                    "fpx_payments": {
+                        "requested": "boolean"
+                    },
+                    "gb_bank_transfer_payments": {
+                        "requested": "boolean"
+                    },
+                    "giropay_payments": {
+                        "requested": "boolean"
+                    },
+                    "grabpay_payments": {
+                        "requested": "boolean"
+                    },
+                    "ideal_payments": {
+                        "requested": "boolean"
+                    },
+                    "india_international_payments": {
+                        "requested": "boolean"
+                    },
+                    "jcb_payments": {
+                        "requested": "boolean"
+                    },
+                    "jp_bank_transfer_payments": {
+                        "requested": "boolean"
+                    },
+                    "kakao_pay_payments": {
+                        "requested": "boolean"
+                    },
+                    "klarna_payments": {
+                        "requested": "boolean"
+                    },
+                    "konbini_payments": {
+                        "requested": "boolean"
+                    },
+                    "kr_card_payments": {
+                        "requested": "boolean"
+                    },
+                    "legacy_payments": {
+                        "requested": "boolean"
+                    },
+                    "link_payments": {
+                        "requested": "boolean"
+                    },
+                    "mobilepay_payments": {
+                        "requested": "boolean"
+                    },
+                    "multibanco_payments": {
+                        "requested": "boolean"
+                    },
+                    "mx_bank_transfer_payments": {
+                        "requested": "boolean"
+                    },
+                    "naver_pay_payments": {
+                        "requested": "boolean"
+                    },
+                    "nz_bank_account_becs_debit_payments": {
+                        "requested": "boolean"
+                    },
+                    "oxxo_payments": {
+                        "requested": "boolean"
+                    },
+                    "p24_payments": {
+                        "requested": "boolean"
+                    },
+                    "pay_by_bank_payments": {
+                        "requested": "boolean"
+                    },
+                    "payco_payments": {
+                        "requested": "boolean"
+                    },
+                    "paynow_payments": {
+                        "requested": "boolean"
+                    },
+                    "pix_payments": {
+                        "requested": "boolean"
+                    },
+                    "promptpay_payments": {
+                        "requested": "boolean"
+                    },
+                    "revolut_pay_payments": {
+                        "requested": "boolean"
+                    },
+                    "samsung_pay_payments": {
+                        "requested": "boolean"
+                    },
+                    "satispay_payments": {
+                        "requested": "boolean"
+                    },
+                    "sepa_bank_transfer_payments": {
+                        "requested": "boolean"
+                    },
+                    "sepa_debit_payments": {
+                        "requested": "boolean"
+                    },
+                    "sofort_payments": {
+                        "requested": "boolean"
+                    },
+                    "swish_payments": {
+                        "requested": "boolean"
+                    },
+                    "tax_reporting_us_1099_k": {
+                        "requested": "boolean"
+                    },
+                    "tax_reporting_us_1099_misc": {
+                        "requested": "boolean"
+                    },
+                    "transfers": {
+                        "requested": "boolean"
+                    },
+                    "treasury": {
+                        "requested": "boolean"
+                    },
+                    "twint_payments": {
+                        "requested": "boolean"
+                    },
+                    "us_bank_account_ach_payments": {
+                        "requested": "boolean"
+                    },
+                    "us_bank_transfer_payments": {
+                        "requested": "boolean"
+                    },
+                    "zip_payments": {
+                        "requested": "boolean"
+                    }
+                },
+                "company": {
+                    "directors_provided": "boolean",
+                    "directorship_declaration": {
+                        "date": "timestamp"
+                    },
+                    "executives_provided": "boolean",
+                    "owners_provided": "boolean",
+                    "ownership_declaration": {
+                        "date": "timestamp"
+                    }
+                },
+                "individual": {
+                    "relationship": {
+                        "director": "boolean",
+                        "executive": "boolean",
+                        "owner": "boolean"
+                    }
+                },
+                "settings": {
+                    "card_issuing": {
+                        "tos_acceptance": {
+                            "date": "timestamp"
+                        }
+                    },
+                    "card_payments": {
+                        "decline_on": {
+                            "avs_failure": "boolean",
+                            "cvc_failure": "boolean"
+                        }
+                    },
+                    "payouts": {
+                        "debit_negative_balances": "boolean"
+                    },
+                    "treasury": {
+                        "tos_acceptance": {
+                            "date": "timestamp"
+                        }
+                    }
+                },
+                "tos_acceptance": {
+                    "date": "timestamp"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/accounts/{account_id}"
+        },
+        "updateCapability": {
+            "arguments": {
+                "requested": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/accounts/{account_id}/capabilities/{capability_id}"
+        },
+        "updateExternalAccount": {
+            "arguments": {
+                "default_for_currency": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/accounts/{account_id}/external_accounts/{external_account_id}"
+        },
+        "updatePerson": {
+            "arguments": {
+                "additional_tos_acceptances": {
+                    "account": {
+                        "date": "timestamp"
+                    }
+                },
+                "relationship": {
+                    "authorizer": "boolean",
+                    "director": "boolean",
+                    "executive": "boolean",
+                    "legal_guardian": "boolean",
+                    "owner": "boolean",
+                    "representative": "boolean"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/accounts/{account_id}/persons/{person_id}"
+        }
+    }
+}

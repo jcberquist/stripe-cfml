@@ -1,18 +1,27 @@
-component {
+component accessors="true" {
+
+    property basePath;
+    property config;
+    property httpService;
+    property parsers;
+    property objectMetadata;
+    property resources;
 
     public struct function init( string apiKey = '', struct config = { } ) {
-        var configObj = new lib.config( apiKey, config );
-        var basePath = getDirectoryFromPath( getMetadata( this ).path ).replace( '\', '/', 'all' );
-        variables.objectMetadata = loadMetadata( basePath );
+        variables.basePath = getDirectoryFromPath( getCurrentTemplatePath() ).replace( '\', '/', 'all' );
+        variables.config = new lib.config( apiKey, arguments.config );
         variables.httpService = new lib.httpService();
+        variables.objectMetadata = new lib.objectMetadata( this );
         variables.parsers = {
-            arguments: new lib.parsers.arguments( configObj ),
-            headers: new lib.parsers.headers( configObj ),
-            response: new lib.parsers.response( configObj, objectMetadata )
+            arguments: new lib.parsers.arguments( variables.config ),
+            headers: new lib.parsers.headers( variables.config ),
+            response: new lib.parsers.response( variables.config, variables.objectMetadata )
         };
 
-        for ( var resourcePath in listResources( basePath ) ) {
-            var resourceParts = resourcePath.listFirst( '.' ).listToArray( '/' );
+        variables.resources = list( 'resources', variables.config.get( 'resources' ) );
+
+        for ( var resource in variables.resources ) {
+            var resourceParts = resource.listToArray( '.' );
             var parent = this;
             for ( var i = 1; i < resourceParts.len(); i++ ) {
                 if ( !structKeyExists( parent, resourceParts[ i ] ) ) {
@@ -20,7 +29,11 @@ component {
                 }
                 parent = parent[ resourceParts[ i ] ];
             }
-            parent[ resourceParts[ i ] ] = new lib.apiResource( this, configObj, resourceParts.toList( '.' ) );
+            parent[ resourceParts[ i ] ] = new lib.apiResource(
+                this,
+                resource,
+                loadJSONFile( variables.resources[ resource ] )
+            );
         }
 
         this[ 'webhooks' ] = new lib.webhooks( parsers.response );
@@ -70,7 +83,7 @@ component {
         sources.params.append( argOverrides, true );
 
         // path
-        var path = 'https://' & methodMetadata.endpoint & methodMetadata.path;
+        var path = 'https://' & methodMetadata.host & methodMetadata.path;
         for ( var argName in methodMetadata.pathArgs ) {
             path = path.replace( '{#argName#}', sources.params[ argName ] );
             ignoredArgs.append( argName );
@@ -135,6 +148,28 @@ component {
         return response;
     }
 
+    public struct function list( required string dataType, array filter = [ ] ) {
+        var majorVersion = variables.config.get( 'major_api_version' );
+        var fullPath = '#variables.basePath##dataType#/#majorVersion#/';
+        var result = { };
+        var jsonFiles = directoryList( fullPath, true, 'path', '*.json' );
+        for ( var path in jsonFiles ) {
+            var dotName = path
+                .replace( '\', '/', 'all' )
+                .replace( fullPath, '' )
+                .listFirst( '.' )
+                .replace( '/', '.', 'all' );
+            if ( !arrayLen( arguments.filter ) || arguments.filter.find( dotName ) ) {
+                result[ dotName ] = path;
+            }
+        }
+        return result;
+    }
+
+    public struct function loadJSONFile( required string fullPath ) {
+        return deserializeJSON( fileRead( fullPath ) );
+    }
+
     private any function getSources(
         required any argCollection,
         required struct methodMetadata,
@@ -160,29 +195,6 @@ component {
             }
         }
         return sources;
-    }
-
-    private struct function loadMetadata( required string basePath ) {
-        var metadataPath = basePath & 'metadata/';
-        var metadata = { };
-        var jsonFiles = directoryList( metadataPath, true, 'path', '*.json' );
-        for ( var path in jsonFiles ) {
-            var metaName = path
-                .replace( '\', '/', 'all' )
-                .replace( metadataPath, '' )
-                .listFirst( '.' )
-                .replace( '/', '.', 'all' );
-            metadata[ metaName ] = deserializeJSON( fileRead( path ) );
-        }
-        return metadata;
-    }
-
-    private array function listResources( required string basePath ) {
-        var resourcePath = basePath & 'lib/resources/';
-        var paths = directoryList( resourcePath, true, 'path', '*.cfc' );
-        return paths.map( function( path ) {
-            return path.replace( '\', '/', 'all' ).replace( resourcePath, '' );
-        } );
     }
 
     private void function validationFailure( required string message ) {

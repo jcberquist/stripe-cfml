@@ -1,0 +1,47 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "billing_thresholds": {
+                    "usage_gte": "currency"
+                },
+                "price_data": {
+                    "currency": "iso_currency_code",
+                    "unit_amount": "currency"
+                },
+                "proration_date": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/subscription_items"
+        },
+        "delete": {
+            "arguments": {
+                "clear_usage": "boolean",
+                "proration_date": "timestamp"
+            },
+            "httpMethod": "delete",
+            "path": "/v1/subscription_items/{subscription_item_id}"
+        },
+        "list": {
+            "path": "/v1/subscription_items"
+        },
+        "retrieve": {
+            "path": "/v1/subscription_items/{subscription_item_id}"
+        },
+        "update": {
+            "arguments": {
+                "billing_thresholds": {
+                    "usage_gte": "currency"
+                },
+                "off_session": "boolean",
+                "price_data": {
+                    "currency": "iso_currency_code",
+                    "unit_amount": "currency"
+                },
+                "proration_date": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/subscription_items/{subscription_item_id}"
+        }
+    }
+}

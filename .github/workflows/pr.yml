@@ -9,27 +9,27 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        cfengine: ["lucee@5", "adobe@2016", "adobe@2018", "adobe@2021"]
+        cfengine: ["lucee", "adobe", "boxlang"]
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3.2.0
+        uses: actions/checkout@v5
         with:
           path: stripecfml # checkout as stripecfml because that is how the module installs
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v3.9.0
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
-          java-version: 11 
+          java-version: 21
 
-      - name: Set Up CommandBox
-        uses: elpete/setup-commandbox@v1.0.0
+      - name: Setup CommandBox
+        uses: Ortus-Solutions/setup-commandbox@v2.0.1
       
       - name: Install dependencies
         run: cd stripecfml && box install
       
       - name: Start server
-        run: cd stripecfml && box server start cfengine=${{ matrix.cfengine }} --noSaveSettings
+        run: cd stripecfml && box server start serverConfigFile=server-${{ matrix.cfengine }}.json port=45000 --noSaveSettings
 
       - name: Run TestBox Tests
         run: cd stripecfml && box testbox run
@@ -39,16 +39,16 @@ jobs:
     name: Format
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3.2.0
+        uses: actions/checkout@v5
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v3.9.0
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
-          java-version: 11
+          java-version: 21
 
-      - name: Set Up CommandBox
-        uses: elpete/setup-commandbox@v1.0.0
+      - name: Setup CommandBox
+        uses: Ortus-Solutions/setup-commandbox@v2.0.1
       
       - name: Install CFFormat
         run: box install commandbox-cfformat
@@ -57,6 +57,6 @@ jobs:
         run: box run-script format
 
       - name: Commit Format Changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: Apply cfformat changes

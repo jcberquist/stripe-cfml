@@ -1,0 +1,13 @@
+{
+    "methods": {
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/balance_transactions"
+        },
+        "retrieve": {
+            "path": "/v1/balance_transactions/{balance_transaction_id}"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "methods": {
+        "deliverCard": {
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/cards/{card_id}/shipping/deliver"
+        },
+        "failCard": {
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/cards/{card_id}/shipping/fail"
+        },
+        "returnCard": {
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/cards/{card_id}/shipping/return"
+        },
+        "shipCard": {
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/cards/{card_id}/shipping/ship"
+        },
+        "submitCard": {
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/issuing/cards/{card_id}/shipping/submit"
+        }
+    }
+}

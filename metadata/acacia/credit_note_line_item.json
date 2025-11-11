@@ -1,0 +1,16 @@
+{
+    "amount": "currency",
+    "amount_excluding_tax": "currency",
+    "discount_amount": "currency",
+    "discount_amounts": {
+        "amount": "currency"
+    },
+    "pretax_credit_amounts": {
+        "amount": "currency"
+    },
+    "tax_amounts": {
+        "amount": "currency",
+        "taxable_amount": "currency"
+    },
+    "unit_amount": "currency"
+}

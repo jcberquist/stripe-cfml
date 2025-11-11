@@ -1,0 +1,12 @@
+{
+    "amount": "currency",
+    "created": "datetime",
+    "next_action": {
+        "display_details": {
+            "email_sent": {
+                "email_sent_at": "datetime"
+            },
+            "expires_at": "datetime"
+        }
+    }
+}

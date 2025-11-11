@@ -1,0 +1,145 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "components": {
+                    "account_management": {
+                        "enabled": "boolean",
+                        "features": {
+                            "disable_stripe_user_authentication": "boolean",
+                            "external_account_collection": "boolean"
+                        }
+                    },
+                    "account_onboarding": {
+                        "enabled": "boolean",
+                        "features": {
+                            "disable_stripe_user_authentication": "boolean",
+                            "external_account_collection": "boolean"
+                        }
+                    },
+                    "balances": {
+                        "enabled": "boolean",
+                        "features": {
+                            "disable_stripe_user_authentication": "boolean",
+                            "edit_payout_schedule": "boolean",
+                            "external_account_collection": "boolean",
+                            "instant_payouts": "boolean",
+                            "standard_payouts": "boolean"
+                        }
+                    },
+                    "disputes_list": {
+                        "enabled": "boolean",
+                        "features": {
+                            "capture_payments": "boolean",
+                            "destination_on_behalf_of_charge_management": "boolean",
+                            "dispute_management": "boolean",
+                            "refund_management": "boolean"
+                        }
+                    },
+                    "documents": {
+                        "enabled": "boolean"
+                    },
+                    "financial_account": {
+                        "enabled": "boolean",
+                        "features": {
+                            "disable_stripe_user_authentication": "boolean",
+                            "external_account_collection": "boolean",
+                            "send_money": "boolean",
+                            "transfer_balance": "boolean"
+                        }
+                    },
+                    "financial_account_transactions": {
+                        "enabled": "boolean",
+                        "features": {
+                            "card_spend_dispute_management": "boolean"
+                        }
+                    },
+                    "instant_payouts_promotion": {
+                        "enabled": "boolean",
+                        "features": {
+                            "disable_stripe_user_authentication": "boolean",
+                            "external_account_collection": "boolean",
+                            "instant_payouts": "boolean"
+                        }
+                    },
+                    "issuing_card": {
+                        "enabled": "boolean",
+                        "features": {
+                            "card_management": "boolean",
+                            "card_spend_dispute_management": "boolean",
+                            "cardholder_management": "boolean",
+                            "spend_control_management": "boolean"
+                        }
+                    },
+                    "issuing_cards_list": {
+                        "enabled": "boolean",
+                        "features": {
+                            "card_management": "boolean",
+                            "card_spend_dispute_management": "boolean",
+                            "cardholder_management": "boolean",
+                            "disable_stripe_user_authentication": "boolean",
+                            "spend_control_management": "boolean"
+                        }
+                    },
+                    "notification_banner": {
+                        "enabled": "boolean",
+                        "features": {
+                            "disable_stripe_user_authentication": "boolean",
+                            "external_account_collection": "boolean"
+                        }
+                    },
+                    "payment_details": {
+                        "enabled": "boolean",
+                        "features": {
+                            "capture_payments": "boolean",
+                            "destination_on_behalf_of_charge_management": "boolean",
+                            "dispute_management": "boolean",
+                            "refund_management": "boolean"
+                        }
+                    },
+                    "payment_disputes": {
+                        "enabled": "boolean",
+                        "features": {
+                            "destination_on_behalf_of_charge_management": "boolean",
+                            "dispute_management": "boolean",
+                            "refund_management": "boolean"
+                        }
+                    },
+                    "payments": {
+                        "enabled": "boolean",
+                        "features": {
+                            "capture_payments": "boolean",
+                            "destination_on_behalf_of_charge_management": "boolean",
+                            "dispute_management": "boolean",
+                            "refund_management": "boolean"
+                        }
+                    },
+                    "payout_details": {
+                        "enabled": "boolean"
+                    },
+                    "payouts": {
+                        "enabled": "boolean",
+                        "features": {
+                            "disable_stripe_user_authentication": "boolean",
+                            "edit_payout_schedule": "boolean",
+                            "external_account_collection": "boolean",
+                            "instant_payouts": "boolean",
+                            "standard_payouts": "boolean"
+                        }
+                    },
+                    "payouts_list": {
+                        "enabled": "boolean"
+                    },
+                    "tax_registrations": {
+                        "enabled": "boolean"
+                    },
+                    "tax_settings": {
+                        "enabled": "boolean"
+                    }
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/account_sessions"
+        }
+    }
+}

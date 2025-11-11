@@ -4,7 +4,8 @@ component extends=testbox.system.BaseSpec {
         stripe = new stripe(
             'fake_key',
             {
-                convertToCents: true
+                convertToCents: true,
+                resources: [ 'accounts' ]
             }
         );
     }

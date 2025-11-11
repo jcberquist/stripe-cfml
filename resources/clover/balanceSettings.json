@@ -1,0 +1,16 @@
+{
+    "methods": {
+        "retrieve": {
+            "path": "/v1/balance_settings"
+        },
+        "update": {
+            "arguments": {
+                "payments": {
+                    "debit_negative_balances": "boolean"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/balance_settings"
+        }
+    }
+}

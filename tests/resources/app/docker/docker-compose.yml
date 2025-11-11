@@ -1,0 +1,77 @@
+################################################################################
+# ColdBox Docker Compose Stack
+# This can be used to quickly run your ColdBox application in a CommandBox based Docker Container.
+#
+# We pull the latest image, you can change this to a specific tag or CFML engine, which we recommend.
+# https://hub.docker.com/repository/docker/ortussolutions/commandbox
+#
+# Database
+# - We give you three databases for you to choose from below: MySQL 8, PostgreSQL, Azure MSSQL
+################################################################################
+version: "3.9"
+services:
+
+  ## PostgreSQL
+  # coldbox_db:
+  #   image: postgres:12
+  #   environment:
+  #     POSTGRES_PASSWORD: "coldbox"
+  #     POSTGRES_USER: "coldbox"
+  #     POSTGRES_DB: "coldbox"
+  #   ports:
+  #     - 5432:5432
+  #   volumes:
+  #     - .db/postgres/initdb:/docker-entrypoint-initdb.d
+  #     - .db/postgres/data:/var/lib/postgresql/data
+
+  # mssql:
+  #   image: mcr.microsoft.com/azure-sql-edge:latest
+  #   ports:
+  #     - "1434:1433"
+  #   environment:
+  #     SA_PASSWORD: "T35t1ng1234!"
+  #     ACCEPT_EULA: "Y"
+  #   volumes:
+  #     - .db/mssql/tmp:/tmp/mssql
+
+  # MySQL Server 8
+  coldbox_db:
+    image: mysql:8
+    ports:
+      - "4306:3306"
+    environment:
+      MYSQL_DATABASE: "coldbox"
+      MYSQL_ROOT_PASSWORD: "coldbox"
+    volumes:
+      # Store the data locally
+      - .db/mysql8/data:/var/lib/mysql
+      # You can uncomment and it will seed the db with our prepared sql data
+      #- ../resources/sql/mysql:/docker-entrypoint-initdb.d
+
+  # ColdBox Site
+  coldbox_app:
+    depends_on:
+      - coldbox_db
+    image: ortussolutions/commandbox:lucee5
+    # Environment Variables
+    environment:
+      CFCONFIG_ADMINPASSWORD: coldbox
+      ENVIRONMENT: DEVELOPMENT
+      # JWT_SECRET: mySecret
+      DB_HOST: coldbox_db
+      DB_PORT: 4306
+      DB_DATABASE: coldbox
+      DB_DRIVER: MySQL
+      DB_USER: root
+      DB_PASSWORD: coldbox
+      DB_CLASS: com.mysql.jdbc.Driver
+      DB_BUNDLEVERSION: 8.0.19
+      DB_BUNDLENAME: com.mysql.cj
+      DB_CONNECTIONSTRING: jdbc:mysql://127.0.0.1:3306/coldbox?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useLegacyDatetimeCode=true
+    # Ports
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    # Data & Overrides
+    volumes:
+      - ../:/app

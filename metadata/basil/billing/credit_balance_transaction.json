@@ -1,0 +1,18 @@
+{
+    "created": "datetime",
+    "credit": {
+        "amount": {
+            "monetary": {
+                "value": "currency"
+            }
+        }
+    },
+    "debit": {
+        "amount": {
+            "monetary": {
+                "value": "currency"
+            }
+        }
+    },
+    "effective_at": "datetime"
+}

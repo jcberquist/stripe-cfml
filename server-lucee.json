@@ -1,0 +1,11 @@
+{
+    "name":"stripecfml-lucee",
+    "app":{
+        "cfengine":"lucee@6"
+    },
+    "web":{
+        "http":{
+            "port":"45001"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "methods": {
+        "list": {
+            "arguments": {
+                "created": "datefilter",
+                "effective_at": "datefilter"
+            },
+            "path": "/v1/treasury/transaction_entries"
+        },
+        "retrieve": {
+            "path": "/v1/treasury/transaction_entries/{transaction_entry_id}"
+        }
+    }
+}

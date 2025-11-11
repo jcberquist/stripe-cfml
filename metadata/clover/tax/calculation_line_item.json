@@ -1,0 +1,8 @@
+{
+    "amount": "currency",
+    "amount_tax": "currency",
+    "tax_breakdown": {
+        "amount": "currency",
+        "taxable_amount": "currency"
+    }
+}

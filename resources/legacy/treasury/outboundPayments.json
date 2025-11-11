@@ -1,0 +1,28 @@
+{
+    "methods": {
+        "cancel": {
+            "httpMethod": "post",
+            "path": "/v1/treasury/outbound_payments/{outbound_payment_id}/cancel"
+        },
+        "create": {
+            "arguments": {
+                "amount": "currency",
+                "currency": "iso_currency_code",
+                "end_user_details": {
+                    "present": "boolean"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/treasury/outbound_payments"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/treasury/outbound_payments"
+        },
+        "retrieve": {
+            "path": "/v1/treasury/outbound_payments/{outbound_payment_id}"
+        }
+    }
+}

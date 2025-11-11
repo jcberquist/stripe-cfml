@@ -1,0 +1,14 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/treasury/debit_reversals"
+        },
+        "list": {
+            "path": "/v1/treasury/debit_reversals"
+        },
+        "retrieve": {
+            "path": "/v1/treasury/debit_reversals/{debit_reversal_id}"
+        }
+    }
+}

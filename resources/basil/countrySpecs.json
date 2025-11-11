@@ -1,0 +1,10 @@
+{
+    "methods": {
+        "list": {
+            "path": "/v1/country_specs"
+        },
+        "retrieve": {
+            "path": "/v1/country_specs/{country_spec_id}"
+        }
+    }
+}
