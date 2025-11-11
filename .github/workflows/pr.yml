@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        cfengine: ["lucee@6", "adobe@2021"]
+        cfengine: ["lucee", "adobe", "boxlang"]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v5
@@ -29,7 +29,7 @@ jobs:
         run: cd stripecfml && box install
       
       - name: Start server
-        run: cd stripecfml && box server start cfengine=${{ matrix.cfengine }} port=45000 --noSaveSettings
+        run: cd stripecfml && box server start serverConfigFile=server-${{ matrix.cfengine }}.json port=45000 --noSaveSettings
 
       - name: Run TestBox Tests
         run: cd stripecfml && box testbox run

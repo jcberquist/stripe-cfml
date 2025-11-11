@@ -1,6 +1,6 @@
 # stripe-cfml
 
-**stripe-cfml** is a CFML (Lucee and ColdFusion) library for interacting with the Stripe API.
+**stripe-cfml** is a CFML (Lucee, ColdFusion, and BoxLang) library for interacting with the Stripe API.
 
 ## Installation
 This wrapper can be installed as standalone library or as a ColdBox Module. Either approach requires a simple CommandBox command:
