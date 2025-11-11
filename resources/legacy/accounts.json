@@ -163,7 +163,6 @@
                         "date": "timestamp"
                     }
                 },
-                "default_currency": "iso_currency_code",
                 "individual": {
                     "relationship": {
                         "director": "boolean",
@@ -443,7 +442,6 @@
                         "date": "timestamp"
                     }
                 },
-                "default_currency": "iso_currency_code",
                 "individual": {
                     "relationship": {
                         "director": "boolean",

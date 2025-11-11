@@ -6,8 +6,7 @@
                 "expires_at": "timestamp",
                 "restrictions": {
                     "first_time_transaction": "boolean",
-                    "minimum_amount": "currency",
-                    "minimum_amount_currency": "iso_currency_code"
+                    "minimum_amount": "currency"
                 }
             },
             "httpMethod": "post",
