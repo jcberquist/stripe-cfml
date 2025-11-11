@@ -49,7 +49,11 @@ property name="stripe" inject="stripe@stripecfml";
 
 ## API Version
 
-As of major version 4 of `stripe-cfml`, it is highly recommended that you pass in the API version you intend to use in the config when instantiating `stripe.cfc`. Stripe has moved to major version releases denoted by code names, and they preserve backwards compatibility within updates to each major version. API versions are now specified by a release date, followed by the major version (e.g. `2025-10-29.clover`). To work with this, `stripe-cfml` now bases available methods and object signatures on the Stripe major version. If an API version is not specified, Stripe falls back to the default version set on your account, and that might not line up with the metadata for the latest API version, which is what `stripe-cfml` will fall back on. If you specify an API version that came before the named major versions (e.g. `2024-06-20`) `stripe-cfml` will fall back on the metadata and method signatures belonging to the last release before Stripe moved to the named major versions.
+As of major version 4 of `stripe-cfml`, it is highly recommended that you set the API version you intend to explicitly in the config (either as an initialization argument, or in the environment) when instantiating `stripe.cfc`. Stripe has moved to major version releases denoted by code names, and they preserve backwards compatibility within updates to each major version. API versions are now specified by a release date, followed by the major version (e.g. `2025-10-29.clover`). To work with this, `stripe-cfml` now bases available methods and object signatures on the Stripe major version.
+
+If an API version is *not* specified, `stripe-cfml` will use method and object signatures from the latest major API version available to it. However, when Stripe receives a request with no API version specified, it will fall back to the default version set on your account, and that might not line up with the metadata that `stripe-cfml` uses.
+
+If you specify an API version that came before the named major versions (e.g. `2024-06-20`) `stripe-cfml` will use metadata and method signatures belonging to the last release before Stripe moved to the named major versions.
 
 Please see [versioning](https://stripe.com/docs/api#versioning) and [changelog](https://docs.stripe.com/changelog) in the Stripe documentation for more details.
 
