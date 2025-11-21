@@ -57,6 +57,9 @@
             "path": "/v1/customers"
         },
         "listBalanceTransactions": {
+            "arguments": {
+                "created": "datefilter"
+            },
             "path": "/v1/customers/{customer_id}/balance_transactions"
         },
         "listCashBalanceTransactions": {

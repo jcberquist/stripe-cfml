@@ -1,4 +1,7 @@
 {
+    "account_numbers": {
+        "expected_expiry_date": "datetime"
+    },
     "balance": {
         "as_of": "datetime"
     },

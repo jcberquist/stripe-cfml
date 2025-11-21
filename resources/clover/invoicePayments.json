@@ -1,6 +1,9 @@
 {
     "methods": {
         "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
             "path": "/v1/invoice_payments"
         },
         "retrieve": {
