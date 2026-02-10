@@ -1,7 +1,7 @@
 {
     "name":"stripecfml-boxlang",
     "app":{
-        "cfengine":"boxlang@1.7"
+        "cfengine":"boxlang@1.10"
     },
     "web":{
         "http":{
@@ -9,6 +9,6 @@
         }
     },
     "scripts":{
-        "onServerInitialInstall":"install bx-compat-cfml"
+        "onServerInitialInstall":"install bx-compat-cfml@1.30"
     }
 }
