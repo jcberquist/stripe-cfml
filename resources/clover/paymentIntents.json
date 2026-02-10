@@ -16,6 +16,7 @@
             "arguments": {
                 "amount_details": {
                     "discount_amount": "currency",
+                    "enforce_arithmetic_validation": "boolean",
                     "line_items": {
                         "discount_amount": "currency",
                         "tax": {
@@ -43,6 +44,7 @@
             "arguments": {
                 "amount_details": {
                     "discount_amount": "currency",
+                    "enforce_arithmetic_validation": "boolean",
                     "line_items": {
                         "discount_amount": "currency",
                         "tax": {
@@ -98,6 +100,12 @@
                     "p24": {
                         "tos_shown_and_accepted": "boolean"
                     },
+                    "payto": {
+                        "mandate_options": {
+                            "amount": "currency",
+                            "end_date": "timestamp"
+                        }
+                    },
                     "pix": {
                         "expires_at": "timestamp"
                     }
@@ -112,6 +120,7 @@
                 "amount": "currency",
                 "amount_details": {
                     "discount_amount": "currency",
+                    "enforce_arithmetic_validation": "boolean",
                     "line_items": {
                         "discount_amount": "currency",
                         "tax": {
@@ -173,6 +182,12 @@
                     "p24": {
                         "tos_shown_and_accepted": "boolean"
                     },
+                    "payto": {
+                        "mandate_options": {
+                            "amount": "currency",
+                            "end_date": "timestamp"
+                        }
+                    },
                     "pix": {
                         "expires_at": "timestamp"
                     }
@@ -190,6 +205,7 @@
                 "amount": "currency",
                 "amount_details": {
                     "discount_amount": "currency",
+                    "enforce_arithmetic_validation": "boolean",
                     "line_items": {
                         "discount_amount": "currency",
                         "tax": {
@@ -231,6 +247,7 @@
                 "amount": "currency",
                 "amount_details": {
                     "discount_amount": "currency",
+                    "enforce_arithmetic_validation": "boolean",
                     "line_items": {
                         "discount_amount": "currency",
                         "tax": {
@@ -280,6 +297,12 @@
                     },
                     "p24": {
                         "tos_shown_and_accepted": "boolean"
+                    },
+                    "payto": {
+                        "mandate_options": {
+                            "amount": "currency",
+                            "end_date": "timestamp"
+                        }
                     },
                     "pix": {
                         "expires_at": "timestamp"

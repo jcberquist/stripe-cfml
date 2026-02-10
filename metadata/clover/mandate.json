@@ -2,6 +2,11 @@
     "customer_acceptance": {
         "accepted_at": "datetime"
     },
+    "payment_method_details": {
+        "payto": {
+            "amount": "currency"
+        }
+    },
     "single_use": {
         "amount": "currency"
     }

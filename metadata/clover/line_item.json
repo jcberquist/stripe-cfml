@@ -10,6 +10,7 @@
     "pretax_credit_amounts": {
         "amount": "currency"
     },
+    "subtotal": "currency",
     "taxes": {
         "amount": "currency",
         "taxable_amount": "currency"

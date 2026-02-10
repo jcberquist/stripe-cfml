@@ -52,6 +52,11 @@
                             "mandate_options": {
                                 "amount": "currency"
                             }
+                        },
+                        "payto": {
+                            "mandate_options": {
+                                "amount": "currency"
+                            }
                         }
                     }
                 },
@@ -136,6 +141,11 @@
                 "payment_settings": {
                     "payment_method_options": {
                         "card": {
+                            "mandate_options": {
+                                "amount": "currency"
+                            }
+                        },
+                        "payto": {
                             "mandate_options": {
                                 "amount": "currency"
                             }

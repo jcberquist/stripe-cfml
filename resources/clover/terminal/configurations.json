@@ -14,10 +14,6 @@
                         "fixed_amounts": "currency",
                         "smart_tip_threshold": "currency"
                     },
-                    "bgn": {
-                        "fixed_amounts": "currency",
-                        "smart_tip_threshold": "currency"
-                    },
                     "cad": {
                         "fixed_amounts": "currency",
                         "smart_tip_threshold": "currency"
@@ -123,10 +119,6 @@
                         "smart_tip_threshold": "currency"
                     },
                     "aud": {
-                        "fixed_amounts": "currency",
-                        "smart_tip_threshold": "currency"
-                    },
-                    "bgn": {
                         "fixed_amounts": "currency",
                         "smart_tip_threshold": "currency"
                     },

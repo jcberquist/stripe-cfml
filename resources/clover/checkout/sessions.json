@@ -71,6 +71,13 @@
                     },
                     "p24": {
                         "tos_shown_and_accepted": "boolean"
+                    },
+                    "payto": {
+                        "mandate_options": {
+                            "amount": "currency",
+                            "end_date": "timestamp",
+                            "start_date": "timestamp"
+                        }
                     }
                 },
                 "phone_number_collection": {
@@ -113,6 +120,15 @@
         },
         "update": {
             "arguments": {
+                "line_items": {
+                    "adjustable_quantity": {
+                        "enabled": "boolean"
+                    },
+                    "price_data": {
+                        "currency": "iso_currency_code",
+                        "unit_amount": "currency"
+                    }
+                },
                 "shipping_options": {
                     "shipping_rate_data": {
                         "fixed_amount": {

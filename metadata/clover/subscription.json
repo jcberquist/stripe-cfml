@@ -20,6 +20,11 @@
                 "mandate_options": {
                     "amount": "currency"
                 }
+            },
+            "payto": {
+                "mandate_options": {
+                    "amount": "currency"
+                }
             }
         }
     },

@@ -12,6 +12,13 @@
         "amount_total": "currency"
     },
     "expires_at": "datetime",
+    "payment_method_options": {
+        "payto": {
+            "mandate_options": {
+                "amount": "currency"
+            }
+        }
+    },
     "presentment_details": {
         "presentment_amount": "currency"
     },

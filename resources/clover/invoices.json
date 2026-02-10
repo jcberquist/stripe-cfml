@@ -45,6 +45,11 @@
                             "installments": {
                                 "enabled": "boolean"
                             }
+                        },
+                        "payto": {
+                            "mandate_options": {
+                                "amount": "currency"
+                            }
                         }
                     }
                 },
@@ -208,6 +213,11 @@
                         "card": {
                             "installments": {
                                 "enabled": "boolean"
+                            }
+                        },
+                        "payto": {
+                            "mandate_options": {
+                                "amount": "currency"
                             }
                         }
                     }

@@ -142,6 +142,9 @@
                     "paynow_payments": {
                         "requested": "boolean"
                     },
+                    "payto_payments": {
+                        "requested": "boolean"
+                    },
                     "pix_payments": {
                         "requested": "boolean"
                     },
@@ -466,6 +469,9 @@
                         "requested": "boolean"
                     },
                     "paynow_payments": {
+                        "requested": "boolean"
+                    },
+                    "payto_payments": {
                         "requested": "boolean"
                     },
                     "pix_payments": {

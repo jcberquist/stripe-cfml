@@ -36,6 +36,13 @@
                                 "amount": "currency"
                             }
                         }
+                    },
+                    "payto": {
+                        "mandate_options": {
+                            "amount": "currency",
+                            "end_date": "timestamp",
+                            "start_date": "timestamp"
+                        }
                     }
                 },
                 "use_stripe_sdk": "boolean"
@@ -79,6 +86,13 @@
                             "next_billing": {
                                 "amount": "currency"
                             }
+                        }
+                    },
+                    "payto": {
+                        "mandate_options": {
+                            "amount": "currency",
+                            "end_date": "timestamp",
+                            "start_date": "timestamp"
                         }
                     }
                 },
@@ -128,6 +142,13 @@
                             "next_billing": {
                                 "amount": "currency"
                             }
+                        }
+                    },
+                    "payto": {
+                        "mandate_options": {
+                            "amount": "currency",
+                            "end_date": "timestamp",
+                            "start_date": "timestamp"
                         }
                     }
                 }

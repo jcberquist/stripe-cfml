@@ -15,6 +15,15 @@
             "subscription_proration_date": "datetime"
         }
     },
+    "payment_settings": {
+        "payment_method_options": {
+            "payto": {
+                "mandate_options": {
+                    "amount": "currency"
+                }
+            }
+        }
+    },
     "period_end": "datetime",
     "period_start": "datetime",
     "post_payment_credit_notes_amount": "currency",

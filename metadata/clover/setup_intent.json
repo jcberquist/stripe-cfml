@@ -17,6 +17,11 @@
                 "end_date": "datetime",
                 "start_date": "datetime"
             }
+        },
+        "payto": {
+            "mandate_options": {
+                "amount": "currency"
+            }
         }
     }
 }

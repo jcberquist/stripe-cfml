@@ -1,0 +1,18 @@
+{
+    "created_at": "datetime",
+    "events": {
+        "dispute_opened": {
+            "amount": "currency"
+        },
+        "occurred_at": "datetime",
+        "refunded": {
+            "amount": "currency"
+        }
+    },
+    "insights": {
+        "evaluated_at": "datetime"
+    },
+    "payment_details": {
+        "amount": "currency"
+    }
+}

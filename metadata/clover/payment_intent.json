@@ -58,6 +58,11 @@
         },
         "konbini": {
             "expires_at": "datetime"
+        },
+        "payto": {
+            "mandate_options": {
+                "amount": "currency"
+            }
         }
     },
     "presentment_details": {
