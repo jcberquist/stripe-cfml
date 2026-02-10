@@ -175,25 +175,37 @@ component accessors="true" {
         required struct methodMetadata,
         required boolean hasPositionalArguments
     ) {
-        var sourceKeys = [
-            {
-                name: 'params',
-                offset: 1
-            },
-            {
-                name: 'headers',
-                offset: 2
-            }
-        ];
-        var sources = { };
-        for ( var source in sourceKeys ) {
-            if ( hasPositionalArguments ) {
-                var sourceIndex = arrayLen( methodMetadata.positionalArgs ) + source.offset;
-                sources[ source.name ] = arrayLen( argCollection ) >= sourceIndex ? argCollection[ sourceIndex ] : { };
+        if ( !hasPositionalArguments ) {
+            return {
+                params: argCollection,
+                headers: argCollection
+            };
+        }
+
+        var sources = {
+            params: { },
+            headers: { }
+        };
+
+        if ( arrayLen( argCollection ) <= arrayLen( methodMetadata.positionalArgs ) ) {
+            return sources;
+        }
+
+        var sourceStartIndex = arrayLen( methodMetadata.positionalArgs ) + 1;
+
+        if ( arrayLen( argCollection ) > sourceStartIndex ) {
+            // two argument structs passed
+            sources.params = argCollection[ sourceStartIndex ];
+            sources.headers = argCollection[ sourceStartIndex + 1 ];
+        } else {
+            // if only one arg struct passed, check to see how to treat it
+            if ( parsers.headers.containsHeaderArgs( argCollection[ sourceStartIndex ] ) ) {
+                sources.headers = argCollection[ sourceStartIndex ];
             } else {
-                sources[ source.name ] = argCollection;
+                sources.params = argCollection[ sourceStartIndex ];
             }
         }
+
         return sources;
     }
 

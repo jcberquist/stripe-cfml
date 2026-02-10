@@ -45,6 +45,19 @@ component extends=testbox.system.BaseSpec {
                 expect( httpRequest.headers[ 3 ].value ).toBeWithCase( 'account_id' );
             } );
 
+            it( 'can be passed positionally without passing a params struct', function() {
+                var res = stripe.charges.retrieve(
+                    'charge_id',
+                    {
+                        stripeAccount: 'account_id'
+                    }
+                );
+                var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
+                expect( httpRequest.headers ).toHaveLength( 2 );
+                expect( httpRequest.headers[ 2 ].name ).toBeWithCase( 'Stripe-Account' );
+                expect( httpRequest.headers[ 2 ].value ).toBeWithCase( 'account_id' );
+            } );
+
             it( 'can be passed as a named argument', function() {
                 var res = stripe.charges.create(
                     customer = 'customer_id',

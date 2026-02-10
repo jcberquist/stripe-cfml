@@ -13,6 +13,15 @@ component {
         return this;
     }
 
+    public boolean function containsHeaderArgs( required struct source ) {
+        for ( var key in headerKeys ) {
+            if ( structKeyExists( source, key ) || structKeyExists( source, key.replace( '_', '' ) ) ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public struct function parse(
         required any headersSource,
         required struct methodMetadata,
