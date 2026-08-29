@@ -1,0 +1,21 @@
+{
+    "card": {
+        "generated_from": {
+            "payment_method_details": {
+                "card_present": {
+                    "amount_authorized": "currency",
+                    "capture_before": "datetime",
+                    "offline": {
+                        "stored_at": "datetime"
+                    }
+                }
+            }
+        }
+    },
+    "card_present": {
+        "offline": {
+            "stored_at": "datetime"
+        }
+    },
+    "created": "datetime"
+}

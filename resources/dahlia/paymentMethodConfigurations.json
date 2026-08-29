@@ -1,0 +1,21 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/payment_method_configurations"
+        },
+        "list": {
+            "path": "/v1/payment_method_configurations"
+        },
+        "retrieve": {
+            "path": "/v1/payment_method_configurations/{payment_method_configuration_id}"
+        },
+        "update": {
+            "arguments": {
+                "active": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/payment_method_configurations/{payment_method_configuration_id}"
+        }
+    }
+}

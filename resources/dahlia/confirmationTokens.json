@@ -1,0 +1,7 @@
+{
+    "methods": {
+        "retrieve": {
+            "path": "/v1/confirmation_tokens/{confirmation_token_id}"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "amount_fees": "currency",
+    "amount_subtotal": "currency",
+    "amount_total": "currency",
+    "canceled_at": "datetime",
+    "confirmed_at": "datetime",
+    "created": "datetime",
+    "delayed_at": "datetime",
+    "delivered_at": "datetime",
+    "delivery_details": {
+        "delivered_at": "datetime"
+    },
+    "product_substituted_at": "datetime"
+}

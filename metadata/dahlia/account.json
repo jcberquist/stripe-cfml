@@ -1,0 +1,31 @@
+{
+    "business_profile": {
+        "annual_revenue": {
+            "amount": "currency"
+        },
+        "monthly_estimated_revenue": {
+            "amount": "currency"
+        }
+    },
+    "company": {
+        "directorship_declaration": {
+            "date": "datetime"
+        },
+        "ownership_declaration": {
+            "date": "datetime"
+        },
+        "representative_declaration": {
+            "date": "datetime"
+        }
+    },
+    "created": "datetime",
+    "future_requirements": {
+        "current_deadline": "datetime"
+    },
+    "requirements": {
+        "current_deadline": "datetime"
+    },
+    "tos_acceptance": {
+        "date": "datetime"
+    }
+}

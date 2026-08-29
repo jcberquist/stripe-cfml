@@ -1,0 +1,10 @@
+{
+    "methods": {
+        "list": {
+            "path": "/v1/reporting/report_types"
+        },
+        "retrieve": {
+            "path": "/v1/reporting/report_types/{report_type_id}"
+        }
+    }
+}

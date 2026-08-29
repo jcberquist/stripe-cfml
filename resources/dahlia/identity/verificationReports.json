@@ -1,0 +1,13 @@
+{
+    "methods": {
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/identity/verification_reports"
+        },
+        "retrieve": {
+            "path": "/v1/identity/verification_reports/{verification_report_id}"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "methods": {
+        "list": {
+            "path": "/v1/treasury/received_credits"
+        },
+        "retrieve": {
+            "path": "/v1/treasury/received_credits/{received_credit_id}"
+        }
+    }
+}

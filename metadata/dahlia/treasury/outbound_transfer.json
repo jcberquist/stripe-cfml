@@ -1,0 +1,11 @@
+{
+    "amount": "currency",
+    "created": "datetime",
+    "expected_arrival_date": "datetime",
+    "status_transitions": {
+        "canceled_at": "datetime",
+        "failed_at": "datetime",
+        "posted_at": "datetime",
+        "returned_at": "datetime"
+    }
+}

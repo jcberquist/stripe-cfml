@@ -1,0 +1,16 @@
+{
+    "methods": {
+        "fail": {
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/treasury/inbound_transfers/{inbound_transfer_id}/fail"
+        },
+        "returnInboundTransfer": {
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/treasury/inbound_transfers/{inbound_transfer_id}/return"
+        },
+        "succeed": {
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/treasury/inbound_transfers/{inbound_transfer_id}/succeed"
+        }
+    }
+}

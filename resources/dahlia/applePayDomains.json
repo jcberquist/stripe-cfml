@@ -1,0 +1,18 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/apple_pay/domains"
+        },
+        "delete": {
+            "httpMethod": "delete",
+            "path": "/v1/apple_pay/domains/{domain_id}"
+        },
+        "list": {
+            "path": "/v1/apple_pay/domains"
+        },
+        "retrieve": {
+            "path": "/v1/apple_pay/domains/{domain_id}"
+        }
+    }
+}

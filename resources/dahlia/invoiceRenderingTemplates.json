@@ -1,0 +1,18 @@
+{
+    "methods": {
+        "archive": {
+            "httpMethod": "post",
+            "path": "/v1/invoice_rendering_templates/{invoice_rendering_template_id}/archive"
+        },
+        "list": {
+            "path": "/v1/invoice_rendering_templates"
+        },
+        "retrieve": {
+            "path": "/v1/invoice_rendering_templates/{invoice_rendering_template_id}"
+        },
+        "unarchive": {
+            "httpMethod": "post",
+            "path": "/v1/invoice_rendering_templates/{invoice_rendering_template_id}/unarchive"
+        }
+    }
+}

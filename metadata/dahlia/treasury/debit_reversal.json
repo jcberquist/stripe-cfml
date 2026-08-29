@@ -1,0 +1,7 @@
+{
+    "amount": "currency",
+    "created": "datetime",
+    "status_transitions": {
+        "completed_at": "datetime"
+    }
+}

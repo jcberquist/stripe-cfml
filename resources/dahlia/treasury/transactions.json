@@ -1,0 +1,16 @@
+{
+    "methods": {
+        "list": {
+            "arguments": {
+                "created": "datefilter",
+                "status_transitions": {
+                    "posted_at": "datefilter"
+                }
+            },
+            "path": "/v1/treasury/transactions"
+        },
+        "retrieve": {
+            "path": "/v1/treasury/transactions/{transaction_id}"
+        }
+    }
+}

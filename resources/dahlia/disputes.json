@@ -1,0 +1,31 @@
+{
+    "methods": {
+        "close": {
+            "httpMethod": "post",
+            "path": "/v1/disputes/{dispute_id}/close"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/disputes"
+        },
+        "retrieve": {
+            "path": "/v1/disputes/{dispute_id}"
+        },
+        "update": {
+            "arguments": {
+                "evidence": {
+                    "enhanced_evidence": {
+                        "visa_compliance": {
+                            "fee_acknowledged": "boolean"
+                        }
+                    }
+                },
+                "submit": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/disputes/{dispute_id}"
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "amount": "currency",
+    "created": "datetime",
+    "reversal_details": {
+        "deadline": "datetime"
+    }
+}

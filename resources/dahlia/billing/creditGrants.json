@@ -1,0 +1,39 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "amount": {
+                    "monetary": {
+                        "currency": "iso_currency_code",
+                        "value": "currency"
+                    }
+                },
+                "effective_at": "timestamp",
+                "expires_at": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/billing/credit_grants"
+        },
+        "expire": {
+            "httpMethod": "post",
+            "path": "/v1/billing/credit_grants/{credit_grant_id}/expire"
+        },
+        "list": {
+            "path": "/v1/billing/credit_grants"
+        },
+        "retrieve": {
+            "path": "/v1/billing/credit_grants/{credit_grant_id}"
+        },
+        "update": {
+            "arguments": {
+                "expires_at": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/billing/credit_grants/{credit_grant_id}"
+        },
+        "voidGrant": {
+            "httpMethod": "post",
+            "path": "/v1/billing/credit_grants/{credit_grant_id}/void"
+        }
+    }
+}

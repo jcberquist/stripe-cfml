@@ -1,0 +1,33 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/billing/meters"
+        },
+        "deactivate": {
+            "httpMethod": "post",
+            "path": "/v1/billing/meters/{meter_id}/deactivate"
+        },
+        "list": {
+            "path": "/v1/billing/meters"
+        },
+        "listEventSummaries": {
+            "arguments": {
+                "end_time": "timestamp",
+                "start_time": "timestamp"
+            },
+            "path": "/v1/billing/meters/{meter_id}/event_summaries"
+        },
+        "reactivate": {
+            "httpMethod": "post",
+            "path": "/v1/billing/meters/{meter_id}/reactivate"
+        },
+        "retrieve": {
+            "path": "/v1/billing/meters/{meter_id}"
+        },
+        "update": {
+            "httpMethod": "post",
+            "path": "/v1/billing/meters/{meter_id}"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "amount": "currency",
+    "date": "datetime",
+    "net_amount": "currency",
+    "period": {
+        "end": "datetime",
+        "start": "datetime"
+    },
+    "proration_details": {
+        "discount_amounts": {
+            "amount": "currency"
+        }
+    }
+}

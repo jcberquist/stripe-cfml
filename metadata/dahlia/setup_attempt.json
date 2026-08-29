@@ -1,0 +1,10 @@
+{
+    "created": "datetime",
+    "payment_method_details": {
+        "card_present": {
+            "offline": {
+                "stored_at": "datetime"
+            }
+        }
+    }
+}

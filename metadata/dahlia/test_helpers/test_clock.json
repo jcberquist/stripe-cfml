@@ -1,0 +1,10 @@
+{
+    "created": "datetime",
+    "deletes_after": "datetime",
+    "frozen_time": "datetime",
+    "status_details": {
+        "advancing": {
+            "target_frozen_time": "datetime"
+        }
+    }
+}

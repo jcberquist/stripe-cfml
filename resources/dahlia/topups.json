@@ -1,0 +1,30 @@
+{
+    "methods": {
+        "cancel": {
+            "httpMethod": "post",
+            "path": "/v1/topups/{topup_id}/cancel"
+        },
+        "create": {
+            "arguments": {
+                "amount": "currency",
+                "currency": "iso_currency_code"
+            },
+            "httpMethod": "post",
+            "path": "/v1/topups"
+        },
+        "list": {
+            "arguments": {
+                "amount": "currencyfilter",
+                "created": "datefilter"
+            },
+            "path": "/v1/topups"
+        },
+        "retrieve": {
+            "path": "/v1/topups/{topup_id}"
+        },
+        "update": {
+            "httpMethod": "post",
+            "path": "/v1/topups/{topup_id}"
+        }
+    }
+}

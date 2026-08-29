@@ -1,0 +1,12 @@
+{
+    "methods": {
+        "fundCashBalance": {
+            "arguments": {
+                "amount": "currency",
+                "currency": "iso_currency_code"
+            },
+            "httpMethod": "post",
+            "path": "/v1/test_helpers/customers/{customer_id}/fund_cash_balance"
+        }
+    }
+}

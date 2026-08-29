@@ -1,6 +1,6 @@
 component accessors="true" {
 
-    function run( string majorVersion = 'clover' ) {
+    function run( string majorVersion = 'dahlia' ) {
         var resourcePath = resolvePath( 'resources/#majorVersion#/' );
         var resources = directoryList( resourcePath, true, 'path', '*.json' ).sort( 'text' );
 

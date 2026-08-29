@@ -1,0 +1,31 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "enabled": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/payment_method_domains"
+        },
+        "list": {
+            "arguments": {
+                "enabled": "boolean"
+            },
+            "path": "/v1/payment_method_domains"
+        },
+        "retrieve": {
+            "path": "/v1/payment_method_domains/{payment_method_domain_id}"
+        },
+        "update": {
+            "arguments": {
+                "enabled": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/payment_method_domains/{payment_method_domain_id}"
+        },
+        "validate": {
+            "httpMethod": "post",
+            "path": "/v1/payment_method_domains/{payment_method_domain_id}/validate"
+        }
+    }
+}

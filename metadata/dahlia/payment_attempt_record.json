@@ -1,0 +1,36 @@
+{
+    "amount": {
+        "value": "currency"
+    },
+    "amount_authorized": {
+        "value": "currency"
+    },
+    "amount_canceled": {
+        "value": "currency"
+    },
+    "amount_failed": {
+        "value": "currency"
+    },
+    "amount_guaranteed": {
+        "value": "currency"
+    },
+    "amount_refunded": {
+        "value": "currency"
+    },
+    "amount_requested": {
+        "value": "currency"
+    },
+    "created": "datetime",
+    "payment_method_details": {
+        "card": {
+            "capture_before": "datetime"
+        },
+        "card_present": {
+            "amount_authorized": "currency",
+            "capture_before": "datetime",
+            "offline": {
+                "stored_at": "datetime"
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "created": "datetime",
+    "fixed_amount": {
+        "amount": "currency"
+    }
+}

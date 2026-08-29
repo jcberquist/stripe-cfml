@@ -1,0 +1,6 @@
+{
+    "amount": "currency",
+    "application_fee_amount": "currency",
+    "arrival_date": "datetime",
+    "created": "datetime"
+}

@@ -1,0 +1,11 @@
+{
+    "methods": {
+        "retrieve": {
+            "path": "/v1/tax/settings"
+        },
+        "update": {
+            "httpMethod": "post",
+            "path": "/v1/tax/settings"
+        }
+    }
+}

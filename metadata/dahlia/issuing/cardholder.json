@@ -1,0 +1,15 @@
+{
+    "created": "datetime",
+    "individual": {
+        "card_issuing": {
+            "user_terms_acceptance": {
+                "date": "datetime"
+            }
+        }
+    },
+    "spending_controls": {
+        "spending_limits": {
+            "amount": "currency"
+        }
+    }
+}

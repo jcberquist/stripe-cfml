@@ -1,0 +1,5 @@
+{
+    "amount_off": "currency",
+    "created": "datetime",
+    "redeem_by": "datetime"
+}

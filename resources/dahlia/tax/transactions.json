@@ -1,0 +1,33 @@
+{
+    "methods": {
+        "createFromCalculation": {
+            "arguments": {
+                "posted_at": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/tax/transactions/create_from_calculation"
+        },
+        "createReversal": {
+            "arguments": {
+                "flat_amount": "currency",
+                "line_items": {
+                    "amount": "currency",
+                    "amount_tax": "currency",
+                    "quantity": "currency"
+                },
+                "shipping_cost": {
+                    "amount": "currency",
+                    "amount_tax": "currency"
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/tax/transactions/create_reversal"
+        },
+        "listLineItems": {
+            "path": "/v1/tax/transactions/{transaction_id}/line_items"
+        },
+        "retrieve": {
+            "path": "/v1/tax/transactions/{transaction_id}"
+        }
+    }
+}

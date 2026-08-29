@@ -1,0 +1,12 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/ephemeral_keys"
+        },
+        "delete": {
+            "httpMethod": "delete",
+            "path": "/v1/ephemeral_keys/{ephemeral_key_id}"
+        }
+    }
+}
