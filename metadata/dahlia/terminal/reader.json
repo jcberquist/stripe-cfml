@@ -7,6 +7,11 @@
                 }
             }
         },
+        "print_content": {
+            "image": {
+                "created_at": "datetime"
+            }
+        },
         "process_payment_intent": {
             "process_config": {
                 "tipping": {

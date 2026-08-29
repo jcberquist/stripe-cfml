@@ -14,6 +14,11 @@
         "last_attempted_at": "datetime",
         "next_refresh_available_at": "datetime"
     },
+    "status_details": {
+        "active": {
+            "expected_deactivation_date": "datetime"
+        }
+    },
     "transaction_refresh": {
         "last_attempted_at": "datetime",
         "next_refresh_available_at": "datetime"

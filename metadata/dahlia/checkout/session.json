@@ -18,6 +18,11 @@
                 "amount": "currency"
             }
         },
+        "pix": {
+            "mandate_options": {
+                "amount": "currency"
+            }
+        },
         "upi": {
             "mandate_options": {
                 "amount": "currency",

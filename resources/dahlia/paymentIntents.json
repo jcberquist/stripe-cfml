@@ -58,6 +58,7 @@
                         "total_tax_amount": "currency"
                     }
                 },
+                "amount_to_confirm": "currency",
                 "error_on_requires_action": "boolean",
                 "mandate_data": {
                     "customer_acceptance": {
@@ -115,7 +116,13 @@
                         }
                     },
                     "pix": {
-                        "expires_at": "timestamp"
+                        "expires_at": "timestamp",
+                        "mandate_options": {
+                            "amount": "currency",
+                            "currency": "iso_currency_code",
+                            "end_date": "timestamp",
+                            "start_date": "timestamp"
+                        }
                     },
                     "upi": {
                         "mandate_options": {
@@ -211,7 +218,13 @@
                         }
                     },
                     "pix": {
-                        "expires_at": "timestamp"
+                        "expires_at": "timestamp",
+                        "mandate_options": {
+                            "amount": "currency",
+                            "currency": "iso_currency_code",
+                            "end_date": "timestamp",
+                            "start_date": "timestamp"
+                        }
                     },
                     "upi": {
                         "mandate_options": {
@@ -341,7 +354,13 @@
                         }
                     },
                     "pix": {
-                        "expires_at": "timestamp"
+                        "expires_at": "timestamp",
+                        "mandate_options": {
+                            "amount": "currency",
+                            "currency": "iso_currency_code",
+                            "end_date": "timestamp",
+                            "start_date": "timestamp"
+                        }
                     },
                     "upi": {
                         "mandate_options": {

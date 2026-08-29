@@ -1,5 +1,12 @@
 {
     "methods": {
+        "list": {
+            "arguments": {
+                "created_after": "timestamp",
+                "created_before": "timestamp"
+            },
+            "path": "/v1/payment_records"
+        },
         "reportPayment": {
             "arguments": {
                 "amount_requested": {

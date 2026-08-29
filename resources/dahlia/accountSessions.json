@@ -17,6 +17,9 @@
                             "external_account_collection": "boolean"
                         }
                     },
+                    "balance_report": {
+                        "enabled": "boolean"
+                    },
                     "balances": {
                         "enabled": "boolean",
                         "features": {
@@ -33,7 +36,8 @@
                             "capture_payments": "boolean",
                             "destination_on_behalf_of_charge_management": "boolean",
                             "dispute_management": "boolean",
-                            "refund_management": "boolean"
+                            "refund_management": "boolean",
+                            "smart_disputes_management": "boolean"
                         }
                     },
                     "documents": {
@@ -94,7 +98,8 @@
                             "capture_payments": "boolean",
                             "destination_on_behalf_of_charge_management": "boolean",
                             "dispute_management": "boolean",
-                            "refund_management": "boolean"
+                            "refund_management": "boolean",
+                            "smart_disputes_management": "boolean"
                         }
                     },
                     "payment_disputes": {
@@ -102,7 +107,14 @@
                         "features": {
                             "destination_on_behalf_of_charge_management": "boolean",
                             "dispute_management": "boolean",
-                            "refund_management": "boolean"
+                            "refund_management": "boolean",
+                            "smart_disputes_management": "boolean"
+                        }
+                    },
+                    "payment_method_settings": {
+                        "enabled": "boolean",
+                        "features": {
+                            "disable_stripe_user_authentication": "boolean"
                         }
                     },
                     "payments": {
@@ -111,10 +123,14 @@
                             "capture_payments": "boolean",
                             "destination_on_behalf_of_charge_management": "boolean",
                             "dispute_management": "boolean",
-                            "refund_management": "boolean"
+                            "refund_management": "boolean",
+                            "smart_disputes_management": "boolean"
                         }
                     },
                     "payout_details": {
+                        "enabled": "boolean"
+                    },
+                    "payout_reconciliation_report": {
                         "enabled": "boolean"
                     },
                     "payouts": {

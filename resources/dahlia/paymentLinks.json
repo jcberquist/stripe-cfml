@@ -23,6 +23,9 @@
                         "unit_amount": "currency"
                     }
                 },
+                "managed_payments": {
+                    "enabled": "boolean"
+                },
                 "name_collection": {
                     "business": {
                         "enabled": "boolean",
@@ -67,6 +70,7 @@
             "arguments": {
                 "active": "boolean",
                 "allow_promotion_codes": "boolean",
+                "application_fee_amount": "currency",
                 "automatic_tax": {
                     "enabled": "boolean"
                 },
@@ -101,6 +105,9 @@
                 },
                 "tax_id_collection": {
                     "enabled": "boolean"
+                },
+                "transfer_data": {
+                    "amount": "currency"
                 }
             },
             "httpMethod": "post",

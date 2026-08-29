@@ -50,6 +50,12 @@
                             "mandate_options": {
                                 "amount": "currency"
                             }
+                        },
+                        "upi": {
+                            "mandate_options": {
+                                "amount": "currency",
+                                "end_date": "timestamp"
+                            }
                         }
                     }
                 },
@@ -90,6 +96,7 @@
                 "schedule_details": {
                     "phases": {
                         "add_invoice_items": {
+                            "discountable": "boolean",
                             "period": {
                                 "end": {
                                     "timestamp": "timestamp"
@@ -128,6 +135,11 @@
                 },
                 "subscription_details": {
                     "billing_cycle_anchor": "timestamp",
+                    "billing_schedules": {
+                        "bill_until": {
+                            "timestamp": "timestamp"
+                        }
+                    },
                     "cancel_at": "timestamp",
                     "cancel_at_period_end": "boolean",
                     "cancel_now": "boolean",
@@ -218,6 +230,12 @@
                         "payto": {
                             "mandate_options": {
                                 "amount": "currency"
+                            }
+                        },
+                        "upi": {
+                            "mandate_options": {
+                                "amount": "currency",
+                                "end_date": "timestamp"
                             }
                         }
                     }

@@ -6,6 +6,9 @@
                 "expires_at": "datetime"
             }
         },
+        "pix_display_qr_code": {
+            "expires_at": "datetime"
+        },
         "upi_handle_redirect_or_display_qr_code": {
             "qr_code": {
                 "expires_at": "datetime"
@@ -24,6 +27,11 @@
             }
         },
         "payto": {
+            "mandate_options": {
+                "amount": "currency"
+            }
+        },
+        "pix": {
             "mandate_options": {
                 "amount": "currency"
             }

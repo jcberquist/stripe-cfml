@@ -1,0 +1,22 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/billing/feedback_options"
+        },
+        "deactivate": {
+            "httpMethod": "post",
+            "path": "/v1/billing/feedback_options/{feedback_option_id}/deactivate"
+        },
+        "list": {
+            "path": "/v1/billing/feedback_options"
+        },
+        "retrieve": {
+            "path": "/v1/billing/feedback_options/{feedback_option_id}"
+        },
+        "update": {
+            "httpMethod": "post",
+            "path": "/v1/billing/feedback_options/{feedback_option_id}"
+        }
+    }
+}

@@ -21,6 +21,7 @@
                 },
                 "phases": {
                     "add_invoice_items": {
+                        "discountable": "boolean",
                         "period": {
                             "end": {
                                 "timestamp": "timestamp"
@@ -93,6 +94,7 @@
                 },
                 "phases": {
                     "add_invoice_items": {
+                        "discountable": "boolean",
                         "period": {
                             "end": {
                                 "timestamp": "timestamp"

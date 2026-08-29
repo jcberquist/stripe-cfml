@@ -17,6 +17,9 @@
             "arguments": {
                 "evidence": {
                     "enhanced_evidence": {
+                        "mastercard_compliance": {
+                            "fee_acknowledged": "boolean"
+                        },
                         "visa_compliance": {
                             "fee_acknowledged": "boolean"
                         }

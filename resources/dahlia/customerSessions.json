@@ -3,7 +3,13 @@
         "create": {
             "arguments": {
                 "components": {
+                    "active_entitlements": {
+                        "enabled": "boolean"
+                    },
                     "buy_button": {
+                        "enabled": "boolean"
+                    },
+                    "customer_portal": {
                         "enabled": "boolean"
                     },
                     "customer_sheet": {

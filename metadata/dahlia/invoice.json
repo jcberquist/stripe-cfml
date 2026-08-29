@@ -2,6 +2,7 @@
     "amount_due": "currency",
     "amount_overpaid": "currency",
     "amount_paid": "currency",
+    "amount_paid_off_stripe": "currency",
     "amount_remaining": "currency",
     "amount_shipping": "currency",
     "automatically_finalizes_at": "datetime",
@@ -20,6 +21,12 @@
             "payto": {
                 "mandate_options": {
                     "amount": "currency"
+                }
+            },
+            "upi": {
+                "mandate_options": {
+                    "amount": "currency",
+                    "end_date": "datetime"
                 }
             }
         }

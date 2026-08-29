@@ -11,6 +11,7 @@
         "create": {
             "arguments": {
                 "add_invoice_items": {
+                    "discountable": "boolean",
                     "period": {
                         "end": {
                             "timestamp": "timestamp"
@@ -29,6 +30,11 @@
                 },
                 "backdate_start_date": "timestamp",
                 "billing_cycle_anchor": "timestamp",
+                "billing_schedules": {
+                    "bill_until": {
+                        "timestamp": "timestamp"
+                    }
+                },
                 "billing_thresholds": {
                     "amount_gte": "currency",
                     "reset_billing_cycle_anchor": "boolean"
@@ -56,6 +62,18 @@
                         "payto": {
                             "mandate_options": {
                                 "amount": "currency"
+                            }
+                        },
+                        "pix": {
+                            "mandate_options": {
+                                "amount": "currency",
+                                "end_date": "timestamp"
+                            }
+                        },
+                        "upi": {
+                            "mandate_options": {
+                                "amount": "currency",
+                                "end_date": "timestamp"
                             }
                         }
                     }
@@ -101,6 +119,7 @@
         "update": {
             "arguments": {
                 "add_invoice_items": {
+                    "discountable": "boolean",
                     "period": {
                         "end": {
                             "timestamp": "timestamp"
@@ -116,6 +135,11 @@
                 },
                 "automatic_tax": {
                     "enabled": "boolean"
+                },
+                "billing_schedules": {
+                    "bill_until": {
+                        "timestamp": "timestamp"
+                    }
                 },
                 "billing_thresholds": {
                     "amount_gte": "currency",
@@ -148,6 +172,18 @@
                         "payto": {
                             "mandate_options": {
                                 "amount": "currency"
+                            }
+                        },
+                        "pix": {
+                            "mandate_options": {
+                                "amount": "currency",
+                                "end_date": "timestamp"
+                            }
+                        },
+                        "upi": {
+                            "mandate_options": {
+                                "amount": "currency",
+                                "end_date": "timestamp"
                             }
                         }
                     }

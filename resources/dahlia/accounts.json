@@ -28,6 +28,9 @@
                     "amazon_pay_payments": {
                         "requested": "boolean"
                     },
+                    "app_distribution": {
+                        "requested": "boolean"
+                    },
                     "au_becs_debit_payments": {
                         "requested": "boolean"
                     },
@@ -41,6 +44,9 @@
                         "requested": "boolean"
                     },
                     "billie_payments": {
+                        "requested": "boolean"
+                    },
+                    "bizum_payments": {
                         "requested": "boolean"
                     },
                     "blik_payments": {
@@ -160,6 +166,9 @@
                     "satispay_payments": {
                         "requested": "boolean"
                     },
+                    "scalapay_payments": {
+                        "requested": "boolean"
+                    },
                     "sepa_bank_transfer_payments": {
                         "requested": "boolean"
                     },
@@ -167,6 +176,9 @@
                         "requested": "boolean"
                     },
                     "sofort_payments": {
+                        "requested": "boolean"
+                    },
+                    "sunbit_payments": {
                         "requested": "boolean"
                     },
                     "swish_payments": {
@@ -332,6 +344,10 @@
         "retrievePerson": {
             "path": "/v1/accounts/{account_id}/persons/{person_id}"
         },
+        "unreject": {
+            "httpMethod": "post",
+            "path": "/v1/accounts/{account_id}/unreject"
+        },
         "update": {
             "arguments": {
                 "business_profile": {
@@ -360,6 +376,9 @@
                     "amazon_pay_payments": {
                         "requested": "boolean"
                     },
+                    "app_distribution": {
+                        "requested": "boolean"
+                    },
                     "au_becs_debit_payments": {
                         "requested": "boolean"
                     },
@@ -373,6 +392,9 @@
                         "requested": "boolean"
                     },
                     "billie_payments": {
+                        "requested": "boolean"
+                    },
+                    "bizum_payments": {
                         "requested": "boolean"
                     },
                     "blik_payments": {
@@ -492,6 +514,9 @@
                     "satispay_payments": {
                         "requested": "boolean"
                     },
+                    "scalapay_payments": {
+                        "requested": "boolean"
+                    },
                     "sepa_bank_transfer_payments": {
                         "requested": "boolean"
                     },
@@ -499,6 +524,9 @@
                         "requested": "boolean"
                     },
                     "sofort_payments": {
+                        "requested": "boolean"
+                    },
+                    "sunbit_payments": {
                         "requested": "boolean"
                     },
                     "swish_payments": {

@@ -3,6 +3,12 @@
     "billing_mode": {
         "updated_at": "datetime"
     },
+    "billing_schedules": {
+        "bill_until": {
+            "computed_timestamp": "datetime",
+            "timestamp": "datetime"
+        }
+    },
     "billing_thresholds": {
         "amount_gte": "currency"
     },
@@ -24,6 +30,17 @@
             "payto": {
                 "mandate_options": {
                     "amount": "currency"
+                }
+            },
+            "pix": {
+                "mandate_options": {
+                    "amount": "currency"
+                }
+            },
+            "upi": {
+                "mandate_options": {
+                    "amount": "currency",
+                    "end_date": "datetime"
                 }
             }
         }

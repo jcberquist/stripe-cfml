@@ -32,6 +32,9 @@
         "display_bank_transfer_instructions": {
             "amount_remaining": "currency"
         },
+        "klarna_display_qr_code": {
+            "expires_at": "datetime"
+        },
         "konbini_display_details": {
             "expires_at": "datetime"
         },
@@ -65,6 +68,11 @@
             "expires_at": "datetime"
         },
         "payto": {
+            "mandate_options": {
+                "amount": "currency"
+            }
+        },
+        "pix": {
             "mandate_options": {
                 "amount": "currency"
             }

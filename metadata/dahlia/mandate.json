@@ -2,6 +2,9 @@
     "customer_acceptance": {
         "accepted_at": "datetime"
     },
+    "multi_use": {
+        "amount": "currency"
+    },
     "payment_method_details": {
         "payto": {
             "amount": "currency"
