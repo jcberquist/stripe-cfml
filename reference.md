@@ -35,6 +35,7 @@ stripe.accounts.retrieveCapability(account_id, capability_id);
 stripe.accounts.retrieveCurrent();
 stripe.accounts.retrieveExternalAccount(account_id, external_account_id);
 stripe.accounts.retrievePerson(account_id, person_id);
+stripe.accounts.unreject(account_id);
 stripe.accounts.update(account_id);
 stripe.accounts.updateCapability(account_id, capability_id);
 stripe.accounts.updateExternalAccount(account_id, external_account_id);
@@ -123,6 +124,16 @@ stripe.billing.creditGrants.list();
 stripe.billing.creditGrants.retrieve(credit_grant_id);
 stripe.billing.creditGrants.update(credit_grant_id);
 stripe.billing.creditGrants.voidGrant(credit_grant_id);
+```
+
+## stripe.billing.feedbackOptions
+
+```cfc
+stripe.billing.feedbackOptions.create();
+stripe.billing.feedbackOptions.deactivate(feedback_option_id);
+stripe.billing.feedbackOptions.list();
+stripe.billing.feedbackOptions.retrieve(feedback_option_id);
+stripe.billing.feedbackOptions.update(feedback_option_id);
 ```
 
 ## stripe.billing.meterEventAdjustments
@@ -592,6 +603,7 @@ stripe.paymentMethods.update(payment_method_id);
 ## stripe.paymentRecords
 
 ```cfc
+stripe.paymentRecords.list();
 stripe.paymentRecords.reportPayment();
 stripe.paymentRecords.reportPaymentAttempt(payment_record_id);
 stripe.paymentRecords.reportPaymentAttemptCanceled(payment_record_id);
@@ -677,6 +689,12 @@ stripe.quotes.update(quote_id);
 ```cfc
 stripe.radar.earlyFraudWarnings.list();
 stripe.radar.earlyFraudWarnings.retrieve(early_fraud_warning_id);
+```
+
+## stripe.radar.paymentEvaluations
+
+```cfc
+stripe.radar.paymentEvaluations.create();
 ```
 
 ## stripe.radar.valueListItems
@@ -810,6 +828,12 @@ stripe.subscriptions.search();
 stripe.subscriptions.update(subscription_id);
 ```
 
+## stripe.tax.associations
+
+```cfc
+stripe.tax.associations.find();
+```
+
 ## stripe.tax.calculations
 
 ```cfc
@@ -892,6 +916,12 @@ stripe.terminal.locations.delete(location_id);
 stripe.terminal.locations.list();
 stripe.terminal.locations.retrieve(location_id);
 stripe.terminal.locations.update(location_id);
+```
+
+## stripe.terminal.onboardingLinks
+
+```cfc
+stripe.terminal.onboardingLinks.create();
 ```
 
 ## stripe.terminal.readers
