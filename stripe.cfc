@@ -18,7 +18,7 @@ component accessors="true" {
             response: new lib.parsers.response( variables.config, variables.objectMetadata )
         };
 
-        variables.resources = list( 'resources', variables.config.get( 'resources' ) );
+        variables.resources = loadBundle( 'resources', variables.config.get( 'resources' ) );
 
         for ( var resource in variables.resources ) {
             var resourceParts = resource.listToArray( '.' );
@@ -29,11 +29,7 @@ component accessors="true" {
                 }
                 parent = parent[ resourceParts[ i ] ];
             }
-            parent[ resourceParts[ i ] ] = new lib.apiResource(
-                this,
-                resource,
-                loadJSONFile( variables.resources[ resource ] )
-            );
+            parent[ resourceParts[ i ] ] = new lib.apiResource( this, resource, variables.resources[ resource ] );
         }
 
         this[ 'webhooks' ] = new lib.webhooks( parsers.response );
@@ -148,26 +144,19 @@ component accessors="true" {
         return response;
     }
 
-    public struct function list( required string dataType, array filter = [ ] ) {
+    public struct function loadBundle( required string dataType, array filter = [ ] ) {
         var majorVersion = variables.config.get( 'major_api_version' );
-        var fullPath = '#variables.basePath##dataType#/#majorVersion#/';
+        var bundle = deserializeJSON( fileRead( '#variables.basePath##dataType#/#majorVersion#.json', 'utf-8' ) );
+        if ( !arrayLen( arguments.filter ) ) {
+            return bundle;
+        }
         var result = { };
-        var jsonFiles = directoryList( fullPath, true, 'path', '*.json' );
-        for ( var path in jsonFiles ) {
-            var dotName = path
-                .replace( '\', '/', 'all' )
-                .replace( fullPath, '' )
-                .listFirst( '.' )
-                .replace( '/', '.', 'all' );
-            if ( !arrayLen( arguments.filter ) || arguments.filter.find( dotName ) ) {
-                result[ dotName ] = path;
+        for ( var dotName in bundle ) {
+            if ( arguments.filter.find( dotName ) ) {
+                result[ dotName ] = bundle[ dotName ];
             }
         }
         return result;
-    }
-
-    public struct function loadJSONFile( required string fullPath ) {
-        return deserializeJSON( fileRead( fullPath ) );
     }
 
     private any function getSources(

@@ -1,8 +1,0 @@
-{
-    "additional_tos_acceptances": {
-        "account": {
-            "date": "datetime"
-        }
-    },
-    "created": "datetime"
-}

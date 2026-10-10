@@ -1,7 +1,0 @@
-{
-    "methods": {
-        "retrieve": {
-            "path": "/v1/mandates/{mandate_id}"
-        }
-    }
-}

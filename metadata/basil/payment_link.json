@@ -1,9 +1,0 @@
-{
-    "application_fee_amount": "currency",
-    "shipping_options": {
-        "shipping_amount": "currency"
-    },
-    "transfer_data": {
-        "amount": "currency"
-    }
-}

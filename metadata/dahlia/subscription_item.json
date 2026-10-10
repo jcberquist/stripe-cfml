@@ -1,5 +1,0 @@
-{
-    "billed_until": "datetime",
-    "current_period_end": "datetime",
-    "current_period_start": "datetime"
-}

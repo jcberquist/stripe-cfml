@@ -1,0 +1,1622 @@
+{
+    "account": {
+        "business_profile": {
+            "annual_revenue": {
+                "amount": "currency"
+            },
+            "monthly_estimated_revenue": {
+                "amount": "currency"
+            }
+        },
+        "company": {
+            "directorship_declaration": {
+                "date": "datetime"
+            },
+            "ownership_declaration": {
+                "date": "datetime"
+            },
+            "representative_declaration": {
+                "date": "datetime"
+            }
+        },
+        "created": "datetime",
+        "future_requirements": {
+            "current_deadline": "datetime"
+        },
+        "requirements": {
+            "current_deadline": "datetime"
+        },
+        "tos_acceptance": {
+            "date": "datetime"
+        }
+    },
+    "account_link": {
+        "created": "datetime",
+        "expires_at": "datetime"
+    },
+    "account_session": {
+        "expires_at": "datetime"
+    },
+    "application_fee": {
+        "amount": "currency",
+        "amount_refunded": "currency",
+        "created": "datetime"
+    },
+    "apps.secret": {
+        "created": "datetime",
+        "expires_at": "datetime"
+    },
+    "balance": {
+        "available": {
+            "amount": "currency",
+            "source_types": {
+                "bank_account": "currency",
+                "card": "currency",
+                "fpx": "currency"
+            }
+        },
+        "connect_reserved": {
+            "amount": "currency",
+            "source_types": {
+                "bank_account": "currency",
+                "card": "currency",
+                "fpx": "currency"
+            }
+        },
+        "instant_available": {
+            "amount": "currency",
+            "net_available": {
+                "amount": "currency",
+                "source_types": {
+                    "bank_account": "currency",
+                    "card": "currency",
+                    "fpx": "currency"
+                }
+            },
+            "source_types": {
+                "bank_account": "currency",
+                "card": "currency",
+                "fpx": "currency"
+            }
+        },
+        "issuing": {
+            "available": {
+                "amount": "currency",
+                "source_types": {
+                    "bank_account": "currency",
+                    "card": "currency",
+                    "fpx": "currency"
+                }
+            }
+        },
+        "pending": {
+            "amount": "currency",
+            "source_types": {
+                "bank_account": "currency",
+                "card": "currency",
+                "fpx": "currency"
+            }
+        },
+        "refund_and_dispute_prefunding": {
+            "available": {
+                "amount": "currency",
+                "source_types": {
+                    "bank_account": "currency",
+                    "card": "currency",
+                    "fpx": "currency"
+                }
+            },
+            "pending": {
+                "amount": "currency",
+                "source_types": {
+                    "bank_account": "currency",
+                    "card": "currency",
+                    "fpx": "currency"
+                }
+            }
+        }
+    },
+    "balance_transaction": {
+        "amount": "currency",
+        "available_on": "datetime",
+        "created": "datetime",
+        "fee": "currency",
+        "fee_details": {
+            "amount": "currency"
+        },
+        "net": "currency"
+    },
+    "billing.credit_balance_summary": {
+        "balances": {
+            "available_balance": {
+                "monetary": {
+                    "value": "currency"
+                }
+            },
+            "ledger_balance": {
+                "monetary": {
+                    "value": "currency"
+                }
+            }
+        }
+    },
+    "billing.credit_balance_transaction": {
+        "created": "datetime",
+        "credit": {
+            "amount": {
+                "monetary": {
+                    "value": "currency"
+                }
+            }
+        },
+        "debit": {
+            "amount": {
+                "monetary": {
+                    "value": "currency"
+                }
+            }
+        },
+        "effective_at": "datetime"
+    },
+    "billing.credit_grant": {
+        "amount": {
+            "monetary": {
+                "value": "currency"
+            }
+        },
+        "created": "datetime",
+        "effective_at": "datetime",
+        "expires_at": "datetime",
+        "updated": "datetime",
+        "voided_at": "datetime"
+    },
+    "billing.feedback_option": {
+        "status_transitions": {
+            "deactivated_at": "datetime"
+        }
+    },
+    "billing.meter": {
+        "created": "datetime",
+        "status_transitions": {
+            "deactivated_at": "datetime"
+        },
+        "updated": "datetime"
+    },
+    "billing.meter_event": {
+        "created": "datetime",
+        "timestamp": "datetime"
+    },
+    "billing.meter_event_summary": {
+        "end_time": "datetime",
+        "start_time": "datetime"
+    },
+    "billing_portal.configuration": {
+        "created": "datetime",
+        "updated": "datetime"
+    },
+    "capability": {
+        "future_requirements": {
+            "current_deadline": "datetime"
+        },
+        "requested_at": "datetime",
+        "requirements": {
+            "current_deadline": "datetime"
+        }
+    },
+    "charge": {
+        "amount": "currency",
+        "amount_captured": "currency",
+        "amount_refunded": "currency",
+        "application_fee_amount": "currency",
+        "created": "datetime",
+        "level3": {
+            "line_items": {
+                "discount_amount": "currency",
+                "tax_amount": "currency"
+            },
+            "shipping_amount": "currency"
+        },
+        "payment_method_details": {
+            "card": {
+                "amount_authorized": "currency",
+                "capture_before": "datetime",
+                "overcapture": {
+                    "maximum_amount_capturable": "currency"
+                }
+            },
+            "card_present": {
+                "amount_authorized": "currency",
+                "capture_before": "datetime",
+                "offline": {
+                    "stored_at": "datetime"
+                }
+            }
+        },
+        "presentment_details": {
+            "presentment_amount": "currency"
+        },
+        "transfer_data": {
+            "amount": "currency"
+        }
+    },
+    "checkout.session": {
+        "after_expiration": {
+            "recovery": {
+                "expires_at": "datetime"
+            }
+        },
+        "amount_subtotal": "currency",
+        "amount_total": "currency",
+        "created": "datetime",
+        "currency_conversion": {
+            "amount_subtotal": "currency",
+            "amount_total": "currency"
+        },
+        "expires_at": "datetime",
+        "payment_method_options": {
+            "payto": {
+                "mandate_options": {
+                    "amount": "currency"
+                }
+            },
+            "pix": {
+                "mandate_options": {
+                    "amount": "currency"
+                }
+            },
+            "upi": {
+                "mandate_options": {
+                    "amount": "currency",
+                    "end_date": "datetime"
+                }
+            }
+        },
+        "presentment_details": {
+            "presentment_amount": "currency"
+        },
+        "shipping_cost": {
+            "amount_subtotal": "currency",
+            "amount_tax": "currency",
+            "amount_total": "currency",
+            "taxes": {
+                "amount": "currency",
+                "taxable_amount": "currency"
+            }
+        },
+        "shipping_options": {
+            "shipping_amount": "currency"
+        },
+        "total_details": {
+            "amount_discount": "currency",
+            "amount_shipping": "currency",
+            "amount_tax": "currency",
+            "breakdown": {
+                "discounts": {
+                    "amount": "currency"
+                },
+                "taxes": {
+                    "amount": "currency",
+                    "taxable_amount": "currency"
+                }
+            }
+        }
+    },
+    "climate.order": {
+        "amount_fees": "currency",
+        "amount_subtotal": "currency",
+        "amount_total": "currency",
+        "canceled_at": "datetime",
+        "confirmed_at": "datetime",
+        "created": "datetime",
+        "delayed_at": "datetime",
+        "delivered_at": "datetime",
+        "delivery_details": {
+            "delivered_at": "datetime"
+        },
+        "product_substituted_at": "datetime"
+    },
+    "confirmation_token": {
+        "created": "datetime",
+        "expires_at": "datetime",
+        "payment_method_preview": {
+            "card": {
+                "generated_from": {
+                    "payment_method_details": {
+                        "card_present": {
+                            "amount_authorized": "currency",
+                            "capture_before": "datetime",
+                            "offline": {
+                                "stored_at": "datetime"
+                            }
+                        }
+                    }
+                }
+            },
+            "card_present": {
+                "offline": {
+                    "stored_at": "datetime"
+                }
+            }
+        }
+    },
+    "connect_collection_transfer": {
+        "amount": "currency"
+    },
+    "coupon": {
+        "amount_off": "currency",
+        "created": "datetime",
+        "redeem_by": "datetime"
+    },
+    "credit_note": {
+        "amount": "currency",
+        "amount_shipping": "currency",
+        "created": "datetime",
+        "discount_amount": "currency",
+        "discount_amounts": {
+            "amount": "currency"
+        },
+        "effective_at": "datetime",
+        "out_of_band_amount": "currency",
+        "post_payment_amount": "currency",
+        "pre_payment_amount": "currency",
+        "pretax_credit_amounts": {
+            "amount": "currency"
+        },
+        "refunds": {
+            "amount_refunded": "currency"
+        },
+        "shipping_cost": {
+            "amount_subtotal": "currency",
+            "amount_tax": "currency",
+            "amount_total": "currency",
+            "taxes": {
+                "amount": "currency",
+                "taxable_amount": "currency"
+            }
+        },
+        "subtotal": "currency",
+        "subtotal_excluding_tax": "currency",
+        "total": "currency",
+        "total_excluding_tax": "currency",
+        "total_taxes": {
+            "amount": "currency",
+            "taxable_amount": "currency"
+        },
+        "voided_at": "datetime"
+    },
+    "credit_note_line_item": {
+        "amount": "currency",
+        "discount_amount": "currency",
+        "discount_amounts": {
+            "amount": "currency"
+        },
+        "pretax_credit_amounts": {
+            "amount": "currency"
+        },
+        "taxes": {
+            "amount": "currency",
+            "taxable_amount": "currency"
+        },
+        "unit_amount": "currency"
+    },
+    "customer": {
+        "balance": "currency",
+        "created": "datetime"
+    },
+    "customer_balance_transaction": {
+        "amount": "currency",
+        "created": "datetime",
+        "ending_balance": "currency"
+    },
+    "customer_cash_balance_transaction": {
+        "created": "datetime",
+        "ending_balance": "currency",
+        "net_amount": "currency"
+    },
+    "customer_session": {
+        "created": "datetime",
+        "expires_at": "datetime"
+    },
+    "deleted_discount": {
+        "start": "datetime"
+    },
+    "discount": {
+        "end": "datetime",
+        "start": "datetime"
+    },
+    "dispute": {
+        "amount": "currency",
+        "created": "datetime",
+        "evidence_details": {
+            "due_by": "datetime"
+        }
+    },
+    "ephemeral_key": {
+        "created": "datetime",
+        "expires": "datetime"
+    },
+    "fee_refund": {
+        "amount": "currency",
+        "created": "datetime"
+    },
+    "file": {
+        "created": "datetime",
+        "expires_at": "datetime"
+    },
+    "file_link": {
+        "created": "datetime",
+        "expires_at": "datetime"
+    },
+    "financial_connections.account": {
+        "account_numbers": {
+            "expected_expiry_date": "datetime"
+        },
+        "balance": {
+            "as_of": "datetime"
+        },
+        "balance_refresh": {
+            "last_attempted_at": "datetime",
+            "next_refresh_available_at": "datetime"
+        },
+        "created": "datetime",
+        "ownership_refresh": {
+            "last_attempted_at": "datetime",
+            "next_refresh_available_at": "datetime"
+        },
+        "status_details": {
+            "active": {
+                "expected_deactivation_date": "datetime"
+            }
+        },
+        "transaction_refresh": {
+            "last_attempted_at": "datetime",
+            "next_refresh_available_at": "datetime"
+        }
+    },
+    "financial_connections.account_owner": {
+        "refreshed_at": "datetime"
+    },
+    "financial_connections.transaction": {
+        "amount": "currency",
+        "status_transitions": {
+            "posted_at": "datetime",
+            "void_at": "datetime"
+        },
+        "transacted_at": "datetime",
+        "updated": "datetime"
+    },
+    "invoice": {
+        "amount_due": "currency",
+        "amount_overpaid": "currency",
+        "amount_paid": "currency",
+        "amount_paid_off_stripe": "currency",
+        "amount_remaining": "currency",
+        "amount_shipping": "currency",
+        "automatically_finalizes_at": "datetime",
+        "created": "datetime",
+        "due_date": "datetime",
+        "effective_at": "datetime",
+        "ending_balance": "currency",
+        "next_payment_attempt": "datetime",
+        "parent": {
+            "subscription_details": {
+                "subscription_proration_date": "datetime"
+            }
+        },
+        "payment_settings": {
+            "payment_method_options": {
+                "payto": {
+                    "mandate_options": {
+                        "amount": "currency"
+                    }
+                },
+                "upi": {
+                    "mandate_options": {
+                        "amount": "currency",
+                        "end_date": "datetime"
+                    }
+                }
+            }
+        },
+        "period_end": "datetime",
+        "period_start": "datetime",
+        "post_payment_credit_notes_amount": "currency",
+        "pre_payment_credit_notes_amount": "currency",
+        "shipping_cost": {
+            "amount_subtotal": "currency",
+            "amount_tax": "currency",
+            "amount_total": "currency",
+            "taxes": {
+                "amount": "currency",
+                "taxable_amount": "currency"
+            }
+        },
+        "starting_balance": "currency",
+        "status_transitions": {
+            "finalized_at": "datetime",
+            "marked_uncollectible_at": "datetime",
+            "paid_at": "datetime",
+            "voided_at": "datetime"
+        },
+        "subtotal_excluding_tax": "currency",
+        "threshold_reason": {
+            "amount_gte": "currency"
+        },
+        "total_discount_amounts": {
+            "amount": "currency"
+        },
+        "total_excluding_tax": "currency",
+        "total_pretax_credit_amounts": {
+            "amount": "currency"
+        },
+        "total_taxes": {
+            "amount": "currency",
+            "taxable_amount": "currency"
+        },
+        "webhooks_delivered_at": "datetime"
+    },
+    "invoice_payment": {
+        "amount_paid": "currency",
+        "amount_requested": "currency",
+        "created": "datetime",
+        "status_transitions": {
+            "canceled_at": "datetime",
+            "paid_at": "datetime"
+        }
+    },
+    "invoice_rendering_template": {
+        "created": "datetime",
+        "version": "datetime"
+    },
+    "invoiceitem": {
+        "amount": "currency",
+        "date": "datetime",
+        "net_amount": "currency",
+        "period": {
+            "end": "datetime",
+            "start": "datetime"
+        },
+        "proration_details": {
+            "discount_amounts": {
+                "amount": "currency"
+            }
+        }
+    },
+    "issuing.authorization": {
+        "amount": "currency",
+        "amount_details": {
+            "cashback_amount": "currency"
+        },
+        "created": "datetime",
+        "merchant_amount": "currency",
+        "pending_request": {
+            "amount": "currency",
+            "amount_details": {
+                "cashback_amount": "currency"
+            },
+            "merchant_amount": "currency"
+        },
+        "request_history": {
+            "amount": "currency",
+            "amount_details": {
+                "cashback_amount": "currency"
+            },
+            "created": "datetime",
+            "merchant_amount": "currency",
+            "requested_at": "datetime"
+        }
+    },
+    "issuing.card": {
+        "created": "datetime",
+        "latest_fraud_warning": {
+            "started_at": "datetime"
+        },
+        "shipping": {
+            "eta": "datetime"
+        },
+        "spending_controls": {
+            "spending_limits": {
+                "amount": "currency"
+            }
+        }
+    },
+    "issuing.cardholder": {
+        "created": "datetime",
+        "individual": {
+            "card_issuing": {
+                "user_terms_acceptance": {
+                    "date": "datetime"
+                }
+            }
+        },
+        "spending_controls": {
+            "spending_limits": {
+                "amount": "currency"
+            }
+        }
+    },
+    "issuing.dispute": {
+        "amount": "currency",
+        "created": "datetime",
+        "evidence": {
+            "canceled": {
+                "canceled_at": "datetime",
+                "expected_at": "datetime",
+                "returned_at": "datetime"
+            },
+            "merchandise_not_as_described": {
+                "received_at": "datetime",
+                "returned_at": "datetime"
+            },
+            "not_received": {
+                "expected_at": "datetime"
+            },
+            "service_not_as_described": {
+                "canceled_at": "datetime",
+                "received_at": "datetime"
+            }
+        }
+    },
+    "issuing.token": {
+        "created": "datetime",
+        "network_updated_at": "datetime"
+    },
+    "issuing.transaction": {
+        "amount": "currency",
+        "amount_details": {
+            "cashback_amount": "currency"
+        },
+        "created": "datetime",
+        "merchant_amount": "currency",
+        "purchase_details": {
+            "receipt": {
+                "total": "currency",
+                "unit_cost": "currency"
+            }
+        }
+    },
+    "item": {
+        "amount_discount": "currency",
+        "amount_subtotal": "currency",
+        "amount_tax": "currency",
+        "amount_total": "currency",
+        "discounts": {
+            "amount": "currency"
+        },
+        "taxes": {
+            "amount": "currency",
+            "taxable_amount": "currency"
+        }
+    },
+    "line_item": {
+        "amount": "currency",
+        "discount_amounts": {
+            "amount": "currency"
+        },
+        "period": {
+            "end": "datetime",
+            "start": "datetime"
+        },
+        "pretax_credit_amounts": {
+            "amount": "currency"
+        },
+        "subtotal": "currency",
+        "taxes": {
+            "amount": "currency",
+            "taxable_amount": "currency"
+        }
+    },
+    "mandate": {
+        "customer_acceptance": {
+            "accepted_at": "datetime"
+        },
+        "multi_use": {
+            "amount": "currency"
+        },
+        "payment_method_details": {
+            "blik": {
+                "expires_at": "datetime"
+            },
+            "payto": {
+                "amount": "currency"
+            },
+            "upi": {
+                "amount": "currency",
+                "end_date": "datetime"
+            }
+        },
+        "single_use": {
+            "amount": "currency"
+        }
+    },
+    "payment_attempt_record": {
+        "amount": {
+            "value": "currency"
+        },
+        "amount_authorized": {
+            "value": "currency"
+        },
+        "amount_canceled": {
+            "value": "currency"
+        },
+        "amount_failed": {
+            "value": "currency"
+        },
+        "amount_guaranteed": {
+            "value": "currency"
+        },
+        "amount_refunded": {
+            "value": "currency"
+        },
+        "amount_requested": {
+            "value": "currency"
+        },
+        "created": "datetime",
+        "payment_method_details": {
+            "card": {
+                "capture_before": "datetime"
+            },
+            "card_present": {
+                "amount_authorized": "currency",
+                "capture_before": "datetime",
+                "offline": {
+                    "stored_at": "datetime"
+                }
+            }
+        }
+    },
+    "payment_intent": {
+        "amount": "currency",
+        "amount_capturable": "currency",
+        "amount_details": {
+            "discount_amount": "currency",
+            "shipping": {
+                "amount": "currency"
+            },
+            "tax": {
+                "total_tax_amount": "currency"
+            },
+            "tip": {
+                "amount": "currency"
+            }
+        },
+        "amount_received": "currency",
+        "application_fee_amount": "currency",
+        "canceled_at": "datetime",
+        "created": "datetime",
+        "next_action": {
+            "boleto_display_details": {
+                "expires_at": "datetime"
+            },
+            "card_await_notification": {
+                "charge_attempt_at": "datetime"
+            },
+            "cashapp_handle_redirect_or_display_qr_code": {
+                "qr_code": {
+                    "expires_at": "datetime"
+                }
+            },
+            "display_bank_transfer_instructions": {
+                "amount_remaining": "currency"
+            },
+            "klarna_display_qr_code": {
+                "expires_at": "datetime"
+            },
+            "konbini_display_details": {
+                "expires_at": "datetime"
+            },
+            "multibanco_display_details": {
+                "expires_at": "datetime"
+            },
+            "oxxo_display_details": {
+                "expires_after": "datetime"
+            },
+            "pix_display_qr_code": {
+                "expires_at": "datetime"
+            },
+            "swish_handle_redirect_or_display_qr_code": {
+                "qr_code": {
+                    "expires_at": "datetime"
+                }
+            },
+            "upi_handle_redirect_or_display_qr_code": {
+                "qr_code": {
+                    "expires_at": "datetime"
+                }
+            },
+            "verify_with_microdeposits": {
+                "arrival_date": "datetime"
+            }
+        },
+        "payment_method_options": {
+            "blik": {
+                "mandate_options": {
+                    "expires_at": "datetime"
+                }
+            },
+            "card": {
+                "mandate_options": {
+                    "amount": "currency",
+                    "end_date": "datetime",
+                    "start_date": "datetime"
+                }
+            },
+            "konbini": {
+                "expires_at": "datetime"
+            },
+            "payto": {
+                "mandate_options": {
+                    "amount": "currency"
+                }
+            },
+            "pix": {
+                "mandate_options": {
+                    "amount": "currency"
+                }
+            }
+        },
+        "presentment_details": {
+            "presentment_amount": "currency"
+        },
+        "processing": {
+            "card": {
+                "customer_notification": {
+                    "completes_at": "datetime"
+                }
+            }
+        },
+        "transfer_data": {
+            "amount": "currency"
+        }
+    },
+    "payment_intent_amount_details_line_item": {
+        "discount_amount": "currency",
+        "tax": {
+            "total_tax_amount": "currency"
+        }
+    },
+    "payment_link": {
+        "application_fee_amount": "currency",
+        "shipping_options": {
+            "shipping_amount": "currency"
+        },
+        "transfer_data": {
+            "amount": "currency"
+        }
+    },
+    "payment_method": {
+        "card": {
+            "generated_from": {
+                "payment_method_details": {
+                    "card_present": {
+                        "amount_authorized": "currency",
+                        "capture_before": "datetime",
+                        "offline": {
+                            "stored_at": "datetime"
+                        }
+                    }
+                }
+            }
+        },
+        "card_present": {
+            "offline": {
+                "stored_at": "datetime"
+            }
+        },
+        "created": "datetime"
+    },
+    "payment_record": {
+        "amount": {
+            "value": "currency"
+        },
+        "amount_authorized": {
+            "value": "currency"
+        },
+        "amount_canceled": {
+            "value": "currency"
+        },
+        "amount_failed": {
+            "value": "currency"
+        },
+        "amount_guaranteed": {
+            "value": "currency"
+        },
+        "amount_refunded": {
+            "value": "currency"
+        },
+        "amount_requested": {
+            "value": "currency"
+        },
+        "created": "datetime",
+        "payment_method_details": {
+            "card": {
+                "capture_before": "datetime"
+            },
+            "card_present": {
+                "amount_authorized": "currency",
+                "capture_before": "datetime",
+                "offline": {
+                    "stored_at": "datetime"
+                }
+            }
+        }
+    },
+    "payout": {
+        "amount": "currency",
+        "application_fee_amount": "currency",
+        "arrival_date": "datetime",
+        "created": "datetime"
+    },
+    "person": {
+        "additional_tos_acceptances": {
+            "account": {
+                "date": "datetime"
+            }
+        },
+        "created": "datetime"
+    },
+    "plan": {
+        "amount": "currency",
+        "created": "datetime",
+        "tiers": {
+            "flat_amount": "currency",
+            "unit_amount": "currency"
+        }
+    },
+    "price": {
+        "created": "datetime",
+        "custom_unit_amount": {
+            "maximum": "currency",
+            "minimum": "currency",
+            "preset": "currency"
+        },
+        "tiers": {
+            "flat_amount": "currency",
+            "unit_amount": "currency"
+        },
+        "unit_amount": "currency"
+    },
+    "product": {
+        "created": "datetime",
+        "updated": "datetime"
+    },
+    "promotion_code": {
+        "created": "datetime",
+        "expires_at": "datetime",
+        "restrictions": {
+            "minimum_amount": "currency"
+        }
+    },
+    "quote": {
+        "amount_subtotal": "currency",
+        "amount_total": "currency",
+        "application_fee_amount": "currency",
+        "computed": {
+            "recurring": {
+                "amount_subtotal": "currency",
+                "amount_total": "currency",
+                "total_details": {
+                    "amount_discount": "currency",
+                    "amount_shipping": "currency",
+                    "amount_tax": "currency",
+                    "breakdown": {
+                        "discounts": {
+                            "amount": "currency"
+                        },
+                        "taxes": {
+                            "amount": "currency",
+                            "taxable_amount": "currency"
+                        }
+                    }
+                }
+            },
+            "upfront": {
+                "amount_subtotal": "currency",
+                "amount_total": "currency",
+                "total_details": {
+                    "amount_discount": "currency",
+                    "amount_shipping": "currency",
+                    "amount_tax": "currency",
+                    "breakdown": {
+                        "discounts": {
+                            "amount": "currency"
+                        },
+                        "taxes": {
+                            "amount": "currency",
+                            "taxable_amount": "currency"
+                        }
+                    }
+                }
+            }
+        },
+        "created": "datetime",
+        "expires_at": "datetime",
+        "status_transitions": {
+            "accepted_at": "datetime",
+            "canceled_at": "datetime",
+            "finalized_at": "datetime"
+        },
+        "subscription_data": {
+            "effective_date": "datetime"
+        },
+        "total_details": {
+            "amount_discount": "currency",
+            "amount_shipping": "currency",
+            "amount_tax": "currency",
+            "breakdown": {
+                "discounts": {
+                    "amount": "currency"
+                },
+                "taxes": {
+                    "amount": "currency",
+                    "taxable_amount": "currency"
+                }
+            }
+        },
+        "transfer_data": {
+            "amount": "currency"
+        }
+    },
+    "radar.payment_evaluation": {
+        "created_at": "datetime",
+        "events": {
+            "dispute_opened": {
+                "amount": "currency"
+            },
+            "occurred_at": "datetime",
+            "refunded": {
+                "amount": "currency"
+            }
+        },
+        "payment_details": {
+            "amount": "currency"
+        },
+        "signals": {
+            "early_fraud_warning": {
+                "evaluated_at": "datetime"
+            },
+            "fraudulent_dispute": {
+                "evaluated_at": "datetime"
+            },
+            "fraudulent_payment": {
+                "evaluated_at": "datetime"
+            }
+        }
+    },
+    "refund": {
+        "amount": "currency",
+        "created": "datetime",
+        "next_action": {
+            "display_details": {
+                "email_sent": {
+                    "email_sent_at": "datetime"
+                },
+                "expires_at": "datetime"
+            }
+        },
+        "presentment_details": {
+            "presentment_amount": "currency"
+        }
+    },
+    "reporting.report_run": {
+        "created": "datetime",
+        "parameters": {
+            "interval_end": "datetime",
+            "interval_start": "datetime"
+        },
+        "succeeded_at": "datetime"
+    },
+    "reporting.report_type": {
+        "data_available_end": "datetime",
+        "data_available_start": "datetime",
+        "updated": "datetime"
+    },
+    "reserve_transaction": {
+        "amount": "currency"
+    },
+    "scheduled_query_run": {
+        "created": "datetime",
+        "data_load_time": "datetime",
+        "result_available_until": "datetime"
+    },
+    "setup_attempt": {
+        "created": "datetime",
+        "payment_method_details": {
+            "card_present": {
+                "offline": {
+                    "stored_at": "datetime"
+                }
+            }
+        }
+    },
+    "setup_intent": {
+        "created": "datetime",
+        "next_action": {
+            "cashapp_handle_redirect_or_display_qr_code": {
+                "qr_code": {
+                    "expires_at": "datetime"
+                }
+            },
+            "pix_display_qr_code": {
+                "expires_at": "datetime"
+            },
+            "upi_handle_redirect_or_display_qr_code": {
+                "qr_code": {
+                    "expires_at": "datetime"
+                }
+            },
+            "verify_with_microdeposits": {
+                "arrival_date": "datetime"
+            }
+        },
+        "payment_method_options": {
+            "blik": {
+                "mandate_options": {
+                    "expires_at": "datetime"
+                }
+            },
+            "card": {
+                "mandate_options": {
+                    "amount": "currency",
+                    "end_date": "datetime",
+                    "start_date": "datetime"
+                }
+            },
+            "payto": {
+                "mandate_options": {
+                    "amount": "currency"
+                }
+            },
+            "pix": {
+                "mandate_options": {
+                    "amount": "currency"
+                }
+            },
+            "upi": {
+                "mandate_options": {
+                    "amount": "currency",
+                    "end_date": "datetime"
+                }
+            }
+        }
+    },
+    "shipping_rate": {
+        "created": "datetime",
+        "fixed_amount": {
+            "amount": "currency"
+        }
+    },
+    "source": {
+        "amount": "currency",
+        "created": "datetime",
+        "receiver": {
+            "amount_charged": "currency",
+            "amount_received": "currency",
+            "amount_returned": "currency"
+        },
+        "source_order": {
+            "amount": "currency",
+            "items": {
+                "amount": "currency"
+            }
+        }
+    },
+    "source_transaction": {
+        "amount": "currency",
+        "created": "datetime"
+    },
+    "subscription": {
+        "billing_cycle_anchor": "datetime",
+        "billing_mode": {
+            "updated_at": "datetime"
+        },
+        "billing_schedules": {
+            "bill_until": {
+                "computed_timestamp": "datetime",
+                "timestamp": "datetime"
+            }
+        },
+        "billing_thresholds": {
+            "amount_gte": "currency"
+        },
+        "cancel_at": "datetime",
+        "canceled_at": "datetime",
+        "created": "datetime",
+        "ended_at": "datetime",
+        "next_pending_invoice_item_invoice": "datetime",
+        "pause_collection": {
+            "resumes_at": "datetime"
+        },
+        "payment_settings": {
+            "payment_method_options": {
+                "blik": {
+                    "mandate_options": {
+                        "expires_at": "datetime"
+                    }
+                },
+                "card": {
+                    "mandate_options": {
+                        "amount": "currency"
+                    }
+                },
+                "payto": {
+                    "mandate_options": {
+                        "amount": "currency"
+                    }
+                },
+                "pix": {
+                    "mandate_options": {
+                        "amount": "currency"
+                    }
+                },
+                "upi": {
+                    "mandate_options": {
+                        "amount": "currency",
+                        "end_date": "datetime"
+                    }
+                }
+            }
+        },
+        "pending_update": {
+            "billing_cycle_anchor": "datetime",
+            "expires_at": "datetime",
+            "trial_end": "datetime"
+        },
+        "start_date": "datetime",
+        "status_details": {
+            "paused": {
+                "transitioned_at": "datetime"
+            }
+        },
+        "trial_end": "datetime",
+        "trial_start": "datetime"
+    },
+    "subscription_item": {
+        "billed_until": "datetime",
+        "current_period_end": "datetime",
+        "current_period_start": "datetime",
+        "current_trial": {
+            "end_date": "datetime",
+            "start_date": "datetime"
+        }
+    },
+    "subscription_schedule": {
+        "billing_mode": {
+            "updated_at": "datetime"
+        },
+        "canceled_at": "datetime",
+        "completed_at": "datetime",
+        "created": "datetime",
+        "current_phase": {
+            "end_date": "datetime",
+            "start_date": "datetime"
+        },
+        "default_settings": {
+            "billing_thresholds": {
+                "amount_gte": "currency"
+            }
+        },
+        "pause_schedules": {
+            "pause": {
+                "pause_at": "datetime"
+            },
+            "resume": {
+                "resume_at": "datetime"
+            }
+        },
+        "phases": {
+            "add_invoice_items": {
+                "period": {
+                    "end": {
+                        "timestamp": "datetime"
+                    },
+                    "start": {
+                        "timestamp": "datetime"
+                    }
+                }
+            },
+            "billing_thresholds": {
+                "amount_gte": "currency"
+            },
+            "end_date": "datetime",
+            "start_date": "datetime",
+            "trial_end": "datetime"
+        },
+        "released_at": "datetime"
+    },
+    "tax.calculation": {
+        "amount_total": "currency",
+        "expires_at": "datetime",
+        "shipping_cost": {
+            "amount": "currency",
+            "amount_tax": "currency",
+            "tax_breakdown": {
+                "amount": "currency",
+                "taxable_amount": "currency"
+            }
+        },
+        "tax_amount_exclusive": "currency",
+        "tax_amount_inclusive": "currency",
+        "tax_breakdown": {
+            "amount": "currency",
+            "tax_rate_details": {
+                "flat_amount": {
+                    "amount": "currency"
+                }
+            },
+            "taxable_amount": "currency"
+        },
+        "tax_date": "datetime"
+    },
+    "tax.calculation_line_item": {
+        "amount": "currency",
+        "amount_tax": "currency",
+        "tax_breakdown": {
+            "amount": "currency",
+            "taxable_amount": "currency"
+        }
+    },
+    "tax.registration": {
+        "active_from": "datetime",
+        "created": "datetime",
+        "expires_at": "datetime"
+    },
+    "tax.transaction": {
+        "created": "datetime",
+        "posted_at": "datetime",
+        "shipping_cost": {
+            "amount": "currency",
+            "amount_tax": "currency",
+            "tax_breakdown": {
+                "amount": "currency",
+                "taxable_amount": "currency"
+            }
+        },
+        "tax_date": "datetime"
+    },
+    "tax.transaction_line_item": {
+        "amount": "currency",
+        "amount_tax": "currency"
+    },
+    "tax_deducted_at_source": {
+        "period_end": "datetime",
+        "period_start": "datetime"
+    },
+    "tax_rate": {
+        "created": "datetime",
+        "flat_amount": {
+            "amount": "currency"
+        }
+    },
+    "terminal.configuration": {
+        "tipping": {
+            "aed": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "aud": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "cad": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "chf": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "czk": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "dkk": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "eur": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "gbp": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "gip": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "hkd": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "huf": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "jpy": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "mxn": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "myr": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "nok": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "nzd": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "pln": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "ron": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "sek": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "sgd": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            },
+            "usd": {
+                "fixed_amounts": "currency",
+                "smart_tip_threshold": "currency"
+            }
+        }
+    },
+    "terminal.reader": {
+        "action": {
+            "collect_payment_method": {
+                "collect_config": {
+                    "tipping": {
+                        "amount_eligible": "currency"
+                    }
+                }
+            },
+            "print_content": {
+                "image": {
+                    "created_at": "datetime"
+                }
+            },
+            "process_payment_intent": {
+                "process_config": {
+                    "tipping": {
+                        "amount_eligible": "currency"
+                    }
+                }
+            },
+            "refund_payment": {
+                "amount": "currency"
+            },
+            "set_reader_display": {
+                "cart": {
+                    "line_items": {
+                        "amount": "currency"
+                    },
+                    "tax": "currency",
+                    "total": "currency"
+                }
+            }
+        },
+        "last_seen_at": "datetime"
+    },
+    "test_helpers.test_clock": {
+        "created": "datetime",
+        "deletes_after": "datetime",
+        "frozen_time": "datetime",
+        "status_details": {
+            "advancing": {
+                "target_frozen_time": "datetime"
+            }
+        }
+    },
+    "three_d_secure.authentication": {
+        "amount": "currency",
+        "created": "datetime",
+        "future_usage": {
+            "installment": {
+                "amount": "currency"
+            },
+            "recurring": {
+                "amount": "currency"
+            }
+        }
+    },
+    "topup": {
+        "amount": "currency",
+        "created": "datetime",
+        "expected_availability_date": "datetime"
+    },
+    "transfer": {
+        "amount": "currency",
+        "amount_reversed": "currency",
+        "created": "datetime"
+    },
+    "transfer_reversal": {
+        "amount": "currency",
+        "created": "datetime"
+    },
+    "treasury.credit_reversal": {
+        "amount": "currency",
+        "created": "datetime",
+        "status_transitions": {
+            "posted_at": "datetime"
+        }
+    },
+    "treasury.debit_reversal": {
+        "amount": "currency",
+        "created": "datetime",
+        "status_transitions": {
+            "completed_at": "datetime"
+        }
+    },
+    "treasury.inbound_transfer": {
+        "amount": "currency",
+        "created": "datetime",
+        "status_transitions": {
+            "canceled_at": "datetime",
+            "failed_at": "datetime",
+            "succeeded_at": "datetime"
+        }
+    },
+    "treasury.outbound_payment": {
+        "amount": "currency",
+        "created": "datetime",
+        "expected_arrival_date": "datetime",
+        "status_transitions": {
+            "canceled_at": "datetime",
+            "failed_at": "datetime",
+            "posted_at": "datetime",
+            "returned_at": "datetime"
+        }
+    },
+    "treasury.outbound_transfer": {
+        "amount": "currency",
+        "created": "datetime",
+        "expected_arrival_date": "datetime",
+        "status_transitions": {
+            "canceled_at": "datetime",
+            "failed_at": "datetime",
+            "posted_at": "datetime",
+            "returned_at": "datetime"
+        }
+    },
+    "treasury.received_credit": {
+        "amount": "currency",
+        "created": "datetime",
+        "reversal_details": {
+            "deadline": "datetime"
+        }
+    },
+    "treasury.received_debit": {
+        "amount": "currency",
+        "created": "datetime",
+        "reversal_details": {
+            "deadline": "datetime"
+        }
+    },
+    "treasury.transaction": {
+        "amount": "currency",
+        "created": "datetime",
+        "status_transitions": {
+            "posted_at": "datetime",
+            "void_at": "datetime"
+        }
+    },
+    "treasury.transaction_entry": {
+        "created": "datetime",
+        "effective_at": "datetime"
+    }
+}

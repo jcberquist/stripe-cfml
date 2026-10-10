@@ -1,8 +1,0 @@
-{
-    "methods": {
-        "expire": {
-            "httpMethod": "post",
-            "path": "/v1/test_helpers/refunds/{refund_id}/expire"
-        }
-    }
-}

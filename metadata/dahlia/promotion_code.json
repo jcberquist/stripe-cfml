@@ -1,7 +1,0 @@
-{
-    "created": "datetime",
-    "expires_at": "datetime",
-    "restrictions": {
-        "minimum_amount": "currency"
-    }
-}

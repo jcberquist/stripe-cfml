@@ -4,18 +4,13 @@ component accessors="true" {
 
     function init( required any stripe ) {
         variables.stripe = arguments.stripe;
-        variables.objectMetadata = variables.stripe.list( 'metadata' );
+        variables.objectMetadata = variables.stripe.loadBundle( 'metadata' );
         return this;
     }
 
     public struct function get( required string objectName ) {
         var metadata = { };
         if ( variables.objectMetadata.keyExists( objectName ) ) {
-            if ( isSimpleValue( variables.objectMetadata[ objectName ] ) ) {
-                variables.objectMetadata[ objectName ] = variables.stripe.loadJSONFile(
-                    variables.objectMetadata[ objectName ]
-                );
-            }
             metadata = variables.objectMetadata[ objectName ];
         }
 

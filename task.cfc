@@ -1,18 +1,16 @@
 component accessors="true" {
 
     function run( string majorVersion = 'dahlia' ) {
-        var resourcePath = resolvePath( 'resources/#majorVersion#/' );
-        var resources = directoryList( resourcePath, true, 'path', '*.json' ).sort( 'text' );
+        var bundle = deserializeJSON( fileRead( resolvePath( 'resources/#majorVersion#.json' ), 'utf-8' ) );
+        var resourceNames = bundle.keyArray().sort( 'text' );
 
         var ref = [
             '## stripe-cfml reference',
             'For documentation on which arguments can be passed to each method please see the [Stripe API Reference](https://stripe.com/docs/api). The arguments that are listed here are named arguments that ultimately appear in the URL of an API HTTP request. Since the Node library passes these arguments by position, you can refer to this page to see the names to use when passing these arguments by name.'
         ];
 
-        for ( var srcPath in resources ) {
-            var relativePath = srcPath.replace( resourcePath, '' ).replace( '\', '/', 'all' );
-            var resource = deserializeJSON( fileRead( srcPath, 'utf-8' ) );
-            ref.append( reference( relativePath, resource ) );
+        for ( var resourceName in resourceNames ) {
+            ref.append( reference( resourceName, bundle[ resourceName ] ) );
         }
 
         print.line( 'Writing reference.md' );
@@ -23,12 +21,10 @@ component accessors="true" {
         );
     }
 
-    function reference( relativePath, meta ) {
+    function reference( resourceName, meta ) {
         var patternClass = createObject( 'java', 'java.util.regex.Pattern' );
         var urlKeyRegex = patternClass.compile( '\{([a-z_]+)\}' );
         var lf = server.separator.line;
-
-        var resourceName = relativePath.replace( '/', '.', 'all' ).left( -5 );
 
         var methods = [ ];
         for ( var methodName in meta.methods ) {

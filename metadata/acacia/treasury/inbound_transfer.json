@@ -1,9 +1,0 @@
-{
-    "amount": "currency",
-    "created": "datetime",
-    "status_transitions": {
-        "canceled_at": "datetime",
-        "failed_at": "datetime",
-        "succeeded_at": "datetime"
-    }
-}

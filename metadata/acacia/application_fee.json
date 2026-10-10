@@ -1,5 +1,0 @@
-{
-    "amount": "currency",
-    "amount_refunded": "currency",
-    "created": "datetime"
-}

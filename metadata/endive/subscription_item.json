@@ -1,9 +1,0 @@
-{
-    "billed_until": "datetime",
-    "current_period_end": "datetime",
-    "current_period_start": "datetime",
-    "current_trial": {
-        "end_date": "datetime",
-        "start_date": "datetime"
-    }
-}

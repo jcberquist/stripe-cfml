@@ -1,8 +1,0 @@
-{
-    "methods": {
-        "create": {
-            "httpMethod": "post",
-            "path": "/v1/terminal/connection_tokens"
-        }
-    }
-}

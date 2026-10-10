@@ -1,7 +1,0 @@
-{
-    "methods": {
-        "find": {
-            "path": "/v1/tax/associations/find"
-        }
-    }
-}
