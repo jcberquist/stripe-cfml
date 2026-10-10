@@ -9,19 +9,10 @@ component accessors="true" {
     }
 
     public struct function get( required string objectName ) {
-        var metadata = { };
         if ( variables.objectMetadata.keyExists( objectName ) ) {
-            metadata = variables.objectMetadata[ objectName ];
+            return variables.objectMetadata[ objectName ];
         }
-
-        // almost all objects have a `created` timestamp
-        // adding a check here so any object metadata that only
-        // needs to register `created` can be implicit
-        if ( !metadata.keyExists( 'created' ) ) {
-            metadata[ 'created' ] = 'datetime';
-        }
-
-        return metadata;
+        return { };
     }
 
 }

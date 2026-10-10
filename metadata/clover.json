@@ -37,6 +37,9 @@
     "account_session": {
         "expires_at": "datetime"
     },
+    "apple_pay_domain": {
+        "created": "datetime"
+    },
     "application_fee": {
         "amount": "currency",
         "amount_refunded": "currency",
@@ -126,6 +129,9 @@
         },
         "net": "currency"
     },
+    "billing.alert_triggered": {
+        "created": "datetime"
+    },
     "billing.credit_balance_summary": {
         "balances": {
             "available_balance": {
@@ -188,6 +194,9 @@
     "billing_portal.configuration": {
         "created": "datetime",
         "updated": "datetime"
+    },
+    "billing_portal.session": {
+        "created": "datetime"
     },
     "capability": {
         "future_requirements": {
@@ -298,6 +307,9 @@
             "delivered_at": "datetime"
         },
         "product_substituted_at": "datetime"
+    },
+    "climate.product": {
+        "created": "datetime"
     },
     "confirmation_token": {
         "created": "datetime",
@@ -419,6 +431,9 @@
         "created": "datetime",
         "expires": "datetime"
     },
+    "event": {
+        "created": "datetime"
+    },
     "fee_refund": {
         "amount": "currency",
         "created": "datetime"
@@ -455,6 +470,9 @@
     "financial_connections.account_owner": {
         "refreshed_at": "datetime"
     },
+    "financial_connections.account_ownership": {
+        "created": "datetime"
+    },
     "financial_connections.transaction": {
         "amount": "currency",
         "status_transitions": {
@@ -463,6 +481,15 @@
         },
         "transacted_at": "datetime",
         "updated": "datetime"
+    },
+    "forwarding.request": {
+        "created": "datetime"
+    },
+    "identity.verification_report": {
+        "created": "datetime"
+    },
+    "identity.verification_session": {
+        "created": "datetime"
     },
     "invoice": {
         "amount_due": "currency",
@@ -629,6 +656,9 @@
             }
         }
     },
+    "issuing.personalization_design": {
+        "created": "datetime"
+    },
     "issuing.token": {
         "created": "datetime",
         "network_updated_at": "datetime"
@@ -677,6 +707,9 @@
             "amount": "currency",
             "taxable_amount": "currency"
         }
+    },
+    "login_link": {
+        "created": "datetime"
     },
     "mandate": {
         "customer_acceptance": {
@@ -844,6 +877,9 @@
         },
         "created": "datetime"
     },
+    "payment_method_domain": {
+        "created": "datetime"
+    },
     "payment_record": {
         "amount": {
             "value": "currency"
@@ -996,6 +1032,9 @@
             "amount": "currency"
         }
     },
+    "radar.early_fraud_warning": {
+        "created": "datetime"
+    },
     "radar.payment_evaluation": {
         "created_at": "datetime",
         "events": {
@@ -1013,6 +1052,12 @@
         "payment_details": {
             "amount": "currency"
         }
+    },
+    "radar.value_list": {
+        "created": "datetime"
+    },
+    "radar.value_list_item": {
+        "created": "datetime"
     },
     "refund": {
         "amount": "currency",
@@ -1042,8 +1087,32 @@
         "data_available_start": "datetime",
         "updated": "datetime"
     },
+    "reserve.hold": {
+        "amount": "currency",
+        "amount_releasable": "currency",
+        "created": "datetime",
+        "release_schedule": {
+            "release_after": "datetime",
+            "scheduled_release": "datetime"
+        }
+    },
+    "reserve.plan": {
+        "created": "datetime",
+        "disabled_at": "datetime",
+        "fixed_release": {
+            "scheduled_release": "datetime"
+        }
+    },
+    "reserve.release": {
+        "amount": "currency",
+        "created": "datetime",
+        "released_at": "datetime"
+    },
     "reserve_transaction": {
         "amount": "currency"
+    },
+    "review": {
+        "created": "datetime"
     },
     "scheduled_query_run": {
         "created": "datetime",
@@ -1108,6 +1177,10 @@
             }
         }
     },
+    "source_mandate_notification": {
+        "amount": "currency",
+        "created": "datetime"
+    },
     "source_transaction": {
         "amount": "currency",
         "created": "datetime"
@@ -1152,6 +1225,7 @@
         "trial_start": "datetime"
     },
     "subscription_item": {
+        "created": "datetime",
         "current_period_end": "datetime",
         "current_period_start": "datetime"
     },
@@ -1248,6 +1322,9 @@
     "tax_deducted_at_source": {
         "period_end": "datetime",
         "period_start": "datetime"
+    },
+    "tax_id": {
+        "created": "datetime"
     },
     "tax_rate": {
         "created": "datetime",
@@ -1384,6 +1461,9 @@
             }
         }
     },
+    "token": {
+        "created": "datetime"
+    },
     "topup": {
         "amount": "currency",
         "created": "datetime",
@@ -1411,6 +1491,9 @@
         "status_transitions": {
             "completed_at": "datetime"
         }
+    },
+    "treasury.financial_account": {
+        "created": "datetime"
     },
     "treasury.inbound_transfer": {
         "amount": "currency",
@@ -1468,5 +1551,8 @@
     "treasury.transaction_entry": {
         "created": "datetime",
         "effective_at": "datetime"
+    },
+    "webhook_endpoint": {
+        "created": "datetime"
     }
 }

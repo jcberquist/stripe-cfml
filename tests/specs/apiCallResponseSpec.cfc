@@ -47,6 +47,47 @@ component extends=testbox.system.BaseSpec {
                 );
             } );
         } );
+
+        describe( 'An API response type conversion', function() {
+            var typedStripe = new stripe( 'fake_key', { apiVersion: '2026-09-30.endive', resources: [ 'accounts' ] } );
+            var typedHttpService = getProperty( typedStripe, 'httpService' );
+            prepareMock( typedHttpService );
+            var parserUtils = new lib.parsers.parserUtils();
+
+            afterEach( function() {
+                typedHttpService.$reset();
+            } );
+
+            it( 'converts `created` timestamps to dates', function() {
+                typedHttpService.$( 'exec', {
+                    responseHeader: { 'Content-Type': 'application/json', 'Request-Id': '' },
+                    statuscode: '200 OK',
+                    filecontent: '{"object":"customer","created":1700000000}'
+                } );
+                var res = typedStripe.accounts.retrieve();
+                expect( dateCompare( res.content.created, parserUtils.parseUTCTimestamp( 1700000000 ) ) ).toBe( 0 );
+            } );
+
+            it( 'converts `created` on objects whose schema does not mark it as unix-time', function() {
+                typedHttpService.$( 'exec', {
+                    responseHeader: { 'Content-Type': 'application/json', 'Request-Id': '' },
+                    statuscode: '200 OK',
+                    filecontent: '{"object":"subscription_item","created":1700000000}'
+                } );
+                var res = typedStripe.accounts.retrieve();
+                expect( dateCompare( res.content.created, parserUtils.parseUTCTimestamp( 1700000000 ) ) ).toBe( 0 );
+            } );
+
+            it( 'does not convert `created` on objects without metadata', function() {
+                typedHttpService.$( 'exec', {
+                    responseHeader: { 'Content-Type': 'application/json', 'Request-Id': '' },
+                    statuscode: '200 OK',
+                    filecontent: '{"object":"v2.core.event","created":"2025-01-01T00:00:00.000Z"}'
+                } );
+                var res = typedStripe.accounts.retrieve();
+                expect( res.content.created ).toBe( '2025-01-01T00:00:00.000Z' );
+            } );
+        } );
     }
 
 }
