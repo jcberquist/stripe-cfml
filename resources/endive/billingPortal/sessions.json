@@ -1,0 +1,8 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/billing_portal/sessions"
+        }
+    }
+}

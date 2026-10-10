@@ -1,0 +1,69 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "amount": "currency",
+                "evidence": {
+                    "canceled": {
+                        "canceled_at": "timestamp",
+                        "cancellation_policy_provided": "boolean",
+                        "expected_at": "timestamp",
+                        "returned_at": "timestamp"
+                    },
+                    "merchandise_not_as_described": {
+                        "received_at": "timestamp",
+                        "returned_at": "timestamp"
+                    },
+                    "not_received": {
+                        "expected_at": "timestamp"
+                    },
+                    "service_not_as_described": {
+                        "canceled_at": "timestamp",
+                        "received_at": "timestamp"
+                    }
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/issuing/disputes"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/issuing/disputes"
+        },
+        "retrieve": {
+            "path": "/v1/issuing/disputes/{dispute_id}"
+        },
+        "submit": {
+            "httpMethod": "post",
+            "path": "/v1/issuing/disputes/{dispute_id}/submit"
+        },
+        "update": {
+            "arguments": {
+                "amount": "currency",
+                "evidence": {
+                    "canceled": {
+                        "canceled_at": "timestamp",
+                        "cancellation_policy_provided": "boolean",
+                        "expected_at": "timestamp",
+                        "returned_at": "timestamp"
+                    },
+                    "merchandise_not_as_described": {
+                        "received_at": "timestamp",
+                        "returned_at": "timestamp"
+                    },
+                    "not_received": {
+                        "expected_at": "timestamp"
+                    },
+                    "service_not_as_described": {
+                        "canceled_at": "timestamp",
+                        "received_at": "timestamp"
+                    }
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/issuing/disputes/{dispute_id}"
+        }
+    }
+}

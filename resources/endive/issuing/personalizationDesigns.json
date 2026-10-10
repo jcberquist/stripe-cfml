@@ -1,0 +1,36 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "preferences": {
+                    "is_default": "boolean"
+                },
+                "transfer_lookup_key": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/issuing/personalization_designs"
+        },
+        "list": {
+            "arguments": {
+                "preferences": {
+                    "is_default": "boolean",
+                    "is_platform_default": "boolean"
+                }
+            },
+            "path": "/v1/issuing/personalization_designs"
+        },
+        "retrieve": {
+            "path": "/v1/issuing/personalization_designs/{personalization_design_id}"
+        },
+        "update": {
+            "arguments": {
+                "preferences": {
+                    "is_default": "boolean"
+                },
+                "transfer_lookup_key": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/issuing/personalization_designs/{personalization_design_id}"
+        }
+    }
+}

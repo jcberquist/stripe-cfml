@@ -1,0 +1,10 @@
+{
+    "methods": {
+        "list": {
+            "path": "/v1/issuing/physical_bundles"
+        },
+        "retrieve": {
+            "path": "/v1/issuing/physical_bundles/{physical_bundle_id}"
+        }
+    }
+}

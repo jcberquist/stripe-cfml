@@ -1,0 +1,15 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "link_options": {
+                    "apple_terms_and_conditions": {
+                        "allow_relinking": "boolean"
+                    }
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/terminal/onboarding_links"
+        }
+    }
+}

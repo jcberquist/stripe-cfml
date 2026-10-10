@@ -1,0 +1,28 @@
+{
+    "methods": {
+        "approve": {
+            "arguments": {
+                "amount": "currency"
+            },
+            "httpMethod": "post",
+            "path": "/v1/issuing/authorizations/{authorization_id}/approve"
+        },
+        "decline": {
+            "httpMethod": "post",
+            "path": "/v1/issuing/authorizations/{authorization_id}/decline"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/issuing/authorizations"
+        },
+        "retrieve": {
+            "path": "/v1/issuing/authorizations/{authorization_id}"
+        },
+        "update": {
+            "httpMethod": "post",
+            "path": "/v1/issuing/authorizations/{authorization_id}"
+        }
+    }
+}

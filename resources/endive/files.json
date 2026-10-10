@@ -1,0 +1,18 @@
+{
+    "methods": {
+        "create": {
+            "host": "files.stripe.com",
+            "httpMethod": "post",
+            "path": "/v1/files"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/files"
+        },
+        "retrieve": {
+            "path": "/v1/files/{file_id}"
+        }
+    }
+}

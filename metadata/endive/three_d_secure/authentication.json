@@ -1,0 +1,12 @@
+{
+    "amount": "currency",
+    "created": "datetime",
+    "future_usage": {
+        "installment": {
+            "amount": "currency"
+        },
+        "recurring": {
+            "amount": "currency"
+        }
+    }
+}

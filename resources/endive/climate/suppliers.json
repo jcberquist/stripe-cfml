@@ -1,0 +1,10 @@
+{
+    "methods": {
+        "list": {
+            "path": "/v1/climate/suppliers"
+        },
+        "retrieve": {
+            "path": "/v1/climate/suppliers/{supplier_id}"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "expires_at": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/file_links"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter",
+                "expired": "boolean"
+            },
+            "path": "/v1/file_links"
+        },
+        "retrieve": {
+            "path": "/v1/file_links/{file_link_id}"
+        },
+        "update": {
+            "arguments": {
+                "expires_at": "timestamp"
+            },
+            "httpMethod": "post",
+            "path": "/v1/file_links/{file_link_id}"
+        }
+    }
+}

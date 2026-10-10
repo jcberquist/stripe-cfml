@@ -1,0 +1,24 @@
+{
+    "amount": "currency",
+    "amount_details": {
+        "cashback_amount": "currency"
+    },
+    "created": "datetime",
+    "merchant_amount": "currency",
+    "pending_request": {
+        "amount": "currency",
+        "amount_details": {
+            "cashback_amount": "currency"
+        },
+        "merchant_amount": "currency"
+    },
+    "request_history": {
+        "amount": "currency",
+        "amount_details": {
+            "cashback_amount": "currency"
+        },
+        "created": "datetime",
+        "merchant_amount": "currency",
+        "requested_at": "datetime"
+    }
+}

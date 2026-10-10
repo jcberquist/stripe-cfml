@@ -1,0 +1,41 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "shipping": {
+                    "require_signature": "boolean"
+                },
+                "spending_controls": {
+                    "spending_limits": {
+                        "amount": "currency"
+                    }
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/issuing/cards"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/issuing/cards"
+        },
+        "retrieve": {
+            "path": "/v1/issuing/cards/{card_id}"
+        },
+        "update": {
+            "arguments": {
+                "shipping": {
+                    "require_signature": "boolean"
+                },
+                "spending_controls": {
+                    "spending_limits": {
+                        "amount": "currency"
+                    }
+                }
+            },
+            "httpMethod": "post",
+            "path": "/v1/issuing/cards/{card_id}"
+        }
+    }
+}

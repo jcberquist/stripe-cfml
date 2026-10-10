@@ -1,0 +1,25 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/radar/value_lists"
+        },
+        "delete": {
+            "httpMethod": "delete",
+            "path": "/v1/radar/value_lists/{value_list_id}"
+        },
+        "list": {
+            "arguments": {
+                "created": "datefilter"
+            },
+            "path": "/v1/radar/value_lists"
+        },
+        "retrieve": {
+            "path": "/v1/radar/value_lists/{value_list_id}"
+        },
+        "update": {
+            "httpMethod": "post",
+            "path": "/v1/radar/value_lists/{value_list_id}"
+        }
+    }
+}

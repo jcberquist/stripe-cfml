@@ -1,0 +1,14 @@
+{
+    "methods": {
+        "create": {
+            "httpMethod": "post",
+            "path": "/v1/tax/locations"
+        },
+        "list": {
+            "path": "/v1/tax/locations"
+        },
+        "retrieve": {
+            "path": "/v1/tax/locations/{location_id}"
+        }
+    }
+}

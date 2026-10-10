@@ -1,6 +1,6 @@
 component {
 
-    variables.majorApiVersions = [ 'dahlia', 'clover', 'basil', 'acacia' ];
+    variables.majorApiVersions = [ 'endive', 'dahlia', 'clover', 'basil', 'acacia' ];
 
     variables.settings = {
         api_key: '',

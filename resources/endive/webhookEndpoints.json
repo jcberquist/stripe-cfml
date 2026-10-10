@@ -1,0 +1,28 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "connect": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/webhook_endpoints"
+        },
+        "delete": {
+            "httpMethod": "delete",
+            "path": "/v1/webhook_endpoints/{webhook_endpoint_id}"
+        },
+        "list": {
+            "path": "/v1/webhook_endpoints"
+        },
+        "retrieve": {
+            "path": "/v1/webhook_endpoints/{webhook_endpoint_id}"
+        },
+        "update": {
+            "arguments": {
+                "disabled": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/webhook_endpoints/{webhook_endpoint_id}"
+        }
+    }
+}

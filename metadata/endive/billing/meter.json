@@ -1,0 +1,7 @@
+{
+    "created": "datetime",
+    "status_transitions": {
+        "deactivated_at": "datetime"
+    },
+    "updated": "datetime"
+}

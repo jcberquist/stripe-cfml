@@ -1,0 +1,13 @@
+{
+    "methods": {
+        "list": {
+            "arguments": {
+                "transacted_at": "datefilter"
+            },
+            "path": "/v1/financial_connections/transactions"
+        },
+        "retrieve": {
+            "path": "/v1/financial_connections/transactions/{transaction_id}"
+        }
+    }
+}

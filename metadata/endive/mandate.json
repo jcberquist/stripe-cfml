@@ -1,0 +1,23 @@
+{
+    "customer_acceptance": {
+        "accepted_at": "datetime"
+    },
+    "multi_use": {
+        "amount": "currency"
+    },
+    "payment_method_details": {
+        "blik": {
+            "expires_at": "datetime"
+        },
+        "payto": {
+            "amount": "currency"
+        },
+        "upi": {
+            "amount": "currency",
+            "end_date": "datetime"
+        }
+    },
+    "single_use": {
+        "amount": "currency"
+    }
+}

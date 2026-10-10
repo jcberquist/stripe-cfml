@@ -1,0 +1,8 @@
+{
+    "created": "datetime",
+    "parameters": {
+        "interval_end": "datetime",
+        "interval_start": "datetime"
+    },
+    "succeeded_at": "datetime"
+}

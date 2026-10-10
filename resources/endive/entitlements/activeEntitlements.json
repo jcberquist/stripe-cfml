@@ -1,0 +1,10 @@
+{
+    "methods": {
+        "list": {
+            "path": "/v1/entitlements/active_entitlements"
+        },
+        "retrieve": {
+            "path": "/v1/entitlements/active_entitlements/{active_entitlement_id}"
+        }
+    }
+}

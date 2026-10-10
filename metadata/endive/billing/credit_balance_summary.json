@@ -1,0 +1,14 @@
+{
+    "balances": {
+        "available_balance": {
+            "monetary": {
+                "value": "currency"
+            }
+        },
+        "ledger_balance": {
+            "monetary": {
+                "value": "currency"
+            }
+        }
+    }
+}

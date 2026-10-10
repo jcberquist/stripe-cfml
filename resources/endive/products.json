@@ -1,0 +1,62 @@
+{
+    "methods": {
+        "create": {
+            "arguments": {
+                "active": "boolean",
+                "default_price_data": {
+                    "currency": "iso_currency_code",
+                    "custom_unit_amount": {
+                        "enabled": "boolean",
+                        "maximum": "currency",
+                        "minimum": "currency",
+                        "preset": "currency"
+                    },
+                    "unit_amount": "currency"
+                },
+                "shippable": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/products"
+        },
+        "createFeature": {
+            "httpMethod": "post",
+            "path": "/v1/products/{product_id}/features"
+        },
+        "delete": {
+            "httpMethod": "delete",
+            "path": "/v1/products/{product_id}"
+        },
+        "deleteFeature": {
+            "httpMethod": "delete",
+            "path": "/v1/products/{product_id}/features/{feature_id}"
+        },
+        "list": {
+            "arguments": {
+                "active": "boolean",
+                "created": "datefilter",
+                "shippable": "boolean"
+            },
+            "path": "/v1/products"
+        },
+        "listFeatures": {
+            "path": "/v1/products/{product_id}/features"
+        },
+        "retrieve": {
+            "path": "/v1/products/{product_id}"
+        },
+        "retrieveFeature": {
+            "path": "/v1/products/{product_id}/features/{feature_id}"
+        },
+        "search": {
+            "path": "/v1/products/search"
+        },
+        "update": {
+            "arguments": {
+                "active": "boolean",
+                "shippable": "boolean"
+            },
+            "httpMethod": "post",
+            "path": "/v1/products/{product_id}"
+        }
+    }
+}
