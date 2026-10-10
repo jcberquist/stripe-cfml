@@ -62,6 +62,16 @@ stripe.applicationFees.retrieveRefund(application_fee_id, refund_id);
 stripe.applicationFees.updateRefund(application_fee_id, refund_id);
 ```
 
+## stripe.apps.installs
+
+```cfc
+stripe.apps.installs.create();
+stripe.apps.installs.list();
+stripe.apps.installs.retrieve(install_id);
+stripe.apps.installs.uninstall(install_id);
+stripe.apps.installs.update(install_id);
+```
+
 ## stripe.apps.secrets
 
 ```cfc
@@ -645,6 +655,15 @@ stripe.prices.search();
 stripe.prices.update(price_id);
 ```
 
+## stripe.productCatalog.trialOffers
+
+```cfc
+stripe.productCatalog.trialOffers.create();
+stripe.productCatalog.trialOffers.list();
+stripe.productCatalog.trialOffers.retrieve(trial_offer_id);
+stripe.productCatalog.trialOffers.update(trial_offer_id);
+```
+
 ## stripe.products
 
 ```cfc
@@ -822,6 +841,7 @@ stripe.subscriptions.create();
 stripe.subscriptions.deleteDiscount(subscription_id);
 stripe.subscriptions.list();
 stripe.subscriptions.migrate(subscription_id);
+stripe.subscriptions.pause(subscription_id);
 stripe.subscriptions.resume(subscription_id);
 stripe.subscriptions.retrieve(subscription_id);
 stripe.subscriptions.search();
@@ -840,6 +860,14 @@ stripe.tax.associations.find();
 stripe.tax.calculations.create();
 stripe.tax.calculations.listLineItems(calculation_id);
 stripe.tax.calculations.retrieve(calculation_id);
+```
+
+## stripe.tax.locations
+
+```cfc
+stripe.tax.locations.create();
+stripe.tax.locations.list();
+stripe.tax.locations.retrieve(location_id);
 ```
 
 ## stripe.tax.registrations
@@ -1052,6 +1080,16 @@ stripe.testHelpers.treasury.receivedCredits.create();
 
 ```cfc
 stripe.testHelpers.treasury.receivedDebits.create();
+```
+
+## stripe.threeDSecure.authentications
+
+```cfc
+stripe.threeDSecure.authentications.cancel(authentication_id);
+stripe.threeDSecure.authentications.create();
+stripe.threeDSecure.authentications.list();
+stripe.threeDSecure.authentications.retrieve(authentication_id);
+stripe.threeDSecure.authentications.submit(authentication_id);
 ```
 
 ## stripe.tokens

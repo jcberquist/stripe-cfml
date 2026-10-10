@@ -1,6 +1,6 @@
 component accessors="true" {
 
-    function run( string majorVersion = 'dahlia' ) {
+    function run( string majorVersion = 'endive' ) {
         var bundle = deserializeJSON( fileRead( resolvePath( 'resources/#majorVersion#.json' ), 'utf-8' ) );
         var resourceNames = bundle.keyArray().sort( 'text' );
 
