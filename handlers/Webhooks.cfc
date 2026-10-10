@@ -28,14 +28,7 @@ component {
             variables.interceptorService.announce( stateName, stripeEvent );
 
             variables.log.debug( 'Event announced.  Returning 200 to Stripe.' );
-            event.renderData(
-                type = 'json',
-                data = {
-                    'received': true
-                },
-                statusCode = 200,
-                statusText = 'OK'
-            );
+            event.renderData( type = 'json', data = { 'received': true }, statusCode = 200, statusText = 'OK' );
         } catch ( StripeSignatureVerificationException e ) {
             log.warn( 'Invalid Webhook Signature' );
             event.renderData(
@@ -48,30 +41,25 @@ component {
     }
 
     /**
-    * Generate an interceptor state name from a Stripe event name.
-    *
-    * @webhookEvent The Stripe webhook event struct.
-    *
-    * @returns An interceptor state name.
-    */
+     * Generate an interceptor state name from a Stripe event name.
+     *
+     * @webhookEvent The Stripe webhook event struct.
+     *
+     * @returns An interceptor state name.
+     */
     private function generateStateName( stripeEvent ) {
         return 'onStripe' & normalizeEventName( stripeEvent.type );
     }
 
     /**
-    * Normalize a Stripe event name by removing any special characters.
-    *
-    * @webhookEvent The Stripe webhook event name.
-    *
-    * @returns A normalized Stripe webhook event name.
-    */
+     * Normalize a Stripe event name by removing any special characters.
+     *
+     * @webhookEvent The Stripe webhook event name.
+     *
+     * @returns A normalized Stripe webhook event name.
+     */
     private function normalizeEventName( eventName ) {
-        return reReplace(
-            eventName,
-            '(?:^|[._])(\w)',
-            '\u\1',
-            'all'
-        );
+        return reReplace( eventName, '(?:^|[._])(\w)', '\u\1', 'all' );
     }
 
 }

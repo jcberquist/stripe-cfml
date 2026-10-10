@@ -176,16 +176,10 @@ component accessors="true" {
         required boolean hasPositionalArguments
     ) {
         if ( !hasPositionalArguments ) {
-            return {
-                params: argCollection,
-                headers: argCollection
-            };
+            return { params: argCollection, headers: argCollection };
         }
 
-        var sources = {
-            params: { },
-            headers: { }
-        };
+        var sources = { params: { }, headers: { } };
 
         if ( arrayLen( argCollection ) <= arrayLen( methodMetadata.positionalArgs ) ) {
             return sources;

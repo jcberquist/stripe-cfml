@@ -13,13 +13,7 @@ component {
         boolean multipart = false,
         numeric timeout = 50
     ) {
-        var httpRequest = {
-            attrColl: {
-                method: httpMethod,
-                url: path,
-                timeout: timeout
-            }
-        };
+        var httpRequest = { attrColl: { method: httpMethod, url: path, timeout: timeout } };
 
         if ( serverVersion == 'lucee' ) {
             httpRequest.attrColl[ 'encodeurl' ] = false;
@@ -64,10 +58,7 @@ component {
         var sortedKeyArray = headers.keyArray();
         sortedKeyArray.sort( 'textnocase' );
         var processedHeaders = sortedKeyArray.map( function( key ) {
-            return {
-                name: key,
-                value: trim( headers[ key ] )
-            };
+            return { name: key, value: trim( headers[ key ] ) };
         } );
         return processedHeaders;
     }
@@ -121,10 +112,7 @@ component {
         var entity = entityBuilder.build();
         var outputStream = createObject( 'java', 'java.io.ByteArrayOutputStream' ).init( entity.getContentLength() );
         entity.writeTo( outputStream );
-        return {
-            contentType: entity.getContentType().getValue(),
-            body: outputStream.toByteArray()
-        };
+        return { contentType: entity.getContentType().getValue(), body: outputStream.toByteArray() };
     }
 
     private string function encodeUrl( required string str ) {
@@ -132,4 +120,3 @@ component {
     }
 
 }
-

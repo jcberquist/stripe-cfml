@@ -23,10 +23,7 @@ component extends="tests.resources.ModuleIntegrationSpec" {
                     .$( 'getHTTPHeader' )
                     .$args( 'Stripe-Signature', '' )
                     .$results( header );
-                prepareMock( getRequestContext() )
-                    .$( 'getHTTPContent' )
-                    .$args()
-                    .$results( stripeEvent );
+                prepareMock( getRequestContext() ).$( 'getHTTPContent' ).$args().$results( stripeEvent );
                 prepareMock( getRequestContext() )
                     .$( 'getHTTPContent' )
                     .$args( json = true )
@@ -43,22 +40,14 @@ component extends="tests.resources.ModuleIntegrationSpec" {
             it( 'translates an event into an interceptor call', function() {
                 var stripeEvent = fileRead( expandPath( '/tests/data/webhook_event.json' ) );
                 var t = int( now().getTime() / 1000 );
-                var signature = hmac(
-                    t & '.' & stripeEvent,
-                    variables.endpointSecret,
-                    'hmacSHA256',
-                    'utf-8'
-                ).lcase();
+                var signature = hmac( t & '.' & stripeEvent, variables.endpointSecret, 'hmacSHA256', 'utf-8' ).lcase();
                 var header = 't=#t#,v1=#signature#,v0=b';
 
                 prepareMock( getRequestContext() )
                     .$( 'getHTTPHeader' )
                     .$args( 'Stripe-Signature', '' )
                     .$results( header );
-                prepareMock( getRequestContext() )
-                    .$( 'getHTTPContent' )
-                    .$args()
-                    .$results( stripeEvent );
+                prepareMock( getRequestContext() ).$( 'getHTTPContent' ).$args().$results( stripeEvent );
                 prepareMock( getRequestContext() )
                     .$( 'getHTTPContent' )
                     .$args( json = true )
@@ -68,21 +57,13 @@ component extends="tests.resources.ModuleIntegrationSpec" {
 
                 var res = event.getRenderData();
                 expect( res.statusCode ).toBe( 200 );
-                expect( res.data ).toBe( {
-                    'received': true
-                } );
+                expect( res.data ).toBe( { 'received': true } );
                 expect( variables.stripeChargeSucceededCalled ).notToBeEmpty();
             } );
         } );
     }
 
-    function onStripeChargeSucceeded(
-        event,
-        interceptData,
-        buffer,
-        rc,
-        prc
-    ) {
+    function onStripeChargeSucceeded( event, interceptData, buffer, rc, prc ) {
         variables.stripeChargeSucceededCalled = arguments.interceptData;
     }
 

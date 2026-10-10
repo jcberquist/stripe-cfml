@@ -1,25 +1,14 @@
 component extends=testbox.system.BaseSpec {
 
     function beforeAll() {
-        stripe = new stripe(
-            'fake_key',
-            {
-                resources: [ 'accounts', 'charges' ]
-            }
-        );
+        stripe = new stripe( 'fake_key', { resources: [ 'accounts', 'charges' ] } );
         httpService = getProperty( stripe, 'httpService' );
         prepareMock( httpService );
-        httpService.$(
-            'exec',
-            {
-                responseHeader: {
-                    'Content-Type': 'application/json',
-                    'Request-Id': ''
-                },
-                statuscode: '200 OK',
-                filecontent: '{}'
-            }
-        );
+        httpService.$( 'exec', {
+            responseHeader: { 'Content-Type': 'application/json', 'Request-Id': '' },
+            statuscode: '200 OK',
+            filecontent: '{}'
+        } );
     }
 
     function run() {
@@ -30,14 +19,8 @@ component extends=testbox.system.BaseSpec {
 
             it( 'can be passed positionally in a struct', function() {
                 var res = stripe.charges.create(
-                    {
-                        customer: 'customer_id',
-                        amount: 2000,
-                        currency: 'usd'
-                    },
-                    {
-                        stripeAccount: 'account_id'
-                    }
+                    { customer: 'customer_id', amount: 2000, currency: 'usd' },
+                    { stripeAccount: 'account_id' }
                 );
                 var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
                 expect( httpRequest.headers ).toHaveLength( 3 );
@@ -46,12 +29,7 @@ component extends=testbox.system.BaseSpec {
             } );
 
             it( 'can be passed positionally without passing a params struct', function() {
-                var res = stripe.charges.retrieve(
-                    'charge_id',
-                    {
-                        stripeAccount: 'account_id'
-                    }
-                );
+                var res = stripe.charges.retrieve( 'charge_id', { stripeAccount: 'account_id' } );
                 var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
                 expect( httpRequest.headers ).toHaveLength( 2 );
                 expect( httpRequest.headers[ 2 ].name ).toBeWithCase( 'Stripe-Account' );
@@ -81,14 +59,8 @@ component extends=testbox.system.BaseSpec {
 
             it( 'supports apiVersion when using positional arguments', function() {
                 var res = stripe.charges.create(
-                    {
-                        customer: 'customer_id',
-                        amount: 2000,
-                        currency: 'usd'
-                    },
-                    {
-                        apiVersion: 'latest'
-                    }
+                    { customer: 'customer_id', amount: 2000, currency: 'usd' },
+                    { apiVersion: 'latest' }
                 );
                 var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
                 expect( httpRequest.body ).toBe( 'amount=2000&currency=usd&customer=customer_id' );

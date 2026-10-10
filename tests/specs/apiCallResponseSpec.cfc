@@ -1,25 +1,14 @@
 component extends=testbox.system.BaseSpec {
 
     function beforeAll() {
-        stripe = new stripe(
-            'fake_key',
-            {
-                resources: [ 'accounts' ]
-            }
-        );
+        stripe = new stripe( 'fake_key', { resources: [ 'accounts' ] } );
         httpService = getProperty( stripe, 'httpService' );
         prepareMock( httpService );
-        httpService.$(
-            'exec',
-            {
-                responseHeader: {
-                    'Content-Type': 'application/json',
-                    'Request-Id': ''
-                },
-                statuscode: '200 OK',
-                filecontent: '{}'
-            }
-        );
+        httpService.$( 'exec', {
+            responseHeader: { 'Content-Type': 'application/json', 'Request-Id': '' },
+            statuscode: '200 OK',
+            filecontent: '{}'
+        } );
     }
 
     function run() {
@@ -29,16 +18,11 @@ component extends=testbox.system.BaseSpec {
             } );
 
             it( 'throws an error when the Request-Id header is missing on a 200 request', function() {
-                httpService.$(
-                    'exec',
-                    {
-                        responseHeader: {
-                            'Content-Type': 'application/json'
-                        },
-                        statuscode: '200 OK',
-                        filecontent: '{}'
-                    }
-                );
+                httpService.$( 'exec', {
+                    responseHeader: { 'Content-Type': 'application/json' },
+                    statuscode: '200 OK',
+                    filecontent: '{}'
+                } );
 
                 expect( function() {
                     res = stripe.accounts.retrieve();
@@ -49,16 +33,11 @@ component extends=testbox.system.BaseSpec {
             } );
 
             it( 'does not throw an error when the Request-Id header is missing on a non 200 request', function() {
-                httpService.$(
-                    'exec',
-                    {
-                        responseHeader: {
-                            'Content-Type': 'application/json'
-                        },
-                        statuscode: '401 Not Authorized',
-                        filecontent: '{}'
-                    }
-                );
+                httpService.$( 'exec', {
+                    responseHeader: { 'Content-Type': 'application/json' },
+                    statuscode: '401 Not Authorized',
+                    filecontent: '{}'
+                } );
 
                 expect( function() {
                     res = stripe.accounts.retrieve();

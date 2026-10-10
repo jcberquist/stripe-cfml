@@ -55,12 +55,7 @@ component accessors="true" {
     }
 
     private struct function getBaseMethodMetadata() {
-        return {
-            host: variables.defaultHost,
-            httpMethod: 'get',
-            multipart: false,
-            arguments: { }
-        };
+        return { host: variables.defaultHost, httpMethod: 'get', multipart: false, arguments: { } };
     }
 
     private array function parsePath( required string path ) {
@@ -72,34 +67,22 @@ component accessors="true" {
     private struct function accountsRetrieve() {
         if (
             arrayLen( arguments ) == 0 ||
-            (
-                !structKeyExists( arguments, 'account_id' ) &&
-                !( structKeyExists( arguments, '1' ) && isSimpleValue( arguments[ 1 ] ) )
-            )
+            ( !structKeyExists( arguments, 'account_id' ) &&
+                !( structKeyExists( arguments, '1' ) && isSimpleValue( arguments[ 1 ] ) ) )
         ) {
             // special case return `/account` instead of default since no account id was supplied
             var methodMetadata = getBaseMethodMetadata();
             methodMetadata.path = '/v1/account';
             methodMetadata.pathArgs = [ ];
             methodMetadata.positionalArgs = [ ];
-            return stripe.call(
-                'accounts',
-                'retrieve',
-                arguments,
-                methodMetadata
-            );
+            return stripe.call( 'accounts', 'retrieve', arguments, methodMetadata );
         }
 
         var methodMetadata = getBaseMethodMetadata();
         methodMetadata.path = '/v1/accounts/{account_id}';
         methodMetadata.pathArgs = [ 'account_id' ];
         methodMetadata.positionalArgs = [ 'account_id' ];
-        return stripe.call(
-            'accounts',
-            'retrieve',
-            arguments,
-            methodMetadata
-        );
+        return stripe.call( 'accounts', 'retrieve', arguments, methodMetadata );
     }
 
 }

@@ -27,10 +27,7 @@ component {
         required struct methodMetadata,
         required boolean hasPositionalArguments
     ) {
-        var headerData = {
-            headers: { },
-            headerArgNames: [ ]
-        };
+        var headerData = { headers: { }, headerArgNames: [ ] };
 
         for ( var key in headerKeys ) {
             var headerName = headerKeys[ key ];

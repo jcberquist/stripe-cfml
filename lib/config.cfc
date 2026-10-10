@@ -1,11 +1,6 @@
 component {
 
-    variables.majorApiVersions = [
-        'dahlia',
-        'clover',
-        'basil',
-        'acacia'
-    ];
+    variables.majorApiVersions = [ 'dahlia', 'clover', 'basil', 'acacia' ];
 
     variables.settings = {
         api_key: '',
@@ -57,10 +52,7 @@ component {
             var envKey = key.left( 6 ) != 'stripe' ? 'STRIPE_#key.ucase()#' : key.ucase();
             var envSetting = system.getenv( envKey );
             if ( !isNull( envSetting ) ) settings[ key ] = envSetting;
-            var propKey = envKey
-                .lcase()
-                .replace( 'stripe_', 'stripe.' )
-                .replace( '_', '', 'all' );
+            var propKey = envKey.lcase().replace( 'stripe_', 'stripe.' ).replace( '_', '', 'all' );
             var propSetting = system.getProperty( propKey );
             if ( !isNull( propSetting ) ) settings[ key ] = propSetting;
         }

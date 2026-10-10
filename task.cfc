@@ -50,7 +50,6 @@ component accessors="true" {
             methods.append( 'stripe.accounts.retrieve(account_id);' );
         }
 
-
         return '#### stripe.#resourceName##lf##lf#```cfc#lf##methods.sort( 'text' ).toList( lf )##lf#```';
     }
 

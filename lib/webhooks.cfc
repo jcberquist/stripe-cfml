@@ -38,12 +38,7 @@ component {
             verificationFailure( 'No signatures found with expected scheme' );
         }
 
-        var expectedSignature = hmac(
-            details.timestamp & '.' & payload,
-            secret,
-            'hmacSHA256',
-            'utf-8'
-        ).lcase();
+        var expectedSignature = hmac( details.timestamp & '.' & payload, secret, 'hmacSHA256', 'utf-8' ).lcase();
 
         var validSignatures = arrayFilter( details.signatures, function( s ) {
             return MessageDigest.isEqual( s.getBytes(), expectedSignature.getBytes() );
@@ -77,10 +72,7 @@ component {
 
                 return parsed;
             },
-            {
-                timestamp: -1,
-                signatures: [ ]
-            }
+            { timestamp: -1, signatures: [ ] }
         );
     }
 

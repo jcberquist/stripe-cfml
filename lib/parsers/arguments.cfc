@@ -2,21 +2,11 @@ component {
 
     variables.argumentTypes = {
         currencyfilter: {
-            _complex: {
-                'gt': 'currency',
-                'gte': 'currency',
-                'lt': 'currency',
-                'lte': 'currency'
-            },
+            _complex: { 'gt': 'currency', 'gte': 'currency', 'lt': 'currency', 'lte': 'currency' },
             _simple: 'currency'
         },
         datefilter: {
-            _complex: {
-                'gt': 'timestamp',
-                'gte': 'timestamp',
-                'lt': 'timestamp',
-                'lte': 'timestamp'
-            },
+            _complex: { 'gt': 'timestamp', 'gte': 'timestamp', 'lt': 'timestamp', 'lte': 'timestamp' },
             _simple: 'timestamp'
         }
     };
@@ -90,10 +80,7 @@ component {
     }
 
     private function parseType( key, methodArgumentMetdata ) {
-        var base_type = {
-            _simple: 'string',
-            _complex: { }
-        };
+        var base_type = { _simple: 'string', _complex: { } };
         if ( methodArgumentMetdata.keyExists( key ) ) {
             var type = methodArgumentMetdata[ key ];
             if ( isStruct( type ) ) {
@@ -138,15 +125,9 @@ component {
             }
 
             if ( isSimpleValue( src[ k ] ) ) {
-                flattened.append( {
-                    name: outKey,
-                    value: src[ k ]
-                } );
+                flattened.append( { name: outKey, value: src[ k ] } );
             } else if ( isBinary( src[ k ] ) ) {
-                flattened.append( {
-                    name: outKey,
-                    value: src[ k ]
-                } );
+                flattened.append( { name: outKey, value: src[ k ] } );
             } else if ( isStruct( src[ k ] ) ) {
                 if ( !structIsEmpty( src[ k ] ) ) {
                     var nested = flatten( src[ k ], outKey );
@@ -159,10 +140,7 @@ component {
                     if ( isStruct( item ) ) {
                         flattened.append( flatten( item, arr_key ), true );
                     } else {
-                        flattened.append( {
-                            name: arr_key,
-                            value: item
-                        } );
+                        flattened.append( { name: arr_key, value: item } );
                     }
                     arrIndex++;
                 }

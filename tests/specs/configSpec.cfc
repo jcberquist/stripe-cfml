@@ -2,25 +2,15 @@ component extends=testbox.system.BaseSpec {
 
     function run() {
         describe( 'The config struct passed at initialization', function() {
-            var config = {
-                apiVersion: 'latest',
-                defaultCurrency: 'usd',
-                resources: [ 'accounts', 'charges' ]
-            };
+            var config = { apiVersion: 'latest', defaultCurrency: 'usd', resources: [ 'accounts', 'charges' ] };
             var stripe = new stripe( 'fake_key', config );
             var httpService = getProperty( stripe, 'httpService' );
             prepareMock( httpService );
-            httpService.$(
-                'exec',
-                {
-                    responseHeader: {
-                        'Content-Type': 'application/json',
-                        'Request-Id': ''
-                    },
-                    statuscode: '200 OK',
-                    filecontent: '{}'
-                }
-            );
+            httpService.$( 'exec', {
+                responseHeader: { 'Content-Type': 'application/json', 'Request-Id': '' },
+                statuscode: '200 OK',
+                filecontent: '{}'
+            } );
 
             afterEach( function() {
                 httpService.$reset();
@@ -35,31 +25,23 @@ component extends=testbox.system.BaseSpec {
             } );
 
             it( 'sets the major api version from the passed in stripe api version', function() {
-                var _config = {
-                    apiVersion: '2024-06-20',
-                    defaultCurrency: 'usd',
-                    resources: [ 'accounts' ]
-                };
+                var _config = { apiVersion: '2024-06-20', defaultCurrency: 'usd', resources: [ 'accounts' ] };
                 var _stripe = new stripe( 'fake_key', _config );
                 var majorApiVersion = _stripe.getConfig().get( 'major_api_version' );
                 expect( majorApiVersion ).toBe( 'legacy' );
-                var _config = {
-                    apiVersion: '2025-08-27.basil',
-                    defaultCurrency: 'usd',
-                    resources: [ 'accounts' ]
-                };
+                var _config = { apiVersion: '2025-08-27.basil', defaultCurrency: 'usd', resources: [ 'accounts' ] };
                 var _stripe = new stripe( 'fake_key', _config );
                 var majorApiVersion = _stripe.getConfig().get( 'major_api_version' );
                 expect( majorApiVersion ).toBe( 'basil' );
             } );
 
-            it( 'can supply a default iso currency code to requests that don''t supply it', function() {
+            it( "can supply a default iso currency code to requests that don't supply it", function() {
                 var res = stripe.charges.create( customer = 'customer_id', amount = 2000 );
                 var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
                 expect( httpRequest.body ).toBe( 'amount=2000&currency=usd&customer=customer_id' );
             } );
 
-            it( 'doesn''t override iso currency codes passed in to requests', function() {
+            it( "doesn't override iso currency codes passed in to requests", function() {
                 var res = stripe.charges.create( customer = 'customer_id', amount = 2000, currency = 'gbp' );
                 var httpRequest = httpService.$callLog().exec[ 1 ][ 1 ];
                 expect( httpRequest.body ).toBe( 'amount=2000&currency=gbp&customer=customer_id' );
@@ -67,25 +49,15 @@ component extends=testbox.system.BaseSpec {
         } );
 
         describe( 'The convertToCents setting', function() {
-            var config = {
-                defaultCurrency: 'usd',
-                convertToCents: true,
-                resources: [ 'charges' ]
-            };
+            var config = { defaultCurrency: 'usd', convertToCents: true, resources: [ 'charges' ] };
             var stripe = new stripe( 'fake_key', config );
             var httpService = getProperty( stripe, 'httpService' );
             prepareMock( httpService );
-            httpService.$(
-                'exec',
-                {
-                    responseHeader: {
-                        'Content-Type': 'application/json',
-                        'Request-Id': ''
-                    },
-                    statuscode: '200 OK',
-                    filecontent: '{"object":"charge","amount":2005}'
-                }
-            );
+            httpService.$( 'exec', {
+                responseHeader: { 'Content-Type': 'application/json', 'Request-Id': '' },
+                statuscode: '200 OK',
+                filecontent: '{"object":"charge","amount":2005}'
+            } );
 
             afterEach( function() {
                 httpService.$reset();
