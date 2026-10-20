@@ -9,6 +9,7 @@ component {
         convert_timestamps: true,
         convert_to_cents: false,
         default_currency: '',
+        inject_optional_currency: false,
         host: 'api.stripe.com',
         stripe_version: '',
         resources: [ ]

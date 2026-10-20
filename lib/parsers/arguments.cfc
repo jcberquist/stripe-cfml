@@ -20,7 +20,10 @@ component {
     public array function parse(
         required struct argCollection,
         required struct methodArgumentMetdata,
-        required array ignoredArgs
+        required array ignoredArgs,
+        string resourceName = '',
+        string methodName = '',
+        struct requestOptions = { }
     ) {
         var filteredArgs = { };
         var argKeys = structKeyArray( argCollection );
@@ -35,11 +38,52 @@ component {
             }
             filteredArgs[ argKey ] = argCollection[ argKey ];
         }
-        var parsed = parseStruct( filteredArgs, methodArgumentMetdata );
+        var defaultCurrencyTypes = getDefaultCurrencyTypes( resourceName, methodName, requestOptions );
+        var parsed = parseStruct( filteredArgs, methodArgumentMetdata, defaultCurrencyTypes );
         return flatten( parsed );
     }
 
-    private struct function parseStruct( required any args, required struct methodArgumentMetdata ) {
+    private array function getDefaultCurrencyTypes(
+        required string resourceName,
+        required string methodName,
+        required struct requestOptions
+    ) {
+        if ( !len( config.get( 'default_currency' ) ) ) {
+            return [ ];
+        }
+        var types = [ 'iso_currency_code' ];
+        if ( injectOptionalCurrency( resourceName, methodName, requestOptions ) ) {
+            types.append( 'iso_currency_code_optional' );
+        }
+        return types;
+    }
+
+    private boolean function injectOptionalCurrency(
+        required string resourceName,
+        required string methodName,
+        required struct requestOptions
+    ) {
+        if ( requestOptions.keyExists( 'inject_optional_currency' ) ) {
+            return requestOptions.inject_optional_currency;
+        }
+
+        if ( !config.get( 'inject_optional_currency' ) ) {
+            return false;
+        }
+
+        // refunds.create did not get default currency injected before 4.3.0
+        if ( resourceName & '.' & methodName == 'refunds.create' ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private struct function parseStruct(
+        required any args,
+        required struct methodArgumentMetdata,
+        array defaultCurrencyTypes = [ ]
+    ) {
         var parsed = { };
 
         for ( var key in structKeyArray( args ) ) {
@@ -58,18 +102,18 @@ component {
                     if ( isSimpleValue( item ) ) {
                         parsed[ key ].append( parseSimpleValue( item, argType._simple ) );
                     } else {
-                        parsed[ key ].append( parseStruct( item, argType._complex ) );
+                        parsed[ key ].append( parseStruct( item, argType._complex, defaultCurrencyTypes ) );
                     }
                 }
             } else if ( isStruct( val ) ) {
-                parsed[ key ] = parseStruct( val, argType._complex );
+                parsed[ key ] = parseStruct( val, argType._complex, defaultCurrencyTypes );
             }
         }
 
         for ( var key in methodArgumentMetdata ) {
             if (
                 isSimpleValue( methodArgumentMetdata[ key ] ) &&
-                methodArgumentMetdata[ key ] == 'iso_currency_code' &&
+                defaultCurrencyTypes.findNoCase( methodArgumentMetdata[ key ] ) &&
                 !parsed.keyExists( key )
             ) {
                 parsed[ key ] = config.get( 'default_currency' );

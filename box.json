@@ -44,8 +44,8 @@
         "coldbox":"tests/resources/app/coldbox/"
     },
     "scripts":{
-        "format":"!cfformat --write 'handlers/**/*.cfc' 'lib/**/*.cfc' 'tests/specs/**/*.cfc' ModuleConfig.cfc stripe.cfc task.cfc",
-        "format:check":"!cfformat --check 'handlers/**/*.cfc' 'lib/**/*.cfc' 'tests/specs/**/*.cfc' ModuleConfig.cfc stripe.cfc task.cfc"
+        "format":"!cfformat --write 'handlers/**/*.cfc' 'lib/**/*.cfc' 'tests/specs/**/*.cfc' ModuleConfig.cfc stripe.cfc",
+        "format:check":"!cfformat --check 'handlers/**/*.cfc' 'lib/**/*.cfc' 'tests/specs/**/*.cfc' ModuleConfig.cfc stripe.cfc"
     },
     "ignore":[
         "**/.*",

@@ -1276,7 +1276,7 @@
                     "automatic_tax": {
                         "enabled": "boolean"
                     },
-                    "currency": "iso_currency_code",
+                    "currency": "iso_currency_code_optional",
                     "custom_fields": {
                         "optional": "boolean"
                     },
@@ -1319,7 +1319,7 @@
                     },
                     "payment_method_options": {
                         "acss_debit": {
-                            "currency": "iso_currency_code"
+                            "currency": "iso_currency_code_optional"
                         },
                         "blik": {
                             "mandate_options": {
@@ -1351,7 +1351,7 @@
                         "pix": {
                             "mandate_options": {
                                 "amount": "currency",
-                                "currency": "iso_currency_code",
+                                "currency": "iso_currency_code_optional",
                                 "end_date": "timestamp",
                                 "start_date": "timestamp"
                             }
@@ -1435,7 +1435,7 @@
             "create": {
                 "arguments": {
                     "amount": "currency",
-                    "currency": "iso_currency_code"
+                    "currency": "iso_currency_code_optional"
                 },
                 "httpMethod": "post",
                 "path": "/v1/climate/orders"
@@ -1494,7 +1494,7 @@
             "create": {
                 "arguments": {
                     "amount_off": "currency",
-                    "currency": "iso_currency_code",
+                    "currency": "iso_currency_code_optional",
                     "redeem_by": "timestamp"
                 },
                 "httpMethod": "post",
@@ -2054,7 +2054,7 @@
             "create": {
                 "arguments": {
                     "amount": "currency",
-                    "currency": "iso_currency_code",
+                    "currency": "iso_currency_code_optional",
                     "discountable": "boolean",
                     "period": {
                         "end": "timestamp",
@@ -2214,7 +2214,7 @@
                     },
                     "invoice_items": {
                         "amount": "currency",
-                        "currency": "iso_currency_code",
+                        "currency": "iso_currency_code_optional",
                         "discountable": "boolean",
                         "period": {
                             "end": "timestamp",
@@ -2250,7 +2250,7 @@
                                 "amount_gte": "currency",
                                 "reset_billing_cycle_anchor": "boolean"
                             },
-                            "currency": "iso_currency_code",
+                            "currency": "iso_currency_code_optional",
                             "end_date": "timestamp",
                             "items": {
                                 "billing_thresholds": {
@@ -2733,7 +2733,7 @@
             "applyCustomerBalance": {
                 "arguments": {
                     "amount": "currency",
-                    "currency": "iso_currency_code"
+                    "currency": "iso_currency_code_optional"
                 },
                 "httpMethod": "post",
                 "path": "/v1/payment_intents/{payment_intent_id}/apply_customer_balance"
@@ -2854,7 +2854,7 @@
                             "expires_at": "timestamp",
                             "mandate_options": {
                                 "amount": "currency",
-                                "currency": "iso_currency_code",
+                                "currency": "iso_currency_code_optional",
                                 "end_date": "timestamp",
                                 "start_date": "timestamp"
                             }
@@ -2961,7 +2961,7 @@
                             "expires_at": "timestamp",
                             "mandate_options": {
                                 "amount": "currency",
-                                "currency": "iso_currency_code",
+                                "currency": "iso_currency_code_optional",
                                 "end_date": "timestamp",
                                 "start_date": "timestamp"
                             }
@@ -3043,7 +3043,7 @@
                         }
                     },
                     "application_fee_amount": "currency",
-                    "currency": "iso_currency_code",
+                    "currency": "iso_currency_code_optional",
                     "payment_method_data": {
                         "upi": {
                             "mandate_options": {
@@ -3102,7 +3102,7 @@
                             "expires_at": "timestamp",
                             "mandate_options": {
                                 "amount": "currency",
-                                "currency": "iso_currency_code",
+                                "currency": "iso_currency_code_optional",
                                 "end_date": "timestamp",
                                 "start_date": "timestamp"
                             }
@@ -3139,7 +3139,7 @@
                     "automatic_tax": {
                         "enabled": "boolean"
                     },
-                    "currency": "iso_currency_code",
+                    "currency": "iso_currency_code_optional",
                     "custom_fields": {
                         "optional": "boolean"
                     },
@@ -3837,6 +3837,7 @@
             "create": {
                 "arguments": {
                     "amount": "currency",
+                    "currency": "iso_currency_code_optional",
                     "refund_application_fee": "boolean",
                     "reverse_transfer": "boolean"
                 },
@@ -3941,7 +3942,7 @@
                     },
                     "payment_method_options": {
                         "acss_debit": {
-                            "currency": "iso_currency_code"
+                            "currency": "iso_currency_code_optional"
                         },
                         "blik": {
                             "mandate_options": {
@@ -3958,7 +3959,7 @@
                             "moto": "boolean"
                         },
                         "klarna": {
-                            "currency": "iso_currency_code",
+                            "currency": "iso_currency_code_optional",
                             "on_demand": {
                                 "average_amount": "currency",
                                 "maximum_amount": "currency",
@@ -3980,7 +3981,7 @@
                         "pix": {
                             "mandate_options": {
                                 "amount": "currency",
-                                "currency": "iso_currency_code",
+                                "currency": "iso_currency_code_optional",
                                 "end_date": "timestamp",
                                 "start_date": "timestamp"
                             }
@@ -4019,7 +4020,7 @@
                     },
                     "payment_method_options": {
                         "acss_debit": {
-                            "currency": "iso_currency_code"
+                            "currency": "iso_currency_code_optional"
                         },
                         "blik": {
                             "mandate_options": {
@@ -4036,7 +4037,7 @@
                             "moto": "boolean"
                         },
                         "klarna": {
-                            "currency": "iso_currency_code",
+                            "currency": "iso_currency_code_optional",
                             "on_demand": {
                                 "average_amount": "currency",
                                 "maximum_amount": "currency",
@@ -4058,7 +4059,7 @@
                         "pix": {
                             "mandate_options": {
                                 "amount": "currency",
-                                "currency": "iso_currency_code",
+                                "currency": "iso_currency_code_optional",
                                 "end_date": "timestamp",
                                 "start_date": "timestamp"
                             }
@@ -4102,7 +4103,7 @@
                     },
                     "payment_method_options": {
                         "acss_debit": {
-                            "currency": "iso_currency_code"
+                            "currency": "iso_currency_code_optional"
                         },
                         "blik": {
                             "mandate_options": {
@@ -4119,7 +4120,7 @@
                             "moto": "boolean"
                         },
                         "klarna": {
-                            "currency": "iso_currency_code",
+                            "currency": "iso_currency_code_optional",
                             "on_demand": {
                                 "average_amount": "currency",
                                 "maximum_amount": "currency",
@@ -4141,7 +4142,7 @@
                         "pix": {
                             "mandate_options": {
                                 "amount": "currency",
-                                "currency": "iso_currency_code",
+                                "currency": "iso_currency_code_optional",
                                 "end_date": "timestamp",
                                 "start_date": "timestamp"
                             }
@@ -4212,7 +4213,7 @@
             "create": {
                 "arguments": {
                     "amount": "currency",
-                    "currency": "iso_currency_code",
+                    "currency": "iso_currency_code_optional",
                     "mandate": {
                         "acceptance": {
                             "date": "timestamp",
@@ -4367,7 +4368,7 @@
                             "amount_gte": "currency",
                             "reset_billing_cycle_anchor": "boolean"
                         },
-                        "currency": "iso_currency_code",
+                        "currency": "iso_currency_code_optional",
                         "end_date": "timestamp",
                         "items": {
                             "billing_thresholds": {
@@ -4452,7 +4453,7 @@
                             "amount_gte": "currency",
                             "reset_billing_cycle_anchor": "boolean"
                         },
-                        "currency": "iso_currency_code",
+                        "currency": "iso_currency_code_optional",
                         "end_date": "timestamp",
                         "items": {
                             "billing_thresholds": {
@@ -4516,7 +4517,7 @@
                     },
                     "cancel_at": "timestamp",
                     "cancel_at_period_end": "boolean",
-                    "currency": "iso_currency_code",
+                    "currency": "iso_currency_code_optional",
                     "items": {
                         "billing_thresholds": {
                             "usage_gte": "currency"
@@ -5275,7 +5276,7 @@
                     "amount_details": {
                         "cashback_amount": "currency"
                     },
-                    "currency": "iso_currency_code",
+                    "currency": "iso_currency_code_optional",
                     "is_amount_controllable": "boolean",
                     "merchant_amount": "currency"
                 },
@@ -5362,7 +5363,7 @@
             "createForceCapture": {
                 "arguments": {
                     "amount": "currency",
-                    "currency": "iso_currency_code",
+                    "currency": "iso_currency_code_optional",
                     "purchase_details": {
                         "flight": {
                             "departure_at": "timestamp",
@@ -5382,7 +5383,7 @@
             "createUnlinkedRefund": {
                 "arguments": {
                     "amount": "currency",
-                    "currency": "iso_currency_code",
+                    "currency": "iso_currency_code_optional",
                     "purchase_details": {
                         "flight": {
                             "departure_at": "timestamp",

@@ -1,6 +1,87 @@
 # stripe-cfml reference
 
-For documentation on which arguments can be passed to each method please see the [Stripe API Reference](https://stripe.com/docs/api). The arguments that are listed here are named arguments that ultimately appear in the URL of an API HTTP request. Since the Node library passes these arguments by position, you can refer to this page to see the names to use when passing these arguments by name.
+For documentation on which arguments can be passed to each method please see the
+[Stripe API Reference](https://stripe.com/docs/api). The arguments that are
+listed here are named arguments that ultimately appear in the URL of an API HTTP
+request. Since the Node library passes these arguments by position, you can
+refer to this page to see the names to use when passing these arguments by name.
+
+## Default currency
+
+When `defaultCurrency` is configured, it is filled in automatically where Stripe
+requires a `currency` parameter. The following methods require it as a top level
+parameter:
+
+- `charges.create`
+- `customers.createBalanceTransaction`
+- `customers.createFundingInstructions`
+- `paymentIntents.create`
+- `payouts.create`
+- `plans.create`
+- `prices.create`
+- `tax.calculations.create`
+- `testHelpers.customers.fundCashBalance`
+- `testHelpers.treasury.receivedCredits.create`
+- `testHelpers.treasury.receivedDebits.create`
+- `threeDSecure.authentications.create`
+- `topups.create`
+- `transfers.create`
+- `treasury.inboundTransfers.create`
+- `treasury.outboundPayments.create`
+- `treasury.outboundTransfers.create`
+
+Note that the default currency will be injected at any depth where you pass an
+object in which Stripe requires `currency`. For example `price_data`,
+`shipping_rate_data.fixed_amount` and `default_price_data` will all get your
+default currency injected into them if you pass them in and you don't set
+`currency` yourself.
+
+These methods accept `currency` as an optional parameter, either at the top
+level or inside the nested objects shown in parentheses. They only receive
+`defaultCurrency` for those optional parameters when
+`injectOptionalCurrency: true` is passed with the request, or set in the config
+to restore the pre 4.3.0 behavior:
+
+- `checkout.sessions.create` (also nested:
+  `payment_method_options.acss_debit.currency`,
+  `payment_method_options.pix.mandate_options.currency`)
+- `climate.orders.create`
+- `coupons.create`
+- `invoiceItems.create`
+- `invoices.createPreview` (nested only: `invoice_items.currency`,
+  `schedule_details.phases.currency`)
+- `paymentIntents.applyCustomerBalance`
+- `paymentIntents.confirm` (nested only:
+  `payment_method_options.pix.mandate_options.currency`)
+- `paymentIntents.create` (nested:
+  `payment_method_options.pix.mandate_options.currency`; its top-level
+  `currency` is required and always filled in)
+- `paymentIntents.update` (also nested:
+  `payment_method_options.pix.mandate_options.currency`)
+- `paymentLinks.create`
+- `refunds.create`
+- `setupIntents.confirm` (nested only:
+  `payment_method_options.acss_debit.currency`,
+  `payment_method_options.klarna.currency`,
+  `payment_method_options.pix.mandate_options.currency`)
+- `setupIntents.create` (nested only:
+  `payment_method_options.acss_debit.currency`,
+  `payment_method_options.klarna.currency`,
+  `payment_method_options.pix.mandate_options.currency`)
+- `setupIntents.update` (nested only:
+  `payment_method_options.acss_debit.currency`,
+  `payment_method_options.klarna.currency`,
+  `payment_method_options.pix.mandate_options.currency`)
+- `sources.create`
+- `subscriptions.create`
+- `subscriptionSchedules.create` (nested only: `phases.currency`)
+- `subscriptionSchedules.update` (nested only: `phases.currency`)
+- `testHelpers.issuing.authorizations.create`
+- `testHelpers.issuing.transactions.createForceCapture`
+- `testHelpers.issuing.transactions.createUnlinkedRefund`
+
+_These lists are generated from the Stripe API spec for this API version; the
+methods available vary slightly between API versions._
 
 ## stripe.accountLinks
 

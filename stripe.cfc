@@ -14,7 +14,7 @@ component accessors="true" {
         variables.objectMetadata = new lib.objectMetadata( this );
         variables.parsers = {
             arguments: new lib.parsers.arguments( variables.config ),
-            headers: new lib.parsers.headers( variables.config ),
+            requestOptions: new lib.parsers.requestOptions( variables.config ),
             response: new lib.parsers.response( variables.config, variables.objectMetadata )
         };
 
@@ -85,20 +85,27 @@ component accessors="true" {
             ignoredArgs.append( argName );
         }
 
-        // headers
-        var headerData = parsers.headers.parse( sources.headers, methodMetadata, hasPositionalArguments );
+        // headers and request options
+        var requestOptions = parsers.requestOptions.parse( sources.options, methodMetadata, hasPositionalArguments );
         if ( !hasPositionalArguments ) {
-            ignoredArgs.append( headerData.headerArgNames, true );
+            ignoredArgs.append( requestOptions.argNames, true );
         }
 
         // params
-        var params = parsers.arguments.parse( sources.params, methodMetadata.arguments, ignoredArgs );
+        var params = parsers.arguments.parse(
+            sources.params,
+            methodMetadata.arguments,
+            ignoredArgs,
+            resourceName,
+            methodName,
+            requestOptions.options
+        );
 
         var requestStart = getTickCount();
         var rawResponse = httpService.makeRequest(
             methodMetadata.httpmethod,
             path,
-            headerData.headers,
+            requestOptions.headers,
             params,
             methodMetadata.multipart
         );
@@ -165,10 +172,10 @@ component accessors="true" {
         required boolean hasPositionalArguments
     ) {
         if ( !hasPositionalArguments ) {
-            return { params: argCollection, headers: argCollection };
+            return { params: argCollection, options: argCollection };
         }
 
-        var sources = { params: { }, headers: { } };
+        var sources = { params: { }, options: { } };
 
         if ( arrayLen( argCollection ) <= arrayLen( methodMetadata.positionalArgs ) ) {
             return sources;
@@ -179,11 +186,11 @@ component accessors="true" {
         if ( arrayLen( argCollection ) > sourceStartIndex ) {
             // two argument structs passed
             sources.params = argCollection[ sourceStartIndex ];
-            sources.headers = argCollection[ sourceStartIndex + 1 ];
+            sources.options = argCollection[ sourceStartIndex + 1 ];
         } else {
             // if only one arg struct passed, check to see how to treat it
-            if ( parsers.headers.containsHeaderArgs( argCollection[ sourceStartIndex ] ) ) {
-                sources.headers = argCollection[ sourceStartIndex ];
+            if ( parsers.requestOptions.containsRequestArgs( argCollection[ sourceStartIndex ] ) ) {
+                sources.options = argCollection[ sourceStartIndex ];
             } else {
                 sources.params = argCollection[ sourceStartIndex ];
             }
